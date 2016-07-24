@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (3.4.1)
+  - JSONCodable (2.1)
+  - ProtocolBuffers-Swift (2.4.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - JSONCodable (~> 2.1)
+  - ProtocolBuffers-Swift
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  JSONCodable: d3bb8d1323bb4cbc381b16219046c5282565a4f1
+  ProtocolBuffers-Swift: afbdde78be3c6af8a610d2c257d6bc88e8c7c5d4
+
+PODFILE CHECKSUM: 81fae5d5668e35b21351aab9c2437e4d2d7eb43e
+
+COCOAPODS: 1.0.1

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  UniversityCourseTracker
+//  Hello World
 //
-//  Created by Tevin Jeffrey on 7/23/16.
-//  Copyright © 2016 Tevin Jeffrey. All rights reserved.
+//  Created by Tevin Jeffrey on 12/23/15.
+//  Copyright © 2015 Tevin Jeffrey. All rights reserved.
 //
 
 import UIKit
@@ -47,14 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.tevinjeffrey.UniversityCourseTracker" in the application's documents Application Support directory.
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.tevinjeffrey.Hello_World" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1]
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("UniversityCourseTracker", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("Hello_World", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
 

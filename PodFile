@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+
+target ‘UniversityCourseTracker’ do
+    pod 'Alamofire', '~> 3.4'
+    pod 'ProtocolBuffers-Swift'
+    pod 'JSONCodable', '~> 2.1'
+end

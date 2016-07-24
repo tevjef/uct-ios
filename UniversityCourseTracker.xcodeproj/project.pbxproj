@@ -15,6 +15,9 @@
 		1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */; };
 		1327C10A1D445D5100F5F742 /* UniversityCourseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1091D445D5100F5F742 /* UniversityCourseTrackerTests.swift */; };
 		1327C1151D445D5100F5F742 /* UniversityCourseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */; };
+		1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1221D445E2300F5F742 /* Common.Model.proto.swift */; };
+		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
+		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327C0F31D445D5100F5F742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		1327C1101D445D5100F5F742 /* UniversityCourseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniversityCourseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCourseTrackerUITests.swift; sourceTree = "<group>"; };
 		1327C1161D445D5100F5F742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1327C1221D445E2300F5F742 /* Common.Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.Model.proto.swift; sourceTree = "<group>"; };
+		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
+		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniversityCourseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +92,8 @@
 				1327C1081D445D5100F5F742 /* UniversityCourseTrackerTests */,
 				1327C1131D445D5100F5F742 /* UniversityCourseTrackerUITests */,
 				1327C0EF1D445D5000F5F742 /* Products */,
+				3F8C94C29AFD5345ED58ABF1 /* Pods */,
+				15F466176E339473D4DEA842 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +110,8 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1327C1281D445E2F00F5F742 /* model */,
+				1327C1291D445E3800F5F742 /* repository */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0F31D445D5100F5F742 /* ViewController.swift */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
@@ -128,6 +141,39 @@
 			path = UniversityCourseTrackerUITests;
 			sourceTree = "<group>";
 		};
+		1327C1281D445E2F00F5F742 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1327C1221D445E2300F5F742 /* Common.Model.proto.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		1327C1291D445E3800F5F742 /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				1327C1231D445E2300F5F742 /* DataRepos.swift */,
+			);
+			name = repository;
+			sourceTree = "<group>";
+		};
+		15F466176E339473D4DEA842 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F8C94C29AFD5345ED58ABF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */,
+				03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1327C1191D445D5100F5F742 /* Build configuration list for PBXNativeTarget "UniversityCourseTracker" */;
 			buildPhases = (
+				F7135512DAE40D61E5F7A5D0 /* [CP] Check Pods Manifest.lock */,
 				1327C0EA1D445D5000F5F742 /* Sources */,
 				1327C0EB1D445D5000F5F742 /* Frameworks */,
 				1327C0EC1D445D5000F5F742 /* Resources */,
+				F85C184359900AFAE798ADB5 /* [CP] Embed Pods Frameworks */,
+				A1B21D7FBCA88D3A54DB3753 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,12 +306,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A1B21D7FBCA88D3A54DB3753 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7135512DAE40D61E5F7A5D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F85C184359900AFAE798ADB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1327C0EA1D445D5000F5F742 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
+				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
+				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 			);
@@ -406,6 +505,7 @@
 		};
 		1327C11A1D445D5100F5F742 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
@@ -417,6 +517,7 @@
 		};
 		1327C11B1D445D5100F5F742 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
@@ -491,6 +592,7 @@
 				1327C11B1D445D5100F5F742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1327C11C1D445D5100F5F742 /* Build configuration list for PBXNativeTarget "UniversityCourseTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +601,7 @@
 				1327C11E1D445D5100F5F742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1327C11F1D445D5100F5F742 /* Build configuration list for PBXNativeTarget "UniversityCourseTrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +610,7 @@
 				1327C1211D445D5100F5F742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
