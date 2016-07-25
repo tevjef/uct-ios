@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4o8-Vd-DJC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tracked Courses-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,13 +16,255 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Appointment Reminders-96" translatesAutoresizingMaskIntoConstraints="NO" id="D0x-ZQ-5Wc">
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add courses to get notified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTR-wx-zUW">
+                                <rect key="frame" x="57" y="312" width="207" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D0x-ZQ-5Wc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="112" id="3Pa-hL-sLu"/>
+                            <constraint firstItem="OTR-wx-zUW" firstAttribute="top" secondItem="D0x-ZQ-5Wc" secondAttribute="bottom" constant="8" symbolic="YES" id="Do0-SS-qhM"/>
+                            <constraint firstItem="OTR-wx-zUW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="41" id="GEl-0q-r0b"/>
+                            <constraint firstItem="D0x-ZQ-5Wc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kc5-dR-ZIs"/>
+                            <constraint firstItem="D0x-ZQ-5Wc" firstAttribute="centerX" secondItem="OTR-wx-zUW" secondAttribute="centerX" id="P6j-rA-VIe"/>
+                            <constraint firstItem="D0x-ZQ-5Wc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="qHv-le-ZnO"/>
+                            <constraint firstItem="D0x-ZQ-5Wc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rhO-dW-c3T"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OTR-wx-zUW" secondAttribute="bottom" constant="147" id="v7H-0Q-Xk4"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Tracked Courses" id="fUg-J2-B3F">
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="ICo-DR-F4F">
+                            <connections>
+                                <segue destination="rkA-RA-9Hi" kind="show" id="KWl-8e-6Mn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1222" y="419"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="I1M-3u-MU8">
+            <objects>
+                <viewController id="rkA-RA-9Hi" customClass="SearchViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SHm-jU-iKf"/>
+                        <viewControllerLayoutGuide type="bottom" id="nSE-1D-fc3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qOY-UH-LNi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-eO-hAR">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHv-np-TaI">
+                                <rect key="frame" x="0.0" y="421" width="320" height="59"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KHv-np-TaI" secondAttribute="height" multiplier="10:1" constant="-270" id="HqF-pk-Mca"/>
+                                </constraints>
+                                <state key="normal" title="Start Search">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSX-qG-dqz">
+                                <rect key="frame" x="20" y="90" width="168" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hb4-25-N75"/>
+                                    <constraint firstAttribute="width" constant="168" id="y1n-2o-kYu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7N-ld-KXm">
+                                <rect key="frame" x="20" y="163" width="142" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="0mi-9g-ow2"/>
+                                    <constraint firstAttribute="height" constant="21" id="U8l-8g-f1I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xee-i7-aUF">
+                                <rect key="frame" x="19" y="112" width="281" height="43"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6T-qz-CgI">
+                                        <rect key="frame" x="8" y="7" width="273" height="30"/>
+                                        <state key="normal" title="Select a University"/>
+                                        <connections>
+                                            <action selector="SelectUniversityButton:" destination="rkA-RA-9Hi" eventType="touchUpInside" id="H8C-pG-0AW"/>
+                                            <segue destination="J4t-b4-oxo" kind="show" identifier="gotoUniversityList" id="Vgo-oF-iw0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="r6T-qz-CgI" firstAttribute="leading" secondItem="xee-i7-aUF" secondAttribute="leadingMargin" id="KLb-dG-wik"/>
+                                    <constraint firstItem="r6T-qz-CgI" firstAttribute="centerY" secondItem="xee-i7-aUF" secondAttribute="centerY" id="KXc-pv-tZb"/>
+                                    <constraint firstItem="r6T-qz-CgI" firstAttribute="top" secondItem="xee-i7-aUF" secondAttribute="top" constant="7" id="OTh-3z-F91"/>
+                                    <constraint firstAttribute="trailing" secondItem="r6T-qz-CgI" secondAttribute="trailing" id="otk-cp-t5S"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOi-tb-aYk">
+                                <rect key="frame" x="20" y="186" width="280" height="43"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7n-gS-xJ8">
+                                        <rect key="frame" x="8" y="7" width="264" height="30"/>
+                                        <state key="normal" title="Select a Term"/>
+                                        <connections>
+                                            <segue destination="hwa-5I-V6K" kind="show" identifier="gotoTermList" id="sfG-MU-GQH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="g7n-gS-xJ8" firstAttribute="trailing" secondItem="bOi-tb-aYk" secondAttribute="trailingMargin" id="F8O-Aa-HUC"/>
+                                    <constraint firstItem="g7n-gS-xJ8" firstAttribute="top" secondItem="bOi-tb-aYk" secondAttribute="top" constant="7" id="Hcn-b4-orN"/>
+                                    <constraint firstItem="g7n-gS-xJ8" firstAttribute="centerY" secondItem="bOi-tb-aYk" secondAttribute="centerY" id="Jaw-0s-RqB"/>
+                                    <constraint firstItem="g7n-gS-xJ8" firstAttribute="leading" secondItem="bOi-tb-aYk" secondAttribute="leadingMargin" id="lPO-nS-kyI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="bOi-tb-aYk" firstAttribute="top" secondItem="A7N-ld-KXm" secondAttribute="bottom" constant="2" id="0hg-U7-0Rc"/>
+                            <constraint firstItem="xee-i7-aUF" firstAttribute="centerX" secondItem="bOi-tb-aYk" secondAttribute="centerX" id="0s9-de-72f"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="trailing" secondItem="tKq-eO-hAR" secondAttribute="trailing" id="2aY-k3-CKi"/>
+                            <constraint firstItem="A7N-ld-KXm" firstAttribute="leading" secondItem="bOi-tb-aYk" secondAttribute="leading" id="8kg-uv-N9g"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="centerX" secondItem="qOY-UH-LNi" secondAttribute="centerX" id="A2a-gS-x2r"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="leading" secondItem="tKq-eO-hAR" secondAttribute="leading" id="BCE-Of-3mm"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="leading" secondItem="qOY-UH-LNi" secondAttribute="leading" id="Bno-rg-nmo"/>
+                            <constraint firstItem="A7N-ld-KXm" firstAttribute="top" secondItem="xee-i7-aUF" secondAttribute="bottom" constant="8" symbolic="YES" id="Bu0-aX-A4Y"/>
+                            <constraint firstItem="xee-i7-aUF" firstAttribute="trailing" secondItem="bOi-tb-aYk" secondAttribute="trailing" id="EEs-bK-dJE"/>
+                            <constraint firstItem="xee-i7-aUF" firstAttribute="top" secondItem="HSX-qG-dqz" secondAttribute="bottom" constant="1" id="ELW-Yi-pjl"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="bottom" secondItem="nSE-1D-fc3" secondAttribute="top" id="FHe-o6-lWj"/>
+                            <constraint firstItem="KHv-np-TaI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SHm-jU-iKf" secondAttribute="bottom" constant="8" symbolic="YES" id="Gio-Pm-aD3"/>
+                            <constraint firstItem="tKq-eO-hAR" firstAttribute="bottom" secondItem="SHm-jU-iKf" secondAttribute="bottom" id="K1U-Mj-KP4"/>
+                            <constraint firstItem="HSX-qG-dqz" firstAttribute="top" secondItem="SHm-jU-iKf" secondAttribute="bottom" constant="26" id="fUf-KP-oMM"/>
+                            <constraint firstItem="xee-i7-aUF" firstAttribute="centerX" secondItem="tKq-eO-hAR" secondAttribute="centerX" id="gZS-of-qNA"/>
+                            <constraint firstItem="xee-i7-aUF" firstAttribute="leading" secondItem="qOY-UH-LNi" secondAttribute="leadingMargin" constant="3" id="huW-H0-eSg"/>
+                            <constraint firstAttribute="trailing" secondItem="KHv-np-TaI" secondAttribute="trailing" id="lKD-Nu-OO1"/>
+                            <constraint firstItem="HSX-qG-dqz" firstAttribute="leading" secondItem="A7N-ld-KXm" secondAttribute="leading" id="pd3-Z0-Ub8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gio-Pm-aD3"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="D5y-pN-IaS"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="SelectTermButton" destination="g7n-gS-xJ8" id="D9L-OT-n7X"/>
+                        <outlet property="SelectTermUiView" destination="bOi-tb-aYk" id="0zs-jc-MXJ"/>
+                        <outlet property="SelectUniUiView" destination="xee-i7-aUF" id="7W2-7q-QCW"/>
+                        <outlet property="SelectUniversityButton" destination="r6T-qz-CgI" id="yta-rK-N4G"/>
+                        <outlet property="view" destination="qOY-UH-LNi" id="xbo-S1-Djv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSb-sz-QZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="419"/>
+        </scene>
+        <!--Terms-->
+        <scene sceneID="K0I-LN-7gc">
+            <objects>
+                <viewController title="Terms" id="hwa-5I-V6K" customClass="TermViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4rt-pV-qvJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9kP-BK-Duw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LfF-9d-l95">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jmB-eo-73r">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hwa-5I-V6K" id="5tD-UA-f4M"/>
+                                    <outlet property="delegate" destination="hwa-5I-V6K" id="aAH-d8-a9z"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="jmB-eo-73r" id="ol5-pZ-yiA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jtf-QW-cL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="664"/>
+        </scene>
+        <!--Universities-->
+        <scene sceneID="azu-sx-5dP">
+            <objects>
+                <viewController title="Universities" id="J4t-b4-oxo" customClass="UniversityListViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pwP-n9-oC6"/>
+                        <viewControllerLayoutGuide type="bottom" id="gsh-kL-ge5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZWX-4K-vIN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hJS-vT-2P9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="J4t-b4-oxo" id="j5G-jK-qdr"/>
+                                    <outlet property="delegate" destination="J4t-b4-oxo" id="3K7-k6-Cik"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="hJS-vT-2P9" id="vGx-nD-XoM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y5r-Cd-kfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="92"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ews-ZT-LXz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4o8-Vd-DJC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b35-zR-2hq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4im-wA-kKK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzd-nd-d7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="419"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Appointment Reminders-96" width="96" height="96"/>
+    </resources>
 </document>

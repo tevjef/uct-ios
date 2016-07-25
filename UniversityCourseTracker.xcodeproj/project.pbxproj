@@ -17,6 +17,10 @@
 		1327C1151D445D5100F5F742 /* UniversityCourseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */; };
 		1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1221D445E2300F5F742 /* Common.Model.proto.swift */; };
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
+		1327C12D1D453CA400F5F742 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* SearchViewController.swift */; };
+		1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */; };
+		13D374B41D457E7D001940FD /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B31D457E7D001940FD /* TermViewController.swift */; };
+		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,10 @@
 		1327C1161D445D5100F5F742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1327C1221D445E2300F5F742 /* Common.Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.Model.proto.swift; sourceTree = "<group>"; };
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
+		1327C12C1D453CA400F5F742 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
+		13D374B31D457E7D001940FD /* TermViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
+		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniversityCourseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,10 +118,10 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1327C12E1D453CAD00F5F742 /* controllers */,
 				1327C1281D445E2F00F5F742 /* model */,
 				1327C1291D445E3800F5F742 /* repository */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
-				1327C0F31D445D5100F5F742 /* ViewController.swift */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
@@ -145,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1327C1221D445E2300F5F742 /* Common.Model.proto.swift */,
+				13D374B51D457FC0001940FD /* ModelExtensions.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -155,6 +164,17 @@
 				1327C1231D445E2300F5F742 /* DataRepos.swift */,
 			);
 			name = repository;
+			sourceTree = "<group>";
+		};
+		1327C12E1D453CAD00F5F742 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1327C0F31D445D5100F5F742 /* ViewController.swift */,
+				1327C12C1D453CA400F5F742 /* SearchViewController.swift */,
+				1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */,
+				13D374B31D457E7D001940FD /* TermViewController.swift */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 		15F466176E339473D4DEA842 /* Frameworks */ = {
@@ -359,9 +379,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1327C12D1D453CA400F5F742 /* SearchViewController.swift in Sources */,
+				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
+				1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
+				13D374B41D457E7D001940FD /* TermViewController.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 			);
