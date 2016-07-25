@@ -9,20 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBAction func DoShit(sender: AnyObject) {
-        getUniversities{ (uni : Array<Common.University>?) in
-            if let university = uni {
-                for a in university {
-                }
-            } else {
-                print("Error")
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.translucent = false
         // Do any additional setup after loading the view, typically from a nib.
     
     }

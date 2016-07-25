@@ -121,5 +121,12 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
             nextViewController.setAvailableSemesters((selectedUniversity?.availableSemesters)!)
             nextViewController.searchProtocol = self
         }
+        
+        if segue.identifier == "gotoSubjectList" {
+            let nextViewController = segue.destinationViewController as! SubjectsViewController
+            nextViewController.year = selectedTerm!.year.description
+            nextViewController.season = selectedTerm!.season
+            nextViewController.universityTopic = selectedUniversity!.topicName
+        }
     }
 }

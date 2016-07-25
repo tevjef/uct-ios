@@ -11,15 +11,16 @@ import Alamofire
 
 let BASE_URL = "https://uct.tevindev.me/v2/"
 let UNIVERSITIES = BASE_URL + "universities"
-let UNIVERISITY = BASE_URL + "university/%s"
-let SUBJECTS = BASE_URL + "subject/%s"
-let SUBJECT = BASE_URL + "subjects/%s/%s/%s"
-let COURSES = BASE_URL + "courses/%s"
-let COURSE = BASE_URL + "course/%s"
-let SECTION = BASE_URL + "section/%s"
+let UNIVERISITY = BASE_URL + "university/"
+let SUBJECTS = BASE_URL + "subjects/"
+let SUBJECT = BASE_URL + "subject/"
+let COURSES = BASE_URL + "courses/"
+let COURSE = BASE_URL + "course/"
+let SECTION = BASE_URL + "section/"
 
 func getUniversities(universities: (Array<Common.University>?) -> Void) {
-    let request = Alamofire.request(.GET, UNIVERSITIES)
+    let url = UNIVERSITIES
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -32,7 +33,8 @@ func getUniversities(universities: (Array<Common.University>?) -> Void) {
 }
 
 func getUniversity(universityTopic: String, university: (Common.University?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: UNIVERISITY, universityTopic))
+    let url = "\(UNIVERISITY)\(universityTopic)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -45,7 +47,8 @@ func getUniversity(universityTopic: String, university: (Common.University?) -> 
 
 func getSubjects(universityTopic: String, season: String, year: String,
                  subjects: (Array<Common.Subject>?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: SUBJECTS, universityTopic, season, year))
+    let url = "\(SUBJECTS)\(universityTopic)/\(season)/\(year)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -57,7 +60,8 @@ func getSubjects(universityTopic: String, season: String, year: String,
 }
 
 func getSubject(subjectTopic: String, subject: (Common.Subject?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: SUBJECT, subjectTopic))
+    let url = "\(SUBJECT)\(subjectTopic)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -68,8 +72,9 @@ func getSubject(subjectTopic: String, subject: (Common.Subject?) -> Void) {
     }
 }
 
-func getCourses(subjecTopic: String, courses: (Array<Common.Course>?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: COURSES, subjecTopic))
+func getCourses(subjectTopic: String, courses: (Array<Common.Course>?) -> Void) {
+    let url = "\(COURSES)\(subjectTopic)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -81,7 +86,8 @@ func getCourses(subjecTopic: String, courses: (Array<Common.Course>?) -> Void) {
 }
 
 func getCourse(courseTopic: String, course: (Common.Course?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: COURSE, courseTopic))
+    let url = "\(COURSE)\(courseTopic)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
@@ -93,7 +99,8 @@ func getCourse(courseTopic: String, course: (Common.Course?) -> Void) {
 }
 
 func getSection(sectionTopic: String, section: (Common.Section?) -> Void) {
-    let request = Alamofire.request(.GET, String(format: SECTION, sectionTopic))
+    let url = "\(SECTION)\(sectionTopic)"
+    let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)

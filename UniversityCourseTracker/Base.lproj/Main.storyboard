@@ -69,16 +69,6 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-eO-hAR">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHv-np-TaI">
-                                <rect key="frame" x="0.0" y="421" width="320" height="59"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="KHv-np-TaI" secondAttribute="height" multiplier="10:1" constant="-270" id="HqF-pk-Mca"/>
-                                </constraints>
-                                <state key="normal" title="Start Search">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSX-qG-dqz">
                                 <rect key="frame" x="20" y="90" width="168" height="21"/>
                                 <constraints>
@@ -138,6 +128,19 @@
                                     <constraint firstItem="g7n-gS-xJ8" firstAttribute="leading" secondItem="bOi-tb-aYk" secondAttribute="leadingMargin" id="lPO-nS-kyI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHv-np-TaI">
+                                <rect key="frame" x="0.0" y="421" width="320" height="59"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KHv-np-TaI" secondAttribute="height" multiplier="10:1" constant="-270" id="HqF-pk-Mca"/>
+                                </constraints>
+                                <state key="normal" title="Start Search">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8i9-fc-Vve" kind="show" identifier="gotoSubjectList" id="CzY-uf-Nxh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -180,6 +183,44 @@
             </objects>
             <point key="canvasLocation" x="1599" y="419"/>
         </scene>
+        <!--Subjects-->
+        <scene sceneID="kjK-bO-TDv">
+            <objects>
+                <viewController title="Subjects" id="8i9-fc-Vve" customClass="SubjectsViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uvh-pP-Ee2"/>
+                        <viewControllerLayoutGuide type="bottom" id="L3B-Y7-i0H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kp2-eY-0In">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4eU-fx-Xr1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8i9-fc-Vve" id="rN5-zW-r2P"/>
+                                    <outlet property="delegate" destination="8i9-fc-Vve" id="rWc-vF-cD5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4eU-fx-Xr1" firstAttribute="bottom" secondItem="L3B-Y7-i0H" secondAttribute="top" id="A2p-vy-ZzL"/>
+                            <constraint firstItem="4eU-fx-Xr1" firstAttribute="top" secondItem="kp2-eY-0In" secondAttribute="top" id="GiI-V2-KoQ"/>
+                            <constraint firstAttribute="trailing" secondItem="4eU-fx-Xr1" secondAttribute="trailing" id="oaZ-5Q-zNB"/>
+                            <constraint firstItem="4eU-fx-Xr1" firstAttribute="leading" secondItem="kp2-eY-0In" secondAttribute="leading" id="pUn-TY-RwO"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="4eU-fx-Xr1" id="Se2-3C-HQG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uus-oe-QM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2037" y="419"/>
+        </scene>
         <!--Terms-->
         <scene sceneID="K0I-LN-7gc">
             <objects>
@@ -192,7 +233,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jmB-eo-73r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jmB-eo-73r">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -202,6 +243,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jmB-eo-73r" secondAttribute="trailing" id="NUx-4y-Zjr"/>
+                            <constraint firstItem="jmB-eo-73r" firstAttribute="top" secondItem="LfF-9d-l95" secondAttribute="top" id="RmI-ed-oWa"/>
+                            <constraint firstItem="jmB-eo-73r" firstAttribute="leading" secondItem="LfF-9d-l95" secondAttribute="leading" id="gGa-cR-qr0"/>
+                            <constraint firstItem="jmB-eo-73r" firstAttribute="bottom" secondItem="9kP-BK-Duw" secondAttribute="top" id="syX-BL-LLq"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -210,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jtf-QW-cL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007" y="664"/>
+            <point key="canvasLocation" x="1403" y="1035"/>
         </scene>
         <!--Universities-->
         <scene sceneID="azu-sx-5dP">
@@ -224,7 +271,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hJS-vT-2P9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hJS-vT-2P9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -234,6 +281,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hJS-vT-2P9" firstAttribute="leading" secondItem="ZWX-4K-vIN" secondAttribute="leading" id="0It-K4-NUk"/>
+                            <constraint firstAttribute="trailing" secondItem="hJS-vT-2P9" secondAttribute="trailing" id="5yf-ef-kyt"/>
+                            <constraint firstItem="hJS-vT-2P9" firstAttribute="bottom" secondItem="gsh-kL-ge5" secondAttribute="top" id="6Lp-uw-560"/>
+                            <constraint firstItem="hJS-vT-2P9" firstAttribute="top" secondItem="ZWX-4K-vIN" secondAttribute="top" id="8le-JV-iVz"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -242,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5r-Cd-kfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007" y="92"/>
+            <point key="canvasLocation" x="1784" y="1035"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ews-ZT-LXz">
@@ -255,6 +308,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="bId-VQ-meF">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4im-wA-kKK"/>
                     </connections>
