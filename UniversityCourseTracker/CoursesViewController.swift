@@ -8,26 +8,24 @@
 
 import UIKit
 
-class SubjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var indicator = UIActivityIndicatorView()
-    var loadedSubjects: Array<Common.Subject>?
-    var subjectsList: [String] = [String]()
-    var year: String?
-    var season: String?
-    var universityTopic: String?
-    var selectedSubject: Int = -1
+    var loadedCourses: Array<Common.Course>?
+    var courseList: [String] = [String]()
+    var subjectTopic: String?
+    var selectedCourse: Int = -1
     
     override func viewDidLoad() {
         activityIndicator()
         startIndicator()
         
-        getSubjects(universityTopic!, season: season!, year: year!, subjects: { (subjects: Array<Common.Subject>?) in
-            if let subjects = subjects {
-                self.loadedSubjects = subjects
-                for subs in self.loadedSubjects! {
-                    self.subjectsList.append(subs.name)
+        getCourses(subjectTopic!, courses: { (courses: Array<Common.Course>?) in
+            if let courses = courses {
+                self.loadedCourses = courses
+                for course in self.loadedCourses! {
+                    self.courseList.append(course.name)
                 }
                 self.tableView.reloadData()
                 self.stopIndicator()
@@ -37,7 +35,6 @@ class SubjectsViewController: UIViewController, UITableViewDelegate, UITableView
         })
     }
     
-    // MARK: - UI Shit
     func startIndicator() {
         indicator.startAnimating()
         indicator.backgroundColor = UIColor.whiteColor()
@@ -55,29 +52,22 @@ class SubjectsViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.addSubview(indicator)
     }
     
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if  segue.identifier == "gotoCourseList" {
-            let nextViewController = segue.destinationViewController as! CoursesViewController
-            let row = tableView.indexPathForSelectedRow?.row
-            nextViewController.subjectTopic = loadedSubjects![row!].topicName
-        }
-    }
-    
     // MARK: - UITableViewDelegate Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subjectsList.count
+        return courseList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = subjectsList[indexPath.row]
+        let course = loadedCourses![indexPath.row]
+        cell.textLabel?.text = course.name
+        cell.detailTextLabel?.text = "\(Common.getOpenSections(course)) open sections of \(loadedCourses!.count)"
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
+    
 }

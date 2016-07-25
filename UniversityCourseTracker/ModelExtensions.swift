@@ -12,4 +12,14 @@ extension Common {
     static func getReadableString(semester: Common.Semester) -> String {
         return semester.season.capitalizedString + " " + String(semester.year)
     }
+    
+    static func getOpenSections(course: Common.Course) -> Int {
+        var count: Int = 0
+        for section in course.sections {
+            if section.status == "Open" {
+                count = count + 1
+            }
+        }
+        return count
+    }
 }

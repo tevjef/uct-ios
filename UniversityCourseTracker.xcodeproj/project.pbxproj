@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */; };
+		1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */; };
+		1308CC0E1D45D21700E7A243 /* MetadataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1308CC0D1D45D21700E7A243 /* MetadataView.xib */; };
 		1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F11D445D5100F5F742 /* AppDelegate.swift */; };
 		1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F31D445D5100F5F742 /* ViewController.swift */; };
 		1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0F51D445D5100F5F742 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsViewController.swift; sourceTree = "<group>"; };
+		1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
+		1308CC0D1D45D21700E7A243 /* MetadataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetadataView.xib; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327C0F31D445D5100F5F742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
 				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
+				1308CC0D1D45D21700E7A243 /* MetadataView.xib */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */,
 				13D374B31D457E7D001940FD /* TermViewController.swift */,
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
+				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */,
+				1308CC0E1D45D21700E7A243 /* MetadataView.xib in Resources */,
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 			);
@@ -384,6 +391,7 @@
 			files = (
 				1327C12D1D453CA400F5F742 /* SearchViewController.swift in Sources */,
 				1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */,
+				1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */,
 				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */,
