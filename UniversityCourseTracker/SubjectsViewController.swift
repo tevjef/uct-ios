@@ -14,53 +14,41 @@ class SubjectsViewController: UIViewController, UITableViewDelegate, UITableView
     var indicator = UIActivityIndicatorView()
     var loadedSubjects: Array<Common.Subject>?
     var subjectsList: [String] = [String]()
-    var year: String?
-    var season: String?
-    var universityTopic: String?
+    var selectedUniversity: Common.University?
+    var selectedSemester: Common.Semester?
     var selectedSubject: Int = -1
     
     override func viewDidLoad() {
-        activityIndicator()
-        startIndicator()
+        setupViews()
+        ViewController.startIndicator(indicator)
         
-        getSubjects(universityTopic!, season: season!, year: year!, subjects: { (subjects: Array<Common.Subject>?) in
+        getSubjects(selectedUniversity!.topicName, selectedSemester!.season, selectedSemester!.year.description, {
+            subjects in
             if let subjects = subjects {
                 self.loadedSubjects = subjects
                 for subs in self.loadedSubjects! {
                     self.subjectsList.append(subs.name)
                 }
                 self.tableView.reloadData()
-                self.stopIndicator()
+                ViewController.stopIndicator(self.indicator)
             } else {
                 print("Error")
             }
         })
     }
-    
-    // MARK: - UI Shit
-    func startIndicator() {
-        indicator.startAnimating()
-        indicator.backgroundColor = UIColor.whiteColor()
+
+    func setupViews() {
+        navigationItem.title = Common.getReadableString(selectedSemester!)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        indicator = ViewController.makeActivityIndicator(self.view)
     }
-    
-    func stopIndicator() {
-        indicator.stopAnimating()
-        indicator.hidesWhenStopped = true
-    }
-    
-    func activityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-    }
-    
+
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if  segue.identifier == "gotoCourseList" {
             let nextViewController = segue.destinationViewController as! CoursesViewController
             let row = tableView.indexPathForSelectedRow?.row
-            nextViewController.subjectTopic = loadedSubjects![row!].topicName
+            nextViewController.selectedSubject = loadedSubjects![row!]
         }
     }
     
@@ -71,8 +59,9 @@ class SubjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell", forIndexPath: indexPath) as UITableViewCell
+        let subject = loadedSubjects![indexPath.row]
         
-        cell.textLabel?.text = subjectsList[indexPath.row]
+        cell.textLabel?.text = "(\(subject.number)) \(subject.name)"
         return cell
     }
     

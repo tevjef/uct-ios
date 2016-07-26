@@ -26,6 +26,41 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
     var selectedUniversity: Common.University?
     var selectedTerm: Common.Semester?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        updateSelectUniversityText()
+        
+        getUniversities { unis in
+            if let unis = unis {
+                var universityList: [String] = []
+                for u in unis {
+                    universityList.append(u.name)
+                }
+            } else {
+                print("Error")
+            }
+        }
+    }
+
+    func setupViews() {
+        SelectTermButton.enabled = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        SelectUniUiView.layer.cornerRadius = 10
+        SelectTermUiView.layer.cornerRadius = 10
+    }
+    
+    func setUniversity(university: Common.University) {
+        selectedUniversity = university
+        updateSelectUniversityText()
+        SelectTermButton.enabled = true
+    }
+    
+    func setTerm(semester: Common.Semester) {
+        selectedTerm = semester
+        updateSelectTermText()
+    }
+    
     func updateSelectUniversityText() {
         if selectedUniversity == nil {
             if preferences.objectForKey(preferredUniversityKey) == nil {
@@ -55,54 +90,13 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
             setTermButtonText(term)
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-        updateSelectUniversityText()
-        
-        getUniversities { (unis: Array<Common.University>?) in
-            if let unis = unis {
-                var universityList: [String] = []
-                for u in unis {
-                    universityList.append(u.name)
-                }
-            } else {
-                print("Error")
-            }
-        }
-        // Do any additional setup after loading the view, typically from a nib.
-        
-    }
 
-    func setupViews() {
-        SelectTermButton.enabled = false
-        SelectUniUiView.layer.cornerRadius = 10
-        SelectTermUiView.layer.cornerRadius = 10
-    }
-    
-    func setUniversity(university: Common.University) {
-        selectedUniversity = university
-        updateSelectUniversityText()
-        SelectTermButton.enabled = true
-    }
-    
-    func setTerm(semester: Common.Semester) {
-        selectedTerm = semester
-        updateSelectTermText()
-    }
-    
     func setUniversityButtonText(text: String) {
         SelectUniversityButton.setTitle(text, forState: UIControlState.Normal)
     }
     
     func setTermButtonText(text: String) {
         SelectTermButton.setTitle(text, forState: UIControlState.Normal)
-    }
-
-
-    @IBAction func SelectUniversityButton(sender: AnyObject) {
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,15 +112,14 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
         
         if segue.identifier == "gotoTermList" {
             let nextViewController = segue.destinationViewController as! TermViewController
-            nextViewController.setAvailableSemesters((selectedUniversity?.availableSemesters)!)
+            nextViewController.loadedTerms = selectedUniversity?.availableSemesters
             nextViewController.searchProtocol = self
         }
         
         if segue.identifier == "gotoSubjectList" {
             let nextViewController = segue.destinationViewController as! SubjectsViewController
-            nextViewController.year = selectedTerm!.year.description
-            nextViewController.season = selectedTerm!.season
-            nextViewController.universityTopic = selectedUniversity!.topicName
+            nextViewController.selectedSemester = selectedTerm!
+            nextViewController.selectedUniversity = selectedUniversity!
         }
     }
 }

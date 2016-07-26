@@ -32,7 +32,7 @@ func getUniversities(universities: (Array<Common.University>?) -> Void) {
     }
 }
 
-func getUniversity(universityTopic: String, university: (Common.University?) -> Void) {
+func getUniversity(universityTopic: String, _ university: (Common.University?) -> Void) {
     let url = "\(UNIVERISITY)\(universityTopic)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
@@ -45,8 +45,8 @@ func getUniversity(universityTopic: String, university: (Common.University?) -> 
     }
 }
 
-func getSubjects(universityTopic: String, season: String, year: String,
-                 subjects: (Array<Common.Subject>?) -> Void) {
+func getSubjects(universityTopic: String, _ season: String, _ year: String,
+                 _ subjects: (Array<Common.Subject>?) -> Void) {
     let url = "\(SUBJECTS)\(universityTopic)/\(season)/\(year)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
@@ -59,7 +59,7 @@ func getSubjects(universityTopic: String, season: String, year: String,
     }
 }
 
-func getSubject(subjectTopic: String, subject: (Common.Subject?) -> Void) {
+func getSubject(subjectTopic: String, _ subject: (Common.Subject?) -> Void) {
     let url = "\(SUBJECT)\(subjectTopic)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
@@ -72,7 +72,7 @@ func getSubject(subjectTopic: String, subject: (Common.Subject?) -> Void) {
     }
 }
 
-func getCourses(subjectTopic: String, courses: (Array<Common.Course>?) -> Void) {
+func getCourses(subjectTopic: String, _ courses: (Array<Common.Course>?) -> Void) {
     let url = "\(COURSES)\(subjectTopic)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
@@ -85,7 +85,7 @@ func getCourses(subjectTopic: String, courses: (Array<Common.Course>?) -> Void) 
     }
 }
 
-func getCourse(courseTopic: String, course: (Common.Course?) -> Void) {
+func getCourse(courseTopic: String, _ course: (Common.Course?) -> Void) {
     let url = "\(COURSE)\(courseTopic)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in
@@ -98,7 +98,7 @@ func getCourse(courseTopic: String, course: (Common.Course?) -> Void) {
     }
 }
 
-func getSection(sectionTopic: String, section: (Common.Section?) -> Void) {
+func getSection(sectionTopic: String, _ section: (Common.Section?) -> Void) {
     let url = "\(SECTION)\(sectionTopic)"
     let request = Alamofire.request(.GET, url)
     request.responseJSON { response in

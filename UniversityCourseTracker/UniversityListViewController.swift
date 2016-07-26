@@ -18,39 +18,28 @@ class UniversityListViewController: UIViewController, UITableViewDelegate, UITab
     var searchProtocol: SearchFlowProtocol?
     
     override func viewDidLoad() {
-        activityIndicator()
-        startIndicator()
-        getUniversities { (unis: Array<Common.University>?) in
-            if let unis = unis {
-                self.loadedUniversities = unis
-                for u in unis {
+        setupViews()
+        ViewController.startIndicator(indicator)
+
+        // Load a list of universities from the network
+        getUniversities { universities in
+            if let universities = universities {
+                self.loadedUniversities = universities
+                for u in universities {
                     self.universityList.append(u.name)
                 }
                 self.tableView.reloadData()
-                self.stopIndicator()
+                ViewController.stopIndicator(self.indicator)
             } else {
                 print("Error")
             }
         }
     }
 
-    func startIndicator() {
-        indicator.startAnimating()
-        indicator.backgroundColor = UIColor.whiteColor()
+    func setupViews() {
+        indicator = ViewController.makeActivityIndicator(self.view)
     }
-    
-    func stopIndicator() {
-        indicator.stopAnimating()
-        indicator.hidesWhenStopped = true
-    }
-    
-    func activityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-    }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return universityList.count
     }
