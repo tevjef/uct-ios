@@ -31,7 +31,10 @@ class UniversityListViewController: UIViewController, UITableViewDelegate, UITab
                 self.tableView.reloadData()
                 ViewController.stopIndicator(self.indicator)
             } else {
-                print("Error")
+                let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { uiAction in self.goBack()                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+
             }
         }
     }
@@ -56,6 +59,10 @@ class UniversityListViewController: UIViewController, UITableViewDelegate, UITab
         if selectedUniversity != -1 {
             searchProtocol!.setUniversity(self.loadedUniversities![selectedUniversity])
         }
+        goBack()
+    }
+    
+    func goBack() {
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

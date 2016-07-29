@@ -7,58 +7,60 @@
       <sourceFolder url="file://$MODULE_DIR$/PodFile" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTrackerTests/UniversityCourseTrackerTests.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTrackerTests/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/DataRepos.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/NavigationController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/UniversityListViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/TermViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/SubjectsViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/ModelExtensions.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Assets.xcassets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/SearchViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/DataRepos.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Common.Model.proto.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/UniversityListViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/AppDelegate.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/UniversityCourseTracker.xcdatamodeld/UniversityCourseTracker.xcdatamodel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Utils.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/Base.lproj/Main.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/CoursesViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/UniversityCourseTracker.xcdatamodeld/UniversityCourseTracker.xcdatamodel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/SearchViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/MetadataView.xib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UniversityCourseTracker/ViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ExtendableMessage.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/UnknownFieldSet.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ExtensionRegistry.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/WireFormat.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/CodedInputStream.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/AbstractMessage.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/Google.Protobuf.SwiftDescriptor.proto.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/Field.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/Google.Protobuf.Descriptor.proto.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/GeneratedMessage.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ConcreateExtensionField.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/Google.Protobuf.SwiftDescriptor.proto.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/CodedInputStream.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ExtensionRegistry.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/CodedOutputStream.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/UnknownFieldSet.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/AbstractMessage.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ConcreateExtensionField.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/ExtendableMessage.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/ProtocolBuffers-Swift/Source/RingBuffer.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-umbrella.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift.modulemap" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-prefix.pch" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift.xcconfig" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-resources.sh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-frameworks.sh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-acknowledgements.markdown" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.modulemap" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-acknowledgements.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-umbrella.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Validation.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-frameworks.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-acknowledgements.markdown" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-dummy.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.modulemap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-resources.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-acknowledgements.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-umbrella.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-umbrella.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift.modulemap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-dummy.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift-prefix.pch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/ProtocolBuffers-Swift/ProtocolBuffers-Swift.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Timeline.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Response.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Error.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Stream.swift" isTestSource="false" />
@@ -69,17 +71,23 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Manager.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Download.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/NetworkReachabilityManager.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Timeline.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/ResponseSerialization.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Notifications.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Validation.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Upload.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Alamofire.swift" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Intermediates/Pods.build/Debug-iphoneos/Alamofire.build/DerivedSources" />
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Intermediates/Pods.build/Debug-iphoneos/Pods-UniversityCourseTracker.build/DerivedSources" />
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Intermediates/Pods.build/Debug-iphoneos/ProtocolBuffers-Swift.build/DerivedSources" />
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Intermediates/UniversityCourseTracker.build/Debug-iphoneos/UniversityCourseTracker.build/DerivedSources" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
+          <root url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework/Headers" />
+          <root url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Products/Debug-iphoneos/ProtocolBuffers-Swift/ProtocolBuffers.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/InterfaceBuilderKit.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/DTPerformanceSession.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework/Headers" />
@@ -171,6 +179,8 @@
           <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1" />
         </CLASSES>
         <SOURCES>
+          <root url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework/Headers" />
+          <root url="file://$USER_HOME$/Library/Caches/AppCode2016.2/DerivedData/UniversityCourseTracker-aqqkyikwmafsbnengwngipbipvut/Build/Products/Debug-iphoneos/ProtocolBuffers-Swift/ProtocolBuffers.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/InterfaceBuilderKit.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/DTPerformanceSession.framework/Headers" />
           <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework/Headers" />

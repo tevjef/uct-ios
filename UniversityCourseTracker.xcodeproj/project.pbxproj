@@ -10,6 +10,9 @@
 		1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */; };
 		1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */; };
 		1308CC0E1D45D21700E7A243 /* MetadataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1308CC0D1D45D21700E7A243 /* MetadataView.xib */; };
+		130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E21D49B3FB00CCD3E1 /* Utils.swift */; };
+		130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */; };
+		130AD7E71D49CF3F00CCD3E1 /* Section.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130AD7E61D49CF3F00CCD3E1 /* Section.xib */; };
 		1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F11D445D5100F5F742 /* AppDelegate.swift */; };
 		1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F31D445D5100F5F742 /* ViewController.swift */; };
 		1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0F51D445D5100F5F742 /* Main.storyboard */; };
@@ -49,6 +52,9 @@
 		1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsViewController.swift; sourceTree = "<group>"; };
 		1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		1308CC0D1D45D21700E7A243 /* MetadataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetadataView.xib; sourceTree = "<group>"; };
+		130AD7E21D49B3FB00CCD3E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		130AD7E61D49CF3F00CCD3E1 /* Section.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Section.xib; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327C0F31D445D5100F5F742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130AD7E11D49B3EB00CCD3E1 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				130AD7E21D49B3FB00CCD3E1 /* Utils.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
 		1327C0E51D445D5000F5F742 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +138,7 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				130AD7E11D49B3EB00CCD3E1 /* extensions */,
 				1327C12E1D453CAD00F5F742 /* controllers */,
 				1327C1281D445E2F00F5F742 /* model */,
 				1327C1291D445E3800F5F742 /* repository */,
@@ -134,6 +149,7 @@
 				1327C1001D445D5100F5F742 /* Info.plist */,
 				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
 				1308CC0D1D45D21700E7A243 /* MetadataView.xib */,
+				130AD7E61D49CF3F00CCD3E1 /* Section.xib */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -182,6 +198,7 @@
 				13D374B31D457E7D001940FD /* TermViewController.swift */,
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
+				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -275,6 +292,11 @@
 					1327C0ED1D445D5000F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 33EY486PX7;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					1327C1041D445D5100F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -316,6 +338,7 @@
 				1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */,
 				1308CC0E1D45D21700E7A243 /* MetadataView.xib in Resources */,
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
+				130AD7E71D49CF3F00CCD3E1 /* Section.xib in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +416,7 @@
 				1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */,
 				1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */,
 				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
+				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
@@ -400,6 +424,7 @@
 				13D374B41D457E7D001940FD /* TermViewController.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
+				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -558,7 +583,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

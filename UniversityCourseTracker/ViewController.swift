@@ -9,9 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.translucent = false
+        setupViews()
         // Do any additional setup after loading the view, typically from a nib.
     
     }
@@ -37,5 +37,10 @@ class ViewController: UIViewController {
     static func stopIndicator(indicator: UIActivityIndicatorView) {
         indicator.stopAnimating()
         indicator.hidesWhenStopped = true
+    }
+    
+    func setupViews() {
+        navigationItem.title = "Tracked Courses"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
     }
 }

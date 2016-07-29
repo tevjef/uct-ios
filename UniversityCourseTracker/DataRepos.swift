@@ -11,31 +11,41 @@ import Alamofire
 
 let BASE_URL = "https://uct.tevindev.me/v2/"
 let UNIVERSITIES = BASE_URL + "universities"
-let UNIVERISITY = BASE_URL + "university/"
+let UNIVERSITY = BASE_URL + "university/"
 let SUBJECTS = BASE_URL + "subjects/"
 let SUBJECT = BASE_URL + "subject/"
 let COURSES = BASE_URL + "courses/"
 let COURSE = BASE_URL + "course/"
 let SECTION = BASE_URL + "section/"
 
-func getUniversities(universities: (Array<Common.University>?) -> Void) {
-    let url = UNIVERSITIES
-    let request = Alamofire.request(.GET, url)
-    request.responseJSON { response in
-        do {
-            let resp = try Common.Response.parseFromData(response.data!)
-            universities(resp.data.universities)
-        } catch {
-            universities(nil)
+func processRequest(request: Request, completion: (Common.Response?) -> Void) {
+    request.responseData { response in
+        if response.result.isSuccess {
+            do {
+                let resp = try Common.Response.parseFromData(response.data!)
+                completion(resp)
+            } catch {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
         }
-        
     }
 }
 
-func getUniversity(universityTopic: String, _ university: (Common.University?) -> Void) {
-    let url = "\(UNIVERISITY)\(universityTopic)"
+func getUniversities(universities: (Array<Common.University>?) -> Void) {
+    let url = UNIVERSITIES
     let request = Alamofire.request(.GET, url)
-    request.responseJSON { response in
+    processRequest(request, completion: {
+        response in
+        universities(response?.data.universities)
+    })
+}
+
+func getUniversity(universityTopic: String, _ university: (Common.University?) -> Void) {
+    let url = "\(UNIVERSITY)\(universityTopic)"
+    let request = Alamofire.request(.GET, url)
+    request.responseData { response in
         do {
             let resp = try Common.Response.parseFromData(response.data!)
             university(resp.data.university)

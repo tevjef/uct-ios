@@ -15,6 +15,7 @@ protocol SearchFlowProtocol {
 
 class SearchViewController: UIViewController, SearchFlowProtocol {
     
+    @IBOutlet weak var SearchButton: UIButton!
     @IBOutlet weak var SelectUniUiView: UIView!
     @IBOutlet weak var SelectTermUiView: UIView!
     @IBOutlet weak var SelectUniversityButton: UIButton!
@@ -27,25 +28,36 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
     var selectedTerm: Common.Semester?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         setupViews()
         updateSelectUniversityText()
-        
-        getUniversities { unis in
-            if let unis = unis {
-                var universityList: [String] = []
-                for u in unis {
-                    universityList.append(u.name)
-                }
-            } else {
-                print("Error")
-            }
-        }
     }
 
+    func enableTermButton(enable: Bool) {
+        if enable {
+            SelectTermButton.enabled = true
+            SelectTermUiView.alpha = 1
+        } else {
+            SelectTermButton.enabled = false
+            SelectTermUiView.alpha = CGFloat(floatLiteral: 0.60)
+        }
+    }
+    
+    func enableSearchButton(enable: Bool) {
+        if enable {
+            SearchButton.enabled = true
+            SearchButton.alpha = 1
+        } else {
+            SearchButton.enabled = false
+            SearchButton.alpha = CGFloat(floatLiteral: 0.60)
+        }
+    }
+    
     func setupViews() {
+        enableSearchButton(false)
+        enableTermButton(false)
+        
         SelectTermButton.enabled = false
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
         SelectUniUiView.layer.cornerRadius = 10
         SelectTermUiView.layer.cornerRadius = 10
     }
@@ -53,41 +65,36 @@ class SearchViewController: UIViewController, SearchFlowProtocol {
     func setUniversity(university: Common.University) {
         selectedUniversity = university
         updateSelectUniversityText()
-        SelectTermButton.enabled = true
     }
     
     func setTerm(semester: Common.Semester) {
         selectedTerm = semester
         updateSelectTermText()
+        
     }
     
     func updateSelectUniversityText() {
         if selectedUniversity == nil {
-            if preferences.objectForKey(preferredUniversityKey) == nil {
-                setUniversityButtonText("Select a University")
-            } else {
-                setUniversityButtonText(preferences.stringForKey(preferredUniversityKey)!)
-            }
+            setUniversityButtonText("Select a University")
         } else {
             let university = selectedUniversity!.name
             preferences.setObject(university, forKey: preferredUniversityKey)
             preferences.synchronize()
             setUniversityButtonText(university)
+            enableTermButton(true)
         }
     }
     
     func updateSelectTermText() {
         if selectedUniversity == nil {
-            if preferences.objectForKey(preferredTermKey) == nil {
-                setTermButtonText("Select a Term")
-            } else {
-                setTermButtonText(preferences.stringForKey(preferredTermKey)!)
-            }
+            setTermButtonText("Select a Term")
         } else {
             let term = Common.getReadableString(selectedTerm!)
+            SelectTermButton.enabled = true
             preferences.setObject(term, forKey: preferredTermKey)
             preferences.synchronize()
             setTermButtonText(term)
+            enableSearchButton(true)
         }
     }
 
