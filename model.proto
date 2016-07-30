@@ -26,33 +26,11 @@ message University {
     optional string accent_color = 7 [(gogoproto.moretags) = "db:\"accent_color\"", (gogoproto.nullable) = false];
     optional string topic_name = 8 [(gogoproto.moretags) = "db:\"topic_name\"", (gogoproto.nullable) = false];
     optional string topic_id = 9 [(gogoproto.moretags) = "db:\"topic_id\"", (gogoproto.nullable) = false];
-    repeated Subject subjects = 10;
-    repeated Semester available_semesters = 11;
-    repeated Registration registrations = 12;
-    repeated Metadata metadata = 13;
-}
-
-message Response {
-    optional Meta meta = 1;
-    optional Data data = 2;
-}
-
-message Meta {
-    optional string error_type = 1;
-    optional string error_message = 2;
-    optional int32 code = 3;
-}
-
-message Data {
-    repeated University universities = 1;
-    repeated Subject subjects = 2;
-    repeated Course courses = 3;
-    repeated Section sections = 4;
-    optional University university = 5;
-    optional Subject subject = 6;
-    optional Course course = 7;
-    optional Section section = 8;
-
+    optional ResolvedSemester resolved_semesters = 10;
+    repeated Subject subjects = 11;
+    repeated Semester available_semesters = 12;
+    repeated Registration registrations = 13;
+    repeated Metadata metadata = 14;
 }
 
 message Subject {
@@ -142,7 +120,41 @@ message Registration {
 
 }
 
+message ResolvedSemester {
+    optional Semester current = 1;
+    optional Semester last = 2;
+    optional Semester next = 3;
+}
+
 message Semester {
     optional int32 year = 1 [(gogoproto.moretags) = "db:\"year\"", (gogoproto.nullable) = false];
     optional string season = 2 [(gogoproto.moretags) = "db:\"season\"", (gogoproto.nullable) = false];
+}
+
+message UCTNotification {
+    optional int64 notification_id = 1 [(gogoproto.nullable) = false];
+    optional string topic_name = 2 [(gogoproto.nullable) = false];
+    optional string status = 3 [(gogoproto.nullable) = false];
+    optional University university = 4 [(gogoproto.nullable) = false];
+}
+
+message Response {
+    optional Meta meta = 1;
+    optional Data data = 2;
+}
+
+message Meta {
+    optional int32 code = 1;
+    optional string message = 2;
+}
+
+message Data {
+    repeated University universities = 1;
+    repeated Subject subjects = 2;
+    repeated Course courses = 3;
+    repeated Section sections = 4;
+    optional University university = 5;
+    optional Subject subject = 6;
+    optional Course course = 7;
+    optional Section section = 8;
 }

@@ -21,50 +21,11 @@ public func == (lhs: Common.University, rhs: Common.University) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasAccentColor == rhs.hasAccentColor) && (!lhs.hasAccentColor || lhs.accentColor == rhs.accentColor)
   fieldCheck = fieldCheck && (lhs.hasTopicName == rhs.hasTopicName) && (!lhs.hasTopicName || lhs.topicName == rhs.topicName)
   fieldCheck = fieldCheck && (lhs.hasTopicId == rhs.hasTopicId) && (!lhs.hasTopicId || lhs.topicId == rhs.topicId)
+  fieldCheck = fieldCheck && (lhs.hasResolvedSemesters == rhs.hasResolvedSemesters) && (!lhs.hasResolvedSemesters || lhs.resolvedSemesters == rhs.resolvedSemesters)
   fieldCheck = fieldCheck && (lhs.subjects == rhs.subjects)
   fieldCheck = fieldCheck && (lhs.availableSemesters == rhs.availableSemesters)
   fieldCheck = fieldCheck && (lhs.registrations == rhs.registrations)
   fieldCheck = fieldCheck && (lhs.metadata == rhs.metadata)
-  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-  return fieldCheck
-}
-
-public func == (lhs: Common.Response, rhs: Common.Response) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasMeta == rhs.hasMeta) && (!lhs.hasMeta || lhs.meta == rhs.meta)
-  fieldCheck = fieldCheck && (lhs.hasData == rhs.hasData) && (!lhs.hasData || lhs.data == rhs.data)
-  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-  return fieldCheck
-}
-
-public func == (lhs: Common.Meta, rhs: Common.Meta) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasErrorType == rhs.hasErrorType) && (!lhs.hasErrorType || lhs.errorType == rhs.errorType)
-  fieldCheck = fieldCheck && (lhs.hasErrorMessage == rhs.hasErrorMessage) && (!lhs.hasErrorMessage || lhs.errorMessage == rhs.errorMessage)
-  fieldCheck = fieldCheck && (lhs.hasCode == rhs.hasCode) && (!lhs.hasCode || lhs.code == rhs.code)
-  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-  return fieldCheck
-}
-
-public func == (lhs: Common.Data, rhs: Common.Data) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.universities == rhs.universities)
-  fieldCheck = fieldCheck && (lhs.subjects == rhs.subjects)
-  fieldCheck = fieldCheck && (lhs.courses == rhs.courses)
-  fieldCheck = fieldCheck && (lhs.sections == rhs.sections)
-  fieldCheck = fieldCheck && (lhs.hasUniversity == rhs.hasUniversity) && (!lhs.hasUniversity || lhs.university == rhs.university)
-  fieldCheck = fieldCheck && (lhs.hasSubject == rhs.hasSubject) && (!lhs.hasSubject || lhs.subject == rhs.subject)
-  fieldCheck = fieldCheck && (lhs.hasCourse == rhs.hasCourse) && (!lhs.hasCourse || lhs.course == rhs.course)
-  fieldCheck = fieldCheck && (lhs.hasSection == rhs.hasSection) && (!lhs.hasSection || lhs.section == rhs.section)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -203,6 +164,18 @@ public func == (lhs: Common.Registration, rhs: Common.Registration) -> Bool {
   return fieldCheck
 }
 
+public func == (lhs: Common.ResolvedSemester, rhs: Common.ResolvedSemester) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasCurrent == rhs.hasCurrent) && (!lhs.hasCurrent || lhs.current == rhs.current)
+  fieldCheck = fieldCheck && (lhs.hasLast == rhs.hasLast) && (!lhs.hasLast || lhs.last == rhs.last)
+  fieldCheck = fieldCheck && (lhs.hasNext == rhs.hasNext) && (!lhs.hasNext || lhs.next == rhs.next)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
 public func == (lhs: Common.Semester, rhs: Common.Semester) -> Bool {
   if (lhs === rhs) {
     return true
@@ -210,6 +183,58 @@ public func == (lhs: Common.Semester, rhs: Common.Semester) -> Bool {
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasYear == rhs.hasYear) && (!lhs.hasYear || lhs.year == rhs.year)
   fieldCheck = fieldCheck && (lhs.hasSeason == rhs.hasSeason) && (!lhs.hasSeason || lhs.season == rhs.season)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Common.Uctnotification, rhs: Common.Uctnotification) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasNotificationId == rhs.hasNotificationId) && (!lhs.hasNotificationId || lhs.notificationId == rhs.notificationId)
+  fieldCheck = fieldCheck && (lhs.hasTopicName == rhs.hasTopicName) && (!lhs.hasTopicName || lhs.topicName == rhs.topicName)
+  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
+  fieldCheck = fieldCheck && (lhs.hasUniversity == rhs.hasUniversity) && (!lhs.hasUniversity || lhs.university == rhs.university)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Common.Response, rhs: Common.Response) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasMeta == rhs.hasMeta) && (!lhs.hasMeta || lhs.meta == rhs.meta)
+  fieldCheck = fieldCheck && (lhs.hasData == rhs.hasData) && (!lhs.hasData || lhs.data == rhs.data)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Common.Meta, rhs: Common.Meta) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasCode == rhs.hasCode) && (!lhs.hasCode || lhs.code == rhs.code)
+  fieldCheck = fieldCheck && (lhs.hasMessage_ == rhs.hasMessage_) && (!lhs.hasMessage_ || lhs.message_ == rhs.message_)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Common.Data, rhs: Common.Data) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.universities == rhs.universities)
+  fieldCheck = fieldCheck && (lhs.subjects == rhs.subjects)
+  fieldCheck = fieldCheck && (lhs.courses == rhs.courses)
+  fieldCheck = fieldCheck && (lhs.sections == rhs.sections)
+  fieldCheck = fieldCheck && (lhs.hasUniversity == rhs.hasUniversity) && (!lhs.hasUniversity || lhs.university == rhs.university)
+  fieldCheck = fieldCheck && (lhs.hasSubject == rhs.hasSubject) && (!lhs.hasSubject || lhs.subject == rhs.subject)
+  fieldCheck = fieldCheck && (lhs.hasCourse == rhs.hasCourse) && (!lhs.hasCourse || lhs.course == rhs.course)
+  fieldCheck = fieldCheck && (lhs.hasSection == rhs.hasSection) && (!lhs.hasSection || lhs.section == rhs.section)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -260,6 +285,8 @@ public extension Common {
     public private(set) var topicId:String = ""
 
     public private(set) var hasTopicId:Bool = false
+    public private(set) var resolvedSemesters:Common.ResolvedSemester!
+    public private(set) var hasResolvedSemesters:Bool = false
     public private(set) var subjects:Array<Common.Subject>  = Array<Common.Subject>()
     public private(set) var availableSemesters:Array<Common.Semester>  = Array<Common.Semester>()
     public private(set) var registrations:Array<Common.Registration>  = Array<Common.Registration>()
@@ -298,17 +325,20 @@ public extension Common {
       if hasTopicId {
         try output.writeString(9, value:topicId)
       }
+      if hasResolvedSemesters {
+        try output.writeMessage(10, value:resolvedSemesters)
+      }
       for oneElementsubjects in subjects {
-          try output.writeMessage(10, value:oneElementsubjects)
+          try output.writeMessage(11, value:oneElementsubjects)
       }
       for oneElementavailableSemesters in availableSemesters {
-          try output.writeMessage(11, value:oneElementavailableSemesters)
+          try output.writeMessage(12, value:oneElementavailableSemesters)
       }
       for oneElementregistrations in registrations {
-          try output.writeMessage(12, value:oneElementregistrations)
+          try output.writeMessage(13, value:oneElementregistrations)
       }
       for oneElementmetadata in metadata {
-          try output.writeMessage(13, value:oneElementmetadata)
+          try output.writeMessage(14, value:oneElementmetadata)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -346,17 +376,22 @@ public extension Common {
       if hasTopicId {
         serialize_size += topicId.computeStringSize(9)
       }
+      if hasResolvedSemesters {
+          if let varSizeresolvedSemesters = resolvedSemesters?.computeMessageSize(10) {
+              serialize_size += varSizeresolvedSemesters
+          }
+      }
       for oneElementsubjects in subjects {
-          serialize_size += oneElementsubjects.computeMessageSize(10)
+          serialize_size += oneElementsubjects.computeMessageSize(11)
       }
       for oneElementavailableSemesters in availableSemesters {
-          serialize_size += oneElementavailableSemesters.computeMessageSize(11)
+          serialize_size += oneElementavailableSemesters.computeMessageSize(12)
       }
       for oneElementregistrations in registrations {
-          serialize_size += oneElementregistrations.computeMessageSize(12)
+          serialize_size += oneElementregistrations.computeMessageSize(13)
       }
       for oneElementmetadata in metadata {
-          serialize_size += oneElementmetadata.computeMessageSize(13)
+          serialize_size += oneElementmetadata.computeMessageSize(14)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -437,6 +472,13 @@ public extension Common {
       if hasTopicId {
         output += "\(indent) topicId: \(topicId) \n"
       }
+      if hasResolvedSemesters {
+        output += "\(indent) resolvedSemesters {\n"
+        if let outDescResolvedSemesters = resolvedSemesters {
+          output += try outDescResolvedSemesters.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
       var subjectsElementIndex:Int = 0
       for oneElementsubjects in subjects {
           output += "\(indent) subjects[\(subjectsElementIndex)] {\n"
@@ -497,6 +539,11 @@ public extension Common {
             }
             if hasTopicId {
                hashCode = (hashCode &* 31) &+ topicId.hashValue
+            }
+            if hasResolvedSemesters {
+                if let hashValueresolvedSemesters = resolvedSemesters?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueresolvedSemesters
+                }
             }
             for oneElementsubjects in subjects {
                 hashCode = (hashCode &* 31) &+ oneElementsubjects.hashValue
@@ -745,6 +792,57 @@ public extension Common {
            builderResult.topicId = ""
            return self
       }
+      public var hasResolvedSemesters:Bool {
+           get {
+               return builderResult.hasResolvedSemesters
+           }
+      }
+      public var resolvedSemesters:Common.ResolvedSemester! {
+           get {
+               if resolvedSemestersBuilder_ != nil {
+                  builderResult.resolvedSemesters = resolvedSemestersBuilder_.getMessage()
+               }
+               return builderResult.resolvedSemesters
+           }
+           set (value) {
+               builderResult.hasResolvedSemesters = true
+               builderResult.resolvedSemesters = value
+           }
+      }
+      private var resolvedSemestersBuilder_:Common.ResolvedSemester.Builder! {
+           didSet {
+              builderResult.hasResolvedSemesters = true
+           }
+      }
+      public func getResolvedSemestersBuilder() -> Common.ResolvedSemester.Builder {
+        if resolvedSemestersBuilder_ == nil {
+           resolvedSemestersBuilder_ = Common.ResolvedSemester.Builder()
+           builderResult.resolvedSemesters = resolvedSemestersBuilder_.getMessage()
+           if resolvedSemesters != nil {
+              try! resolvedSemestersBuilder_.mergeFrom(resolvedSemesters)
+           }
+        }
+        return resolvedSemestersBuilder_
+      }
+      public func setResolvedSemesters(value:Common.ResolvedSemester!) -> Common.University.Builder {
+        self.resolvedSemesters = value
+        return self
+      }
+      public func mergeResolvedSemesters(value:Common.ResolvedSemester) throws -> Common.University.Builder {
+        if builderResult.hasResolvedSemesters {
+          builderResult.resolvedSemesters = try Common.ResolvedSemester.builderWithPrototype(builderResult.resolvedSemesters).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.resolvedSemesters = value
+        }
+        builderResult.hasResolvedSemesters = true
+        return self
+      }
+      public func clearResolvedSemesters() -> Common.University.Builder {
+        resolvedSemestersBuilder_ = nil
+        builderResult.hasResolvedSemesters = false
+        builderResult.resolvedSemesters = nil
+        return self
+      }
       public var subjects:Array<Common.Subject> {
            get {
                return builderResult.subjects
@@ -860,6 +958,9 @@ public extension Common {
         if other.hasTopicId {
              topicId = other.topicId
         }
+        if (other.hasResolvedSemesters) {
+            try mergeResolvedSemesters(other.resolvedSemesters)
+        }
         if !other.subjects.isEmpty  {
            builderResult.subjects += other.subjects
         }
@@ -915,1286 +1016,32 @@ public extension Common {
             topicId = try input.readString()
 
           case 82 :
+            let subBuilder:Common.ResolvedSemester.Builder = Common.ResolvedSemester.Builder()
+            if hasResolvedSemesters {
+              try subBuilder.mergeFrom(resolvedSemesters)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            resolvedSemesters = subBuilder.buildPartial()
+
+          case 90 :
             let subBuilder = Common.Subject.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             subjects += [subBuilder.buildPartial()]
 
-          case 90 :
+          case 98 :
             let subBuilder = Common.Semester.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             availableSemesters += [subBuilder.buildPartial()]
 
-          case 98 :
+          case 106 :
             let subBuilder = Common.Registration.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             registrations += [subBuilder.buildPartial()]
 
-          case 106 :
+          case 114 :
             let subBuilder = Common.Metadata.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             metadata += [subBuilder.buildPartial()]
-
-          default:
-            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
-               unknownFields = try unknownFieldsBuilder.build()
-               return self
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  final public class Response : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var meta:Common.Meta!
-    public private(set) var hasMeta:Bool = false
-    public private(set) var data:Common.Data!
-    public private(set) var hasData:Bool = false
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasMeta {
-        try output.writeMessage(1, value:meta)
-      }
-      if hasData {
-        try output.writeMessage(2, value:data)
-      }
-      try unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasMeta {
-          if let varSizemeta = meta?.computeMessageSize(1) {
-              serialize_size += varSizemeta
-          }
-      }
-      if hasData {
-          if let varSizedata = data?.computeMessageSize(2) {
-              serialize_size += varSizedata
-          }
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Response> {
-      var mergedArray = Array<Common.Response>()
-      while let value = try parseFromDelimitedFromInputStream(input) {
-        mergedArray += [value]
-      }
-      return mergedArray
-    }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Response? {
-      return try Common.Response.Builder().mergeDelimitedFromInputStream(input)?.build()
-    }
-    public class func parseFromData(data:NSData) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
-      return try Common.Response.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func getBuilder() -> Common.Response.Builder {
-      return Common.Response.classBuilder() as! Common.Response.Builder
-    }
-    public func getBuilder() -> Common.Response.Builder {
-      return classBuilder() as! Common.Response.Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Common.Response.Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Common.Response.Builder()
-    }
-    public func toBuilder() throws -> Common.Response.Builder {
-      return try Common.Response.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Common.Response) throws -> Common.Response.Builder {
-      return try Common.Response.Builder().mergeFrom(prototype)
-    }
-    override public func getDescription(indent:String) throws -> String {
-      var output:String = ""
-      if hasMeta {
-        output += "\(indent) meta {\n"
-        if let outDescMeta = meta {
-          output += try outDescMeta.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      if hasData {
-        output += "\(indent) data {\n"
-        if let outDescData = data {
-          output += try outDescData.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      output += unknownFields.getDescription(indent)
-      return output
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasMeta {
-                if let hashValuemeta = meta?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuemeta
-                }
-            }
-            if hasData {
-                if let hashValuedata = data?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuedata
-                }
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Common.Response"
-    }
-    override public func className() -> String {
-        return "Common.Response"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Common.Response.self
-    }
-    //Meta information declaration end
-
-    final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Common.Response = Common.Response()
-      public func getMessage() -> Common.Response {
-          return builderResult
-      }
-
-      required override public init () {
-         super.init()
-      }
-      public var hasMeta:Bool {
-           get {
-               return builderResult.hasMeta
-           }
-      }
-      public var meta:Common.Meta! {
-           get {
-               if metaBuilder_ != nil {
-                  builderResult.meta = metaBuilder_.getMessage()
-               }
-               return builderResult.meta
-           }
-           set (value) {
-               builderResult.hasMeta = true
-               builderResult.meta = value
-           }
-      }
-      private var metaBuilder_:Common.Meta.Builder! {
-           didSet {
-              builderResult.hasMeta = true
-           }
-      }
-      public func getMetaBuilder() -> Common.Meta.Builder {
-        if metaBuilder_ == nil {
-           metaBuilder_ = Common.Meta.Builder()
-           builderResult.meta = metaBuilder_.getMessage()
-           if meta != nil {
-              try! metaBuilder_.mergeFrom(meta)
-           }
-        }
-        return metaBuilder_
-      }
-      public func setMeta(value:Common.Meta!) -> Common.Response.Builder {
-        self.meta = value
-        return self
-      }
-      public func mergeMeta(value:Common.Meta) throws -> Common.Response.Builder {
-        if builderResult.hasMeta {
-          builderResult.meta = try Common.Meta.builderWithPrototype(builderResult.meta).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.meta = value
-        }
-        builderResult.hasMeta = true
-        return self
-      }
-      public func clearMeta() -> Common.Response.Builder {
-        metaBuilder_ = nil
-        builderResult.hasMeta = false
-        builderResult.meta = nil
-        return self
-      }
-      public var hasData:Bool {
-           get {
-               return builderResult.hasData
-           }
-      }
-      public var data:Common.Data! {
-           get {
-               if dataBuilder_ != nil {
-                  builderResult.data = dataBuilder_.getMessage()
-               }
-               return builderResult.data
-           }
-           set (value) {
-               builderResult.hasData = true
-               builderResult.data = value
-           }
-      }
-      private var dataBuilder_:Common.Data.Builder! {
-           didSet {
-              builderResult.hasData = true
-           }
-      }
-      public func getDataBuilder() -> Common.Data.Builder {
-        if dataBuilder_ == nil {
-           dataBuilder_ = Common.Data.Builder()
-           builderResult.data = dataBuilder_.getMessage()
-           if data != nil {
-              try! dataBuilder_.mergeFrom(data)
-           }
-        }
-        return dataBuilder_
-      }
-      public func setData(value:Common.Data!) -> Common.Response.Builder {
-        self.data = value
-        return self
-      }
-      public func mergeData(value:Common.Data) throws -> Common.Response.Builder {
-        if builderResult.hasData {
-          builderResult.data = try Common.Data.builderWithPrototype(builderResult.data).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.data = value
-        }
-        builderResult.hasData = true
-        return self
-      }
-      public func clearData() -> Common.Response.Builder {
-        dataBuilder_ = nil
-        builderResult.hasData = false
-        builderResult.data = nil
-        return self
-      }
-      override public var internalGetResult:GeneratedMessage {
-           get {
-              return builderResult
-           }
-      }
-      public override func clear() -> Common.Response.Builder {
-        builderResult = Common.Response()
-        return self
-      }
-      public override func clone() throws -> Common.Response.Builder {
-        return try Common.Response.builderWithPrototype(builderResult)
-      }
-      public override func build() throws -> Common.Response {
-           try checkInitialized()
-           return buildPartial()
-      }
-      public func buildPartial() -> Common.Response {
-        let returnMe:Common.Response = builderResult
-        return returnMe
-      }
-      public func mergeFrom(other:Common.Response) throws -> Common.Response.Builder {
-        if other == Common.Response() {
-         return self
-        }
-        if (other.hasMeta) {
-            try mergeMeta(other.meta)
-        }
-        if (other.hasData) {
-            try mergeData(other.data)
-        }
-        try mergeUnknownFields(other.unknownFields)
-        return self
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Response.Builder {
-           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response.Builder {
-        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-        while (true) {
-          let protobufTag = try input.readTag()
-          switch protobufTag {
-          case 0: 
-            self.unknownFields = try unknownFieldsBuilder.build()
-            return self
-
-          case 10 :
-            let subBuilder:Common.Meta.Builder = Common.Meta.Builder()
-            if hasMeta {
-              try subBuilder.mergeFrom(meta)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            meta = subBuilder.buildPartial()
-
-          case 18 :
-            let subBuilder:Common.Data.Builder = Common.Data.Builder()
-            if hasData {
-              try subBuilder.mergeFrom(data)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            data = subBuilder.buildPartial()
-
-          default:
-            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
-               unknownFields = try unknownFieldsBuilder.build()
-               return self
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  final public class Meta : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var errorType:String = ""
-
-    public private(set) var hasErrorType:Bool = false
-    public private(set) var errorMessage:String = ""
-
-    public private(set) var hasErrorMessage:Bool = false
-    public private(set) var code:Int32 = Int32(0)
-
-    public private(set) var hasCode:Bool = false
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasErrorType {
-        try output.writeString(1, value:errorType)
-      }
-      if hasErrorMessage {
-        try output.writeString(2, value:errorMessage)
-      }
-      if hasCode {
-        try output.writeInt32(3, value:code)
-      }
-      try unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasErrorType {
-        serialize_size += errorType.computeStringSize(1)
-      }
-      if hasErrorMessage {
-        serialize_size += errorMessage.computeStringSize(2)
-      }
-      if hasCode {
-        serialize_size += code.computeInt32Size(3)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Meta> {
-      var mergedArray = Array<Common.Meta>()
-      while let value = try parseFromDelimitedFromInputStream(input) {
-        mergedArray += [value]
-      }
-      return mergedArray
-    }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Meta? {
-      return try Common.Meta.Builder().mergeDelimitedFromInputStream(input)?.build()
-    }
-    public class func parseFromData(data:NSData) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
-      return try Common.Meta.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func getBuilder() -> Common.Meta.Builder {
-      return Common.Meta.classBuilder() as! Common.Meta.Builder
-    }
-    public func getBuilder() -> Common.Meta.Builder {
-      return classBuilder() as! Common.Meta.Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Common.Meta.Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Common.Meta.Builder()
-    }
-    public func toBuilder() throws -> Common.Meta.Builder {
-      return try Common.Meta.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Common.Meta) throws -> Common.Meta.Builder {
-      return try Common.Meta.Builder().mergeFrom(prototype)
-    }
-    override public func getDescription(indent:String) throws -> String {
-      var output:String = ""
-      if hasErrorType {
-        output += "\(indent) errorType: \(errorType) \n"
-      }
-      if hasErrorMessage {
-        output += "\(indent) errorMessage: \(errorMessage) \n"
-      }
-      if hasCode {
-        output += "\(indent) code: \(code) \n"
-      }
-      output += unknownFields.getDescription(indent)
-      return output
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasErrorType {
-               hashCode = (hashCode &* 31) &+ errorType.hashValue
-            }
-            if hasErrorMessage {
-               hashCode = (hashCode &* 31) &+ errorMessage.hashValue
-            }
-            if hasCode {
-               hashCode = (hashCode &* 31) &+ code.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Common.Meta"
-    }
-    override public func className() -> String {
-        return "Common.Meta"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Common.Meta.self
-    }
-    //Meta information declaration end
-
-    final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Common.Meta = Common.Meta()
-      public func getMessage() -> Common.Meta {
-          return builderResult
-      }
-
-      required override public init () {
-         super.init()
-      }
-      public var hasErrorType:Bool {
-           get {
-                return builderResult.hasErrorType
-           }
-      }
-      public var errorType:String {
-           get {
-                return builderResult.errorType
-           }
-           set (value) {
-               builderResult.hasErrorType = true
-               builderResult.errorType = value
-           }
-      }
-      public func setErrorType(value:String) -> Common.Meta.Builder {
-        self.errorType = value
-        return self
-      }
-      public func clearErrorType() -> Common.Meta.Builder{
-           builderResult.hasErrorType = false
-           builderResult.errorType = ""
-           return self
-      }
-      public var hasErrorMessage:Bool {
-           get {
-                return builderResult.hasErrorMessage
-           }
-      }
-      public var errorMessage:String {
-           get {
-                return builderResult.errorMessage
-           }
-           set (value) {
-               builderResult.hasErrorMessage = true
-               builderResult.errorMessage = value
-           }
-      }
-      public func setErrorMessage(value:String) -> Common.Meta.Builder {
-        self.errorMessage = value
-        return self
-      }
-      public func clearErrorMessage() -> Common.Meta.Builder{
-           builderResult.hasErrorMessage = false
-           builderResult.errorMessage = ""
-           return self
-      }
-      public var hasCode:Bool {
-           get {
-                return builderResult.hasCode
-           }
-      }
-      public var code:Int32 {
-           get {
-                return builderResult.code
-           }
-           set (value) {
-               builderResult.hasCode = true
-               builderResult.code = value
-           }
-      }
-      public func setCode(value:Int32) -> Common.Meta.Builder {
-        self.code = value
-        return self
-      }
-      public func clearCode() -> Common.Meta.Builder{
-           builderResult.hasCode = false
-           builderResult.code = Int32(0)
-           return self
-      }
-      override public var internalGetResult:GeneratedMessage {
-           get {
-              return builderResult
-           }
-      }
-      public override func clear() -> Common.Meta.Builder {
-        builderResult = Common.Meta()
-        return self
-      }
-      public override func clone() throws -> Common.Meta.Builder {
-        return try Common.Meta.builderWithPrototype(builderResult)
-      }
-      public override func build() throws -> Common.Meta {
-           try checkInitialized()
-           return buildPartial()
-      }
-      public func buildPartial() -> Common.Meta {
-        let returnMe:Common.Meta = builderResult
-        return returnMe
-      }
-      public func mergeFrom(other:Common.Meta) throws -> Common.Meta.Builder {
-        if other == Common.Meta() {
-         return self
-        }
-        if other.hasErrorType {
-             errorType = other.errorType
-        }
-        if other.hasErrorMessage {
-             errorMessage = other.errorMessage
-        }
-        if other.hasCode {
-             code = other.code
-        }
-        try mergeUnknownFields(other.unknownFields)
-        return self
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Meta.Builder {
-           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta.Builder {
-        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-        while (true) {
-          let protobufTag = try input.readTag()
-          switch protobufTag {
-          case 0: 
-            self.unknownFields = try unknownFieldsBuilder.build()
-            return self
-
-          case 10 :
-            errorType = try input.readString()
-
-          case 18 :
-            errorMessage = try input.readString()
-
-          case 24 :
-            code = try input.readInt32()
-
-          default:
-            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
-               unknownFields = try unknownFieldsBuilder.build()
-               return self
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  final public class Data : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var universities:Array<Common.University>  = Array<Common.University>()
-    public private(set) var subjects:Array<Common.Subject>  = Array<Common.Subject>()
-    public private(set) var courses:Array<Common.Course>  = Array<Common.Course>()
-    public private(set) var sections:Array<Common.Section>  = Array<Common.Section>()
-    public private(set) var university:Common.University!
-    public private(set) var hasUniversity:Bool = false
-    public private(set) var subject:Common.Subject!
-    public private(set) var hasSubject:Bool = false
-    public private(set) var course:Common.Course!
-    public private(set) var hasCourse:Bool = false
-    public private(set) var section:Common.Section!
-    public private(set) var hasSection:Bool = false
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      for oneElementuniversities in universities {
-          try output.writeMessage(1, value:oneElementuniversities)
-      }
-      for oneElementsubjects in subjects {
-          try output.writeMessage(2, value:oneElementsubjects)
-      }
-      for oneElementcourses in courses {
-          try output.writeMessage(3, value:oneElementcourses)
-      }
-      for oneElementsections in sections {
-          try output.writeMessage(4, value:oneElementsections)
-      }
-      if hasUniversity {
-        try output.writeMessage(5, value:university)
-      }
-      if hasSubject {
-        try output.writeMessage(6, value:subject)
-      }
-      if hasCourse {
-        try output.writeMessage(7, value:course)
-      }
-      if hasSection {
-        try output.writeMessage(8, value:section)
-      }
-      try unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      for oneElementuniversities in universities {
-          serialize_size += oneElementuniversities.computeMessageSize(1)
-      }
-      for oneElementsubjects in subjects {
-          serialize_size += oneElementsubjects.computeMessageSize(2)
-      }
-      for oneElementcourses in courses {
-          serialize_size += oneElementcourses.computeMessageSize(3)
-      }
-      for oneElementsections in sections {
-          serialize_size += oneElementsections.computeMessageSize(4)
-      }
-      if hasUniversity {
-          if let varSizeuniversity = university?.computeMessageSize(5) {
-              serialize_size += varSizeuniversity
-          }
-      }
-      if hasSubject {
-          if let varSizesubject = subject?.computeMessageSize(6) {
-              serialize_size += varSizesubject
-          }
-      }
-      if hasCourse {
-          if let varSizecourse = course?.computeMessageSize(7) {
-              serialize_size += varSizecourse
-          }
-      }
-      if hasSection {
-          if let varSizesection = section?.computeMessageSize(8) {
-              serialize_size += varSizesection
-          }
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Data> {
-      var mergedArray = Array<Common.Data>()
-      while let value = try parseFromDelimitedFromInputStream(input) {
-        mergedArray += [value]
-      }
-      return mergedArray
-    }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Data? {
-      return try Common.Data.Builder().mergeDelimitedFromInputStream(input)?.build()
-    }
-    public class func parseFromData(data:NSData) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
-      return try Common.Data.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func getBuilder() -> Common.Data.Builder {
-      return Common.Data.classBuilder() as! Common.Data.Builder
-    }
-    public func getBuilder() -> Common.Data.Builder {
-      return classBuilder() as! Common.Data.Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Common.Data.Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Common.Data.Builder()
-    }
-    public func toBuilder() throws -> Common.Data.Builder {
-      return try Common.Data.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Common.Data) throws -> Common.Data.Builder {
-      return try Common.Data.Builder().mergeFrom(prototype)
-    }
-    override public func getDescription(indent:String) throws -> String {
-      var output:String = ""
-      var universitiesElementIndex:Int = 0
-      for oneElementuniversities in universities {
-          output += "\(indent) universities[\(universitiesElementIndex)] {\n"
-          output += try oneElementuniversities.getDescription("\(indent)  ")
-          output += "\(indent)}\n"
-          universitiesElementIndex += 1
-      }
-      var subjectsElementIndex:Int = 0
-      for oneElementsubjects in subjects {
-          output += "\(indent) subjects[\(subjectsElementIndex)] {\n"
-          output += try oneElementsubjects.getDescription("\(indent)  ")
-          output += "\(indent)}\n"
-          subjectsElementIndex += 1
-      }
-      var coursesElementIndex:Int = 0
-      for oneElementcourses in courses {
-          output += "\(indent) courses[\(coursesElementIndex)] {\n"
-          output += try oneElementcourses.getDescription("\(indent)  ")
-          output += "\(indent)}\n"
-          coursesElementIndex += 1
-      }
-      var sectionsElementIndex:Int = 0
-      for oneElementsections in sections {
-          output += "\(indent) sections[\(sectionsElementIndex)] {\n"
-          output += try oneElementsections.getDescription("\(indent)  ")
-          output += "\(indent)}\n"
-          sectionsElementIndex += 1
-      }
-      if hasUniversity {
-        output += "\(indent) university {\n"
-        if let outDescUniversity = university {
-          output += try outDescUniversity.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      if hasSubject {
-        output += "\(indent) subject {\n"
-        if let outDescSubject = subject {
-          output += try outDescSubject.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      if hasCourse {
-        output += "\(indent) course {\n"
-        if let outDescCourse = course {
-          output += try outDescCourse.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      if hasSection {
-        output += "\(indent) section {\n"
-        if let outDescSection = section {
-          output += try outDescSection.getDescription("\(indent)  ")
-        }
-        output += "\(indent) }\n"
-      }
-      output += unknownFields.getDescription(indent)
-      return output
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            for oneElementuniversities in universities {
-                hashCode = (hashCode &* 31) &+ oneElementuniversities.hashValue
-            }
-            for oneElementsubjects in subjects {
-                hashCode = (hashCode &* 31) &+ oneElementsubjects.hashValue
-            }
-            for oneElementcourses in courses {
-                hashCode = (hashCode &* 31) &+ oneElementcourses.hashValue
-            }
-            for oneElementsections in sections {
-                hashCode = (hashCode &* 31) &+ oneElementsections.hashValue
-            }
-            if hasUniversity {
-                if let hashValueuniversity = university?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueuniversity
-                }
-            }
-            if hasSubject {
-                if let hashValuesubject = subject?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuesubject
-                }
-            }
-            if hasCourse {
-                if let hashValuecourse = course?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuecourse
-                }
-            }
-            if hasSection {
-                if let hashValuesection = section?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuesection
-                }
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Common.Data"
-    }
-    override public func className() -> String {
-        return "Common.Data"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Common.Data.self
-    }
-    //Meta information declaration end
-
-    final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Common.Data = Common.Data()
-      public func getMessage() -> Common.Data {
-          return builderResult
-      }
-
-      required override public init () {
-         super.init()
-      }
-      public var universities:Array<Common.University> {
-           get {
-               return builderResult.universities
-           }
-           set (value) {
-               builderResult.universities = value
-           }
-      }
-      public func setUniversities(value:Array<Common.University>) -> Common.Data.Builder {
-        self.universities = value
-        return self
-      }
-      public func clearUniversities() -> Common.Data.Builder {
-        builderResult.universities.removeAll(keepCapacity: false)
-        return self
-      }
-      public var subjects:Array<Common.Subject> {
-           get {
-               return builderResult.subjects
-           }
-           set (value) {
-               builderResult.subjects = value
-           }
-      }
-      public func setSubjects(value:Array<Common.Subject>) -> Common.Data.Builder {
-        self.subjects = value
-        return self
-      }
-      public func clearSubjects() -> Common.Data.Builder {
-        builderResult.subjects.removeAll(keepCapacity: false)
-        return self
-      }
-      public var courses:Array<Common.Course> {
-           get {
-               return builderResult.courses
-           }
-           set (value) {
-               builderResult.courses = value
-           }
-      }
-      public func setCourses(value:Array<Common.Course>) -> Common.Data.Builder {
-        self.courses = value
-        return self
-      }
-      public func clearCourses() -> Common.Data.Builder {
-        builderResult.courses.removeAll(keepCapacity: false)
-        return self
-      }
-      public var sections:Array<Common.Section> {
-           get {
-               return builderResult.sections
-           }
-           set (value) {
-               builderResult.sections = value
-           }
-      }
-      public func setSections(value:Array<Common.Section>) -> Common.Data.Builder {
-        self.sections = value
-        return self
-      }
-      public func clearSections() -> Common.Data.Builder {
-        builderResult.sections.removeAll(keepCapacity: false)
-        return self
-      }
-      public var hasUniversity:Bool {
-           get {
-               return builderResult.hasUniversity
-           }
-      }
-      public var university:Common.University! {
-           get {
-               if universityBuilder_ != nil {
-                  builderResult.university = universityBuilder_.getMessage()
-               }
-               return builderResult.university
-           }
-           set (value) {
-               builderResult.hasUniversity = true
-               builderResult.university = value
-           }
-      }
-      private var universityBuilder_:Common.University.Builder! {
-           didSet {
-              builderResult.hasUniversity = true
-           }
-      }
-      public func getUniversityBuilder() -> Common.University.Builder {
-        if universityBuilder_ == nil {
-           universityBuilder_ = Common.University.Builder()
-           builderResult.university = universityBuilder_.getMessage()
-           if university != nil {
-              try! universityBuilder_.mergeFrom(university)
-           }
-        }
-        return universityBuilder_
-      }
-      public func setUniversity(value:Common.University!) -> Common.Data.Builder {
-        self.university = value
-        return self
-      }
-      public func mergeUniversity(value:Common.University) throws -> Common.Data.Builder {
-        if builderResult.hasUniversity {
-          builderResult.university = try Common.University.builderWithPrototype(builderResult.university).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.university = value
-        }
-        builderResult.hasUniversity = true
-        return self
-      }
-      public func clearUniversity() -> Common.Data.Builder {
-        universityBuilder_ = nil
-        builderResult.hasUniversity = false
-        builderResult.university = nil
-        return self
-      }
-      public var hasSubject:Bool {
-           get {
-               return builderResult.hasSubject
-           }
-      }
-      public var subject:Common.Subject! {
-           get {
-               if subjectBuilder_ != nil {
-                  builderResult.subject = subjectBuilder_.getMessage()
-               }
-               return builderResult.subject
-           }
-           set (value) {
-               builderResult.hasSubject = true
-               builderResult.subject = value
-           }
-      }
-      private var subjectBuilder_:Common.Subject.Builder! {
-           didSet {
-              builderResult.hasSubject = true
-           }
-      }
-      public func getSubjectBuilder() -> Common.Subject.Builder {
-        if subjectBuilder_ == nil {
-           subjectBuilder_ = Common.Subject.Builder()
-           builderResult.subject = subjectBuilder_.getMessage()
-           if subject != nil {
-              try! subjectBuilder_.mergeFrom(subject)
-           }
-        }
-        return subjectBuilder_
-      }
-      public func setSubject(value:Common.Subject!) -> Common.Data.Builder {
-        self.subject = value
-        return self
-      }
-      public func mergeSubject(value:Common.Subject) throws -> Common.Data.Builder {
-        if builderResult.hasSubject {
-          builderResult.subject = try Common.Subject.builderWithPrototype(builderResult.subject).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.subject = value
-        }
-        builderResult.hasSubject = true
-        return self
-      }
-      public func clearSubject() -> Common.Data.Builder {
-        subjectBuilder_ = nil
-        builderResult.hasSubject = false
-        builderResult.subject = nil
-        return self
-      }
-      public var hasCourse:Bool {
-           get {
-               return builderResult.hasCourse
-           }
-      }
-      public var course:Common.Course! {
-           get {
-               if courseBuilder_ != nil {
-                  builderResult.course = courseBuilder_.getMessage()
-               }
-               return builderResult.course
-           }
-           set (value) {
-               builderResult.hasCourse = true
-               builderResult.course = value
-           }
-      }
-      private var courseBuilder_:Common.Course.Builder! {
-           didSet {
-              builderResult.hasCourse = true
-           }
-      }
-      public func getCourseBuilder() -> Common.Course.Builder {
-        if courseBuilder_ == nil {
-           courseBuilder_ = Common.Course.Builder()
-           builderResult.course = courseBuilder_.getMessage()
-           if course != nil {
-              try! courseBuilder_.mergeFrom(course)
-           }
-        }
-        return courseBuilder_
-      }
-      public func setCourse(value:Common.Course!) -> Common.Data.Builder {
-        self.course = value
-        return self
-      }
-      public func mergeCourse(value:Common.Course) throws -> Common.Data.Builder {
-        if builderResult.hasCourse {
-          builderResult.course = try Common.Course.builderWithPrototype(builderResult.course).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.course = value
-        }
-        builderResult.hasCourse = true
-        return self
-      }
-      public func clearCourse() -> Common.Data.Builder {
-        courseBuilder_ = nil
-        builderResult.hasCourse = false
-        builderResult.course = nil
-        return self
-      }
-      public var hasSection:Bool {
-           get {
-               return builderResult.hasSection
-           }
-      }
-      public var section:Common.Section! {
-           get {
-               if sectionBuilder_ != nil {
-                  builderResult.section = sectionBuilder_.getMessage()
-               }
-               return builderResult.section
-           }
-           set (value) {
-               builderResult.hasSection = true
-               builderResult.section = value
-           }
-      }
-      private var sectionBuilder_:Common.Section.Builder! {
-           didSet {
-              builderResult.hasSection = true
-           }
-      }
-      public func getSectionBuilder() -> Common.Section.Builder {
-        if sectionBuilder_ == nil {
-           sectionBuilder_ = Common.Section.Builder()
-           builderResult.section = sectionBuilder_.getMessage()
-           if section != nil {
-              try! sectionBuilder_.mergeFrom(section)
-           }
-        }
-        return sectionBuilder_
-      }
-      public func setSection(value:Common.Section!) -> Common.Data.Builder {
-        self.section = value
-        return self
-      }
-      public func mergeSection(value:Common.Section) throws -> Common.Data.Builder {
-        if builderResult.hasSection {
-          builderResult.section = try Common.Section.builderWithPrototype(builderResult.section).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.section = value
-        }
-        builderResult.hasSection = true
-        return self
-      }
-      public func clearSection() -> Common.Data.Builder {
-        sectionBuilder_ = nil
-        builderResult.hasSection = false
-        builderResult.section = nil
-        return self
-      }
-      override public var internalGetResult:GeneratedMessage {
-           get {
-              return builderResult
-           }
-      }
-      public override func clear() -> Common.Data.Builder {
-        builderResult = Common.Data()
-        return self
-      }
-      public override func clone() throws -> Common.Data.Builder {
-        return try Common.Data.builderWithPrototype(builderResult)
-      }
-      public override func build() throws -> Common.Data {
-           try checkInitialized()
-           return buildPartial()
-      }
-      public func buildPartial() -> Common.Data {
-        let returnMe:Common.Data = builderResult
-        return returnMe
-      }
-      public func mergeFrom(other:Common.Data) throws -> Common.Data.Builder {
-        if other == Common.Data() {
-         return self
-        }
-        if !other.universities.isEmpty  {
-           builderResult.universities += other.universities
-        }
-        if !other.subjects.isEmpty  {
-           builderResult.subjects += other.subjects
-        }
-        if !other.courses.isEmpty  {
-           builderResult.courses += other.courses
-        }
-        if !other.sections.isEmpty  {
-           builderResult.sections += other.sections
-        }
-        if (other.hasUniversity) {
-            try mergeUniversity(other.university)
-        }
-        if (other.hasSubject) {
-            try mergeSubject(other.subject)
-        }
-        if (other.hasCourse) {
-            try mergeCourse(other.course)
-        }
-        if (other.hasSection) {
-            try mergeSection(other.section)
-        }
-        try mergeUnknownFields(other.unknownFields)
-        return self
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Data.Builder {
-           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data.Builder {
-        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-        while (true) {
-          let protobufTag = try input.readTag()
-          switch protobufTag {
-          case 0: 
-            self.unknownFields = try unknownFieldsBuilder.build()
-            return self
-
-          case 10 :
-            let subBuilder = Common.University.Builder()
-            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-            universities += [subBuilder.buildPartial()]
-
-          case 18 :
-            let subBuilder = Common.Subject.Builder()
-            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-            subjects += [subBuilder.buildPartial()]
-
-          case 26 :
-            let subBuilder = Common.Course.Builder()
-            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-            courses += [subBuilder.buildPartial()]
-
-          case 34 :
-            let subBuilder = Common.Section.Builder()
-            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-            sections += [subBuilder.buildPartial()]
-
-          case 42 :
-            let subBuilder:Common.University.Builder = Common.University.Builder()
-            if hasUniversity {
-              try subBuilder.mergeFrom(university)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            university = subBuilder.buildPartial()
-
-          case 50 :
-            let subBuilder:Common.Subject.Builder = Common.Subject.Builder()
-            if hasSubject {
-              try subBuilder.mergeFrom(subject)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            subject = subBuilder.buildPartial()
-
-          case 58 :
-            let subBuilder:Common.Course.Builder = Common.Course.Builder()
-            if hasCourse {
-              try subBuilder.mergeFrom(course)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            course = subBuilder.buildPartial()
-
-          case 66 :
-            let subBuilder:Common.Section.Builder = Common.Section.Builder()
-            if hasSection {
-              try subBuilder.mergeFrom(section)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            section = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
@@ -6141,6 +4988,412 @@ public extension Common {
 
   }
 
+  final public class ResolvedSemester : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var current:Common.Semester!
+    public private(set) var hasCurrent:Bool = false
+    public private(set) var last:Common.Semester!
+    public private(set) var hasLast:Bool = false
+    public private(set) var next:Common.Semester!
+    public private(set) var hasNext:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasCurrent {
+        try output.writeMessage(1, value:current)
+      }
+      if hasLast {
+        try output.writeMessage(2, value:last)
+      }
+      if hasNext {
+        try output.writeMessage(3, value:next)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasCurrent {
+          if let varSizecurrent = current?.computeMessageSize(1) {
+              serialize_size += varSizecurrent
+          }
+      }
+      if hasLast {
+          if let varSizelast = last?.computeMessageSize(2) {
+              serialize_size += varSizelast
+          }
+      }
+      if hasNext {
+          if let varSizenext = next?.computeMessageSize(3) {
+              serialize_size += varSizenext
+          }
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.ResolvedSemester> {
+      var mergedArray = Array<Common.ResolvedSemester>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.ResolvedSemester? {
+      return try Common.ResolvedSemester.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.ResolvedSemester {
+      return try Common.ResolvedSemester.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Common.ResolvedSemester.Builder {
+      return Common.ResolvedSemester.classBuilder() as! Common.ResolvedSemester.Builder
+    }
+    public func getBuilder() -> Common.ResolvedSemester.Builder {
+      return classBuilder() as! Common.ResolvedSemester.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Common.ResolvedSemester.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Common.ResolvedSemester.Builder()
+    }
+    public func toBuilder() throws -> Common.ResolvedSemester.Builder {
+      return try Common.ResolvedSemester.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Common.ResolvedSemester) throws -> Common.ResolvedSemester.Builder {
+      return try Common.ResolvedSemester.Builder().mergeFrom(prototype)
+    }
+    override public func getDescription(indent:String) throws -> String {
+      var output:String = ""
+      if hasCurrent {
+        output += "\(indent) current {\n"
+        if let outDescCurrent = current {
+          output += try outDescCurrent.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasLast {
+        output += "\(indent) last {\n"
+        if let outDescLast = last {
+          output += try outDescLast.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasNext {
+        output += "\(indent) next {\n"
+        if let outDescNext = next {
+          output += try outDescNext.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      output += unknownFields.getDescription(indent)
+      return output
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasCurrent {
+                if let hashValuecurrent = current?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuecurrent
+                }
+            }
+            if hasLast {
+                if let hashValuelast = last?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuelast
+                }
+            }
+            if hasNext {
+                if let hashValuenext = next?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuenext
+                }
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Common.ResolvedSemester"
+    }
+    override public func className() -> String {
+        return "Common.ResolvedSemester"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Common.ResolvedSemester.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Common.ResolvedSemester = Common.ResolvedSemester()
+      public func getMessage() -> Common.ResolvedSemester {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasCurrent:Bool {
+           get {
+               return builderResult.hasCurrent
+           }
+      }
+      public var current:Common.Semester! {
+           get {
+               if currentBuilder_ != nil {
+                  builderResult.current = currentBuilder_.getMessage()
+               }
+               return builderResult.current
+           }
+           set (value) {
+               builderResult.hasCurrent = true
+               builderResult.current = value
+           }
+      }
+      private var currentBuilder_:Common.Semester.Builder! {
+           didSet {
+              builderResult.hasCurrent = true
+           }
+      }
+      public func getCurrentBuilder() -> Common.Semester.Builder {
+        if currentBuilder_ == nil {
+           currentBuilder_ = Common.Semester.Builder()
+           builderResult.current = currentBuilder_.getMessage()
+           if current != nil {
+              try! currentBuilder_.mergeFrom(current)
+           }
+        }
+        return currentBuilder_
+      }
+      public func setCurrent(value:Common.Semester!) -> Common.ResolvedSemester.Builder {
+        self.current = value
+        return self
+      }
+      public func mergeCurrent(value:Common.Semester) throws -> Common.ResolvedSemester.Builder {
+        if builderResult.hasCurrent {
+          builderResult.current = try Common.Semester.builderWithPrototype(builderResult.current).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.current = value
+        }
+        builderResult.hasCurrent = true
+        return self
+      }
+      public func clearCurrent() -> Common.ResolvedSemester.Builder {
+        currentBuilder_ = nil
+        builderResult.hasCurrent = false
+        builderResult.current = nil
+        return self
+      }
+      public var hasLast:Bool {
+           get {
+               return builderResult.hasLast
+           }
+      }
+      public var last:Common.Semester! {
+           get {
+               if lastBuilder_ != nil {
+                  builderResult.last = lastBuilder_.getMessage()
+               }
+               return builderResult.last
+           }
+           set (value) {
+               builderResult.hasLast = true
+               builderResult.last = value
+           }
+      }
+      private var lastBuilder_:Common.Semester.Builder! {
+           didSet {
+              builderResult.hasLast = true
+           }
+      }
+      public func getLastBuilder() -> Common.Semester.Builder {
+        if lastBuilder_ == nil {
+           lastBuilder_ = Common.Semester.Builder()
+           builderResult.last = lastBuilder_.getMessage()
+           if last != nil {
+              try! lastBuilder_.mergeFrom(last)
+           }
+        }
+        return lastBuilder_
+      }
+      public func setLast(value:Common.Semester!) -> Common.ResolvedSemester.Builder {
+        self.last = value
+        return self
+      }
+      public func mergeLast(value:Common.Semester) throws -> Common.ResolvedSemester.Builder {
+        if builderResult.hasLast {
+          builderResult.last = try Common.Semester.builderWithPrototype(builderResult.last).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.last = value
+        }
+        builderResult.hasLast = true
+        return self
+      }
+      public func clearLast() -> Common.ResolvedSemester.Builder {
+        lastBuilder_ = nil
+        builderResult.hasLast = false
+        builderResult.last = nil
+        return self
+      }
+      public var hasNext:Bool {
+           get {
+               return builderResult.hasNext
+           }
+      }
+      public var next:Common.Semester! {
+           get {
+               if nextBuilder_ != nil {
+                  builderResult.next = nextBuilder_.getMessage()
+               }
+               return builderResult.next
+           }
+           set (value) {
+               builderResult.hasNext = true
+               builderResult.next = value
+           }
+      }
+      private var nextBuilder_:Common.Semester.Builder! {
+           didSet {
+              builderResult.hasNext = true
+           }
+      }
+      public func getNextBuilder() -> Common.Semester.Builder {
+        if nextBuilder_ == nil {
+           nextBuilder_ = Common.Semester.Builder()
+           builderResult.next = nextBuilder_.getMessage()
+           if next != nil {
+              try! nextBuilder_.mergeFrom(next)
+           }
+        }
+        return nextBuilder_
+      }
+      public func setNext(value:Common.Semester!) -> Common.ResolvedSemester.Builder {
+        self.next = value
+        return self
+      }
+      public func mergeNext(value:Common.Semester) throws -> Common.ResolvedSemester.Builder {
+        if builderResult.hasNext {
+          builderResult.next = try Common.Semester.builderWithPrototype(builderResult.next).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.next = value
+        }
+        builderResult.hasNext = true
+        return self
+      }
+      public func clearNext() -> Common.ResolvedSemester.Builder {
+        nextBuilder_ = nil
+        builderResult.hasNext = false
+        builderResult.next = nil
+        return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Common.ResolvedSemester.Builder {
+        builderResult = Common.ResolvedSemester()
+        return self
+      }
+      public override func clone() throws -> Common.ResolvedSemester.Builder {
+        return try Common.ResolvedSemester.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Common.ResolvedSemester {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Common.ResolvedSemester {
+        let returnMe:Common.ResolvedSemester = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Common.ResolvedSemester) throws -> Common.ResolvedSemester.Builder {
+        if other == Common.ResolvedSemester() {
+         return self
+        }
+        if (other.hasCurrent) {
+            try mergeCurrent(other.current)
+        }
+        if (other.hasLast) {
+            try mergeLast(other.last)
+        }
+        if (other.hasNext) {
+            try mergeNext(other.next)
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.ResolvedSemester.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.ResolvedSemester.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let protobufTag = try input.readTag()
+          switch protobufTag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 10 :
+            let subBuilder:Common.Semester.Builder = Common.Semester.Builder()
+            if hasCurrent {
+              try subBuilder.mergeFrom(current)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            current = subBuilder.buildPartial()
+
+          case 18 :
+            let subBuilder:Common.Semester.Builder = Common.Semester.Builder()
+            if hasLast {
+              try subBuilder.mergeFrom(last)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            last = subBuilder.buildPartial()
+
+          case 26 :
+            let subBuilder:Common.Semester.Builder = Common.Semester.Builder()
+            if hasNext {
+              try subBuilder.mergeFrom(next)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            next = subBuilder.buildPartial()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
   final public class Semester : GeneratedMessage, GeneratedMessageProtocol {
     public private(set) var year:Int32 = Int32(0)
 
@@ -6370,6 +5623,1594 @@ public extension Common {
 
           case 18 :
             season = try input.readString()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class Uctnotification : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var notificationId:Int64 = Int64(0)
+
+    public private(set) var hasNotificationId:Bool = false
+    public private(set) var topicName:String = ""
+
+    public private(set) var hasTopicName:Bool = false
+    public private(set) var status:String = ""
+
+    public private(set) var hasStatus:Bool = false
+    public private(set) var university:Common.University!
+    public private(set) var hasUniversity:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasNotificationId {
+        try output.writeInt64(1, value:notificationId)
+      }
+      if hasTopicName {
+        try output.writeString(2, value:topicName)
+      }
+      if hasStatus {
+        try output.writeString(3, value:status)
+      }
+      if hasUniversity {
+        try output.writeMessage(4, value:university)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasNotificationId {
+        serialize_size += notificationId.computeInt64Size(1)
+      }
+      if hasTopicName {
+        serialize_size += topicName.computeStringSize(2)
+      }
+      if hasStatus {
+        serialize_size += status.computeStringSize(3)
+      }
+      if hasUniversity {
+          if let varSizeuniversity = university?.computeMessageSize(4) {
+              serialize_size += varSizeuniversity
+          }
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Uctnotification> {
+      var mergedArray = Array<Common.Uctnotification>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Uctnotification? {
+      return try Common.Uctnotification.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Uctnotification {
+      return try Common.Uctnotification.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Common.Uctnotification.Builder {
+      return Common.Uctnotification.classBuilder() as! Common.Uctnotification.Builder
+    }
+    public func getBuilder() -> Common.Uctnotification.Builder {
+      return classBuilder() as! Common.Uctnotification.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Common.Uctnotification.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Common.Uctnotification.Builder()
+    }
+    public func toBuilder() throws -> Common.Uctnotification.Builder {
+      return try Common.Uctnotification.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Common.Uctnotification) throws -> Common.Uctnotification.Builder {
+      return try Common.Uctnotification.Builder().mergeFrom(prototype)
+    }
+    override public func getDescription(indent:String) throws -> String {
+      var output:String = ""
+      if hasNotificationId {
+        output += "\(indent) notificationId: \(notificationId) \n"
+      }
+      if hasTopicName {
+        output += "\(indent) topicName: \(topicName) \n"
+      }
+      if hasStatus {
+        output += "\(indent) status: \(status) \n"
+      }
+      if hasUniversity {
+        output += "\(indent) university {\n"
+        if let outDescUniversity = university {
+          output += try outDescUniversity.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      output += unknownFields.getDescription(indent)
+      return output
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasNotificationId {
+               hashCode = (hashCode &* 31) &+ notificationId.hashValue
+            }
+            if hasTopicName {
+               hashCode = (hashCode &* 31) &+ topicName.hashValue
+            }
+            if hasStatus {
+               hashCode = (hashCode &* 31) &+ status.hashValue
+            }
+            if hasUniversity {
+                if let hashValueuniversity = university?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueuniversity
+                }
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Common.Uctnotification"
+    }
+    override public func className() -> String {
+        return "Common.Uctnotification"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Common.Uctnotification.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Common.Uctnotification = Common.Uctnotification()
+      public func getMessage() -> Common.Uctnotification {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasNotificationId:Bool {
+           get {
+                return builderResult.hasNotificationId
+           }
+      }
+      public var notificationId:Int64 {
+           get {
+                return builderResult.notificationId
+           }
+           set (value) {
+               builderResult.hasNotificationId = true
+               builderResult.notificationId = value
+           }
+      }
+      public func setNotificationId(value:Int64) -> Common.Uctnotification.Builder {
+        self.notificationId = value
+        return self
+      }
+      public func clearNotificationId() -> Common.Uctnotification.Builder{
+           builderResult.hasNotificationId = false
+           builderResult.notificationId = Int64(0)
+           return self
+      }
+      public var hasTopicName:Bool {
+           get {
+                return builderResult.hasTopicName
+           }
+      }
+      public var topicName:String {
+           get {
+                return builderResult.topicName
+           }
+           set (value) {
+               builderResult.hasTopicName = true
+               builderResult.topicName = value
+           }
+      }
+      public func setTopicName(value:String) -> Common.Uctnotification.Builder {
+        self.topicName = value
+        return self
+      }
+      public func clearTopicName() -> Common.Uctnotification.Builder{
+           builderResult.hasTopicName = false
+           builderResult.topicName = ""
+           return self
+      }
+      public var hasStatus:Bool {
+           get {
+                return builderResult.hasStatus
+           }
+      }
+      public var status:String {
+           get {
+                return builderResult.status
+           }
+           set (value) {
+               builderResult.hasStatus = true
+               builderResult.status = value
+           }
+      }
+      public func setStatus(value:String) -> Common.Uctnotification.Builder {
+        self.status = value
+        return self
+      }
+      public func clearStatus() -> Common.Uctnotification.Builder{
+           builderResult.hasStatus = false
+           builderResult.status = ""
+           return self
+      }
+      public var hasUniversity:Bool {
+           get {
+               return builderResult.hasUniversity
+           }
+      }
+      public var university:Common.University! {
+           get {
+               if universityBuilder_ != nil {
+                  builderResult.university = universityBuilder_.getMessage()
+               }
+               return builderResult.university
+           }
+           set (value) {
+               builderResult.hasUniversity = true
+               builderResult.university = value
+           }
+      }
+      private var universityBuilder_:Common.University.Builder! {
+           didSet {
+              builderResult.hasUniversity = true
+           }
+      }
+      public func getUniversityBuilder() -> Common.University.Builder {
+        if universityBuilder_ == nil {
+           universityBuilder_ = Common.University.Builder()
+           builderResult.university = universityBuilder_.getMessage()
+           if university != nil {
+              try! universityBuilder_.mergeFrom(university)
+           }
+        }
+        return universityBuilder_
+      }
+      public func setUniversity(value:Common.University!) -> Common.Uctnotification.Builder {
+        self.university = value
+        return self
+      }
+      public func mergeUniversity(value:Common.University) throws -> Common.Uctnotification.Builder {
+        if builderResult.hasUniversity {
+          builderResult.university = try Common.University.builderWithPrototype(builderResult.university).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.university = value
+        }
+        builderResult.hasUniversity = true
+        return self
+      }
+      public func clearUniversity() -> Common.Uctnotification.Builder {
+        universityBuilder_ = nil
+        builderResult.hasUniversity = false
+        builderResult.university = nil
+        return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Common.Uctnotification.Builder {
+        builderResult = Common.Uctnotification()
+        return self
+      }
+      public override func clone() throws -> Common.Uctnotification.Builder {
+        return try Common.Uctnotification.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Common.Uctnotification {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Common.Uctnotification {
+        let returnMe:Common.Uctnotification = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Common.Uctnotification) throws -> Common.Uctnotification.Builder {
+        if other == Common.Uctnotification() {
+         return self
+        }
+        if other.hasNotificationId {
+             notificationId = other.notificationId
+        }
+        if other.hasTopicName {
+             topicName = other.topicName
+        }
+        if other.hasStatus {
+             status = other.status
+        }
+        if (other.hasUniversity) {
+            try mergeUniversity(other.university)
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Uctnotification.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Uctnotification.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let protobufTag = try input.readTag()
+          switch protobufTag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 8 :
+            notificationId = try input.readInt64()
+
+          case 18 :
+            topicName = try input.readString()
+
+          case 26 :
+            status = try input.readString()
+
+          case 34 :
+            let subBuilder:Common.University.Builder = Common.University.Builder()
+            if hasUniversity {
+              try subBuilder.mergeFrom(university)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            university = subBuilder.buildPartial()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class Response : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var meta:Common.Meta!
+    public private(set) var hasMeta:Bool = false
+    public private(set) var data:Common.Data!
+    public private(set) var hasData:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasMeta {
+        try output.writeMessage(1, value:meta)
+      }
+      if hasData {
+        try output.writeMessage(2, value:data)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasMeta {
+          if let varSizemeta = meta?.computeMessageSize(1) {
+              serialize_size += varSizemeta
+          }
+      }
+      if hasData {
+          if let varSizedata = data?.computeMessageSize(2) {
+              serialize_size += varSizedata
+          }
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Response> {
+      var mergedArray = Array<Common.Response>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Response? {
+      return try Common.Response.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response {
+      return try Common.Response.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Common.Response.Builder {
+      return Common.Response.classBuilder() as! Common.Response.Builder
+    }
+    public func getBuilder() -> Common.Response.Builder {
+      return classBuilder() as! Common.Response.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Common.Response.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Common.Response.Builder()
+    }
+    public func toBuilder() throws -> Common.Response.Builder {
+      return try Common.Response.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Common.Response) throws -> Common.Response.Builder {
+      return try Common.Response.Builder().mergeFrom(prototype)
+    }
+    override public func getDescription(indent:String) throws -> String {
+      var output:String = ""
+      if hasMeta {
+        output += "\(indent) meta {\n"
+        if let outDescMeta = meta {
+          output += try outDescMeta.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasData {
+        output += "\(indent) data {\n"
+        if let outDescData = data {
+          output += try outDescData.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      output += unknownFields.getDescription(indent)
+      return output
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasMeta {
+                if let hashValuemeta = meta?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuemeta
+                }
+            }
+            if hasData {
+                if let hashValuedata = data?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuedata
+                }
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Common.Response"
+    }
+    override public func className() -> String {
+        return "Common.Response"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Common.Response.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Common.Response = Common.Response()
+      public func getMessage() -> Common.Response {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasMeta:Bool {
+           get {
+               return builderResult.hasMeta
+           }
+      }
+      public var meta:Common.Meta! {
+           get {
+               if metaBuilder_ != nil {
+                  builderResult.meta = metaBuilder_.getMessage()
+               }
+               return builderResult.meta
+           }
+           set (value) {
+               builderResult.hasMeta = true
+               builderResult.meta = value
+           }
+      }
+      private var metaBuilder_:Common.Meta.Builder! {
+           didSet {
+              builderResult.hasMeta = true
+           }
+      }
+      public func getMetaBuilder() -> Common.Meta.Builder {
+        if metaBuilder_ == nil {
+           metaBuilder_ = Common.Meta.Builder()
+           builderResult.meta = metaBuilder_.getMessage()
+           if meta != nil {
+              try! metaBuilder_.mergeFrom(meta)
+           }
+        }
+        return metaBuilder_
+      }
+      public func setMeta(value:Common.Meta!) -> Common.Response.Builder {
+        self.meta = value
+        return self
+      }
+      public func mergeMeta(value:Common.Meta) throws -> Common.Response.Builder {
+        if builderResult.hasMeta {
+          builderResult.meta = try Common.Meta.builderWithPrototype(builderResult.meta).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.meta = value
+        }
+        builderResult.hasMeta = true
+        return self
+      }
+      public func clearMeta() -> Common.Response.Builder {
+        metaBuilder_ = nil
+        builderResult.hasMeta = false
+        builderResult.meta = nil
+        return self
+      }
+      public var hasData:Bool {
+           get {
+               return builderResult.hasData
+           }
+      }
+      public var data:Common.Data! {
+           get {
+               if dataBuilder_ != nil {
+                  builderResult.data = dataBuilder_.getMessage()
+               }
+               return builderResult.data
+           }
+           set (value) {
+               builderResult.hasData = true
+               builderResult.data = value
+           }
+      }
+      private var dataBuilder_:Common.Data.Builder! {
+           didSet {
+              builderResult.hasData = true
+           }
+      }
+      public func getDataBuilder() -> Common.Data.Builder {
+        if dataBuilder_ == nil {
+           dataBuilder_ = Common.Data.Builder()
+           builderResult.data = dataBuilder_.getMessage()
+           if data != nil {
+              try! dataBuilder_.mergeFrom(data)
+           }
+        }
+        return dataBuilder_
+      }
+      public func setData(value:Common.Data!) -> Common.Response.Builder {
+        self.data = value
+        return self
+      }
+      public func mergeData(value:Common.Data) throws -> Common.Response.Builder {
+        if builderResult.hasData {
+          builderResult.data = try Common.Data.builderWithPrototype(builderResult.data).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.data = value
+        }
+        builderResult.hasData = true
+        return self
+      }
+      public func clearData() -> Common.Response.Builder {
+        dataBuilder_ = nil
+        builderResult.hasData = false
+        builderResult.data = nil
+        return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Common.Response.Builder {
+        builderResult = Common.Response()
+        return self
+      }
+      public override func clone() throws -> Common.Response.Builder {
+        return try Common.Response.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Common.Response {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Common.Response {
+        let returnMe:Common.Response = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Common.Response) throws -> Common.Response.Builder {
+        if other == Common.Response() {
+         return self
+        }
+        if (other.hasMeta) {
+            try mergeMeta(other.meta)
+        }
+        if (other.hasData) {
+            try mergeData(other.data)
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Response.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Response.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let protobufTag = try input.readTag()
+          switch protobufTag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 10 :
+            let subBuilder:Common.Meta.Builder = Common.Meta.Builder()
+            if hasMeta {
+              try subBuilder.mergeFrom(meta)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            meta = subBuilder.buildPartial()
+
+          case 18 :
+            let subBuilder:Common.Data.Builder = Common.Data.Builder()
+            if hasData {
+              try subBuilder.mergeFrom(data)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            data = subBuilder.buildPartial()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class Meta : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var code:Int32 = Int32(0)
+
+    public private(set) var hasCode:Bool = false
+    public private(set) var message_:String = ""
+
+    public private(set) var hasMessage_:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasCode {
+        try output.writeInt32(1, value:code)
+      }
+      if hasMessage_ {
+        try output.writeString(2, value:message_)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasCode {
+        serialize_size += code.computeInt32Size(1)
+      }
+      if hasMessage_ {
+        serialize_size += message_.computeStringSize(2)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Meta> {
+      var mergedArray = Array<Common.Meta>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Meta? {
+      return try Common.Meta.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta {
+      return try Common.Meta.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Common.Meta.Builder {
+      return Common.Meta.classBuilder() as! Common.Meta.Builder
+    }
+    public func getBuilder() -> Common.Meta.Builder {
+      return classBuilder() as! Common.Meta.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Common.Meta.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Common.Meta.Builder()
+    }
+    public func toBuilder() throws -> Common.Meta.Builder {
+      return try Common.Meta.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Common.Meta) throws -> Common.Meta.Builder {
+      return try Common.Meta.Builder().mergeFrom(prototype)
+    }
+    override public func getDescription(indent:String) throws -> String {
+      var output:String = ""
+      if hasCode {
+        output += "\(indent) code: \(code) \n"
+      }
+      if hasMessage_ {
+        output += "\(indent) message_: \(message_) \n"
+      }
+      output += unknownFields.getDescription(indent)
+      return output
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasCode {
+               hashCode = (hashCode &* 31) &+ code.hashValue
+            }
+            if hasMessage_ {
+               hashCode = (hashCode &* 31) &+ message_.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Common.Meta"
+    }
+    override public func className() -> String {
+        return "Common.Meta"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Common.Meta.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Common.Meta = Common.Meta()
+      public func getMessage() -> Common.Meta {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasCode:Bool {
+           get {
+                return builderResult.hasCode
+           }
+      }
+      public var code:Int32 {
+           get {
+                return builderResult.code
+           }
+           set (value) {
+               builderResult.hasCode = true
+               builderResult.code = value
+           }
+      }
+      public func setCode(value:Int32) -> Common.Meta.Builder {
+        self.code = value
+        return self
+      }
+      public func clearCode() -> Common.Meta.Builder{
+           builderResult.hasCode = false
+           builderResult.code = Int32(0)
+           return self
+      }
+      public var hasMessage_:Bool {
+           get {
+                return builderResult.hasMessage_
+           }
+      }
+      public var message_:String {
+           get {
+                return builderResult.message_
+           }
+           set (value) {
+               builderResult.hasMessage_ = true
+               builderResult.message_ = value
+           }
+      }
+      public func setMessage_(value:String) -> Common.Meta.Builder {
+        self.message_ = value
+        return self
+      }
+      public func clearMessage_() -> Common.Meta.Builder{
+           builderResult.hasMessage_ = false
+           builderResult.message_ = ""
+           return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Common.Meta.Builder {
+        builderResult = Common.Meta()
+        return self
+      }
+      public override func clone() throws -> Common.Meta.Builder {
+        return try Common.Meta.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Common.Meta {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Common.Meta {
+        let returnMe:Common.Meta = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Common.Meta) throws -> Common.Meta.Builder {
+        if other == Common.Meta() {
+         return self
+        }
+        if other.hasCode {
+             code = other.code
+        }
+        if other.hasMessage_ {
+             message_ = other.message_
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Meta.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Meta.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let protobufTag = try input.readTag()
+          switch protobufTag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 8 :
+            code = try input.readInt32()
+
+          case 18 :
+            message_ = try input.readString()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class Data : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var universities:Array<Common.University>  = Array<Common.University>()
+    public private(set) var subjects:Array<Common.Subject>  = Array<Common.Subject>()
+    public private(set) var courses:Array<Common.Course>  = Array<Common.Course>()
+    public private(set) var sections:Array<Common.Section>  = Array<Common.Section>()
+    public private(set) var university:Common.University!
+    public private(set) var hasUniversity:Bool = false
+    public private(set) var subject:Common.Subject!
+    public private(set) var hasSubject:Bool = false
+    public private(set) var course:Common.Course!
+    public private(set) var hasCourse:Bool = false
+    public private(set) var section:Common.Section!
+    public private(set) var hasSection:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      for oneElementuniversities in universities {
+          try output.writeMessage(1, value:oneElementuniversities)
+      }
+      for oneElementsubjects in subjects {
+          try output.writeMessage(2, value:oneElementsubjects)
+      }
+      for oneElementcourses in courses {
+          try output.writeMessage(3, value:oneElementcourses)
+      }
+      for oneElementsections in sections {
+          try output.writeMessage(4, value:oneElementsections)
+      }
+      if hasUniversity {
+        try output.writeMessage(5, value:university)
+      }
+      if hasSubject {
+        try output.writeMessage(6, value:subject)
+      }
+      if hasCourse {
+        try output.writeMessage(7, value:course)
+      }
+      if hasSection {
+        try output.writeMessage(8, value:section)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      for oneElementuniversities in universities {
+          serialize_size += oneElementuniversities.computeMessageSize(1)
+      }
+      for oneElementsubjects in subjects {
+          serialize_size += oneElementsubjects.computeMessageSize(2)
+      }
+      for oneElementcourses in courses {
+          serialize_size += oneElementcourses.computeMessageSize(3)
+      }
+      for oneElementsections in sections {
+          serialize_size += oneElementsections.computeMessageSize(4)
+      }
+      if hasUniversity {
+          if let varSizeuniversity = university?.computeMessageSize(5) {
+              serialize_size += varSizeuniversity
+          }
+      }
+      if hasSubject {
+          if let varSizesubject = subject?.computeMessageSize(6) {
+              serialize_size += varSizesubject
+          }
+      }
+      if hasCourse {
+          if let varSizecourse = course?.computeMessageSize(7) {
+              serialize_size += varSizecourse
+          }
+      }
+      if hasSection {
+          if let varSizesection = section?.computeMessageSize(8) {
+              serialize_size += varSizesection
+          }
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Common.Data> {
+      var mergedArray = Array<Common.Data>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Common.Data? {
+      return try Common.Data.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromData(data, extensionRegistry:Common.ModelRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data {
+      return try Common.Data.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Common.Data.Builder {
+      return Common.Data.classBuilder() as! Common.Data.Builder
+    }
+    public func getBuilder() -> Common.Data.Builder {
+      return classBuilder() as! Common.Data.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Common.Data.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Common.Data.Builder()
+    }
+    public func toBuilder() throws -> Common.Data.Builder {
+      return try Common.Data.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Common.Data) throws -> Common.Data.Builder {
+      return try Common.Data.Builder().mergeFrom(prototype)
+    }
+    override public func getDescription(indent:String) throws -> String {
+      var output:String = ""
+      var universitiesElementIndex:Int = 0
+      for oneElementuniversities in universities {
+          output += "\(indent) universities[\(universitiesElementIndex)] {\n"
+          output += try oneElementuniversities.getDescription("\(indent)  ")
+          output += "\(indent)}\n"
+          universitiesElementIndex += 1
+      }
+      var subjectsElementIndex:Int = 0
+      for oneElementsubjects in subjects {
+          output += "\(indent) subjects[\(subjectsElementIndex)] {\n"
+          output += try oneElementsubjects.getDescription("\(indent)  ")
+          output += "\(indent)}\n"
+          subjectsElementIndex += 1
+      }
+      var coursesElementIndex:Int = 0
+      for oneElementcourses in courses {
+          output += "\(indent) courses[\(coursesElementIndex)] {\n"
+          output += try oneElementcourses.getDescription("\(indent)  ")
+          output += "\(indent)}\n"
+          coursesElementIndex += 1
+      }
+      var sectionsElementIndex:Int = 0
+      for oneElementsections in sections {
+          output += "\(indent) sections[\(sectionsElementIndex)] {\n"
+          output += try oneElementsections.getDescription("\(indent)  ")
+          output += "\(indent)}\n"
+          sectionsElementIndex += 1
+      }
+      if hasUniversity {
+        output += "\(indent) university {\n"
+        if let outDescUniversity = university {
+          output += try outDescUniversity.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasSubject {
+        output += "\(indent) subject {\n"
+        if let outDescSubject = subject {
+          output += try outDescSubject.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasCourse {
+        output += "\(indent) course {\n"
+        if let outDescCourse = course {
+          output += try outDescCourse.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasSection {
+        output += "\(indent) section {\n"
+        if let outDescSection = section {
+          output += try outDescSection.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      output += unknownFields.getDescription(indent)
+      return output
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            for oneElementuniversities in universities {
+                hashCode = (hashCode &* 31) &+ oneElementuniversities.hashValue
+            }
+            for oneElementsubjects in subjects {
+                hashCode = (hashCode &* 31) &+ oneElementsubjects.hashValue
+            }
+            for oneElementcourses in courses {
+                hashCode = (hashCode &* 31) &+ oneElementcourses.hashValue
+            }
+            for oneElementsections in sections {
+                hashCode = (hashCode &* 31) &+ oneElementsections.hashValue
+            }
+            if hasUniversity {
+                if let hashValueuniversity = university?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueuniversity
+                }
+            }
+            if hasSubject {
+                if let hashValuesubject = subject?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuesubject
+                }
+            }
+            if hasCourse {
+                if let hashValuecourse = course?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuecourse
+                }
+            }
+            if hasSection {
+                if let hashValuesection = section?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuesection
+                }
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Common.Data"
+    }
+    override public func className() -> String {
+        return "Common.Data"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Common.Data.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Common.Data = Common.Data()
+      public func getMessage() -> Common.Data {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var universities:Array<Common.University> {
+           get {
+               return builderResult.universities
+           }
+           set (value) {
+               builderResult.universities = value
+           }
+      }
+      public func setUniversities(value:Array<Common.University>) -> Common.Data.Builder {
+        self.universities = value
+        return self
+      }
+      public func clearUniversities() -> Common.Data.Builder {
+        builderResult.universities.removeAll(keepCapacity: false)
+        return self
+      }
+      public var subjects:Array<Common.Subject> {
+           get {
+               return builderResult.subjects
+           }
+           set (value) {
+               builderResult.subjects = value
+           }
+      }
+      public func setSubjects(value:Array<Common.Subject>) -> Common.Data.Builder {
+        self.subjects = value
+        return self
+      }
+      public func clearSubjects() -> Common.Data.Builder {
+        builderResult.subjects.removeAll(keepCapacity: false)
+        return self
+      }
+      public var courses:Array<Common.Course> {
+           get {
+               return builderResult.courses
+           }
+           set (value) {
+               builderResult.courses = value
+           }
+      }
+      public func setCourses(value:Array<Common.Course>) -> Common.Data.Builder {
+        self.courses = value
+        return self
+      }
+      public func clearCourses() -> Common.Data.Builder {
+        builderResult.courses.removeAll(keepCapacity: false)
+        return self
+      }
+      public var sections:Array<Common.Section> {
+           get {
+               return builderResult.sections
+           }
+           set (value) {
+               builderResult.sections = value
+           }
+      }
+      public func setSections(value:Array<Common.Section>) -> Common.Data.Builder {
+        self.sections = value
+        return self
+      }
+      public func clearSections() -> Common.Data.Builder {
+        builderResult.sections.removeAll(keepCapacity: false)
+        return self
+      }
+      public var hasUniversity:Bool {
+           get {
+               return builderResult.hasUniversity
+           }
+      }
+      public var university:Common.University! {
+           get {
+               if universityBuilder_ != nil {
+                  builderResult.university = universityBuilder_.getMessage()
+               }
+               return builderResult.university
+           }
+           set (value) {
+               builderResult.hasUniversity = true
+               builderResult.university = value
+           }
+      }
+      private var universityBuilder_:Common.University.Builder! {
+           didSet {
+              builderResult.hasUniversity = true
+           }
+      }
+      public func getUniversityBuilder() -> Common.University.Builder {
+        if universityBuilder_ == nil {
+           universityBuilder_ = Common.University.Builder()
+           builderResult.university = universityBuilder_.getMessage()
+           if university != nil {
+              try! universityBuilder_.mergeFrom(university)
+           }
+        }
+        return universityBuilder_
+      }
+      public func setUniversity(value:Common.University!) -> Common.Data.Builder {
+        self.university = value
+        return self
+      }
+      public func mergeUniversity(value:Common.University) throws -> Common.Data.Builder {
+        if builderResult.hasUniversity {
+          builderResult.university = try Common.University.builderWithPrototype(builderResult.university).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.university = value
+        }
+        builderResult.hasUniversity = true
+        return self
+      }
+      public func clearUniversity() -> Common.Data.Builder {
+        universityBuilder_ = nil
+        builderResult.hasUniversity = false
+        builderResult.university = nil
+        return self
+      }
+      public var hasSubject:Bool {
+           get {
+               return builderResult.hasSubject
+           }
+      }
+      public var subject:Common.Subject! {
+           get {
+               if subjectBuilder_ != nil {
+                  builderResult.subject = subjectBuilder_.getMessage()
+               }
+               return builderResult.subject
+           }
+           set (value) {
+               builderResult.hasSubject = true
+               builderResult.subject = value
+           }
+      }
+      private var subjectBuilder_:Common.Subject.Builder! {
+           didSet {
+              builderResult.hasSubject = true
+           }
+      }
+      public func getSubjectBuilder() -> Common.Subject.Builder {
+        if subjectBuilder_ == nil {
+           subjectBuilder_ = Common.Subject.Builder()
+           builderResult.subject = subjectBuilder_.getMessage()
+           if subject != nil {
+              try! subjectBuilder_.mergeFrom(subject)
+           }
+        }
+        return subjectBuilder_
+      }
+      public func setSubject(value:Common.Subject!) -> Common.Data.Builder {
+        self.subject = value
+        return self
+      }
+      public func mergeSubject(value:Common.Subject) throws -> Common.Data.Builder {
+        if builderResult.hasSubject {
+          builderResult.subject = try Common.Subject.builderWithPrototype(builderResult.subject).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.subject = value
+        }
+        builderResult.hasSubject = true
+        return self
+      }
+      public func clearSubject() -> Common.Data.Builder {
+        subjectBuilder_ = nil
+        builderResult.hasSubject = false
+        builderResult.subject = nil
+        return self
+      }
+      public var hasCourse:Bool {
+           get {
+               return builderResult.hasCourse
+           }
+      }
+      public var course:Common.Course! {
+           get {
+               if courseBuilder_ != nil {
+                  builderResult.course = courseBuilder_.getMessage()
+               }
+               return builderResult.course
+           }
+           set (value) {
+               builderResult.hasCourse = true
+               builderResult.course = value
+           }
+      }
+      private var courseBuilder_:Common.Course.Builder! {
+           didSet {
+              builderResult.hasCourse = true
+           }
+      }
+      public func getCourseBuilder() -> Common.Course.Builder {
+        if courseBuilder_ == nil {
+           courseBuilder_ = Common.Course.Builder()
+           builderResult.course = courseBuilder_.getMessage()
+           if course != nil {
+              try! courseBuilder_.mergeFrom(course)
+           }
+        }
+        return courseBuilder_
+      }
+      public func setCourse(value:Common.Course!) -> Common.Data.Builder {
+        self.course = value
+        return self
+      }
+      public func mergeCourse(value:Common.Course) throws -> Common.Data.Builder {
+        if builderResult.hasCourse {
+          builderResult.course = try Common.Course.builderWithPrototype(builderResult.course).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.course = value
+        }
+        builderResult.hasCourse = true
+        return self
+      }
+      public func clearCourse() -> Common.Data.Builder {
+        courseBuilder_ = nil
+        builderResult.hasCourse = false
+        builderResult.course = nil
+        return self
+      }
+      public var hasSection:Bool {
+           get {
+               return builderResult.hasSection
+           }
+      }
+      public var section:Common.Section! {
+           get {
+               if sectionBuilder_ != nil {
+                  builderResult.section = sectionBuilder_.getMessage()
+               }
+               return builderResult.section
+           }
+           set (value) {
+               builderResult.hasSection = true
+               builderResult.section = value
+           }
+      }
+      private var sectionBuilder_:Common.Section.Builder! {
+           didSet {
+              builderResult.hasSection = true
+           }
+      }
+      public func getSectionBuilder() -> Common.Section.Builder {
+        if sectionBuilder_ == nil {
+           sectionBuilder_ = Common.Section.Builder()
+           builderResult.section = sectionBuilder_.getMessage()
+           if section != nil {
+              try! sectionBuilder_.mergeFrom(section)
+           }
+        }
+        return sectionBuilder_
+      }
+      public func setSection(value:Common.Section!) -> Common.Data.Builder {
+        self.section = value
+        return self
+      }
+      public func mergeSection(value:Common.Section) throws -> Common.Data.Builder {
+        if builderResult.hasSection {
+          builderResult.section = try Common.Section.builderWithPrototype(builderResult.section).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.section = value
+        }
+        builderResult.hasSection = true
+        return self
+      }
+      public func clearSection() -> Common.Data.Builder {
+        sectionBuilder_ = nil
+        builderResult.hasSection = false
+        builderResult.section = nil
+        return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Common.Data.Builder {
+        builderResult = Common.Data()
+        return self
+      }
+      public override func clone() throws -> Common.Data.Builder {
+        return try Common.Data.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Common.Data {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Common.Data {
+        let returnMe:Common.Data = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Common.Data) throws -> Common.Data.Builder {
+        if other == Common.Data() {
+         return self
+        }
+        if !other.universities.isEmpty  {
+           builderResult.universities += other.universities
+        }
+        if !other.subjects.isEmpty  {
+           builderResult.subjects += other.subjects
+        }
+        if !other.courses.isEmpty  {
+           builderResult.courses += other.courses
+        }
+        if !other.sections.isEmpty  {
+           builderResult.sections += other.sections
+        }
+        if (other.hasUniversity) {
+            try mergeUniversity(other.university)
+        }
+        if (other.hasSubject) {
+            try mergeSubject(other.subject)
+        }
+        if (other.hasCourse) {
+            try mergeCourse(other.course)
+        }
+        if (other.hasSection) {
+            try mergeSection(other.section)
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Common.Data.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Common.Data.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let protobufTag = try input.readTag()
+          switch protobufTag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 10 :
+            let subBuilder = Common.University.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            universities += [subBuilder.buildPartial()]
+
+          case 18 :
+            let subBuilder = Common.Subject.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            subjects += [subBuilder.buildPartial()]
+
+          case 26 :
+            let subBuilder = Common.Course.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            courses += [subBuilder.buildPartial()]
+
+          case 34 :
+            let subBuilder = Common.Section.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            sections += [subBuilder.buildPartial()]
+
+          case 42 :
+            let subBuilder:Common.University.Builder = Common.University.Builder()
+            if hasUniversity {
+              try subBuilder.mergeFrom(university)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            university = subBuilder.buildPartial()
+
+          case 50 :
+            let subBuilder:Common.Subject.Builder = Common.Subject.Builder()
+            if hasSubject {
+              try subBuilder.mergeFrom(subject)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            subject = subBuilder.buildPartial()
+
+          case 58 :
+            let subBuilder:Common.Course.Builder = Common.Course.Builder()
+            if hasCourse {
+              try subBuilder.mergeFrom(course)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            course = subBuilder.buildPartial()
+
+          case 66 :
+            let subBuilder:Common.Section.Builder = Common.Section.Builder()
+            if hasSection {
+              try subBuilder.mergeFrom(section)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            section = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {

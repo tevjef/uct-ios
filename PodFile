@@ -5,4 +5,5 @@ use_frameworks!
 target ‘UniversityCourseTracker’ do
     pod 'Alamofire', '~> 3.4'
     pod 'ProtocolBuffers-Swift'
+    pod 'Firebase/RemoteConfig'
 end
