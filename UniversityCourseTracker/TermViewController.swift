@@ -13,7 +13,6 @@ class TermViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     var loadedTerms: Array<Common.Semester>?
     var selectedTerm: Int = -1
-    var searchProtocol: SearchFlowProtocol?
 
     override func viewDidLoad() {
         tableView.reloadData()
@@ -32,9 +31,6 @@ class TermViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedTerm = indexPath.row
-        if selectedTerm != -1 {
-            searchProtocol!.setTerm(self.loadedTerms![selectedTerm])
-        }
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -8,35 +8,42 @@
 
 import UIKit
 
-class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchFlowDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var indicator = UIActivityIndicatorView()
     var loadedCourses: Array<Common.Course>?
     var courseList: [String] = [String]()
-    var selectedSubject: Common.Subject?
+    var searchFlow: SearchFlow?
     var selectedCourse: Int = -1
-    
+
     override func viewDidLoad() {
         setupViews()
         ViewController.startIndicator(indicator)
+        loadData()
+    }
 
-        getCourses(selectedSubject!.topicName, { courses in
+    func loadData() {
+        datarepo.getCourses(searchFlow!.subjectTopicName!, { [weak self] courses in
             if let courses = courses {
-                self.loadedCourses = courses
-                for course in self.loadedCourses! {
-                    self.courseList.append(course.name)
+                self?.loadedCourses = courses
+                for course in (self?.loadedCourses!)! {
+                    self?.courseList.append(course.name)
                 }
-                self.tableView.reloadData()
-                ViewController.stopIndicator(self.indicator)
+                self?.tableView.reloadData()
+                ViewController.stopIndicator((self?.indicator)!)
             } else {
-                print("Error")
+                let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+                    uiAction in self?.loadData()
+                }))
+                self?.presentViewController(alert, animated: true, completion: nil)
             }
         })
     }
-
+    
     func setupViews() {
-        navigationItem.title = selectedSubject!.name
+        navigationItem.title = searchFlow?.tempSubject?.name
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         indicator = ViewController.makeActivityIndicator(self.view)
     }
@@ -44,6 +51,11 @@ class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - UITableViewDelegate Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courseList.count
+    }
+    
+    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
+        //let selectedRow = tableView.indexPathForSelectedRow?.row
+        searchFlowDelegate.searchFlow = self.searchFlow
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

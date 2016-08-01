@@ -8,37 +8,54 @@
 
 import UIKit
 
-class SubjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SubjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchFlowDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var indicator = UIActivityIndicatorView()
     var loadedSubjects: Array<Common.Subject>?
     var subjectsList: [String] = [String]()
-    var selectedUniversity: Common.University?
-    var selectedSemester: Common.Semester?
-    var selectedSubject: Int = -1
+    var searchFlow: SearchFlow?
     
     override func viewDidLoad() {
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        searchFlow = SearchFlow()
+        searchFlow!.universityTopicName = userDefaults.universityTopicName
+        searchFlow!.season = userDefaults.season
+        searchFlow!.year = userDefaults.year
+        searchFlow!.tempUniversity = appConfig.university
+
         setupViews()
-        ViewController.startIndicator(indicator)
         
-        getSubjects(selectedUniversity!.topicName, selectedSemester!.season, selectedSemester!.year.description, {
+        loadData()
+    }
+    
+    func loadData() {
+        ViewController.startIndicator(indicator)
+        datarepo.getSubjects(searchFlow!.universityTopicName!, searchFlow!.season!, searchFlow!.year!, { [weak self]
             subjects in
             if let subjects = subjects {
-                self.loadedSubjects = subjects
-                for subs in self.loadedSubjects! {
-                    self.subjectsList.append(subs.name)
+                self?.loadedSubjects = subjects
+                for subs in (self?.loadedSubjects)! {
+                    self?.subjectsList.append(subs.name)
                 }
-                self.tableView.reloadData()
-                ViewController.stopIndicator(self.indicator)
+                self?.tableView.reloadData()
+                ViewController.stopIndicator((self?.indicator)!)
             } else {
-                print("Error")
+                ViewController.stopIndicator((self?.indicator)!)
+                let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+                    uiAction in self?.loadData()
+                }))
+                self?.presentViewController(alert, animated: true, completion: nil)
             }
         })
     }
 
     func setupViews() {
-        navigationItem.title = Common.getReadableString(selectedSemester!)
+        let titleView = self.makeTitleViewWithSubtitle(userDefaults.season.capitalizedString + " " + userDefaults.year, subtitle: (appConfig.university?.abbr)!)
+        navigationItem.titleView = titleView
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         indicator = ViewController.makeActivityIndicator(self.view)
     }
@@ -47,9 +64,16 @@ class SubjectsViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if  segue.identifier == "gotoCourseList" {
             let nextViewController = segue.destinationViewController as! CoursesViewController
-            let row = tableView.indexPathForSelectedRow?.row
-            nextViewController.selectedSubject = loadedSubjects![row!]
+            prepareSearchFlow(nextViewController)
         }
+    }
+    
+    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
+        let selectedRow = tableView.indexPathForSelectedRow?.row
+        let subject = loadedSubjects![selectedRow!]
+        searchFlow?.tempSubject = subject
+        searchFlow?.subjectTopicName = subject.topicName
+        searchFlowDelegate.searchFlow = self.searchFlow
     }
     
     // MARK: - UITableViewDelegate Methods

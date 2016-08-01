@@ -13,6 +13,10 @@
 		130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E21D49B3FB00CCD3E1 /* Utils.swift */; };
 		130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */; };
 		130AD7E71D49CF3F00CCD3E1 /* Section.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130AD7E61D49CF3F00CCD3E1 /* Section.xib */; };
+		130F19CA1D4EAD1300D414AB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19C91D4EAD1300D414AB /* UserDefaults.swift */; };
+		130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CB1D4EAD3100D414AB /* SearchFlow.swift */; };
+		130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */; };
+		131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131FF1451D4DAC8800F202C4 /* AppConstants.swift */; };
 		1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F11D445D5100F5F742 /* AppDelegate.swift */; };
 		1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F31D445D5100F5F742 /* ViewController.swift */; };
 		1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0F51D445D5100F5F742 /* Main.storyboard */; };
@@ -23,8 +27,9 @@
 		1327C1151D445D5100F5F742 /* UniversityCourseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */; };
 		1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1221D445E2300F5F742 /* Common.Model.proto.swift */; };
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
-		1327C12D1D453CA400F5F742 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* SearchViewController.swift */; };
+		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
 		1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */; };
+		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
 		13D374B41D457E7D001940FD /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B31D457E7D001940FD /* TermViewController.swift */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
@@ -55,6 +60,10 @@
 		130AD7E21D49B3FB00CCD3E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		130AD7E61D49CF3F00CCD3E1 /* Section.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Section.xib; sourceTree = "<group>"; };
+		130F19C91D4EAD1300D414AB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		130F19CB1D4EAD3100D414AB /* SearchFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlow.swift; sourceTree = "<group>"; };
+		130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigruation.swift; sourceTree = "<group>"; };
+		131FF1451D4DAC8800F202C4 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327C0F31D445D5100F5F742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,8 +80,9 @@
 		1327C1161D445D5100F5F742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1327C1221D445E2300F5F742 /* Common.Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.Model.proto.swift; sourceTree = "<group>"; };
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
-		1327C12C1D453CA400F5F742 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
+		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13D374B31D457E7D001940FD /* TermViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				1327C1231D445E2300F5F742 /* DataRepos.swift */,
+				131FF1451D4DAC8800F202C4 /* AppConstants.swift */,
+				130F19C91D4EAD1300D414AB /* UserDefaults.swift */,
+				130F19CB1D4EAD3100D414AB /* SearchFlow.swift */,
+				130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */,
 			);
 			name = repository;
 			sourceTree = "<group>";
@@ -193,12 +207,13 @@
 			isa = PBXGroup;
 			children = (
 				1327C0F31D445D5100F5F742 /* ViewController.swift */,
-				1327C12C1D453CA400F5F742 /* SearchViewController.swift */,
+				1327C12C1D453CA400F5F742 /* OptionsViewController.swift */,
 				1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */,
 				13D374B31D457E7D001940FD /* TermViewController.swift */,
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
 				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
+				13B182591D4D702D00036D9A /* DefaultsViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -412,16 +427,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1327C12D1D453CA400F5F742 /* SearchViewController.swift in Sources */,
+				1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */,
 				1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */,
 				1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */,
 				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
+				130F19CA1D4EAD1300D414AB /* UserDefaults.swift in Sources */,
+				131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */,
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
+				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
+				130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */,
 				13D374B41D457E7D001940FD /* TermViewController.swift in Sources */,
+				13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,

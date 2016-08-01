@@ -15,14 +15,13 @@ class UniversityListViewController: UIViewController, UITableViewDelegate, UITab
     var indicator = UIActivityIndicatorView()
     var loadedUniversities: Array<Common.University>?
     var selectedUniversity: Int = -1
-    var searchProtocol: SearchFlowProtocol?
     
     override func viewDidLoad() {
         setupViews()
         ViewController.startIndicator(indicator)
 
         // Load a list of universities from the network
-        getUniversities { universities in
+        datarepo.getUniversities { universities in
             if let universities = universities {
                 self.loadedUniversities = universities
                 for u in universities {
@@ -56,9 +55,6 @@ class UniversityListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedUniversity = indexPath.row
-        if selectedUniversity != -1 {
-            searchProtocol!.setUniversity(self.loadedUniversities![selectedUniversity])
-        }
         goBack()
     }
     

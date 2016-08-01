@@ -8,15 +8,24 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var dataRepo: DataRepos?
+    var appconstants = AppConstants()
+    var userDefaults: UserDefaults?
+    var appConfig: AppConfigruation?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        userDefaults = UserDefaults(defaults: NSUserDefaults.standardUserDefaults())
+        dataRepo = DataRepos(constants: appconstants)
+        appConfig = AppConfigruation(dataRepo: dataRepo!, defaults: userDefaults!)
+    
         return true
     }
 
