@@ -16,24 +16,29 @@ class AppConfigruation: NSObject {
     init(dataRepo: DataRepos, defaults: UserDefaults)  {
         self.dataRepo = dataRepo
         self.userDefaults = defaults
-
-        super.init()
+    }
+    
+    func initData() {
         userDefaults.defaults.addObserver(self, forKeyPath: AppConstants.PropertyKey.universityTopicNameKey, options: NSKeyValueObservingOptions.New, context: nil)
         loadUniversity(userDefaults.universityTopicName)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == AppConstants.PropertyKey.universityTopicNameKey {
-            loadUniversity((change?["new"])! as! String)
+            if !loadUniversityInProgress {
+                loadUniversity((change?["new"])! as! String)
+            }
         }
     }
     
+    var loadUniversityInProgress = false
     func loadUniversity(topicName: String) {
         if topicName == "" {
             return
         }
-        
+        loadUniversityInProgress = true
         dataRepo.getUniversity(topicName) { (university) in
+            self.loadUniversityInProgress = false
             if let university = university {
                 self.university = university
             } else {

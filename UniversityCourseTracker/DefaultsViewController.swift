@@ -46,10 +46,10 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func loadData() {
-        ViewController.startIndicator(indicator)
+        self.startIndicator(indicator)
 
         datarepo.getUniversities({[weak self] universities in
-            ViewController.stopIndicator((self?.indicator)!)
+            self?.stopIndicator((self?.indicator)!)
 
             if let universities = universities  {
                 self?.universities = universities
@@ -58,13 +58,16 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                     self!.textField.alpha = 1
                 })
             } else {
-                let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
-                        uiAction in self?.loadData()
-                }))
-                self?.presentViewController(alert, animated: true, completion: nil)
+                // Alert no internet
+                self?.alertNoInternet({
+                    self?.startIndicator(self?.indicator)
+                    // Wait n seconds then retry loading, if user hasn't navigated away
+                    self?.delay(5, closure: {
+                        self?.loadData()
+                    })
+                })
             }
-            })
+        })
     }
     
     func setupViews() {

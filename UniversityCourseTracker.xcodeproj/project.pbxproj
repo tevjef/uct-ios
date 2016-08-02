@@ -28,9 +28,7 @@
 		1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1221D445E2300F5F742 /* Common.Model.proto.swift */; };
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
-		1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */; };
 		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
-		13D374B41D457E7D001940FD /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B31D457E7D001940FD /* TermViewController.swift */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
 /* End PBXBuildFile section */
@@ -81,9 +79,7 @@
 		1327C1221D445E2300F5F742 /* Common.Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.Model.proto.swift; sourceTree = "<group>"; };
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
-		1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityListViewController.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
-		13D374B31D457E7D001940FD /* TermViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniversityCourseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,8 +204,6 @@
 			children = (
 				1327C0F31D445D5100F5F742 /* ViewController.swift */,
 				1327C12C1D453CA400F5F742 /* OptionsViewController.swift */,
-				1327C1321D456A5D00F5F742 /* UniversityListViewController.swift */,
-				13D374B31D457E7D001940FD /* TermViewController.swift */,
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
 				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
@@ -436,11 +430,9 @@
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
-				1327C1331D456A5D00F5F742 /* UniversityListViewController.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
 				130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */,
-				13D374B41D457E7D001940FD /* TermViewController.swift in Sources */,
 				13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,

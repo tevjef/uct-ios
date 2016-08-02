@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults = UserDefaults(defaults: NSUserDefaults.standardUserDefaults())
         dataRepo = DataRepos(constants: appconstants)
         appConfig = AppConfigruation(dataRepo: dataRepo!, defaults: userDefaults!)
+        appConfig!.initData()
     
         return true
     }

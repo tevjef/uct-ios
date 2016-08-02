@@ -70,6 +70,51 @@ extension UIViewController {
     }
     
     
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
+    
+    func makeActivityIndicator(view: UIView) -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        indicator.center = view.center
+        view.addSubview(indicator)
+        return indicator
+    }
+    
+    func startIndicator(indicator: UIActivityIndicatorView?) {
+        indicator?.startAnimating()
+        indicator?.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func stopIndicator(indicator: UIActivityIndicatorView?) {
+        indicator?.stopAnimating()
+        indicator?.hidesWhenStopped = true
+    }
+
+    func alertNoInternet(onOk: ()->()) {
+        let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+            uiAction in onOk()
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func alertYouFuckedUp(onOk: ()->()) {
+        let alert = UIAlertController(title: "You fucked up somewhere here", message: "Pleease refrain from future fuck ups.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "I'll try", style: UIAlertActionStyle.Default, handler: {
+            uiAction in onOk()
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func makeTitleViewWithSubtitle(title:String, subtitle:String) -> UIView {
         let titleLabel = UILabel(frame: CGRectMake(0, -5, 0, 0))
         
