@@ -3,15 +3,28 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SubjectsViewController.loadData(Bool) -&gt; ():SubjectsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.refreshControl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OptionsViewController.reloadSubjects() -&gt; ():OptionsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.navigationController?.parent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SubjectsViewController.loadData() -&gt; ():SubjectsViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "userDefaults.universityTopicName">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1).(closure #1):SubjectsViewController.swift">
@@ -22,13 +35,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+         contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
       </ContextState>
       <ContextState
          contextName = "TermViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():TermViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SearchViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():SearchViewController.swift">
@@ -39,7 +61,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
+         contextName = "OptionsViewController.doneTermPicker(UIBarButtonItem) -&gt; ():OptionsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
@@ -50,10 +72,19 @@
             <PersistentString
                value = "userDefaults">
             </PersistentString>
+            <PersistentString
+               value = "appConfig.university?.abbr">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.(loadData(Bool) -&gt; ()).(closure #2):SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "OptionsViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():OptionsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "getSubjects(String, season : String, year : String, subjects : ([Common.Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">

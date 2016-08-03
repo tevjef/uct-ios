@@ -23,6 +23,8 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
         }
     }
     
+    var selectedIndex: Int?
+    
     var searchFlow: SearchFlow?
     
     override func viewWillAppear(animated: Bool) {
@@ -69,6 +71,14 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
         searchFlowDelegate.searchFlow = self.searchFlow
     }
 
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if  segue.identifier == "gotoSectionsList" {
+            let nextViewController = segue.destinationViewController as! SingleCourseViewController
+            nextViewController.loadedCourse = loadedCourses![(tableView.indexPathForSelectedRow?.row)!]
+            prepareSearchFlow(nextViewController)
+        }
+    }
 
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +105,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
