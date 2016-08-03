@@ -12,34 +12,43 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
     var loadedCourses: Array<Common.Course>? {
         didSet {
-            tableView.reloadData()
+            if loadedCourses?.count == oldValue?.count {
+                return
+            }
+                
+            UIView.transitionWithView(tableView, duration: 0.35, options: .TransitionCrossDissolve, animations: {
+                () -> Void in
+                self.tableView.reloadData()
+            }, completion: nil);
         }
     }
     
     var searchFlow: SearchFlow?
-
-    override func viewDidLoad() {
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.setContentOffset(CGPointMake(0,  UIApplication.sharedApplication().statusBarFrame.height ), animated: true)
         setupViews()
         loadData(true)
     }
     
-    @IBAction func onRefresh(sender: AnyObject) {
+    @IBAction func refresh(sender: UIRefreshControl) {
         loadData(false)
     }
     
     func loadData(showLoading: Bool) {
         if showLoading {
-            refreshControl?.beginRefreshing()
+            showRefreshing({self.loadedCourses?.count == 0})
         }
         
-        datarepo.getCourses(searchFlow?.subjectTopicName ?? "", { [weak self] courses in
-            self?.refreshControl?.endRefreshing()
+        datarepo.getCourses(searchFlow?.subjectTopicName ?? "", { [weak self]
+            courses in
+            self?.hideRefreshing()
             if let courses = courses {
                 self?.loadedCourses = courses
             } else {
                 // Alert no internet
                 self?.alertNoInternet({
-                    self?.refreshControl?.beginRefreshing()
+                    self?.showRefreshing()
                     // Wait n seconds then retry loading, if user hasn't navigated away
                     self?.delay(5, closure: {
                         self?.loadData(true)

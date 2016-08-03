@@ -12,44 +12,45 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
 
     var loadedSubjects: Array<Common.Subject>? {
         didSet {
-            tableView.reloadData()
+            if loadedSubjects?.count == oldValue?.count {
+                return
+            }
+            
+            UIView.transitionWithView(tableView, duration: 0.35, options: .TransitionCrossDissolve, animations: {
+                () -> Void in
+                    self.tableView.reloadData()
+            }, completion: nil);
         }
     }
     
     var searchFlow: SearchFlow?
     
-    @IBAction func onRefresh(sender: UIRefreshControl) {
-        loadData(false)
-    }
-    
-    override func viewDidLoad() {
-      searchFlow = SearchFlow()
-        searchFlow!.universityTopicName = userDefaults.universityTopicName
-        searchFlow!.season = userDefaults.season
-        searchFlow!.year = userDefaults.year
-        searchFlow!.tempUniversity = appConfig.university
-        
-        setupViews()
-    }
-    
     override func viewWillAppear(animated: Bool) {
+        searchFlow = SearchFlow()
+        refreshSearchFlow()
+        setupViews()
         loadData(true)
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        loadData(false)
     }
     
     func loadData(showLoading: Bool) {
         if showLoading {
-            refreshControl?.beginRefreshing()
+            showRefreshing({self.loadedSubjects?.count == 0})
         }
+        refreshSearchFlow()
         
         datarepo.getSubjects(searchFlow!.universityTopicName!, searchFlow!.season!, searchFlow!.year!, { [weak self]
             subjects in
-            self?.refreshControl?.endRefreshing()
+            self?.hideRefreshing()
             if let subjects = subjects {
                 self?.loadedSubjects = subjects
             } else {
                 // Alert no internet
                 self?.alertNoInternet({
-                    self?.refreshControl?.beginRefreshing()
+                    self?.showRefreshing()
                     // Wait n seconds then retry loading, if user hasn't navigated away
                     self?.delay(5, closure: {
                         self?.loadData(true)
@@ -67,6 +68,14 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
         //navigationItem.titleView = titleView
         navigationItem.title = uni +  " " + semester
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    }
+    
+    func refreshSearchFlow() {
+        searchFlow!.universityTopicName = userDefaults.universityTopicName
+        searchFlow!.season = userDefaults.season
+        searchFlow!.year = userDefaults.year
+        searchFlow!.tempUniversity = appConfig.university
+
     }
 
     // MARK: - Navigation

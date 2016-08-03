@@ -48,6 +48,46 @@ extension UIColor {
     }
 }
 
+extension UITableView {
+    func scrollToTop(animated: Bool) {
+        setContentOffset(CGPointZero, animated: animated)
+    }
+}
+
+
+extension UITableViewController {
+    
+    func showRefreshing()  {
+        self.refreshControl?.beginRefreshing()
+    }
+    
+    
+    func showRefreshing(closure: () -> Bool)  {
+        delay(0.3, closure: {
+            if closure() {
+                self.showRefreshing()
+            } else {
+                self.hideRefreshing()
+            }
+        })
+    }
+    
+    func hideRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
+}
+
+func delay(delay: Double, closure: ()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(),
+        closure
+    )
+}
+
 extension UIViewController {
     var appDelegate:AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate

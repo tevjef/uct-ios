@@ -114,11 +114,9 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     func loadData() {
-        refreshControl?.beginRefreshing()
         appDelegate.dataRepo?.getUniversities({
             [weak self] universities in
             if let universities = universities {
-                self?.refreshControl?.endRefreshing()
                 self?.universities = universities
             } else {
                 NSLog("Error getting universities " + (self?.userDefaults.universityTopicName)!)
