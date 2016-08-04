@@ -12,9 +12,15 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
     
     var loadedCourse: Common.Course?
+    let cellIdentifier = "metadataCell"
     
     override func viewDidLoad() {
         print(loadedCourse)
+        
+        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellIdentifier) // uncomment this line to load table view cells from IB
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
@@ -23,7 +29,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
 
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return (loadedCourse?.metadata.count)!
     }
     
     
@@ -32,9 +38,21 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let meta = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as UITableViewCell
-        
-        //let course = loadedCourses?[indexPath.row]
+        if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MetadataCell {
+            cell.userInteractionEnabled = false
+            let modelItem = loadedCourse?.metadata[indexPath.row]
+            cell.title.text = modelItem?.title
+            
+            var contentString = modelItem?.content
+            contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+            cell.content.text = contentString
+            
+            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+            cell.setNeedsUpdateConstraints()
+            cell.updateConstraintsIfNeeded()
+            
+            return cell
+        }
         return UITableViewCell()
     }
     

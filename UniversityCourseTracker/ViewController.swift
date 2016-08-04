@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         setupViews()
+        let customView = SectionViewCell.instanceFromNib()
+        self.view.addSubview(customView)
         // Do any additional setup after loading the view, typically from a nib.
     
     }

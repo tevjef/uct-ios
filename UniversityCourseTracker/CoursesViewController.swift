@@ -27,8 +27,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
     var searchFlow: SearchFlow?
     
-    override func viewWillAppear(animated: Bool) {
-        tableView.setContentOffset(CGPointMake(0,  UIApplication.sharedApplication().statusBarFrame.height ), animated: true)
+    override func viewDidLoad() {
         setupViews()
         loadData(true)
     }
