@@ -12,7 +12,11 @@ import PureLayout
 class SectionViewCell: UITableViewCell {
 
     @IBOutlet weak var circleViewContainer: UIView!
+    @IBOutlet weak var stackView: UIStackView!
 
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var circleViewHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var sunday: UIView!
     @IBOutlet weak var monday: UIView!
     @IBOutlet weak var tuesday: UIView!
@@ -22,7 +26,7 @@ class SectionViewCell: UITableViewCell {
     @IBOutlet weak var sectionNumber: UILabel!
     
     var containers: [UIView] = []
-    var meetingNib: UINib?
+    var meetingNib: UINib = UINib(nibName: "MeetingView", bundle: nil)
     override func awakeFromNib() {
         super.awakeFromNib()
         containers.append(sunday)
@@ -31,41 +35,46 @@ class SectionViewCell: UITableViewCell {
         containers.append(wednesday)
         containers.append(thursday)
         containers.append(friday)
-        circleViewContainer.layer.cornerRadius = circleViewContainer.frame.height / 2
         
-        meetingNib = UINib(nibName: "MeetingView", bundle: nil)
-    }
-    
-    class func instanceFromNib() -> UIView {
-        return UINib(nibName: "SectionViewCell", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+        for view in containers {
+            let meetingView = createMeetingView()
+            meetingView.tag = MeetingView.TAG
+
+            view.addSubview(meetingView)
+            meetingView.configureForAutoLayout()
+            meetingView.autoPinEdgesToSuperviewEdges()
+            view.updateConstraintsIfNeeded()
+        }
+        
+        circleViewContainer.layer.cornerRadius = circleViewContainer.frame.height / 2
     }
     
     func createMeetingView() -> MeetingView {
-        return meetingNib?.instantiateWithOwner(self, options: nil).first as! MeetingView
+        return meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
     }
-
-    var previousCell: UIView?
     
-    @IBOutlet weak var stackView: UIStackView!
+    func resetAllMeetingViews() {
+        for view in containers {
+            let meetingView = view.viewWithTag(MeetingView.TAG) as! MeetingView
+            meetingView.resetViews()
+        }
+    }
     
     func setSection(section: Common.Section) {
         sectionNumber.text = section.number
         if section.status == "Open" {
-            circleViewContainer.backgroundColor = UIColor(hexString: "4CAF50")
+            circleViewContainer.backgroundColor = AppConstants.Colors.openSection
         } else {
-            circleViewContainer.backgroundColor = UIColor(hexString: "F44336")
+            circleViewContainer.backgroundColor = AppConstants.Colors.closedSection
         }
+        
         var height: CGFloat = 0
+        resetAllMeetingViews()
         for index in 0..<section.meetings.count {
             height += 15
-            containers[index].subviews.forEach({ $0.removeFromSuperview() })
             let meeting = section.meetings[index]
-            let view = createMeetingView()
-            containers[index].addSubview(view)
-            view.configureForAutoLayout()
-            view.autoPinEdgesToSuperviewEdges()
-            view.updateConstraintsIfNeeded()
-            //print("Constaints", view.constraints)
+            let view = containers[index].viewWithTag(MeetingView.TAG) as! MeetingView
+            
             if meeting.day != "" {
                 let abbrIndex = meeting.day.startIndex.advancedBy(3)
                 view.dayView.text = meeting.day.substringToIndex(abbrIndex)
@@ -74,19 +83,16 @@ class SectionViewCell: UITableViewCell {
                 view.dayView.text = meeting.classType
             }
             
-            if meeting.startTime != "" && meeting.endTime != "" {
-                view.timeView.text = meeting.startTime + " " + meeting.endTime
-            } else {
-                view.timeView.text = ""
+            if meeting.startTime != "" {
+                view.timeView.text = meeting.startTime + " - " + meeting.endTime
             }
             
             view.locationView.text = meeting.room
         }
+        
         stackViewHeight.constant = max(circleViewHeight.constant, height)
     }
-    
-    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var circleViewHeight: NSLayoutConstraint!
+
     
     override func setSelected(selected: Bool, animated: Bool) {
         let color = circleViewContainer.backgroundColor

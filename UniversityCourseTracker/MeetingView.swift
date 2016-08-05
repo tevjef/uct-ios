@@ -9,25 +9,25 @@
 import UIKit
 
 class MeetingView: UIView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+   
+    static let TAG: Int = 100
     @IBOutlet weak var dayView: UILabel!
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var locationView: UILabel!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        resetViews()
+    }
+    
+    func resetViews() {
+        dayView.text = ""
+        timeView.text = ""
+        locationView.text = ""
     }
 
 }

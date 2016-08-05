@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AppConstants {
     var BASE_URL: String {
@@ -50,10 +51,12 @@ class AppConstants {
         }
     }
     
-    var primaryColor: String {
-        get {
-            return "607D8B"
-        }
+
+    struct Colors {
+        static var primary: UIColor = UIColor(hexString: "607D8B")
+        
+        static var closedSection: UIColor = UIColor(hexString: "F44336")
+        static var openSection: UIColor = UIColor(hexString: "4CAF50")
     }
     
     struct PropertyKey {

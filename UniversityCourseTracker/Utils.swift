@@ -104,12 +104,7 @@ extension UIViewController {
     var appConfig:AppConfigruation {
         return appDelegate.appConfig!
     }
-    
-    var primaryColor:UIColor {
-        return UIColor(hexString: appDelegate.appconstants.primaryColor)
-    }
-    
-    
+
     func delay(delay: Double, closure: ()->()) {
         dispatch_after(
             dispatch_time(

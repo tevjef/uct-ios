@@ -16,8 +16,6 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     let sectionCellIdentifier = "sectionCell"
 
     override func viewDidLoad() {
-        print(loadedCourse)
-        
         title = loadedCourse?.name
         
         tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)

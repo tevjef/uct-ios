@@ -17,37 +17,37 @@
                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
                         <rect key="frame" x="68" y="105" width="324" height="90"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="0.0" y="0.0" width="324" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$sundayH$" id="Vdv-G2-0oz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
                                 <rect key="frame" x="0.0" y="15" width="324" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$mondayH$" id="u7H-YI-YCH"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
                                 <rect key="frame" x="0.0" y="30" width="324" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$tuesdayH$" id="dhU-Uo-HYP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
                                 <rect key="frame" x="0.0" y="45" width="324" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$wedbesdayH$" id="gKc-rc-7k1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
                                 <rect key="frame" x="0.0" y="60" width="324" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$thursdayH$" id="CQR-q0-elG"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
                                 <rect key="frame" x="0.0" y="75" width="324" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -69,7 +69,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.41874614357948303" green="0.73575395345687866" blue="0.079823441803455353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Bdn-AI-Tow" secondAttribute="bottom" id="2z8-uQ-zwg"/>
                             <constraint firstAttribute="trailing" secondItem="Bdn-AI-Tow" secondAttribute="trailing" id="4hl-J8-C0M"/>

@@ -139,7 +139,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = false
-        toolBar.tintColor = self.primaryColor
+        toolBar.tintColor = AppConstants.Colors.primary
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(OptionsViewController.doneUniversityPicker))
@@ -179,7 +179,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = false
-        toolBar.tintColor = self.primaryColor
+        toolBar.tintColor = AppConstants.Colors.primary
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(OptionsViewController.doneTermPicker))
