@@ -24,7 +24,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44.0
+        tableView.estimatedRowHeight = 43.5
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {

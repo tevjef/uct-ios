@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,48 +15,48 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
-                        <rect key="frame" x="68" y="112" width="324" height="90"/>
+                        <rect key="frame" x="68" y="105" width="324" height="90"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="0.0" y="0.0" width="324" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="Vdv-G2-0oz"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$sundayH$" id="Vdv-G2-0oz"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
                                 <rect key="frame" x="0.0" y="15" width="324" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="u7H-YI-YCH"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$mondayH$" id="u7H-YI-YCH"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
                                 <rect key="frame" x="0.0" y="30" width="324" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="dhU-Uo-HYP"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$tuesdayH$" id="dhU-Uo-HYP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
                                 <rect key="frame" x="0.0" y="45" width="324" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="gKc-rc-7k1"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$wedbesdayH$" id="gKc-rc-7k1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
                                 <rect key="frame" x="0.0" y="60" width="324" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="CQR-q0-elG"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$thursdayH$" id="CQR-q0-elG"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
                                 <rect key="frame" x="0.0" y="75" width="324" height="15"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="WJG-1s-4gr"/>
+                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$fridayH$" id="WJG-1s-4gr"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="90" id="LUV-TN-ojv"/>
+                            <constraint firstAttribute="height" priority="750" constant="90" identifier="$stackHeight$" id="LUV-TN-ojv"/>
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRy-fw-62L">
@@ -84,10 +83,10 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Tj8-h0-j9F" secondAttribute="trailing" constant="8" id="382-CY-8rG"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="top" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="3g1-8d-deF"/>
-                    <constraint firstItem="Tj8-h0-j9F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="BCn-SX-8gR"/>
+                    <constraint firstItem="Tj8-h0-j9F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" identifier="$stackViewTopInEq$" id="BCn-SX-8gR"/>
                     <constraint firstItem="Tj8-h0-j9F" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Npp-nN-zdE"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="leading" secondItem="1YS-6f-k3f" secondAttribute="leading" constant="15" id="Q3z-4S-hPv"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="yhU-GF-snr"/>
+                    <constraint firstAttribute="bottom" secondItem="Tj8-h0-j9F" secondAttribute="bottom" constant="15" id="yhU-GF-snr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

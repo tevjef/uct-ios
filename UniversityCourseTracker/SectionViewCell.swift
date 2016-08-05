@@ -82,7 +82,6 @@ class SectionViewCell: UITableViewCell {
             
             view.locationView.text = meeting.room
         }
-        stackView.clipsToBounds = true
         stackViewHeight.constant = max(circleViewHeight.constant, height)
     }
     
