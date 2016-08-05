@@ -16,6 +16,8 @@
 		130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */; };
 		13130ED81D530E1A004BBF0C /* MetadataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13130ED61D530E1A004BBF0C /* MetadataCell.swift */; };
 		13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13130ED71D530E1A004BBF0C /* MetadataCell.xib */; };
+		13130EDB1D54033F004BBF0C /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13130EDA1D54033F004BBF0C /* MeetingView.xib */; };
+		13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13130EDC1D5406CC004BBF0C /* MeetingView.swift */; };
 		131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131FF1451D4DAC8800F202C4 /* AppConstants.swift */; };
 		1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F11D445D5100F5F742 /* AppDelegate.swift */; };
 		1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F31D445D5100F5F742 /* ViewController.swift */; };
@@ -64,6 +66,8 @@
 		130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigruation.swift; sourceTree = "<group>"; };
 		13130ED61D530E1A004BBF0C /* MetadataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataCell.swift; sourceTree = "<group>"; };
 		13130ED71D530E1A004BBF0C /* MetadataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetadataCell.xib; sourceTree = "<group>"; };
+		13130EDA1D54033F004BBF0C /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeetingView.xib; path = ../MeetingView.xib; sourceTree = "<group>"; };
+		13130EDC1D5406CC004BBF0C /* MeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
 		131FF1451D4DAC8800F202C4 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,8 +154,12 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				13130EDA1D54033F004BBF0C /* MeetingView.xib */,
+				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
 				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
 				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
+				13FA20781D52B00800887546 /* SectionViewCell.xib */,
+				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
 				130AD7E11D49B3EB00CCD3E1 /* extensions */,
 				1327C12E1D453CAD00F5F742 /* controllers */,
 				1327C1281D445E2F00F5F742 /* model */,
@@ -162,8 +170,6 @@
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
 				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
-				13FA20781D52B00800887546 /* SectionViewCell.xib */,
-				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			files = (
 				1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */,
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
+				13130EDB1D54033F004BBF0C /* MeetingView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
@@ -442,6 +449,7 @@
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */,
+				13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
 				130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */,

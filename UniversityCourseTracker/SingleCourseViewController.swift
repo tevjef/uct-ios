@@ -12,12 +12,16 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
     
     var loadedCourse: Common.Course?
-    let cellIdentifier = "metadataCell"
-    
+    let metadataCellIdentifier = "metadataCell"
+    let sectionCellIdentifier = "sectionCell"
+
     override func viewDidLoad() {
         print(loadedCourse)
         
-        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: cellIdentifier) // uncomment this line to load table view cells from IB
+        title = loadedCourse?.name
+        
+        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
+        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
@@ -29,29 +33,44 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
 
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (loadedCourse?.metadata.count)!
+        if section == 0 {
+            return loadedCourse?.metadata.count ?? 0
+
+        } else {
+            return loadedCourse?.sections.count ?? 0
+        }
     }
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MetadataCell {
-            cell.userInteractionEnabled = false
-            let modelItem = loadedCourse?.metadata[indexPath.row]
-            cell.title.text = modelItem?.title
-            
-            var contentString = modelItem?.content
-            contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
-            cell.content.text = contentString
-            
-            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
-            
-            return cell
+        if indexPath.section == 0 {
+            if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
+                cell.userInteractionEnabled = false
+                let modelItem = loadedCourse?.metadata[indexPath.row]
+                cell.title.text = modelItem?.title
+                
+                var contentString = modelItem?.content
+                contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                cell.content.text = contentString
+                
+                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+                cell.setNeedsUpdateConstraints()
+                cell.updateConstraintsIfNeeded()
+                
+                return cell
+            }
+        } else {
+            if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
+                let modelItem = loadedCourse?.sections[indexPath.row]
+                cell.setSection(modelItem!)
+              cell.setNeedsUpdateConstraints()
+                cell.updateConstraintsIfNeeded()
+                return cell
+            }
         }
         return UITableViewCell()
     }

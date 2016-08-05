@@ -3,10 +3,38 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "SubjectsViewController.loadData(Bool) -&gt; ():SubjectsViewController.swift">
+         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1).(closure #1):SubjectsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.refreshControl">
+               value = "self.userDefaults">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SearchViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTerm!.year.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.loadData() -&gt; ():SubjectsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userDefaults.universityTopicName">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -19,52 +47,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SubjectsViewController.loadData() -&gt; ():SubjectsViewController.swift">
+         contextName = "SubjectsViewController.loadData(Bool) -&gt; ():SubjectsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "userDefaults.universityTopicName">
+               value = "self.refreshControl">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1).(closure #1):SubjectsViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.userDefaults">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
       </ContextState>
       <ContextState
          contextName = "TermViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():TermViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SearchViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():SearchViewController.swift">
+         contextName = "getSubjects(String, season : String, year : String, subjects : ([Common.Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">
          <PersistentStrings>
             <PersistentString
-               value = "selectedTerm!.year.description">
+               value = "&quot;\(SUBJECTS)\(universityTopic)/\(season)/\(year)&quot;">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "OptionsViewController.doneTermPicker(UIBarButtonItem) -&gt; ():OptionsViewController.swift">
+         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
+         contextName = "OptionsViewController.doneTermPicker(UIBarButtonItem) -&gt; ():OptionsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.setupViews() -&gt; ():SubjectsViewController.swift">
@@ -78,21 +83,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+         contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SubjectsViewController.(loadData(Bool) -&gt; ()).(closure #2):SubjectsViewController.swift">
+         contextName = "SingleCourseViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:SingleCourseViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "OptionsViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():OptionsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "getSubjects(String, season : String, year : String, subjects : ([Common.Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "&quot;\(SUBJECTS)\(universityTopic)/\(season)/\(year)&quot;">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "SubjectsViewController.(loadData(Bool) -&gt; ()).(closure #2):SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
