@@ -108,7 +108,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell", forIndexPath: indexPath) as UITableViewCell
         let subject = loadedSubjects?[indexPath.row]
         
-        cell.textLabel?.text = "(\(subject?.number ?? "")) \(subject?.name ?? "")"
+        cell.textLabel?.text = "\(subject?.number ?? ""): \(subject?.name ?? "")"
         return cell
     }
     

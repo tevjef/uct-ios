@@ -65,8 +65,8 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
             }
         } else {
             if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
-                let modelItem = loadedCourse?.sections[indexPath.row]
-                cell.setSection(modelItem!)
+                let modelItem = loadedCourse!.sections[indexPath.row]
+                cell.setSection(modelItem)
               cell.setNeedsUpdateConstraints()
                 cell.updateConstraintsIfNeeded()
                 return cell

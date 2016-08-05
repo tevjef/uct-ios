@@ -22,7 +22,7 @@ class SectionViewCell: UITableViewCell {
     @IBOutlet weak var sectionNumber: UILabel!
     
     var containers: [UIView] = []
-    
+    var meetingNib: UINib?
     override func awakeFromNib() {
         super.awakeFromNib()
         containers.append(sunday)
@@ -32,6 +32,8 @@ class SectionViewCell: UITableViewCell {
         containers.append(thursday)
         containers.append(friday)
         circleViewContainer.layer.cornerRadius = circleViewContainer.frame.height / 2
+        
+        meetingNib = UINib(nibName: "MeetingView", bundle: nil)
     }
     
     class func instanceFromNib() -> UIView {
@@ -39,11 +41,12 @@ class SectionViewCell: UITableViewCell {
     }
     
     func createMeetingView() -> MeetingView {
-        
-        return UINib(nibName: "MeetingView", bundle: nil).instantiateWithOwner(self, options: nil).first as! MeetingView
+        return meetingNib?.instantiateWithOwner(self, options: nil).first as! MeetingView
     }
 
     var previousCell: UIView?
+    
+    @IBOutlet weak var stackView: UIStackView!
     
     func setSection(section: Common.Section) {
         sectionNumber.text = section.number
@@ -52,11 +55,14 @@ class SectionViewCell: UITableViewCell {
         } else {
             circleViewContainer.backgroundColor = UIColor(hexString: "F44336")
         }
+        var height: CGFloat = 0
         for index in 0..<section.meetings.count {
+            height += 15
             containers[index].subviews.forEach({ $0.removeFromSuperview() })
             let meeting = section.meetings[index]
             let view = createMeetingView()
             containers[index].addSubview(view)
+            view.configureForAutoLayout()
             view.autoPinEdgesToSuperviewEdges()
             view.updateConstraintsIfNeeded()
             //print("Constaints", view.constraints)
@@ -76,7 +82,12 @@ class SectionViewCell: UITableViewCell {
             
             view.locationView.text = meeting.room
         }
+        stackView.clipsToBounds = true
+        stackViewHeight.constant = max(circleViewHeight.constant, height)
     }
+    
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var circleViewHeight: NSLayoutConstraint!
     
     override func setSelected(selected: Bool, animated: Bool) {
         let color = circleViewContainer.backgroundColor

@@ -15,43 +15,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
-                        <rect key="frame" x="68" y="10" width="324" height="15"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
+                        <rect key="frame" x="68" y="112" width="324" height="90"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
+                                <rect key="frame" x="0.0" y="0.0" width="324" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Vdv-G2-0oz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
+                                <rect key="frame" x="0.0" y="15" width="324" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="u7H-YI-YCH"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
+                                <rect key="frame" x="0.0" y="30" width="324" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="dhU-Uo-HYP"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
+                                <rect key="frame" x="0.0" y="45" width="324" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="gKc-rc-7k1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
+                                <rect key="frame" x="0.0" y="60" width="324" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="CQR-q0-elG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
+                                <rect key="frame" x="0.0" y="75" width="324" height="15"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="WJG-1s-4gr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="Vdv-G2-0oz"/>
+                            <constraint firstAttribute="height" constant="90" id="LUV-TN-ojv"/>
                         </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
-                        <rect key="frame" x="68" y="25" width="324" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="u7H-YI-YCH"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
-                        <rect key="frame" x="68" y="40" width="324" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="dhU-Uo-HYP"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
-                        <rect key="frame" x="68" y="55" width="324" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="gKc-rc-7k1"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
-                        <rect key="frame" x="68" y="70" width="324" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="CQR-q0-elG"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
-                        <rect key="frame" x="68" y="85" width="324" height="15"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="WJG-1s-4gr"/>
-                        </constraints>
-                    </view>
+                    </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRy-fw-62L">
                         <rect key="frame" x="15" y="10" width="45" height="45"/>
                         <subviews>
@@ -74,40 +82,22 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Tj8-h0-j9F" secondAttribute="trailing" constant="8" id="382-CY-8rG"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="top" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="3g1-8d-deF"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="DRy-fw-62L" secondAttribute="bottom" constant="15" id="7lE-kQ-Vxc"/>
-                    <constraint firstItem="G3N-ZL-7ug" firstAttribute="top" secondItem="qKf-Uu-Tlr" secondAttribute="bottom" id="8Qk-zc-U31"/>
-                    <constraint firstItem="7D2-dg-56o" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Bt9-Dh-oxB"/>
-                    <constraint firstItem="qKf-Uu-Tlr" firstAttribute="top" secondItem="7D2-dg-56o" secondAttribute="bottom" id="CYd-B4-bWR"/>
-                    <constraint firstItem="d2T-HG-5WS" firstAttribute="trailing" secondItem="Yix-zE-njp" secondAttribute="trailing" id="EY5-UJ-ruB"/>
-                    <constraint firstItem="7D2-dg-56o" firstAttribute="top" secondItem="LQ9-Zi-01b" secondAttribute="bottom" id="I9r-pq-Z3j"/>
-                    <constraint firstItem="d2T-HG-5WS" firstAttribute="top" secondItem="Yix-zE-njp" secondAttribute="bottom" id="KjX-hn-gpf"/>
-                    <constraint firstItem="G3N-ZL-7ug" firstAttribute="leading" secondItem="qKf-Uu-Tlr" secondAttribute="leading" id="L9J-XN-sy1"/>
-                    <constraint firstItem="Yix-zE-njp" firstAttribute="trailing" secondItem="G3N-ZL-7ug" secondAttribute="trailing" id="M99-Td-ohj"/>
+                    <constraint firstItem="Tj8-h0-j9F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="BCn-SX-8gR"/>
+                    <constraint firstItem="Tj8-h0-j9F" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Npp-nN-zdE"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="leading" secondItem="1YS-6f-k3f" secondAttribute="leading" constant="15" id="Q3z-4S-hPv"/>
-                    <constraint firstItem="qKf-Uu-Tlr" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Udo-ZI-XfZ"/>
-                    <constraint firstItem="LQ9-Zi-01b" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Web-xz-C5h"/>
-                    <constraint firstAttribute="rightMargin" secondItem="7D2-dg-56o" secondAttribute="right" id="bFo-8H-1kD"/>
-                    <constraint firstItem="d2T-HG-5WS" firstAttribute="leading" secondItem="Yix-zE-njp" secondAttribute="leading" id="f9x-ND-UC7"/>
-                    <constraint firstItem="Yix-zE-njp" firstAttribute="leading" secondItem="G3N-ZL-7ug" secondAttribute="leading" id="i0k-Aa-FSr"/>
-                    <constraint firstItem="Yix-zE-njp" firstAttribute="top" secondItem="G3N-ZL-7ug" secondAttribute="bottom" id="j9n-7w-Zg7"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LQ9-Zi-01b" secondAttribute="trailing" id="jcW-MT-PID"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="qKf-Uu-Tlr" secondAttribute="trailing" constant="24" id="l9T-qB-acb"/>
-                    <constraint firstItem="G3N-ZL-7ug" firstAttribute="trailing" secondItem="qKf-Uu-Tlr" secondAttribute="trailing" id="lQ4-8r-ITu"/>
-                    <constraint firstItem="LQ9-Zi-01b" firstAttribute="top" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="r6o-ix-pAp"/>
-                    <constraint firstItem="qKf-Uu-Tlr" firstAttribute="trailing" secondItem="7D2-dg-56o" secondAttribute="trailing" id="xf7-7L-mJP"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="yhU-GF-snr"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="l9T-qB-acb"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="circleViewContainer" destination="DRy-fw-62L" id="akc-uJ-qF1"/>
+                <outlet property="circleViewHeight" destination="hjh-Uy-4jf" id="wsy-1N-IJU"/>
                 <outlet property="friday" destination="d2T-HG-5WS" id="Iaa-Zg-TN7"/>
                 <outlet property="monday" destination="7D2-dg-56o" id="FSk-xZ-Puk"/>
                 <outlet property="sectionNumber" destination="Bdn-AI-Tow" id="j7F-Gx-l0L"/>
+                <outlet property="stackView" destination="Tj8-h0-j9F" id="i0q-Br-8tx"/>
+                <outlet property="stackViewHeight" destination="LUV-TN-ojv" id="Zdt-aV-gx8"/>
                 <outlet property="sunday" destination="LQ9-Zi-01b" id="v0N-Wv-pdI"/>
                 <outlet property="thursday" destination="Yix-zE-njp" id="XxP-S4-RKM"/>
                 <outlet property="tuesday" destination="qKf-Uu-Tlr" id="MEk-Fp-geO"/>
