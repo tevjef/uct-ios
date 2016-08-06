@@ -14,7 +14,8 @@ class MeetingView: UIView {
     @IBOutlet weak var dayView: UILabel!
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var locationView: UILabel!
-    
+    static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: NSBundle.mainBundle())
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -22,6 +23,10 @@ class MeetingView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         resetViews()
+    }
+    
+    class func createMeetingView() -> MeetingView {
+        return MeetingView.meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
     }
     
     func resetViews() {

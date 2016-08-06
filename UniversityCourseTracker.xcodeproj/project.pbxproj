@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */; };
+		1305686D1D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */; };
+		1305686E1D563F91005BB80E /* CoreSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305686A1D563F91005BB80E /* CoreSubscription.swift */; };
+		1305686F1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */; };
+		130568701D563F91005BB80E /* CoreUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305686C1D563F91005BB80E /* CoreUserDefault.swift */; };
+		130568721D566971005BB80E /* Timber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130568711D566971005BB80E /* Timber.swift */; };
 		1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */; };
 		1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */; };
 		130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E21D49B3FB00CCD3E1 /* Utils.swift */; };
 		130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */; };
-		130F19CA1D4EAD1300D414AB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19C91D4EAD1300D414AB /* UserDefaults.swift */; };
 		130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CB1D4EAD3100D414AB /* SearchFlow.swift */; };
-		130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */; };
+		130F19CE1D4ECC8B00D414AB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130F19CD1D4ECC8B00D414AB /* CoreDataManager.swift */; };
 		13130ED81D530E1A004BBF0C /* MetadataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13130ED61D530E1A004BBF0C /* MetadataCell.swift */; };
 		13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13130ED71D530E1A004BBF0C /* MetadataCell.xib */; };
 		13130EDB1D54033F004BBF0C /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13130EDA1D54033F004BBF0C /* MeetingView.xib */; };
@@ -57,13 +62,18 @@
 
 /* Begin PBXFileReference section */
 		03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig"; sourceTree = "<group>"; };
+		1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreSubscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1305686A1D563F91005BB80E /* CoreSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreSubscription.swift; sourceTree = "<group>"; };
+		1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreUserDefault+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1305686C1D563F91005BB80E /* CoreUserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUserDefault.swift; sourceTree = "<group>"; };
+		130568711D566971005BB80E /* Timber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timber.swift; sourceTree = "<group>"; };
 		1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsViewController.swift; sourceTree = "<group>"; };
 		1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		130AD7E21D49B3FB00CCD3E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		130F19C91D4EAD1300D414AB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		130F19CB1D4EAD3100D414AB /* SearchFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlow.swift; sourceTree = "<group>"; };
-		130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigruation.swift; sourceTree = "<group>"; };
+		130F19CD1D4ECC8B00D414AB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		13130ED61D530E1A004BBF0C /* MetadataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataCell.swift; sourceTree = "<group>"; };
 		13130ED71D530E1A004BBF0C /* MetadataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetadataCell.xib; sourceTree = "<group>"; };
 		13130EDA1D54033F004BBF0C /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeetingView.xib; path = ../MeetingView.xib; sourceTree = "<group>"; };
@@ -121,6 +131,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1305685E1D563DBF005BB80E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
+				130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */,
+				1305686A1D563F91005BB80E /* CoreSubscription.swift */,
+				1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */,
+				1305686C1D563F91005BB80E /* CoreUserDefault.swift */,
+				1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */,
+				1327C1281D445E2F00F5F742 /* model */,
+				1327C1291D445E3800F5F742 /* repository */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		130568741D5681BD005BB80E /* customViews */ = {
+			isa = PBXGroup;
+			children = (
+				13130EDA1D54033F004BBF0C /* MeetingView.xib */,
+				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
+				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
+				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
+				13FA20781D52B00800887546 /* SectionViewCell.xib */,
+				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
+			);
+			name = customViews;
+			sourceTree = "<group>";
+		};
+		130568751D5681E2005BB80E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				130568711D566971005BB80E /* Timber.swift */,
+				130AD7E11D49B3EB00CCD3E1 /* extensions */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		130AD7E11D49B3EB00CCD3E1 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,22 +201,15 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				13130EDA1D54033F004BBF0C /* MeetingView.xib */,
-				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
-				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
-				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
-				13FA20781D52B00800887546 /* SectionViewCell.xib */,
-				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
-				130AD7E11D49B3EB00CCD3E1 /* extensions */,
+				130568751D5681E2005BB80E /* utils */,
+				1305685E1D563DBF005BB80E /* data */,
+				130568741D5681BD005BB80E /* customViews */,
 				1327C12E1D453CAD00F5F742 /* controllers */,
-				1327C1281D445E2F00F5F742 /* model */,
-				1327C1291D445E3800F5F742 /* repository */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
-				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -206,9 +246,8 @@
 			children = (
 				1327C1231D445E2300F5F742 /* DataRepos.swift */,
 				131FF1451D4DAC8800F202C4 /* AppConstants.swift */,
-				130F19C91D4EAD1300D414AB /* UserDefaults.swift */,
 				130F19CB1D4EAD3100D414AB /* SearchFlow.swift */,
-				130F19CD1D4ECC8B00D414AB /* AppConfigruation.swift */,
+				130F19CD1D4ECC8B00D414AB /* CoreDataManager.swift */,
 			);
 			name = repository;
 			sourceTree = "<group>";
@@ -438,23 +477,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */,
+				130568701D563F91005BB80E /* CoreUserDefault.swift in Sources */,
 				1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */,
 				1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */,
 				13130ED81D530E1A004BBF0C /* MetadataCell.swift in Sources */,
 				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
-				130F19CA1D4EAD1300D414AB /* UserDefaults.swift in Sources */,
 				131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */,
+				1305686D1D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift in Sources */,
 				13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */,
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
+				130568721D566971005BB80E /* Timber.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */,
+				130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */,
 				13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */,
 				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
-				130F19CE1D4ECC8B00D414AB /* AppConfigruation.swift in Sources */,
+				130F19CE1D4ECC8B00D414AB /* CoreDataManager.swift in Sources */,
 				13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */,
+				1305686F1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
+				1305686E1D563F91005BB80E /* CoreSubscription.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
 			);

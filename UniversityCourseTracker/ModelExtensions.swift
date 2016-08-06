@@ -9,8 +9,21 @@
 import Foundation
 
 extension Common {
-    static func getReadableString(semester: Common.Semester) -> String {
+    static func getReadableSemester(semester: Common.Semester) -> String {
         return semester.season.capitalizedString + " " + String(semester.year)
+    }
+    
+    static func semesterFromString(str: String) -> Common.Semester {
+        let components = str.componentsSeparatedByString(" ")
+        let season = components.first!
+        let year = Int32(components.last!)
+        
+        do {
+            let semester = try Common.Semester.Builder().setSeason(season).setYear(year!).build()
+            return semester
+        } catch {
+            Timber.e("Failed to parse semester")
+        }
     }
     
     static func getOpenSections(course: Common.Course) -> Int {

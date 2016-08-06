@@ -16,18 +16,12 @@ class SectionViewCell: UITableViewCell {
 
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var circleViewHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var sunday: UIView!
-    @IBOutlet weak var monday: UIView!
-    @IBOutlet weak var tuesday: UIView!
-    @IBOutlet weak var wednesday: UIView!
-    @IBOutlet weak var thursday: UIView!
-    @IBOutlet weak var friday: UIView!
+
     @IBOutlet weak var sectionNumber: UILabel!
     
     var meetingViews: [MeetingView] = []
+    static var maxMeetingViews = 7
     
-    static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: NSBundle.mainBundle())
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,15 +34,14 @@ class SectionViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        let meetingView = self.createMeetingView()
-        meetingView.tag = MeetingView.TAG
-        self.meetingViews.append(meetingView)
+        for _ in 0..<SectionViewCell.maxMeetingViews {
+            let meetingView = MeetingView.createMeetingView()
+            meetingView.tag = MeetingView.TAG
+            self.meetingViews.append(meetingView)
+        }
     }
 
-    func createMeetingView() -> MeetingView {
-        return SectionViewCell.meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
-    }
+
     
     func resetAllMeetingViews() {
         for view in meetingViews {
@@ -68,6 +61,11 @@ class SectionViewCell: UITableViewCell {
         var height: CGFloat = 0
         resetAllMeetingViews()
         for index in 0..<section.meetings.count {
+            if index > SectionViewCell.maxMeetingViews {
+                Timber.e("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
+                return
+            }
+            
             height += 15
             let meeting = section.meetings[index]
             let meetingView = meetingViews[index]

@@ -24,7 +24,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     }
     
     var searchFlow: SearchFlow?
-    
+
     override func viewWillAppear(animated: Bool) {
         searchFlow = SearchFlow()
         refreshSearchFlow()
@@ -61,21 +61,20 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     }
 
     func setupViews() {
-        let semester = userDefaults.season.capitalizedString + " " + userDefaults.year
-        let uni = (appConfig.university?.abbr) ?? ""
+        let semesterString = Common.getReadableSemester(coreData.semester!)
+        let uni = coreData.university?.abbr ?? "Err"
         
         //let titleView = self.makeTitleViewWithSubtitle(semester, subtitle: uni)
         //navigationItem.titleView = titleView
-        navigationItem.title = uni +  " " + semester
+        navigationItem.title = uni +  " " + semesterString
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     }
     
     func refreshSearchFlow() {
-        searchFlow!.universityTopicName = userDefaults.universityTopicName
-        searchFlow!.season = userDefaults.season
-        searchFlow!.year = userDefaults.year
-        searchFlow!.tempUniversity = appConfig.university
-
+        searchFlow!.universityTopicName = coreData.university?.topicName
+        searchFlow!.season = coreData.semester?.season
+        searchFlow!.year = coreData.semester?.year.description
+        searchFlow!.tempUniversity = coreData.university
     }
 
     // MARK: - Navigation

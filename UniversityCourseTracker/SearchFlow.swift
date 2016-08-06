@@ -88,8 +88,77 @@ class SearchFlow: NSObject, NSCoding {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(SearchFlow.ArchiveURL.path!) as? [SearchFlow]
     }
     
+    func buildSubscription() -> Subscription {
+        let subscription = Subscription(topicName: sectionTopicName!)
+        do {
+            // Set section in course
+            let courseBuilder = try Common.Course.Builder().mergeFrom(tempCourse!)
+            let sections = [tempSection!]
+            courseBuilder.setSections(sections)
+            let course = try courseBuilder.build()
+            
+            // Set course in subject
+            let subjectBuilder = try Common.Subject.Builder().mergeFrom(tempSubject!)
+            let courses = [course]
+            subjectBuilder.setCourses(courses)
+            let subject = try subjectBuilder.build()
+            
+            // Set subject in university 
+            let universityBuilder = try Common.University.Builder().mergeFrom(tempUniversity!)
+            let subjects = [subject]
+            universityBuilder.setSubjects(subjects)
+            let university = try universityBuilder.build()
+            
+            subscription.university = university
+        } catch {
+            Timber.e("Failed to build subscriptions \(error)")
+        }
+        
+        return subscription
+    }
     
     override var description : String {
         return "UniversityTopicName=\(universityTopicName)\n Season=\(season) \n Year=\(year) \n SubjectTopicName=\(subjectTopicName) \n CourseTopicName=\(courseTopicName) \n SectionTopicName=\(sectionTopicName)"
     }
 }
+
+class Subscription: NSObject {
+    var sectionTopicName: String
+
+    // Contains a nested tree
+    // University
+    // -Subject
+    // --Course
+    // ---Section
+    var university: Common.University?
+
+    init(topicName: String) {
+        self.sectionTopicName = topicName
+    }
+    
+    convenience init(topicName: String, university: Common.University) {
+        self.init(topicName: topicName)
+        self.university = university
+    }
+    
+    func getUniversity() -> Common.University {
+        return university!
+    }
+    
+    func getSubject() -> Common.Subject {
+        return university!.subjects.first!
+    }
+    
+    func getCourse() -> Common.Course {
+        return getSubject().courses.first!
+    }
+    
+    func getSection() -> Common.Section {
+        return getCourse().sections.first!
+    }
+    
+    override var description: String {
+        return sectionTopicName
+    }
+}
+

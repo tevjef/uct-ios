@@ -17,15 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var dataRepo: DataRepos?
     var appconstants = AppConstants()
-    var userDefaults: UserDefaults?
-    var appConfig: AppConfigruation?
+    var coreDataManager: CoreDataManager?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Timber.plant(DebugTree())
+        
         // Override point for customization after application launch.
-        userDefaults = UserDefaults(defaults: NSUserDefaults.standardUserDefaults())
+        coreDataManager = CoreDataManager(appDelegate: self)
         dataRepo = DataRepos(constants: appconstants)
-        appConfig = AppConfigruation(dataRepo: dataRepo!, defaults: userDefaults!)
-        appConfig!.initData()
     
         window?.backgroundColor = UIColor.whiteColor()
 
@@ -66,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Hello_World", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource(AppConstants.CoreData.objectModel, withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
 
@@ -88,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            Timber.e("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
         
@@ -113,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                Timber.e("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
         }
