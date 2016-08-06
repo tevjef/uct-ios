@@ -12,6 +12,15 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
     
     var loadedCourse: Common.Course?
+    var dummeyCourse: Common.Course? {
+        didSet {
+            UIView.transitionWithView(tableView, duration: 0.35, options: .TransitionCrossDissolve, animations: {
+                () -> Void in
+                self.tableView.reloadData()
+                }, completion: nil);
+        }
+    }
+    
     let metadataCellIdentifier = "metadataCell"
     let sectionCellIdentifier = "sectionCell"
 
@@ -23,6 +32,11 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 43.5
+        
+        // A hack because UI code is shitty and slow to load
+        delay(0.1, closure: {
+            self.dummeyCourse = self.loadedCourse
+        })
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
@@ -32,10 +46,10 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return loadedCourse?.metadata.count ?? 0
+            return dummeyCourse?.metadata.count ?? 0
 
         } else {
-            return loadedCourse?.sections.count ?? 0
+            return dummeyCourse?.sections.count ?? 0
         }
     }
     
@@ -48,25 +62,20 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         if indexPath.section == 0 {
             if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
                 cell.userInteractionEnabled = false
-                let modelItem = loadedCourse?.metadata[indexPath.row]
+                let modelItem = dummeyCourse?.metadata[indexPath.row]
                 cell.title.text = modelItem?.title
                 
                 var contentString = modelItem?.content
                 contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
                 cell.content.text = contentString
                 
-                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-                cell.setNeedsUpdateConstraints()
-                cell.updateConstraintsIfNeeded()
-                
                 return cell
             }
         } else {
+            
             if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
-                let modelItem = loadedCourse!.sections[indexPath.row]
+                let modelItem = dummeyCourse!.sections[indexPath.row]
                 cell.setSection(modelItem)
-              cell.setNeedsUpdateConstraints()
-                cell.updateConstraintsIfNeeded()
                 return cell
             }
         }
@@ -74,7 +83,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
 
 }
