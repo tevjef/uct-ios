@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15C50" minimumToolsVersion="Automatic">
-    <entity name="Entity" syncable="YES"/>
+    <entity name="CoreSubscription" representedClassName=".CoreSubscription" syncable="YES">
+        <attribute name="topicName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="university" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="CoreUserDefault" representedClassName=".CoreUserDefault" syncable="YES">
+        <attribute name="semester" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="university" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Entity" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="CoreSubscription" positionX="-227" positionY="27" width="128" height="75"/>
+        <element name="CoreUserDefault" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

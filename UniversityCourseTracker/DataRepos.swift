@@ -18,6 +18,7 @@ class DataRepos {
     }
     
     func processRequest(request: Request, completion: (Common.Response?) -> Void) {
+        Timber.d("Request \(request.debugDescription)")
         request.responseData { response in
             if response.result.isSuccess {
                 do {
@@ -25,9 +26,12 @@ class DataRepos {
                     completion(resp)
                 } catch {
                     completion(nil)
+                    Timber.e("Error while parsing response \(request.debugDescription) error=\(error)")
+
                 }
             } else {
                 completion(nil)
+                Timber.e("Error while trying to complete request \(request.debugDescription) result=\(response.result.error)")
             }
         }
     }

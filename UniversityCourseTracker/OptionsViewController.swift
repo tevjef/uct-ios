@@ -19,7 +19,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
             universityCell.userInteractionEnabled = true
             termCell.userInteractionEnabled = true
             
-            let index = universities.indexOf{$0.topicName == userDefaults.universityTopicName}
+            let index = universities.indexOf{$0.topicName == coreData.university!.topicName}
             if index == nil {
                 // Alert user, their university was removed
                 currentUniversityIndex = 0
@@ -38,9 +38,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     // When university has been selected save it and repoplutate the terms cell
     var selectedUniversity: Common.University? {
         didSet {
-            userDefaults.universityTopicName = selectedUniversity!.topicName
-            userDefaults.season = selectedUniversity!.resolvedSemesters.current.season
-            userDefaults.year = selectedUniversity!.resolvedSemesters.current.year.description
+            coreData.university = selectedUniversity!
+            coreData.semester = selectedUniversity!.resolvedSemesters.current
             
             currentUniversity = selectedUniversity
         }
@@ -50,7 +49,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         didSet {
             populateTerms(currentUniversity!)
             setSelectUniversityText(currentUniversity!.name)
-            setSelectTermText(userDefaults.season.capitalizedString + " " + userDefaults.year)
+            setSelectTermText(Common.getReadableSemester(coreData.semester!))
         }
     }
     
@@ -118,8 +117,6 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
             [weak self] universities in
             if let universities = universities {
                 self?.universities = universities
-            } else {
-                NSLog("Error getting universities " + (self?.userDefaults.universityTopicName)!)
             }
         })
     }
@@ -202,8 +199,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
         // Save selected term
         let selectedSemester = currentUniversity!.availableSemesters[selectedTermIndex!]
-        userDefaults.season = selectedSemester.season
-        userDefaults.year = selectedSemester.year.description
+        coreData.semester = selectedSemester
         setSelectTermText(selectedSemester)
     }
     
@@ -222,7 +218,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         if pickerView == universityPickerView {
             return universities[row].name
         } else {
-            return Common.getReadableString(terms[row])
+            return Common.getReadableSemester(terms[row])
         }
     }
     
@@ -251,7 +247,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     func setSelectTermText(semester: Common.Semester) {
-        termLabel.text = Common.getReadableString(semester)
+        termLabel.text = Common.getReadableSemester(semester)
     }
     
     func setSelectTermText(semester: String) {

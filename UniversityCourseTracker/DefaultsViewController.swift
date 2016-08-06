@@ -20,7 +20,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func viewDidLoad() {
         // Skip vc if user has selected a default university
-        if userDefaults.universityTopicName != "" {
+        if coreData.university != nil {
             skipToTrackedSections()
         } else {
             setupViews()
@@ -31,9 +31,8 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBAction func didSelectUniversity(sender: AnyObject) {
         let university = universities![selectedIndex!]
-        userDefaults.universityTopicName = university.topicName
-        userDefaults.season = university.resolvedSemesters.current.season
-        userDefaults.year = university.resolvedSemesters.current.year.description
+        coreData.university = university
+        coreData.semester = university.resolvedSemesters.current
     }
     
     override func didReceiveMemoryWarning() {

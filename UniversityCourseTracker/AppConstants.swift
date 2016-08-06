@@ -10,47 +10,31 @@ import Foundation
 import UIKit
 
 class AppConstants {
-    var BASE_URL: String {
-        get {
-         return "https://uct.tevindev.me/v2/"
-        }
-    }
-    var UNIVERSITIES: String {
-        get {
-            return self.BASE_URL + "universities"
-        }
-    }
-    var UNIVERSITY: String {
-        get {
-            return self.BASE_URL + "university/"
-        }
-    }
-    var SUBJECTS: String {
-        get {
-            return self.BASE_URL + "subjects/"
-        }
-    }
-    var SUBJECT: String {
-        get {
-            return self.BASE_URL + "subject/"
-        }
-    }
-    var COURSES: String {
-        get {
-            return self.BASE_URL + "courses/"
-        }
-    }
-    var COURSE: String {
-        get {
-            return self.BASE_URL + "course/"
-        }
-    }
-    var SECTION: String {
-        get {
-            return self.BASE_URL + "section/"
-        }
+    var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)/"
+    var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)/"
+    var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)/"
+    var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)/"
+    var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)/"
+    var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)/"
+    var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)/"
+    
+    struct Network {
+        static var apiVersion = "v2"
+        static var base = "https://uct.tevindev.me"
+        static var universities = "universities"
+        static var university = "university"
+        static var subjects = "subjects"
+        static var subject = "subject"
+        static var courses = "courses"
+        static var course = "course"
+        static var section = "section"
     }
     
+    struct CoreData {
+        static var objectModel = "UniversityCourseTracker"
+        static var userDefaults = "CoreUserDefault"
+        static var subscriptions = "CoreSubscription"
+    }
 
     struct Colors {
         static var primary: UIColor = UIColor(hexString: "607D8B")

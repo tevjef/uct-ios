@@ -92,18 +92,15 @@ extension UIViewController {
     var appDelegate:AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
-
-    var userDefaults:UserDefaults {
-        return appDelegate.userDefaults!
+    
+    var coreData:CoreDataManager {
+        return appDelegate.coreDataManager!
     }
     
     var datarepo:DataRepos {
         return appDelegate.dataRepo!
     }
-    
-    var appConfig:AppConfigruation {
-        return appDelegate.appConfig!
-    }
+
 
     func delay(delay: Double, closure: ()->()) {
         dispatch_after(
@@ -185,5 +182,15 @@ extension UIViewController {
         titleView.sizeToFit()
         
         return titleView
+    }
+}
+
+public extension NSObject{
+    public class var nameOfClass: String{
+        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+    }
+    
+    public var nameOfClass: String{
+        return NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!
     }
 }
