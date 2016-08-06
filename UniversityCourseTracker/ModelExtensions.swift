@@ -13,7 +13,7 @@ extension Common {
         return semester.season.capitalizedString + " " + String(semester.year)
     }
     
-    static func semesterFromString(str: String) -> Common.Semester {
+    static func semesterFromString(str: String) -> Common.Semester? {
         let components = str.componentsSeparatedByString(" ")
         let season = components.first!
         let year = Int32(components.last!)
@@ -24,6 +24,7 @@ extension Common {
         } catch {
             Timber.e("Failed to parse semester")
         }
+        return nil
     }
     
     static func getOpenSections(course: Common.Course) -> Int {

@@ -79,6 +79,8 @@ class CoreSubscription: NSManagedObject {
     }
     
     class func removeSubscription(ctx: NSManagedObjectContext, topicName: String) -> Int {
+        var count = 0
+
         do {
             let fetchedCoreSubscriptions = try getCoreSubscriptions(ctx, topicName: topicName)
             if fetchedCoreSubscriptions.count == 0 {
@@ -87,17 +89,16 @@ class CoreSubscription: NSManagedObject {
                 Timber.e("Multiple topics with same name found: \(topicName)")
             }
             
-            var count = 0
             for obj in fetchedCoreSubscriptions {
                 count += 1
                 ctx.deleteObject(obj)
             }
             
-            return count
-            
         } catch {
             Timber.e("Failed to remove subscription \(error)")
         }
+        
+        return count
     }
     
     override class func entityName() -> String {
@@ -127,10 +128,11 @@ class CoreSubscription: NSManagedObject {
                 let uni = try Common.University.parseFromData(coreSubscription.university!)
                 return Subscription(topicName: coreSubscription.topicName!, university: uni)
             }
-            return nil
         } catch {
             Timber.e("Failed parsing university \(error)")
         }
+        
+        return nil
     }
     
     private func insert(subscription: Subscription) {
