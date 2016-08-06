@@ -7,54 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="211" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="211"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="117" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="117"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MO0-H6-gt6" id="1YS-6f-k3f">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                <rect key="frame" x="0.0" y="0.0" width="392" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
-                        <rect key="frame" x="68" y="105" width="324" height="90"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LQ9-Zi-01b" userLabel="Sunday" colorLabel="IBBuiltInLabel-Red">
-                                <rect key="frame" x="0.0" y="0.0" width="324" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$sundayH$" id="Vdv-G2-0oz"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-dg-56o" userLabel="Monday" colorLabel="IBBuiltInLabel-Orange">
-                                <rect key="frame" x="0.0" y="15" width="324" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$mondayH$" id="u7H-YI-YCH"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-Uu-Tlr" userLabel="Tuesday">
-                                <rect key="frame" x="0.0" y="30" width="324" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$tuesdayH$" id="dhU-Uo-HYP"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="G3N-ZL-7ug" userLabel="Wednesday">
-                                <rect key="frame" x="0.0" y="45" width="324" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$wedbesdayH$" id="gKc-rc-7k1"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-zE-njp" userLabel="Thursday">
-                                <rect key="frame" x="0.0" y="60" width="324" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$thursdayH$" id="CQR-q0-elG"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="d2T-HG-5WS" userLabel="Friday">
-                                <rect key="frame" x="0.0" y="75" width="324" height="15"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" placeholder="YES" identifier="$fridayH$" id="WJG-1s-4gr"/>
-                                </constraints>
-                            </view>
-                        </subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
+                        <rect key="frame" x="68" y="11" width="316" height="90"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="90" identifier="$stackHeight$" id="LUV-TN-ojv"/>
                         </constraints>
@@ -92,17 +53,11 @@
             <connections>
                 <outlet property="circleViewContainer" destination="DRy-fw-62L" id="akc-uJ-qF1"/>
                 <outlet property="circleViewHeight" destination="hjh-Uy-4jf" id="wsy-1N-IJU"/>
-                <outlet property="friday" destination="d2T-HG-5WS" id="Iaa-Zg-TN7"/>
-                <outlet property="monday" destination="7D2-dg-56o" id="FSk-xZ-Puk"/>
                 <outlet property="sectionNumber" destination="Bdn-AI-Tow" id="j7F-Gx-l0L"/>
                 <outlet property="stackView" destination="Tj8-h0-j9F" id="i0q-Br-8tx"/>
                 <outlet property="stackViewHeight" destination="LUV-TN-ojv" id="Zdt-aV-gx8"/>
-                <outlet property="sunday" destination="LQ9-Zi-01b" id="v0N-Wv-pdI"/>
-                <outlet property="thursday" destination="Yix-zE-njp" id="XxP-S4-RKM"/>
-                <outlet property="tuesday" destination="qKf-Uu-Tlr" id="MEk-Fp-geO"/>
-                <outlet property="wednesday" destination="G3N-ZL-7ug" id="JuH-jX-tUV"/>
             </connections>
-            <point key="canvasLocation" x="370" y="263.5"/>
+            <point key="canvasLocation" x="366" y="216.5"/>
         </tableViewCell>
     </objects>
 </document>

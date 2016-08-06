@@ -25,36 +25,33 @@ class SectionViewCell: UITableViewCell {
     @IBOutlet weak var friday: UIView!
     @IBOutlet weak var sectionNumber: UILabel!
     
-    var containers: [UIView] = []
-    var meetingNib: UINib = UINib(nibName: "MeetingView", bundle: nil)
+    var meetingViews: [MeetingView] = []
+    
+    static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: NSBundle.mainBundle())
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        containers.append(sunday)
-        containers.append(monday)
-        containers.append(tuesday)
-        containers.append(wednesday)
-        containers.append(thursday)
-        containers.append(friday)
-        
-        for view in containers {
-            let meetingView = createMeetingView()
-            meetingView.tag = MeetingView.TAG
-
-            view.addSubview(meetingView)
-            meetingView.configureForAutoLayout()
-            meetingView.autoPinEdgesToSuperviewEdges()
-            view.updateConstraintsIfNeeded()
+        for view in meetingViews {
+            stackView.addArrangedSubview(view)
+            view.autoPinEdgeToSuperviewEdge(.Trailing)
         }
-        
         circleViewContainer.layer.cornerRadius = circleViewContainer.frame.height / 2
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let meetingView = self.createMeetingView()
+        meetingView.tag = MeetingView.TAG
+        self.meetingViews.append(meetingView)
+    }
+
     func createMeetingView() -> MeetingView {
-        return meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
+        return SectionViewCell.meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
     }
     
     func resetAllMeetingViews() {
-        for view in containers {
+        for view in meetingViews {
             let meetingView = view.viewWithTag(MeetingView.TAG) as! MeetingView
             meetingView.resetViews()
         }
@@ -73,21 +70,21 @@ class SectionViewCell: UITableViewCell {
         for index in 0..<section.meetings.count {
             height += 15
             let meeting = section.meetings[index]
-            let view = containers[index].viewWithTag(MeetingView.TAG) as! MeetingView
-            
+            let meetingView = meetingViews[index]
+
             if meeting.day != "" {
                 let abbrIndex = meeting.day.startIndex.advancedBy(3)
-                view.dayView.text = meeting.day.substringToIndex(abbrIndex)
+                meetingView.dayView.text = meeting.day.substringToIndex(abbrIndex)
 
             } else {
-                view.dayView.text = meeting.classType
+                meetingView.dayView.text = meeting.classType
             }
             
             if meeting.startTime != "" {
-                view.timeView.text = meeting.startTime + " - " + meeting.endTime
+                meetingView.timeView.text = meeting.startTime + " - " + meeting.endTime
             }
             
-            view.locationView.text = meeting.room
+            meetingView.locationView.text = meeting.room
         }
         
         stackViewHeight.constant = max(circleViewHeight.constant, height)
