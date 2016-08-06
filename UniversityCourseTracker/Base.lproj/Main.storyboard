@@ -124,7 +124,7 @@
                     <navigationItem key="navigationItem" id="fUg-J2-B3F">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ICo-DR-F4F">
                             <connections>
-                                <segue destination="QIC-wo-IC9" kind="show" id="jgq-wf-nqR"/>
+                                <segue destination="QIC-wo-IC9" kind="show" identifier="gotoSubjects" id="jgq-wf-nqR"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -163,7 +163,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YKr-Ie-GXI" kind="show" identifier="gotoCourseList" id="Qxv-aC-upL"/>
+                                    <segue destination="YKr-Ie-GXI" kind="show" identifier="gotoCourses" id="Qxv-aC-upL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -176,7 +176,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Options" style="plain" id="NVe-Qu-emw">
                             <connections>
                                 <action selector="doneClicked:" destination="yX4-65-XhI" id="6n0-oZ-86Z"/>
-                                <segue destination="Lva-tJ-mzh" kind="show" id="Oae-ya-YjP"/>
+                                <segue destination="Lva-tJ-mzh" kind="show" identifier="gotoOptions" id="Oae-ya-YjP"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -348,7 +348,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="UTC-8Q-rEZ" kind="show" identifier="gotoSectionsList" id="fyf-GR-TwE"/>
+                                    <segue destination="UTC-8Q-rEZ" kind="show" identifier="gotoSections" id="fyf-GR-TwE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

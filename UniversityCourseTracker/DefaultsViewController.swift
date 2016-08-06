@@ -40,7 +40,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func skipToTrackedSections() {
-        let trackedSectionVC = self.storyboard?.instantiateViewControllerWithIdentifier("trackedSectionsVC")
+        let trackedSectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.trackedSections)
         navigationController?.pushViewController(trackedSectionVC!, animated: false)
     }
     

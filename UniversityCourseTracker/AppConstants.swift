@@ -35,6 +35,20 @@ class AppConstants {
         static var userDefaults = "CoreUserDefault"
         static var subscriptions = "CoreSubscription"
     }
+    
+    struct Id {
+        struct Controllers {
+            static var trackedSections = "trackedSectionsVC"
+        }
+        
+        struct Segue {
+            static var trackedSections = "gotoTrackedSections"
+            static var subjects = "gotoSubjects"
+            static var courses = "gotoCourses"
+            static var sections = "gotoSections"
+            static var options = "gotoOptions"
+        }
+    }
 
     struct Colors {
         static var primary: UIColor = UIColor(hexString: "607D8B")

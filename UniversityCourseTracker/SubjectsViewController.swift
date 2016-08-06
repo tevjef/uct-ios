@@ -79,7 +79,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if  segue.identifier == "gotoCourseList" {
+        if  segue.identifier == AppConstants.Id.Segue.courses {
             let nextViewController = segue.destinationViewController as! CoursesViewController
             prepareSearchFlow(nextViewController)
         }

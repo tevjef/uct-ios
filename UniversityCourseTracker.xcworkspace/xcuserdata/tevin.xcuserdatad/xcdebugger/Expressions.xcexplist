@@ -3,7 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
@@ -18,6 +18,14 @@
       </ContextState>
       <ContextState
          contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CoursesViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():CoursesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppConstants.Id.Segue.sections">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SearchViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():SearchViewController.swift">
@@ -103,7 +111,7 @@
          contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">
       </ContextState>
       <ContextState
-         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
+         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

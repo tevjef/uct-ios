@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Timber {
+class Timber: NSObject {
 
     enum Priority {
         case VERBOSE
@@ -87,7 +87,7 @@ protocol Tree {
     func e(message: String)
 }
 
-class DebugTree: Tree {
+class DebugTree: NSObject, Tree {
     func v(message: String) {
         NSLog(message)
     }

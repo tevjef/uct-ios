@@ -3,19 +3,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="117" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="392" height="117"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="213" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="213"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MO0-H6-gt6" id="1YS-6f-k3f">
-                <rect key="frame" x="0.0" y="0.0" width="392" height="116"/>
+                <rect key="frame" x="0.0" y="0.0" width="392" height="212"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
-                        <rect key="frame" x="68" y="11" width="316" height="90"/>
+                        <rect key="frame" x="68" y="99" width="316" height="90"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="90" identifier="$stackHeight$" id="LUV-TN-ojv"/>
                         </constraints>
@@ -40,6 +41,12 @@
                             <constraint firstItem="Bdn-AI-Tow" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="leading" id="yXQ-qS-YoL"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Randall" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSD-cf-nMf">
+                        <rect key="frame" x="343" y="189" width="41" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Tj8-h0-j9F" secondAttribute="trailing" constant="8" id="382-CY-8rG"/>
@@ -47,17 +54,26 @@
                     <constraint firstItem="Tj8-h0-j9F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" identifier="$stackViewTopInEq$" id="BCn-SX-8gR"/>
                     <constraint firstItem="Tj8-h0-j9F" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Npp-nN-zdE"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="leading" secondItem="1YS-6f-k3f" secondAttribute="leading" constant="15" id="Q3z-4S-hPv"/>
-                    <constraint firstAttribute="bottom" secondItem="Tj8-h0-j9F" secondAttribute="bottom" constant="15" id="yhU-GF-snr"/>
+                    <constraint firstItem="dSD-cf-nMf" firstAttribute="top" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="X42-fD-mPo"/>
+                    <constraint firstItem="dSD-cf-nMf" firstAttribute="bottom" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="ofP-Eu-67J"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dSD-cf-nMf" secondAttribute="trailing" id="pq5-pP-Voo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Tj8-h0-j9F" secondAttribute="bottom" constant="15" id="yAY-qd-qoe"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ofP-Eu-67J"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="circleViewContainer" destination="DRy-fw-62L" id="akc-uJ-qF1"/>
                 <outlet property="circleViewHeight" destination="hjh-Uy-4jf" id="wsy-1N-IJU"/>
+                <outlet property="instructorLabel" destination="dSD-cf-nMf" id="71U-ia-cU4"/>
                 <outlet property="sectionNumber" destination="Bdn-AI-Tow" id="j7F-Gx-l0L"/>
                 <outlet property="stackView" destination="Tj8-h0-j9F" id="i0q-Br-8tx"/>
                 <outlet property="stackViewHeight" destination="LUV-TN-ojv" id="Zdt-aV-gx8"/>
             </connections>
-            <point key="canvasLocation" x="366" y="216.5"/>
+            <point key="canvasLocation" x="366" y="264.5"/>
         </tableViewCell>
     </objects>
 </document>

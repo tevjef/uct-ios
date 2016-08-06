@@ -9,6 +9,18 @@
 import Foundation
 
 extension Common {
+    
+    static func getReadableInstructor(instructors: Array<Common.Instructor>) -> String {
+        var str: String = ""
+        for instructor in instructors {
+            str += instructor.name
+            if instructor != instructors.last {
+                str += " | "
+            }
+        }
+        return str
+    }
+    
     static func getReadableSemester(semester: Common.Semester) -> String {
         return semester.season.capitalizedString + " " + String(semester.year)
     }

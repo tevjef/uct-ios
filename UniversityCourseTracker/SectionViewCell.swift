@@ -18,6 +18,7 @@ class SectionViewCell: UITableViewCell {
     @IBOutlet weak var circleViewHeight: NSLayoutConstraint!
 
     @IBOutlet weak var sectionNumber: UILabel!
+    @IBOutlet weak var instructorLabel: UILabel!
     
     var meetingViews: [MeetingView] = []
     static var maxMeetingViews = 7
@@ -57,6 +58,9 @@ class SectionViewCell: UITableViewCell {
         } else {
             circleViewContainer.backgroundColor = AppConstants.Colors.closedSection
         }
+        
+        instructorLabel.text = Common.getReadableInstructor(section.instructors)
+        instructorLabel.font = UIFont.boldSystemFontOfSize(12)
         
         var height: CGFloat = 0
         resetAllMeetingViews()
