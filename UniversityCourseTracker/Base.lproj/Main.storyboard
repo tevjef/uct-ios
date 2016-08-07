@@ -396,17 +396,20 @@
         <scene sceneID="8Gg-aQ-8gJ">
             <objects>
                 <viewController storyboardIdentifier="sectionVC" id="gSx-c7-AT4" customClass="SectionViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GTW-3q-XWT"/>
-                        <viewControllerLayoutGuide type="bottom" id="Nld-Cf-kHn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mve-BP-Lq5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dzL-U5-6bG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <connections>
+                            <outlet property="dataSource" destination="gSx-c7-AT4" id="G0X-cR-4EK"/>
+                            <outlet property="delegate" destination="gSx-c7-AT4" id="XIM-a4-RiU"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" title="Title" id="6hA-Hd-fx7"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="dzL-U5-6bG" id="cUz-Cw-1Uk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBz-P0-27S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
