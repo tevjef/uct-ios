@@ -370,24 +370,47 @@
             </objects>
             <point key="canvasLocation" x="2164" y="305"/>
         </scene>
-        <!--Single Course View Controller-->
+        <!--Sections-->
         <scene sceneID="xlS-tp-TFF">
             <objects>
-                <tableViewController id="UTC-8Q-rEZ" customClass="SingleCourseViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Sections" id="UTC-8Q-rEZ" customClass="SingleCourseViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" id="Avh-L1-rh1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="UTC-8Q-rEZ" id="9xt-PM-aRi"/>
                             <outlet property="delegate" destination="UTC-8Q-rEZ" id="oS7-Qo-tGg"/>
                         </connections>
                     </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="gSx-c7-AT4" kind="show" identifier="gotoSection" id="l4V-3d-nND"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vj6-Pe-L69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2632" y="305"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="8Gg-aQ-8gJ">
+            <objects>
+                <viewController storyboardIdentifier="sectionVC" id="gSx-c7-AT4" customClass="SectionViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GTW-3q-XWT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nld-Cf-kHn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mve-BP-Lq5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="6hA-Hd-fx7"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CBz-P0-27S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="295"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ews-ZT-LXz">

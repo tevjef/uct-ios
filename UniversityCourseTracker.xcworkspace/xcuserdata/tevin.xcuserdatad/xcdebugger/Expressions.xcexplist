@@ -6,6 +6,17 @@
          contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "SectionViewController.setupViews() -&gt; ():SectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "titleView.frame.size.width">
+            </PersistentString>
+            <PersistentString
+               value = "(view.frame.size.width * (3/4))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
       </ContextState>
       <ContextState
@@ -37,6 +48,9 @@
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SectionViewController.viewWillAppear(Bool) -&gt; ():SectionViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.loadData() -&gt; ():SubjectsViewController.swift">
@@ -77,7 +91,27 @@
          contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "UIViewController.makeTitleViewWithSubtitle(String, subtitle : String) -&gt; UIView:Utils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)">
+            </PersistentString>
+            <PersistentString
+               value = "titleView.frame.size">
+            </PersistentString>
+            <PersistentString
+               value = "min(self.view.frame.size.width * (2/4), max(titleLabel.frame.size.width, subtitleLabel.frame.size.width))">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame.size.width * (2/4)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "OptionsViewController.doneTermPicker(UIBarButtonItem) -&gt; ():OptionsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleCourseViewController.prepareSearchFlow(SearchFlowDelegate) -&gt; ():SingleCourseViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.setupViews() -&gt; ():SubjectsViewController.swift">
@@ -94,6 +128,14 @@
          contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "SingleCourseViewController.gotoSection() -&gt; ():SingleCourseViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.indexPathForSelectedRow?.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SingleCourseViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:SingleCourseViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -106,6 +148,9 @@
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.(loadData(Bool) -&gt; ()).(closure #2):SubjectsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CoursesViewController.prepareSearchFlow(SearchFlowDelegate) -&gt; ():CoursesViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">

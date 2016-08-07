@@ -17,7 +17,7 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
         self.navigationBar.translucent = false
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationBar.barTintColor = UIColor(hexString: "#607D8B")
+        self.navigationBar.barTintColor = AppConstants.Colors.primary
 
         // Status bar white font
         self.navigationBar.barStyle = UIBarStyle.Black

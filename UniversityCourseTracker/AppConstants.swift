@@ -39,6 +39,7 @@ class AppConstants {
     struct Id {
         struct Controllers {
             static var trackedSections = "trackedSectionsVC"
+            static var section = "sectionVC"
         }
         
         struct Segue {
@@ -46,6 +47,7 @@ class AppConstants {
             static var subjects = "gotoSubjects"
             static var courses = "gotoCourses"
             static var sections = "gotoSections"
+            static var section = "gotoSection"
             static var options = "gotoOptions"
         }
     }

@@ -23,8 +23,6 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
         }
     }
     
-    var selectedIndex: Int?
-    
     var searchFlow: SearchFlow?
     
     override func viewDidLoad() {
@@ -66,7 +64,9 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
-        //let selectedRow = tableView.indexPathForSelectedRow?.row
+        let course = loadedCourses![tableView.indexPathForSelectedRow!.row]
+        searchFlow?.courseTopicName = course.topicName
+        searchFlow?.tempCourse = course
         searchFlowDelegate.searchFlow = self.searchFlow
     }
 
@@ -104,7 +104,6 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
