@@ -33,7 +33,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
 
     let metadataCellIdentifier = "metadataCell"
     let sectionCellIdentifier = "sectionCell"
-
+    
     override func scrollViewDidScroll(scrollView: UIScrollView) {      
         let offsety = scrollView.contentOffset.y
         let headerContainer = tableView.tableHeaderView?.subviews[0]
@@ -42,10 +42,11 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     override func viewDidLoad() {
         title = loadedCourse?.name
+        self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 45
         
         let headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 60))
         let header = UIView.init(frame: headerContainer.bounds)

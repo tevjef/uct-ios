@@ -12,6 +12,7 @@ class TimeViewCell: UITableViewCell {
 
     @IBOutlet weak var stackView: UIStackView!
     
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     var meetingViews: [MeetingView] = []
     static var maxMeetingViews = 7
     
@@ -46,9 +47,7 @@ class TimeViewCell: UITableViewCell {
             let meetingView = meetingViews[index]
             
             if meeting.day != "" {
-                let abbrIndex = meeting.day.startIndex.advancedBy(3)
-                meetingView.dayView.text = meeting.day.substringToIndex(abbrIndex)
-                
+                meetingView.dayView.text = meeting.day
             } else {
                 meetingView.dayView.text = meeting.classType
             }
@@ -59,6 +58,7 @@ class TimeViewCell: UITableViewCell {
             
             meetingView.locationView.text = meeting.room
         }
+        stackViewHeight.constant = height
     }
 
 

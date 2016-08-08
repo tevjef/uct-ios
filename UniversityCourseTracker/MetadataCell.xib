@@ -15,20 +15,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="386" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" text="Prerequisites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
                         <rect key="frame" x="15" y="10" width="363" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Prerequisites">
+                                <attributes>
+                                    <color key="NSColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                    <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zX-cq-Un9">
-                        <rect key="frame" x="15" y="94" width="363" height="43"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="40" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zX-cq-Un9">
+                        <rect key="frame" x="16" y="94" width="362" height="43"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="54" id="hGp-Ma-4f8"/>
                         </constraints>
                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue elit eu mi hendrerit, at rhoncus elit vulputate. Suspendisse sed eros sed ex consectetur facilisis.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -44,7 +51,7 @@
                     <constraint firstItem="3zX-cq-Un9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QZC-ju-1zQ" secondAttribute="bottom" constant="8" id="hGO-fx-6Jm"/>
                     <constraint firstItem="QZC-ju-1zQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hTB-hG-3eY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="3zX-cq-Un9" secondAttribute="bottom" id="uvE-OU-25x"/>
-                    <constraint firstItem="3zX-cq-Un9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="w5y-UZ-Si4"/>
+                    <constraint firstItem="3zX-cq-Un9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="w5y-UZ-Si4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

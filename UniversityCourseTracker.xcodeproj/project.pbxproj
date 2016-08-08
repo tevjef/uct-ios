@@ -38,6 +38,8 @@
 		134CBCA41D56B03C001C4DD5 /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134CBCA31D56B03C001C4DD5 /* MeetingView.xib */; };
 		136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D20941D519F1C00444319 /* SingleCourseViewController.swift */; };
 		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
+		13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */; };
+		13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
@@ -100,6 +102,8 @@
 		134CBCA31D56B03C001C4DD5 /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
+		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
+		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
@@ -153,10 +157,12 @@
 			children = (
 				134CBCA31D56B03C001C4DD5 /* MeetingView.xib */,
 				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
-				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
 				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
+				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
 				13FA20781D52B00800887546 /* SectionViewCell.xib */,
 				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
+				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
+				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
 			);
 			name = customViews;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 			files = (
 				1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */,
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
+				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
@@ -484,6 +491,7 @@
 				1308CC0A1D4598BF00E7A243 /* SubjectsViewController.swift in Sources */,
 				1308CC0C1D45C6F100E7A243 /* CoursesViewController.swift in Sources */,
 				13130ED81D530E1A004BBF0C /* MetadataCell.swift in Sources */,
+				13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */,
 				13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */,
 				131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */,
 				1305686D1D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift in Sources */,

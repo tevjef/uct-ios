@@ -8,23 +8,21 @@
 
 import UIKit
 
-class SectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SearchFlowDelegate {
+class SectionViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
     let metadataCellIdentifier = "metadataCell"
-    let timeCellIdentifier = "timeCell"
+    let timeCellIdentifier = "timeViewCell"
+    let subscribeCellIdentifier = "subscribeCell"
+
     
-    @IBOutlet var tableView: UITableView!
+    // Maintains the state of the naivagtion bar's color when going back
+    var previousColor: UIColor?
+    var appeared: Bool = false
     
     override func viewDidLoad() {
         setupViews()
         // Do any additional setup after loading the view, typically from a nib.
     
-    }
-
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= 0 {
-            scrollView.contentOffset = CGPointZero;
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,16 +30,17 @@ class SectionViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    //func scrollViewDidScroll(scrollView: UIScrollView) {
+    //    if scrollView.contentOffset.y <= 0 {
+     //       scrollView.contentOffset = CGPointZero;
+     //   }
+    //}
+
     
-    // Fit tableview under navigation bar
-    override func viewDidLayoutSubviews() {
-        if let rect = self.navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            self.tableView.contentInset = UIEdgeInsetsMake( y, 0, 0, 0)
-        }
-    }
+
 
     func setupViews() {
+        appeared = true
         previousColor = navigationController?.navigationBar.barTintColor
 
         if searchFlow?.tempSection?.status == "Open" {
@@ -51,7 +50,7 @@ class SectionViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 40
         
         tableView.registerNib(UINib(nibName: "TimeViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: timeCellIdentifier)
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
@@ -63,9 +62,17 @@ class SectionViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationItem.title = searchFlow!.tempCourse!.name
         
     }
-    
-    var previousColor: UIColor?
 
+    override func viewWillAppear(animated: Bool) {
+        if appeared {
+            if searchFlow?.tempSection?.status == "Open" {
+                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
+            } else {
+                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
+            }
+        }
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.barTintColor = previousColor
@@ -78,21 +85,35 @@ class SectionViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - UITableViewDelegate Methods
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            return 1
+        } else if section == 1 {
             return searchFlow?.tempSection?.metadata.count ?? 0
-            
-        } else {
-            return 0
+        } else if section == 2 {
+            return 1
         }
+        return 0
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+             if let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(subscribeCellIdentifier) {
+                let switchView = UISwitch(frame:CGRectMake(150, 300, 0, 0));
+                switchView.onTintColor = AppConstants.Colors.primary
+                switchView.on = true
+                switchView.setOn(true, animated: false);
+                switchView.addTarget(self, action: #selector(switchValueDidChange), forControlEvents: .ValueChanged);
+                cell.accessoryView = switchView
+                
+                return cell
+            }
+        }
+        else if indexPath.section == 1 {
             if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
                 cell.userInteractionEnabled = false
                 let modelItem = searchFlow?.tempSection?.metadata[indexPath.row]
@@ -104,19 +125,29 @@ class SectionViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 return cell
             }
-        } else {
+        } else if indexPath.section == 2 {
             
-            if let cell: TimeViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
-                //let modelItem = dummeyCourse!.sections[indexPath.row]
-                //cell.setSection(modelItem)
+            if let cell: TimeViewCell = tableView.dequeueReusableCellWithIdentifier(timeCellIdentifier) as? TimeViewCell {
+                let modelItem = searchFlow?.tempSection!
+                cell.userInteractionEnabled = false
+                cell.setMeetings(modelItem!)
                 return cell
             }
         }
         return UITableViewCell()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         //selectedIndex = indexPath.row
+    }
+    
+    func switchValueDidChange(sender:UISwitch!) {
+        if (sender.on == true){
+            print("User subscribe")
+        }
+        else{
+            print("User unsubscribed")
+        }
     }
 }
