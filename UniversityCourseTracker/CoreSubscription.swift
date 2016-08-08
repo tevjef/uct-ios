@@ -102,7 +102,7 @@ class CoreSubscription: NSManagedObject {
     }
     
     override class func entityName() -> String {
-        return AppConstants.CoreData.userDefaults
+        return AppConstants.CoreData.subscriptions
     }
     
     private class func requestAllSubscriptions() -> NSFetchRequest {

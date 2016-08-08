@@ -13,18 +13,22 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     let metadataCellIdentifier = "metadataCell"
     let timeCellIdentifier = "timeViewCell"
     let subscribeCellIdentifier = "subscribeCell"
-
+    
+    var lastPosition: Bool = false
     var headerContainer: UIView?
     var header: UIView?
+    var switchView: UISwitch?
 
     // Maintains the state of the naivagtion bar's color when going back
     var previousColor: UIColor?
     var appeared: Bool = false
     
+    var subscription: Subscription?
+    
     override func viewDidLoad() {
         setupViews()
-        // Do any additional setup after loading the view, typically from a nib.
-    
+        
+        subscription = searchFlow?.buildSubscription()
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,8 +82,21 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         tableView.tableHeaderView = headerContainer
         
         setHeaderColors(true)
+        
+        // Setup Switch View with data from database
+        switchView = UISwitch(frame:CGRectMake(150, 300, 0, 0));
+        switchView!.onTintColor = AppConstants.Colors.primary
+        switchView!.addTarget(self, action: #selector(switchValueDidChange), forControlEvents: .ValueChanged);
+        if coreData.getSubscription(searchFlow!.tempSection!.topicName) == nil {
+            lastPosition = false
+            switchView?.on = false
+        } else {
+            lastPosition = true
+            switchView?.on = true
+        }
     }
 
+    
     func setHeaderColors(animate: Bool) {
         let duration = animate ? 0.2 : 0.0
         if searchFlow?.tempSection?.status == "Open" {
@@ -118,7 +135,6 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     // MARK: - Navigation
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
-        searchFlow?.buildSubscription()
     }
     
     // MARK: - UITableViewDelegate Methods
@@ -140,13 +156,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
              if let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(subscribeCellIdentifier) {
-                let switchView = UISwitch(frame:CGRectMake(150, 300, 0, 0));
-                switchView.onTintColor = AppConstants.Colors.primary
-                switchView.on = true
-                switchView.setOn(true, animated: false);
-                switchView.addTarget(self, action: #selector(switchValueDidChange), forControlEvents: .ValueChanged);
                 cell.accessoryView = switchView
-                
                 return cell
             }
         }
@@ -163,7 +173,6 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
                 return cell
             }
         } else if indexPath.section == 2 {
-            
             if let cell: TimeViewCell = tableView.dequeueReusableCellWithIdentifier(timeCellIdentifier) as? TimeViewCell {
                 let modelItem = searchFlow?.tempSection!
                 cell.userInteractionEnabled = false
@@ -180,11 +189,13 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     }
     
     func switchValueDidChange(sender:UISwitch!) {
-        if (sender.on == true){
-            print("User subscribe")
+        if sender.on == lastPosition {
+            return
         }
-        else{
-            print("User unsubscribed")
+        if sender.on {
+            coreData.addSubscription(subscription!)
+        } else {
+            coreData.removeSubscription(subscription!.sectionTopicName)
         }
     }
 }

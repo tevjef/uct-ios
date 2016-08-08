@@ -48,9 +48,9 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
         header?.frame.origin.x = 0
 
-        print("Header bounds=\(header!.bounds) frame=\(header!.frame)")
-        print("Container bounds=\(headerContainer!.bounds) frame=\(headerContainer!.frame)")
-        print("View bounds=\(view!.bounds) frame=\(view!.frame)")
+        //print("Header bounds=\(header!.bounds) frame=\(header!.frame)")
+        //print("Container bounds=\(headerContainer!.bounds) frame=\(headerContainer!.frame)")
+        //print("View bounds=\(view!.bounds) frame=\(view!.frame)")
 
     }
     
