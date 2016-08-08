@@ -45,6 +45,7 @@
             <connections>
                 <outlet property="dayView" destination="rlh-07-sOk" id="CZe-3O-5nX"/>
                 <outlet property="locationView" destination="O4r-Fj-fpd" id="4Gs-pH-84S"/>
+                <outlet property="stackView" destination="yec-Ry-mbe" id="PLh-dV-3yc"/>
                 <outlet property="timeView" destination="z2M-P9-fVR" id="Xkj-cA-wNF"/>
             </connections>
             <point key="canvasLocation" x="240" y="155.5"/>

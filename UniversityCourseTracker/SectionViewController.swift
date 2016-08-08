@@ -14,7 +14,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     let timeCellIdentifier = "timeViewCell"
     let subscribeCellIdentifier = "subscribeCell"
 
-    
+    var headerContainer: UIView?
+    var header: UIView?
+
     // Maintains the state of the naivagtion bar's color when going back
     var previousColor: UIColor?
     var appeared: Bool = false
@@ -29,53 +31,88 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    override func viewDidLayoutSubviews() {
+        // Tableview header gets fucked up in landscpare, this should set it right.
+        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
+        header?.frame.origin.x = 0
+        
+        //print("Header bounds=\(header!.bounds) frame=\(header!.frame)")
+        //print("Container bounds=\(headerContainer!.bounds) frame=\(headerContainer!.frame)")
+        //print("View bounds=\(view!.bounds) frame=\(view!.frame)")
+        
+    }
     
-    //func scrollViewDidScroll(scrollView: UIScrollView) {
-    //    if scrollView.contentOffset.y <= 0 {
-     //       scrollView.contentOffset = CGPointZero;
-     //   }
-    //}
-
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offsety = scrollView.contentOffset.y
+        print(offsety)
+        header?.transform = CGAffineTransformMakeTranslation(0, offsety)
+    }
     
-
-
     func setupViews() {
+        navigationItem.title = searchFlow!.tempCourse!.name
+
+        // Setup navigation bar colors depending on section status
         appeared = true
         previousColor = navigationController?.navigationBar.barTintColor
-
-        if searchFlow?.tempSection?.status == "Open" {
-            self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
-        } else {
-            self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
-        }
-
+        
+        // setup TableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
         
         tableView.registerNib(UINib(nibName: "TimeViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: timeCellIdentifier)
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
 
-    
-        //let subject = searchFlow?.tempSubject
-        //let titleView = self.makeTitleViewWithSubtitle(searchFlow!.tempCourse!.name, subtitle: "\(subject!.season.capitalizedString) \(subject!.year)")
+        // Headerview setup
+        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 110))
+        header = UIView.init(frame: headerContainer!.bounds)
+        headerContainer?.addSubview(header!)
+
+        let sectionHeader = SectionHeaderView.createView()
+        sectionHeader.setSection(searchFlow!.tempSection!, semester: searchFlow!.tempSemester!)
         
-        navigationItem.title = searchFlow!.tempCourse!.name
+        header?.addSubview(sectionHeader)
+        sectionHeader.autoPinEdgesToSuperviewEdges()
+        sectionHeader.sizeToFit()
         
+        tableView.tableHeaderView = headerContainer
+        
+        setHeaderColors(true)
     }
 
+    func setHeaderColors(animate: Bool) {
+        let duration = animate ? 0.2 : 0.0
+        if searchFlow?.tempSection?.status == "Open" {
+            UIView.animateWithDuration(duration, animations: {
+                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
+            })
+        } else {
+            UIView.animateWithDuration(duration, animations: {
+                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
+            })
+        }
+        UIView.animateWithDuration(duration, animations: {
+            self.header?.backgroundColor = self.navigationController?.navigationBar.barTintColor
+        })
+    }
+    
     override func viewWillAppear(animated: Bool) {
         if appeared {
-            if searchFlow?.tempSection?.status == "Open" {
-                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
-            } else {
-                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
-            }
+            setHeaderColors(true)
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.barTintColor = previousColor
+        
+        UIView.animateWithDuration(0.2, animations: {
+            self.navigationController?.navigationBar.barTintColor = self.previousColor
+        })
+        
+        UIView.animateWithDuration(0.2, animations: {
+            self.header?.backgroundColor = self.previousColor
+        })
+
     }
     
     // MARK: - Navigation

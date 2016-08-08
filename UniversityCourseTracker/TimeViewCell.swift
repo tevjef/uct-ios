@@ -58,6 +58,7 @@ class TimeViewCell: UITableViewCell {
             
             meetingView.locationView.text = meeting.room
         }
+
         stackViewHeight.constant = height
     }
 

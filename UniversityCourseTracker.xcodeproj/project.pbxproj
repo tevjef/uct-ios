@@ -36,6 +36,10 @@
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
 		134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */; };
 		134CBCA41D56B03C001C4DD5 /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134CBCA31D56B03C001C4DD5 /* MeetingView.xib */; };
+		1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */; };
+		1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */; };
+		1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */; };
+		1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */; };
 		136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D20941D519F1C00444319 /* SingleCourseViewController.swift */; };
 		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
 		13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */; };
@@ -100,6 +104,10 @@
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		134CBCA31D56B03C001C4DD5 /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
+		1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
+		1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
+		1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
+		1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +171,10 @@
 				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
 				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
 				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
+				1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */,
+				1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */,
+				1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */,
+				1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */,
 			);
 			name = customViews;
 			sourceTree = "<group>";
@@ -409,7 +421,9 @@
 			files = (
 				1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */,
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
+				1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */,
 				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
+				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
@@ -496,10 +510,12 @@
 				131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */,
 				1305686D1D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift in Sources */,
 				13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */,
+				1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */,
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				130568721D566971005BB80E /* Timber.swift in Sources */,
 				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
+				1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */,
 				136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */,
 				130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */,
 				13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */,

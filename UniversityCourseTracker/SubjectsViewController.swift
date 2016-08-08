@@ -74,6 +74,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
         searchFlow!.universityTopicName = coreData.university?.topicName
         searchFlow!.season = coreData.semester?.season
         searchFlow!.year = coreData.semester?.year.description
+        searchFlow!.tempSemester = coreData.semester!
         searchFlow!.tempUniversity = coreData.university
     }
 

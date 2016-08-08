@@ -23,6 +23,7 @@ class SearchFlow: NSObject, NSCoding {
     var courseTopicName: String?
     var sectionTopicName: String?
     
+    var tempSemester: Common.Semester?
     var tempUniversity: Common.University?
     var tempSubject: Common.Subject?
     var tempCourse: Common.Course?

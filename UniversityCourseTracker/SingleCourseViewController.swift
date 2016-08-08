@@ -18,24 +18,30 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var headerContainer: UIView?
     var header: UIView?
     
-    var loadedCourse: Common.Course?
-    var dummeyCourse: Common.Course? {
+    var loadedCourse: Common.Course? {
         didSet {
-            //self.tableView.reloadData()
-
-            //UIView.setAnimationsEnabled(false)
-            //tableView.beginUpdates()
-            //tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
-            //tableView.endUpdates()
-            //UIView.setAnimationsEnabled(true)
-            tableView.reloadData()
-
-            UIView.transitionWithView(tableView, duration: 0.1, options: .TransitionCrossDissolve, animations: {
-                () -> Void in
-                }, completion: nil);
+            let sections = loadedCourse?.sections.filter({
+                section in
+                return section.status == "Open"
+            })
+            
+            do {
+                let newCourse = try Common.Course.Builder().mergeFrom(loadedCourse!).setSections(sections!).build()
+                filteredCourse = newCourse
+            } catch {
+                Timber.e("Error while filtering sections from course \(error)")
+            }
         }
     }
-
+    
+    var filteredCourse: Common.Course?
+    var sectionDataSource: Common.Course? {
+        didSet {
+            tableView.beginUpdates()
+            tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.endUpdates()
+        }
+    }
     
     override func viewDidLayoutSubviews() {
         // Tableview header gets fucked up in landscpare, this should set it right.
@@ -47,46 +53,57 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         print("View bounds=\(view!.bounds) frame=\(view!.frame)")
 
     }
-
-
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {      
         let offsety = scrollView.contentOffset.y
-        let header = tableView.tableHeaderView?.subviews[0]
         print(offsety)
         header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
     }
     
+    func segmentedControlAction(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            sectionDataSource = filteredCourse
+        } else if sender.selectedSegmentIndex == 1 {
+            sectionDataSource = loadedCourse
+        }
+    }
+    
     override func viewDidLoad() {
-        title = loadedCourse?.name
+        // Set navbar title e.g English Composition - 101
+        title = "\(loadedCourse!.name) - \(loadedCourse!.number)"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 60))
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 45
+        
+        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
+        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
+        
+        // Headerview setup
+        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 45))
         header = UIView.init(frame: headerContainer!.bounds)
         header?.backgroundColor = AppConstants.Colors.primary
         headerContainer?.addSubview(header!)
         
+        let courseHeader = CourseHeaderView.createView()
+        courseHeader.segmentedControl.addTarget(self, action: #selector(segmentedControlAction), forControlEvents: .ValueChanged)
+        header?.addSubview(courseHeader)
+        courseHeader.autoPinEdgesToSuperviewEdges()
+        courseHeader.sizeToFit()
         tableView.tableHeaderView = headerContainer
 
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 45
-        
-
-
-        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
-        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
-        
-        // A hack because UI code is shitty and slow to load, header view flickers
-        //let delayTime = loadedCourse?.sections.count > 6 ? 0.0 : 0.0
-        let delayTime  = 1.0
-        delay(delayTime, closure: {
-        })
-        self.dummeyCourse = self.loadedCourse
-
+        // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
+        if loadedCourse?.sections.count > 10 && filteredCourse?.sections.count != 0 {
+            sectionDataSource = filteredCourse
+            courseHeader.segmentedControl.selectedSegmentIndex = 0
+        } else {
+            sectionDataSource = loadedCourse
+            courseHeader.segmentedControl.selectedSegmentIndex = 1
+        }
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
-        let section = loadedCourse!.sections[selectedIndex]
+        let section = sectionDataSource!.sections[selectedIndex]
         searchFlow?.sectionTopicName = section.topicName
         searchFlow?.tempSection = section
         
@@ -99,7 +116,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
             return loadedCourse?.metadata.count ?? 0
 
         } else {
-            return dummeyCourse?.sections.count ?? 0
+            return sectionDataSource?.sections.count ?? 0
         }
     }
     
@@ -123,7 +140,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         } else {
             
             if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
-                let modelItem = dummeyCourse!.sections[indexPath.row]
+                let modelItem = sectionDataSource!.sections[indexPath.row]
                 cell.setSection(modelItem)
                 return cell
             }
@@ -139,7 +156,6 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
 
     func gotoSection() {
         let sectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.section) as! SectionViewController
-        //self.performSegueWithIdentifier(AppConstants.Id.Segue.section, sender: nil)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         prepareSearchFlow(sectionVC)

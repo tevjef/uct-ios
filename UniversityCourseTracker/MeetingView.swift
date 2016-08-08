@@ -14,6 +14,8 @@ class MeetingView: UIView {
     @IBOutlet weak var dayView: UILabel!
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var locationView: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
+    
     static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: NSBundle.mainBundle())
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +35,10 @@ class MeetingView: UIView {
         dayView.text = ""
         timeView.text = ""
         locationView.text = ""
+    }
+    
+    func hasContent() -> Bool {
+        return dayView.text != "" || timeView.text != "" || locationView.text != ""
     }
 
 }
