@@ -13,16 +13,22 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     var selectedIndex: Int = 0
     
+    let metadataCellIdentifier = "metadataCell"
+    let sectionCellIdentifier = "sectionCell"
+    var headerContainer: UIView?
+    var header: UIView?
+    
     var loadedCourse: Common.Course?
     var dummeyCourse: Common.Course? {
         didSet {
             //self.tableView.reloadData()
 
             //UIView.setAnimationsEnabled(false)
-            tableView.beginUpdates()
-            tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
-            tableView.endUpdates()
+            //tableView.beginUpdates()
+            //tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+            //tableView.endUpdates()
             //UIView.setAnimationsEnabled(true)
+            tableView.reloadData()
 
             UIView.transitionWithView(tableView, duration: 0.1, options: .TransitionCrossDissolve, animations: {
                 () -> Void in
@@ -30,38 +36,53 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         }
     }
 
+    
+    override func viewDidLayoutSubviews() {
+        // Tableview header gets fucked up in landscpare, this should set it right.
+        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
+        header?.frame.origin.x = 0
 
-    let metadataCellIdentifier = "metadataCell"
-    let sectionCellIdentifier = "sectionCell"
+        print("Header bounds=\(header!.bounds) frame=\(header!.frame)")
+        print("Container bounds=\(headerContainer!.bounds) frame=\(headerContainer!.frame)")
+        print("View bounds=\(view!.bounds) frame=\(view!.frame)")
+
+    }
+
+
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {      
         let offsety = scrollView.contentOffset.y
-        let headerContainer = tableView.tableHeaderView?.subviews[0]
-        headerContainer?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
+        let header = tableView.tableHeaderView?.subviews[0]
+        print(offsety)
+        header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
     }
     
     override func viewDidLoad() {
         title = loadedCourse?.name
-        self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
+        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 60))
+        header = UIView.init(frame: headerContainer!.bounds)
+        header?.backgroundColor = AppConstants.Colors.primary
+        headerContainer?.addSubview(header!)
+        
+        tableView.tableHeaderView = headerContainer
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
         
-        let headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 60))
-        let header = UIView.init(frame: headerContainer.bounds)
-        header.backgroundColor = AppConstants.Colors.primary
-        headerContainer.addSubview(header)
-        tableView.tableHeaderView = headerContainer
+
 
         tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
         
         // A hack because UI code is shitty and slow to load, header view flickers
-        let delayTime = loadedCourse?.sections.count > 6 ? 1 : 0.2
+        //let delayTime = loadedCourse?.sections.count > 6 ? 0.0 : 0.0
+        let delayTime  = 1.0
         delay(delayTime, closure: {
-            self.dummeyCourse = self.loadedCourse
         })
+        self.dummeyCourse = self.loadedCourse
+
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {

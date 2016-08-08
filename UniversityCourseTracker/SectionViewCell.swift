@@ -60,7 +60,6 @@ class SectionViewCell: UITableViewCell {
         }
         
         instructorLabel.text = Common.getReadableInstructor(section.instructors)
-        instructorLabel.font = UIFont.boldSystemFontOfSize(12)
         
         var height: CGFloat = 0
         resetAllMeetingViews()
