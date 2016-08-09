@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="386" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
-                        <rect key="frame" x="15" y="10" width="363" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
+                        <rect key="frame" x="15" y="10" width="363" height="16"/>
                         <attributedString key="attributedText">
                             <fragment content="Prerequisites">
                                 <attributes>

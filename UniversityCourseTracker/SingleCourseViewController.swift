@@ -26,44 +26,46 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
 
     var loadedCourse: Common.Course? {
         didSet {
-            let sections = loadedCourse?.sections.filter({
-                section in
-                return section.status == "Open"
-            })
-            
-            do {
-                let newCourse = try Common.Course.Builder().mergeFrom(loadedCourse!).setSections(sections!).build()
-                filteredCourse = newCourse
-            } catch {
-                Timber.e("Error while filtering sections from course \(error)")
-            }
-            
-            // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
-            if loadedCourse?.sections.count > 10 && filteredCourse?.sections.count != 0 {
-                sectionDataSource = filteredCourse
-                courseHeader?.segmentedControl.selectedSegmentIndex = 0
-            } else {
-                sectionDataSource = loadedCourse
-                courseHeader?.segmentedControl.selectedSegmentIndex = 1
-            }
+            eagerSetupWith(loadedCourse!)
+            self.tableView.reloadData()
+        }
+    }
+    
+    func eagerSetupWith(course: Common.Course) {
+        let sections = course.sections.filter({
+            section in
+            return section.status == "Open"
+        })
+        
+        do {
+            let newCourse = try Common.Course.Builder().mergeFrom(course).setSections(sections).build()
+            filteredCourse = newCourse
+        } catch {
+            Timber.e("Error while filtering sections from course \(error)")
+        }
+        
+        // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
+        if course.sections.count > 10 && filteredCourse?.sections.count != 0 {
+            sectionDataSource = filteredCourse
+            courseHeader?.segmentedControl.selectedSegmentIndex = 0
+        } else {
+            sectionDataSource = course
+            courseHeader?.segmentedControl.selectedSegmentIndex = 1
         }
     }
     
     // Datasource for the sections
-    var sectionDataSource: Common.Course? {
-        didSet {
-            tableView.beginUpdates()
-            tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
-            tableView.endUpdates()
-        }
-    }
+    var sectionDataSource: Common.Course?
     
+    // Datasource for metadata
+    var metadataDataSource: Common.Course?
+
     // Loaded data from the network silently
     func loadData() {
+        eagerSetupWith(searchFlow!.tempCourse!)
         datarepo.getCourse(searchFlow!.courseTopicName!, {
             if let course = $0 {
                 self.loadedCourse = course
-                self.tableView.reloadData()
             }
         })
     }
@@ -77,7 +79,6 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     // Keep the header at the top of the view
     override func scrollViewDidScroll(scrollView: UIScrollView) {      
         let offsety = scrollView.contentOffset.y
-        print(offsety)
         header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
     }
     
@@ -88,6 +89,10 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         } else if sender.selectedSegmentIndex == 1 {
             sectionDataSource = loadedCourse
         }
+        
+        tableView.beginUpdates()
+        tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableView.endUpdates()
     }
     
     override func viewDidLoad() {
@@ -97,7 +102,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     func setupViews() {
         // Set navbar title e.g English Composition - 101
-        title = "\(loadedCourse!.name) - \(loadedCourse!.number)"
+        title = "\(searchFlow!.tempCourse!.name) - \(searchFlow!.tempCourse!.number)"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
@@ -125,7 +130,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return loadedCourse?.metadata.count ?? 0
+            return metadataDataSource?.metadata.count ?? 0
 
         } else {
             return sectionDataSource?.sections.count ?? 0
@@ -140,7 +145,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         if indexPath.section == 0 {
             if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
                 cell.userInteractionEnabled = false
-                let modelItem = loadedCourse?.metadata[indexPath.row]
+                let modelItem = metadataDataSource?.metadata[indexPath.row]
                 cell.title.text = modelItem?.title
                 
                 var contentString = modelItem?.content

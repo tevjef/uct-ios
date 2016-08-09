@@ -75,7 +75,6 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if  segue.identifier == AppConstants.Id.Segue.sections {
             let nextViewController = segue.destinationViewController as! SingleCourseViewController
-            nextViewController.loadedCourse = loadedCourses![(tableView.indexPathForSelectedRow?.row)!]
             prepareSearchFlow(nextViewController)
         }
     }

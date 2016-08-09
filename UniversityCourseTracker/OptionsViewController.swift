@@ -13,98 +13,58 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     
     
     var universityPickerView: UIPickerView?
+    var termReuseCell: String = "termCell"
+    var universityReuseCell: String = "chooseUniversityCell"
+    var universityTextField: UITextField?
     
+    
+    var terms = Array<Common.Semester>()
+    var selectedTermIndex: Int?
+    
+    // Universities from the network
     var universities = Array<Common.University>() {
         didSet {
-            universityCell.userInteractionEnabled = true
-            termCell.userInteractionEnabled = true
-            
-            let index = universities.indexOf{$0.topicName == coreData.university!.topicName}
-            if index == nil {
-                // Alert user, their university was removed
-                currentUniversityIndex = 0
-            } else {
-                currentUniversityIndex = index!
-            }
-            
-            currentUniversity = universities[currentUniversityIndex]
+            // Find the index of the user's univerisity in the list
+            let index = universities.indexOf{$0.topicName == coreData.university!.topicName} ?? 0
+    
+            currentUniversity = universities[index]
+
+            universityPickerView?.selectRow(index, inComponent: 0, animated: true)
             universityPickerView?.reloadAllComponents()
             
         }
     }
     
-    var selectedUniversityIndex: Int?
-    
     // When university has been selected save it and repoplutate the terms cell
-    var selectedUniversity: Common.University? {
-        didSet {
-            coreData.university = selectedUniversity!
-            coreData.semester = selectedUniversity!.resolvedSemesters.current
-            
-            currentUniversity = selectedUniversity
-        }
-    }
-    
     var currentUniversity: Common.University? {
         didSet {
-            populateTerms(currentUniversity!)
-            setSelectUniversityText(currentUniversity!.name)
-            setSelectTermText(Common.getReadableSemester(coreData.semester!))
-        }
-    }
-    
-    var currentUniversityIndex: Int = 0 {
-        didSet {
-            universityPickerView?.selectRow(currentUniversityIndex, inComponent: 0, animated: true)
-        }
-    }
-    
-    var terms = Array<Common.Semester>()
-    
-    var selectedTermIndex: Int?
-    var termPickerView: UIPickerView?
-
-    var hasUniversitiesLoaded: Bool = false {
-        didSet {
-            // Enable cells when loading is completed
-            if hasUniversitiesLoaded {
+            // Find university semester index
+            selectedTermIndex = currentUniversity?.availableSemesters.indexOf({
+                let semester = coreData.semester!
+                return $0.season == semester.season && $0.year == semester.year
+            })
+        
+            if oldValue != nil {
+                // Reset selected index when user chooses a new university 
+                // selectedTermIndex = 0
                 
+                // Save the user's selected university in the database
+                coreData.university = currentUniversity!
+                coreData.semester = currentUniversity!.resolvedSemesters.current
             }
+            
+            // Repopulate list of availableSemesters
+            terms.removeAll()
+            for semester in currentUniversity!.availableSemesters {
+                terms.append(semester)
+            }
+            
+            tableView.reloadData()
         }
     }
-    
-    @IBOutlet weak var universityCell: UITableViewCell!
-    @IBOutlet weak var universityLabel: UILabel!
-    @IBOutlet weak var termLabel: UILabel!
-    @IBOutlet weak var termCell: UITableViewCell!
-    @IBOutlet weak var universityTextField: UITextField!
-    @IBOutlet weak var termTextField: UITextField!
-    
+
     @IBAction func doneClicked(sender: AnyObject) {
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // Disable modal return button
-        navigationItem.rightBarButtonItem?.enabled = false
-        
-        if indexPath.section == 0 {
-            universityTextField.becomeFirstResponder()
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-            termCell.userInteractionEnabled = false
-        } else if indexPath.section == 1 {
-            termTextField.becomeFirstResponder()
-            universityCell.userInteractionEnabled = false
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        }
-    }
-    
-    func populateTerms(university: Common.University) {
-        terms.removeAll()
-        for semester in university.availableSemesters {
-            terms.append(semester)
-        }
-        termPickerView?.reloadAllComponents()
     }
     
     override func viewDidLoad() {
@@ -122,8 +82,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     func setupViews() {
+        navigationItem.title = "Search Options"
         setupUniversityPickerView()
-        setupTermPickerView()
     }
     
     func setupUniversityPickerView() {
@@ -146,70 +106,31 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         
-        universityTextField.inputView = universityPickerView
-        universityTextField.inputAccessoryView = toolBar
+        // Fake textfield to hijack the the keyboard and replace it with a picker our view.
+        universityTextField = UITextField(frame: CGRectMake(0, 0, 1, 1))
+        universityTextField!.opaque = true
+        view.addSubview(universityTextField!)
+        universityTextField!.inputView = universityPickerView
+        universityTextField!.inputAccessoryView = toolBar
     }
 
     func doneUniversityPicker(sender: UIBarButtonItem) {
         navigationItem.rightBarButtonItem?.enabled = true
-        termCell.userInteractionEnabled = true
-        
-        universityTextField.resignFirstResponder()
-        selectedUniversityIndex = universityPickerView?.selectedRowInComponent(0)
-        selectedUniversity = universities[selectedUniversityIndex!]
+        tableView.userInteractionEnabled = true
+
+        universityTextField!.resignFirstResponder()
+        let index = universityPickerView!.selectedRowInComponent(0)
+        currentUniversity = universities[index]
     }
 
     func cancelUniversityPicker(sender: UIBarButtonItem) {
         navigationItem.rightBarButtonItem?.enabled = true
-        termCell.userInteractionEnabled = true
-        
-        universityTextField.resignFirstResponder()
-    }
-    
-    func setupTermPickerView() {
-        termPickerView = UIPickerView(frame: CGRectMake(0, 200, view.frame.width, 200))
-        termPickerView!.backgroundColor = .whiteColor()
-        termPickerView!.showsSelectionIndicator = true
-        termPickerView!.dataSource = self
-        termPickerView!.delegate = self
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = false
-        toolBar.tintColor = AppConstants.Colors.primary
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(OptionsViewController.doneTermPicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(OptionsViewController.cancelTermPicker))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
-        
-        termTextField.inputView = termPickerView
-        termTextField.inputAccessoryView = toolBar
-    }
-    
-    func doneTermPicker(sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem?.enabled = true
-        universityCell.userInteractionEnabled = true
-        
-        termTextField.resignFirstResponder()
-        selectedTermIndex = termPickerView?.selectedRowInComponent(0)
+        tableView.userInteractionEnabled = true
 
-        // Save selected term
-        let selectedSemester = currentUniversity!.availableSemesters[selectedTermIndex!]
-        coreData.semester = selectedSemester
-        setSelectTermText(selectedSemester)
+        universityTextField!.resignFirstResponder()
     }
     
-    func cancelTermPicker(sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem?.enabled = true
-        universityCell.userInteractionEnabled = true
-
-        termTextField.resignFirstResponder()
-    }
-    
+    // MARK: PickerView delegate
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return CGFloat(30)
     }
@@ -217,9 +138,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == universityPickerView {
             return universities[row].name
-        } else {
-            return Common.getReadableSemester(terms[row])
         }
+        return "Error"
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -229,28 +149,86 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == universityPickerView {
             return universities.count
-        } else {
+        }
+        return 0
+    }
+    
+    // MARK: - UITableViewDelegate Methods
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "University"
+        } else if section == 1 {
+            return "Term"
+        }
+        
+        return ""
+    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else if section == 1 {
             return terms.count
         }
+        return 0
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == universityPickerView {
-            selectedUniversityIndex = row
-        } else {
-            selectedTermIndex = row
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    var checkedIndex: NSIndexPath?
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(universityReuseCell, forIndexPath: indexPath) as UITableViewCell
+            cell.textLabel?.text = currentUniversity?.name
+            return cell
         }
+        
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(termReuseCell, forIndexPath: indexPath) as UITableViewCell
+            if indexPath.row == selectedTermIndex {
+                checkedIndex = indexPath
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            }
+            
+            cell.textLabel?.text = Common.getReadableSemester(terms[indexPath.row])
+            
+            return cell
+        }
+        
+        return UITableViewCell()
     }
     
-    func setSelectUniversityText(text: String) {
-        universityLabel.text = text
-    }
-    
-    func setSelectTermText(semester: Common.Semester) {
-        termLabel.text = Common.getReadableSemester(semester)
-    }
-    
-    func setSelectTermText(semester: String) {
-        termLabel.text = semester
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            // Disable modal return button
+            tableView.userInteractionEnabled = false
+            navigationItem.rightBarButtonItem?.enabled = false
+            
+            universityTextField!.becomeFirstResponder()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else if indexPath.section == 1 {
+            // Unselect previous path
+            if checkedIndex!.row != indexPath.row {
+                let checkedCell = tableView.cellForRowAtIndexPath(checkedIndex!)
+                checkedCell?.accessoryType = UITableViewCellAccessoryType.None
+            }
+            
+            // Update selected path
+            checkedIndex = indexPath
+            
+            // Set checked index
+            let cell = tableView.cellForRowAtIndexPath(indexPath)!
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            // Save currect semester
+            coreData.semester = terms[indexPath.row]
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 }
