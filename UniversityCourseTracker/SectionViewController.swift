@@ -19,6 +19,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     var header: UIView?
     var switchView: UISwitch?
 
+    // The identifier of the view controller that pushed this view
+    var pusher: String?
+    
     // Maintains the state of the naivagtion bar's color when going back
     var previousColor: UIColor?
     var appeared: Bool = false
@@ -53,9 +56,25 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         header?.transform = CGAffineTransformMakeTranslation(0, offsety)
     }
     
+    func gotoCourse(Sender: UIBarButtonItem) {
+        let singleCourseVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.singleCourse) as! SingleCourseViewController
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
+        singleCourseVC.searchFlow = searchFlow
+        singleCourseVC.loadedCourse = searchFlow?.tempCourse
+        self.navigationController?.showViewController(singleCourseVC, sender: self)
+
+    }
+    
     func setupViews() {
         navigationItem.title = searchFlow!.tempCourse!.name
 
+        if pusher == AppConstants.Id.Controllers.trackedSections {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Course", style: .Plain, target: self, action: #selector(SectionViewController.gotoCourse))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
+        }
+        
         // Setup navigation bar colors depending on section status
         appeared = true
         previousColor = navigationController?.navigationBar.barTintColor
@@ -192,6 +211,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         if sender.on == lastPosition {
             return
         }
+        
+        lastPosition = !lastPosition
+        
         if sender.on {
             coreData.addSubscription(subscription!)
         } else {

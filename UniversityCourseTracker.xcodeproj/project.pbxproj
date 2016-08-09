@@ -24,7 +24,6 @@
 		13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13130EDC1D5406CC004BBF0C /* MeetingView.swift */; };
 		131FF1461D4DAC8800F202C4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131FF1451D4DAC8800F202C4 /* AppConstants.swift */; };
 		1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F11D445D5100F5F742 /* AppDelegate.swift */; };
-		1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F31D445D5100F5F742 /* ViewController.swift */; };
 		1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0F51D445D5100F5F742 /* Main.storyboard */; };
 		1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */; };
 		1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0FB1D445D5100F5F742 /* Assets.xcassets */; };
@@ -36,10 +35,12 @@
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
 		134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */; };
 		134CBCA41D56B03C001C4DD5 /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134CBCA31D56B03C001C4DD5 /* MeetingView.xib */; };
+		1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */; };
 		1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */; };
 		1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */; };
 		1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */; };
 		1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */; };
+		1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */; };
 		136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D20941D519F1C00444319 /* SingleCourseViewController.swift */; };
 		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
 		13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */; };
@@ -87,7 +88,6 @@
 		131FF1451D4DAC8800F202C4 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		1327C0EE1D445D5000F5F742 /* UniversityCourseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversityCourseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C0F11D445D5100F5F742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1327C0F31D445D5100F5F742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1327C0F61D445D5100F5F742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1327C0F91D445D5100F5F742 /* UniversityCourseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniversityCourseTracker.xcdatamodel; sourceTree = "<group>"; };
 		1327C0FB1D445D5100F5F742 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,10 +104,12 @@
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		134CBCA31D56B03C001C4DD5 /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
+		1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
 		1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackedSectionsViewController.swift; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				130568711D566971005BB80E /* Timber.swift */,
 				130AD7E11D49B3EB00CCD3E1 /* extensions */,
+				1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -277,7 +280,7 @@
 			children = (
 				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
 				13B182591D4D702D00036D9A /* DefaultsViewController.swift */,
-				1327C0F31D445D5100F5F742 /* ViewController.swift */,
+				1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */,
 				1327C12C1D453CA400F5F742 /* OptionsViewController.swift */,
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
@@ -514,7 +517,6 @@
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				130568721D566971005BB80E /* Timber.swift in Sources */,
-				1327C0F41D445D5100F5F742 /* ViewController.swift in Sources */,
 				1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */,
 				136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */,
 				130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */,
@@ -528,7 +530,9 @@
 				1305686E1D563F91005BB80E /* CoreSubscription.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 				134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */,
+				1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
+				1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

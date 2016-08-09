@@ -38,7 +38,7 @@ class CoreDataManager: NSObject {
     
     func getSubscription(topicName: String) -> Subscription? {
         let subscription = CoreSubscription.getSubscription(moc, topicName: topicName)
-        Timber.d("Getting subscription=\(topicName) returning=\(subscription?.description)")
+        Timber.d("Getting subscription=\(topicName) returning=\(subscription.debugDescription)")
         return subscription
     }
     

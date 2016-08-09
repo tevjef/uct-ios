@@ -94,6 +94,8 @@ class CoreSubscription: NSManagedObject {
                 ctx.deleteObject(obj)
             }
             
+            try ctx.save()
+            
         } catch {
             Timber.e("Failed to remove subscription \(error)")
         }

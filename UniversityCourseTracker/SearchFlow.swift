@@ -108,6 +108,7 @@ class SearchFlow: NSObject, NSCoding {
             let universityBuilder = try Common.University.Builder().mergeFrom(tempUniversity!)
             let subjects = [subject]
             universityBuilder.setSubjects(subjects)
+            universityBuilder.setAvailableSemesters([self.tempSemester!])
             let university = try universityBuilder.build()
             
             subscription.university = university
@@ -158,8 +159,23 @@ class Subscription: NSObject {
         return getCourse().sections.first!
     }
     
-    override var description: String {
-        return sectionTopicName
+    func getSearchFlow() -> SearchFlow {
+        let searchFlow = SearchFlow()
+
+        searchFlow.universityTopicName = self.getUniversity().topicName
+        searchFlow.year = self.getSubject().year
+        searchFlow.season = self.getSubject().season
+        searchFlow.subjectTopicName = self.getSubject().topicName
+        searchFlow.courseTopicName = self.getCourse().topicName
+        searchFlow.sectionTopicName = self.getSection().topicName
+
+        searchFlow.tempSemester = self.getUniversity().availableSemesters.first
+        searchFlow.tempUniversity = self.getUniversity()
+        searchFlow.tempSubject =  self.getSubject()
+        searchFlow.tempCourse =  self.getCourse()
+        searchFlow.tempSection = self.getSection()
+
+        return searchFlow
     }
 }
 

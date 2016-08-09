@@ -3,9 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "SectionViewController.setupViews() -&gt; ():SectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -15,6 +12,9 @@
                value = "(view.frame.size.width * (3/4))">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
@@ -31,10 +31,27 @@
          contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "CoursesViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():CoursesViewController.swift">
+         contextName = "TrackedSectionViewController.viewWillAppear(Bool) -&gt; ():TrackedSectionsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AppConstants.Id.Segue.sections">
+               value = "sectionedDataSet!.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UIViewController.makeTitleViewWithSubtitle(String, subtitle : String) -&gt; UIView:Utils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)">
+            </PersistentString>
+            <PersistentString
+               value = "titleView.frame.size">
+            </PersistentString>
+            <PersistentString
+               value = "min(self.view.frame.size.width * (2/4), max(titleLabel.frame.size.width, subtitleLabel.frame.size.width))">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame.size.width * (2/4)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -50,7 +67,12 @@
          contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1):SubjectsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SectionViewController.viewWillAppear(Bool) -&gt; ():SectionViewController.swift">
+         contextName = "CoursesViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():CoursesViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppConstants.Id.Segue.sections">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.loadData() -&gt; ():SubjectsViewController.swift">
@@ -80,6 +102,12 @@
          contextName = "TermViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():TermViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "SectionViewController.viewWillAppear(Bool) -&gt; ():SectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "getSubjects(String, season : String, year : String, subjects : ([Common.Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">
          <PersistentStrings>
             <PersistentString
@@ -88,22 +116,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "UIViewController.makeTitleViewWithSubtitle(String, subtitle : String) -&gt; UIView:Utils.swift">
+         contextName = "TrackedSectionViewController.(viewWillAppear(Bool) -&gt; ()).(closure #2):TrackedSectionsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)">
+               value = "[sub]">
             </PersistentString>
             <PersistentString
-               value = "titleView.frame.size">
-            </PersistentString>
-            <PersistentString
-               value = "min(self.view.frame.size.width * (2/4), max(titleLabel.frame.size.width, subtitleLabel.frame.size.width))">
-            </PersistentString>
-            <PersistentString
-               value = "self.view.frame.size.width * (2/4)">
+               value = "[$0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -123,6 +142,9 @@
                value = "appConfig.university?.abbr">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TrackedSectionViewController.tableView(UITableView, didSelectRowAtIndexPath : NSIndexPath) -&gt; ():TrackedSectionsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DefaultsViewController.viewDidLoad() -&gt; ():DefaultsViewController.swift">
@@ -153,10 +175,10 @@
          contextName = "CoursesViewController.prepareSearchFlow(SearchFlowDelegate) -&gt; ():CoursesViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">
+         contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
+         contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

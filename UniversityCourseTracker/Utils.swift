@@ -101,6 +101,13 @@ extension UIViewController {
         return appDelegate.dataRepo!
     }
 
+    func popToRoot(button: UIBarButtonItem) {
+        for vc in navigationController!.viewControllers {
+            if vc is TrackedSectionViewController {
+                navigationController?.popToViewController(vc, animated: true)
+            }
+        }
+    }
 
     func delay(delay: Double, closure: ()->()) {
         dispatch_after(

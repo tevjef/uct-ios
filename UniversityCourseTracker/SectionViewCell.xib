@@ -41,14 +41,14 @@
                             <constraint firstItem="Bdn-AI-Tow" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="leading" id="yXQ-qS-YoL"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSD-cf-nMf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSD-cf-nMf">
                         <rect key="frame" x="340" y="189" width="44" height="15"/>
                         <attributedString key="attributedText">
                             <fragment content="Randall">
                                 <attributes>
-                                    <color key="NSColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
-                                    <font key="NSOriginalFont" size="12" name="HelveticaNeue-Bold"/>
+                                    <color key="NSColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                    <font key="NSOriginalFont" size="12" name="HelveticaNeue"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

@@ -15,14 +15,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="386" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="268" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZC-ju-1zQ">
                         <rect key="frame" x="15" y="10" width="363" height="18"/>
                         <attributedString key="attributedText">
                             <fragment content="Prerequisites">
                                 <attributes>
-                                    <color key="NSColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                    <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                    <color key="NSColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                         </attributedString>

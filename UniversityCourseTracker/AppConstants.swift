@@ -39,6 +39,7 @@ class AppConstants {
     struct Id {
         struct Controllers {
             static var trackedSections = "trackedSectionsVC"
+            static var singleCourse = "singleCourseVC"
             static var section = "sectionVC"
         }
         
