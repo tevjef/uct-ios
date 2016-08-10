@@ -52,6 +52,8 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
             sectionDataSource = course
             courseHeader?.segmentedControl.selectedSegmentIndex = 1
         }
+        
+        metadataDataSource = course
     }
     
     // Datasource for the sections

@@ -31,11 +31,12 @@ class TrackedSectionViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
         
+        loadData()
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        // Section View Controller may reset the color
-        self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
+    func loadData() {
+
         
         dataSet = coreData.getAllSubscriptions()
         for subs in dataSet! {
@@ -66,6 +67,15 @@ class TrackedSectionViewController: UITableViewController {
         }
         
         self.tableView.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // Section View Controller may reset the color
+        self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
+        
+        delay(2.0, closure: {
+            self.loadData()
+        })
     }
     
     override func didReceiveMemoryWarning() {

@@ -59,7 +59,11 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
                 terms.append(semester)
             }
             
-            tableView.reloadData()
+            //tableView.reloadData()
+            tableView.beginUpdates()
+            tableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.endUpdates()
         }
     }
 

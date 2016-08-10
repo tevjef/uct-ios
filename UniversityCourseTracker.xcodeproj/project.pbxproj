@@ -34,7 +34,6 @@
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
 		134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */; };
-		134CBCA41D56B03C001C4DD5 /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134CBCA31D56B03C001C4DD5 /* MeetingView.xib */; };
 		1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */; };
 		1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */; };
 		1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */; };
@@ -46,6 +45,7 @@
 		13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */; };
 		13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
+		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
@@ -103,7 +103,6 @@
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
-		134CBCA31D56B03C001C4DD5 /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
 		1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
+		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		130568741D5681BD005BB80E /* customViews */ = {
 			isa = PBXGroup;
 			children = (
-				134CBCA31D56B03C001C4DD5 /* MeetingView.xib */,
+				13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */,
 				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
 				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
 				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
@@ -173,8 +173,8 @@
 				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
 				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
 				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
-				1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */,
 				1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */,
+				1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */,
 				1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */,
 				1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */,
 			);
@@ -427,10 +427,10 @@
 				1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */,
 				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
 				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
+				13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
-				134CBCA41D56B03C001C4DD5 /* MeetingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
