@@ -40,19 +40,6 @@ extension CollectionType where Generator.Element == Instructor {
 }
 
 class Utils {
-    
-    static func getReadableInstructor(instructors: Array<Instructor>) -> String {
-        var str: String = ""
-        for instructor in instructors {
-            str += instructor.name
-            if instructor != instructors.last {
-                str += " | "
-            }
-        }
-        return str
-    }
-
-    
     static func semesterFromString(str: String) -> Semester? {
         let components = str.componentsSeparatedByString(" ")
         let season = components.first!
@@ -66,6 +53,4 @@ class Utils {
         }
         return nil
     }
-    
-    
 }
