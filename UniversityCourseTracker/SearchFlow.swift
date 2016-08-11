@@ -23,11 +23,11 @@ class SearchFlow: NSObject, NSCoding {
     var courseTopicName: String?
     var sectionTopicName: String?
     
-    var tempSemester: Common.Semester?
-    var tempUniversity: Common.University?
-    var tempSubject: Common.Subject?
-    var tempCourse: Common.Course?
-    var tempSection: Common.Section?
+    var tempSemester: Semester?
+    var tempUniversity: University?
+    var tempSubject: Subject?
+    var tempCourse: Course?
+    var tempSection: Section?
     
     // MARK: Archiving Paths
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
@@ -93,19 +93,19 @@ class SearchFlow: NSObject, NSCoding {
         let subscription = Subscription(topicName: sectionTopicName!)
         do {
             // Set section in course
-            let courseBuilder = try Common.Course.Builder().mergeFrom(tempCourse!)
+            let courseBuilder = try Course.Builder().mergeFrom(tempCourse!)
             let sections = [tempSection!]
             courseBuilder.setSections(sections)
             let course = try courseBuilder.build()
             
             // Set course in subject
-            let subjectBuilder = try Common.Subject.Builder().mergeFrom(tempSubject!)
+            let subjectBuilder = try Subject.Builder().mergeFrom(tempSubject!)
             let courses = [course]
             subjectBuilder.setCourses(courses)
             let subject = try subjectBuilder.build()
             
             // Set subject in university 
-            let universityBuilder = try Common.University.Builder().mergeFrom(tempUniversity!)
+            let universityBuilder = try University.Builder().mergeFrom(tempUniversity!)
             let subjects = [subject]
             universityBuilder.setSubjects(subjects)
             universityBuilder.setAvailableSemesters([self.tempSemester!])
@@ -132,30 +132,30 @@ class Subscription: NSObject {
     // -Subject
     // --Course
     // ---Section
-    var university: Common.University?
+    var university: University?
 
     init(topicName: String) {
         self.sectionTopicName = topicName
     }
     
-    convenience init(topicName: String, university: Common.University) {
+    convenience init(topicName: String, university: University) {
         self.init(topicName: topicName)
         self.university = university
     }
     
-    func getUniversity() -> Common.University {
+    func getUniversity() -> University {
         return university!
     }
     
-    func getSubject() -> Common.Subject {
+    func getSubject() -> Subject {
         return university!.subjects.first!
     }
     
-    func getCourse() -> Common.Course {
+    func getCourse() -> Course {
         return getSubject().courses.first!
     }
     
-    func getSection() -> Common.Section {
+    func getSection() -> Section {
         return getCourse().sections.first!
     }
     

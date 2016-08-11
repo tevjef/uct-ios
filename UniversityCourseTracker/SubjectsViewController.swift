@@ -10,7 +10,7 @@ import UIKit
 
 class SubjectsViewController: UITableViewController, SearchFlowDelegate {
 
-    var loadedSubjects: Array<Common.Subject>? {
+    var loadedSubjects: Array<Subject>? {
         didSet {
             if loadedSubjects?.count == oldValue?.count {
                 return
@@ -61,7 +61,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     }
 
     func setupViews() {
-        let semesterString = Common.getReadableSemester(coreData.semester!)
+        let semesterString = coreData.semester!.readableString
         let uni = coreData.university?.abbr ?? "Err"
         
         //let titleView = self.makeTitleViewWithSubtitle(semester, subtitle: uni)

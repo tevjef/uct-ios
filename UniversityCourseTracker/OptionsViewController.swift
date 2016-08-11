@@ -18,11 +18,11 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     var universityTextField: UITextField?
     
     
-    var terms = Array<Common.Semester>()
+    var terms = Array<Semester>()
     var selectedTermIndex: Int?
     
     // Universities from the network
-    var universities = Array<Common.University>() {
+    var universities = Array<University>() {
         didSet {
             // Find the index of the user's univerisity in the list
             let index = universities.indexOf{$0.topicName == coreData.university!.topicName} ?? 0
@@ -36,7 +36,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     // When university has been selected save it and repoplutate the terms cell
-    var currentUniversity: Common.University? {
+    var currentUniversity: University? {
         didSet {
             // Find university semester index
             selectedTermIndex = currentUniversity?.availableSemesters.indexOf({
@@ -199,7 +199,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
                 cell.accessoryType = UITableViewCellAccessoryType.None
             }
             
-            cell.textLabel?.text = Common.getReadableSemester(terms[indexPath.row])
+            cell.textLabel?.text = terms[indexPath.row].readableString
             
             return cell
         }

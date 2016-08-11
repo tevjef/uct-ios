@@ -12,7 +12,7 @@ import CoreData
 
 class CoreUserDefault: NSManagedObject {
 
-    class func getUniversity(ctx: NSManagedObjectContext) -> Common.University? {
+    class func getUniversity(ctx: NSManagedObjectContext) -> University? {
         let data = getPeristedUniversity(ctx)
         
         if data == nil {
@@ -21,7 +21,7 @@ class CoreUserDefault: NSManagedObject {
         return data!.getUniversity()
     }
     
-    class func getSemester(ctx: NSManagedObjectContext) -> Common.Semester? {
+    class func getSemester(ctx: NSManagedObjectContext) -> Semester? {
         let data = getPeristedUniversity(ctx)
         if data == nil {
             return nil
@@ -29,7 +29,7 @@ class CoreUserDefault: NSManagedObject {
         return data!.getSemester()
     }
     
-    class func saveUniversity(ctx: NSManagedObjectContext, data: Common.University) {
+    class func saveUniversity(ctx: NSManagedObjectContext, data: University) {
         // Find exisiting CoreUserDefault
         let persistedUniversity = getPeristedUniversity(ctx)
         
@@ -44,7 +44,7 @@ class CoreUserDefault: NSManagedObject {
     }
     
     // Could possibly be batched with university
-    class func saveSemester(ctx: NSManagedObjectContext, data: Common.Semester) {
+    class func saveSemester(ctx: NSManagedObjectContext, data: Semester) {
         // Find exisiting CoreUserDefault
         let persistedSemester = getPeristedUniversity(ctx)
         
@@ -68,10 +68,10 @@ class CoreUserDefault: NSManagedObject {
         return fetchRequest
     }
     
-    private func getUniversity() -> Common.University? {
+    private func getUniversity() -> University? {
         do {
             if university != nil {
-                let uni = try Common.University.parseFromData(university!)
+                let uni = try University.parseFromData(university!)
                 return uni
             }
         } catch {
@@ -80,10 +80,10 @@ class CoreUserDefault: NSManagedObject {
         return nil
     }
     
-    private func getSemester() -> Common.Semester? {
+    private func getSemester() -> Semester? {
         do {
             if semester != nil {
-                let sem = try Common.Semester.parseFromData(semester!)
+                let sem = try Semester.parseFromData(semester!)
                 return sem
             }
         } catch {
@@ -93,7 +93,7 @@ class CoreUserDefault: NSManagedObject {
         return nil
     }
     
-    private func insert(university: Common.University) {
+    private func insert(university: University) {
         let data = university.data()
         self.university = data
         do {
@@ -104,7 +104,7 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func update(university: Common.University) {
+    private func update(university: University) {
         let data = university.data()
         self.university = data
         do {
@@ -115,7 +115,7 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func insert(semester: Common.Semester) {
+    private func insert(semester: Semester) {
         let data = semester.data()
         self.semester = data
         do {
@@ -126,7 +126,7 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func update(semester: Common.Semester) {
+    private func update(semester: Semester) {
         let data = semester.data()
         self.semester = data
         do {

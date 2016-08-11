@@ -30,12 +30,12 @@ class SectionHeaderView: UIView {
         return SectionHeaderView.viewNib.instantiateWithOwner(self, options: nil).first as! SectionHeaderView
     }
     
-    func setSection(section: Common.Section, semester: Common.Semester) {
+    func setSection(section: Section, semester: Semester) {
         sectionNumber.text = section.number
         callNumber.text = section.callNumber
         creditsNumber.text = section.credits
-        instructorText.text = Common.getReadableInstructor(section.instructors)
-        semesterText.text = Common.getReadableSemester(semester)
+        instructorText.text = section.instructors.listString
+        semesterText.text = semester.readableString
     }
 
 }

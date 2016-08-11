@@ -127,7 +127,7 @@ class CoreSubscription: NSManagedObject {
     private class func subscriptionFromCore(coreSubscription: CoreSubscription) -> Subscription? {
         do {
             if coreSubscription.university != nil {
-                let uni = try Common.University.parseFromData(coreSubscription.university!)
+                let uni = try University.parseFromData(coreSubscription.university!)
                 return Subscription(topicName: coreSubscription.topicName!, university: uni)
             }
         } catch {

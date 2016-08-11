@@ -8,9 +8,40 @@
 
 import Foundation
 
-extension Common {
+class Common {}
+
+extension Semester {
+    var readableString: String { return self.season.capitalizedString + " " + String(self.year) }
+}
+
+extension Course {
+    var openSections: Int {
+        var count: Int = 0
+        for section in self.sections {
+            if section.status == "Open" {
+                count = count + 1
+            }
+        }
+        return count
+    }
+}
+
+extension CollectionType where Generator.Element == Instructor {
+    var listString: String {
+        var str: String = ""
+        for instructor in self {
+            str += instructor.name
+            if instructor != self[self.endIndex] {
+                str += " | "
+            }
+        }
+        return str
+    }
+}
+
+class Utils {
     
-    static func getReadableInstructor(instructors: Array<Common.Instructor>) -> String {
+    static func getReadableInstructor(instructors: Array<Instructor>) -> String {
         var str: String = ""
         for instructor in instructors {
             str += instructor.name
@@ -20,18 +51,15 @@ extension Common {
         }
         return str
     }
+
     
-    static func getReadableSemester(semester: Common.Semester) -> String {
-        return semester.season.capitalizedString + " " + String(semester.year)
-    }
-    
-    static func semesterFromString(str: String) -> Common.Semester? {
+    static func semesterFromString(str: String) -> Semester? {
         let components = str.componentsSeparatedByString(" ")
         let season = components.first!
         let year = Int32(components.last!)
         
         do {
-            let semester = try Common.Semester.Builder().setSeason(season).setYear(year!).build()
+            let semester = try Semester.Builder().setSeason(season).setYear(year!).build()
             return semester
         } catch {
             Timber.e("Failed to parse semester")
@@ -39,13 +67,5 @@ extension Common {
         return nil
     }
     
-    static func getOpenSections(course: Common.Course) -> Int {
-        var count: Int = 0
-        for section in course.sections {
-            if section.status == "Open" {
-                count = count + 1
-            }
-        }
-        return count
-    }
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
-    var loadedCourses: Array<Common.Course>? {
+    var loadedCourses: Array<Course>? {
         didSet {
             if loadedCourses?.count == oldValue?.count {
                 return
@@ -99,7 +99,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
         }
         
         cell.textLabel?.text = "\(course!.number): \(course!.name)"
-        cell.detailTextLabel?.text = "\(Common.getOpenSections(course!)) open sections of \(course!.sections.count)"
+        cell.detailTextLabel?.text = "\(course!.openSections)) open sections of \(course!.sections.count)"
         return cell
     }
 

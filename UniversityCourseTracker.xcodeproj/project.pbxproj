@@ -30,7 +30,6 @@
 		1327C0FF1D445D5100F5F742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */; };
 		1327C10A1D445D5100F5F742 /* UniversityCourseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1091D445D5100F5F742 /* UniversityCourseTrackerTests.swift */; };
 		1327C1151D445D5100F5F742 /* UniversityCourseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */; };
-		1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1221D445E2300F5F742 /* Common.Model.proto.swift */; };
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
 		134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */; };
@@ -46,6 +45,7 @@
 		13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
+		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
@@ -99,7 +99,6 @@
 		1327C1101D445D5100F5F742 /* UniversityCourseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniversityCourseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCourseTrackerUITests.swift; sourceTree = "<group>"; };
 		1327C1161D445D5100F5F742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1327C1221D445E2300F5F742 /* Common.Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.Model.proto.swift; sourceTree = "<group>"; };
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
+		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		1327C1281D445E2F00F5F742 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				1327C1221D445E2300F5F742 /* Common.Model.proto.swift */,
+				13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */,
 				13D374B51D457FC0001940FD /* ModelExtensions.swift */,
 			);
 			name = model;
@@ -521,7 +521,6 @@
 				136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */,
 				130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */,
 				13130EDD1D5406CC004BBF0C /* MeetingView.swift in Sources */,
-				1327C1251D445E2300F5F742 /* Common.Model.proto.swift in Sources */,
 				1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */,
 				130F19CE1D4ECC8B00D414AB /* CoreDataManager.swift in Sources */,
 				13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */,
@@ -531,6 +530,7 @@
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 				134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */,
 				1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */,
+				13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
 				1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */,
 			);

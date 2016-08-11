@@ -48,10 +48,10 @@ class CoreDataManager: NSObject {
         return subscriptions
     }
     
-    var cachedUniverisity: Common.University?
-    var cachedSemester: Common.Semester?
+    var cachedUniverisity: University?
+    var cachedSemester: Semester?
     
-    var university: Common.University? {
+    var university: University? {
         get {
             return getUniversity()
         }
@@ -60,7 +60,7 @@ class CoreDataManager: NSObject {
         }
     }
     
-    var semester: Common.Semester? {
+    var semester: Semester? {
         get {
             return getSemester()
         }
@@ -69,8 +69,8 @@ class CoreDataManager: NSObject {
         }
     }
     
-    private func getUniversity() -> Common.University? {
-        let university: Common.University?
+    private func getUniversity() -> University? {
+        let university: University?
 
         if cachedUniverisity != nil {
             university = cachedUniverisity
@@ -82,8 +82,8 @@ class CoreDataManager: NSObject {
         return university
     }
     
-    private func getSemester() -> Common.Semester? {
-        let semester: Common.Semester?
+    private func getSemester() -> Semester? {
+        let semester: Semester?
         
         if cachedSemester != nil {
             semester = cachedSemester
@@ -95,7 +95,7 @@ class CoreDataManager: NSObject {
         return semester
     }
     
-    private func updateUniversity(university: Common.University) {
+    private func updateUniversity(university: University) {
         Timber.d("Updating university=\(university.topicName)")
         
         // Invalidate cache
@@ -103,7 +103,7 @@ class CoreDataManager: NSObject {
         CoreUserDefault.saveUniversity(moc, data: university)
     }
     
-    private func updateSemester(semester: Common.Semester)  {
+    private func updateSemester(semester: Semester)  {
         Timber.d("Updating semester=\(semester.description)")
         
         // Invalidate cache

@@ -15,7 +15,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var textField: UITextField!
     var indicator = UIActivityIndicatorView()
     var pickerView: UIPickerView?
-    var universities: Array<Common.University>?
+    var universities: Array<University>?
     var selectedIndex: Int?
     
     override func viewDidLoad() {

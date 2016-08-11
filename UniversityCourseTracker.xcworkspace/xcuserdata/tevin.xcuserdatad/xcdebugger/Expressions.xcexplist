@@ -17,7 +17,7 @@
          contextName = "DefaultsViewController.cancelPicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DataRepos.(processRequest(Request, completion : (Common.Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
+         contextName = "DataRepos.(processRequest(Request, completion : (Response?) -&gt; ()) -&gt; ()).(closure #1):DataRepos.swift">
       </ContextState>
       <ContextState
          contextName = "SubjectsViewController.(loadData() -&gt; ()).(closure #1).(closure #1):SubjectsViewController.swift">
@@ -28,7 +28,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TermViewController.setAvailableSemesters([Common.Semester]) -&gt; ():TermViewController.swift">
+         contextName = "TermViewController.setAvailableSemesters([Semester]) -&gt; ():TermViewController.swift">
       </ContextState>
       <ContextState
          contextName = "TrackedSectionViewController.viewWillAppear(Bool) -&gt; ():TrackedSectionsViewController.swift">
@@ -108,7 +108,7 @@
          contextName = "DefaultsViewController.donePicker(UIBarButtonItem) -&gt; ():DefaultsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "getSubjects(String, season : String, year : String, subjects : ([Common.Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">
+         contextName = "getSubjects(String, season : String, year : String, subjects : ([Subject]?) -&gt; ()) -&gt; ():DataRepos.swift">
          <PersistentStrings>
             <PersistentString
                value = "&quot;\(SUBJECTS)\(universityTopic)/\(season)/\(year)&quot;">
@@ -178,7 +178,7 @@
          contextName = "SubjectsViewController.viewDidLoad() -&gt; ():SubjectsViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SectionViewCell.setSection(Common.Section) -&gt; ():SectionViewCell.swift">
+         contextName = "SectionViewCell.setSection(Section) -&gt; ():SectionViewCell.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

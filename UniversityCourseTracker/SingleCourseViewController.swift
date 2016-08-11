@@ -22,23 +22,23 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var courseHeader: CourseHeaderView?
     
     // Filtered to contained only open sections
-    var filteredCourse: Common.Course?
+    var filteredCourse: Course?
 
-    var loadedCourse: Common.Course? {
+    var loadedCourse: Course? {
         didSet {
             eagerSetupWith(loadedCourse!)
             self.tableView.reloadData()
         }
     }
     
-    func eagerSetupWith(course: Common.Course) {
+    func eagerSetupWith(course: Course) {
         let sections = course.sections.filter({
             section in
             return section.status == "Open"
         })
         
         do {
-            let newCourse = try Common.Course.Builder().mergeFrom(course).setSections(sections).build()
+            let newCourse = try Course.Builder().mergeFrom(course).setSections(sections).build()
             filteredCourse = newCourse
         } catch {
             Timber.e("Error while filtering sections from course \(error)")
@@ -57,10 +57,10 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     }
     
     // Datasource for the sections
-    var sectionDataSource: Common.Course?
+    var sectionDataSource: Course?
     
     // Datasource for metadata
-    var metadataDataSource: Common.Course?
+    var metadataDataSource: Course?
 
     // Loaded data from the network silently
     func loadData() {

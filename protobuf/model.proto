@@ -1,6 +1,5 @@
 syntax = "proto2";
 
-package common;
 import "gogo.proto";
 
 option go_package = "common";

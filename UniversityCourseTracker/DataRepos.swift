@@ -17,12 +17,12 @@ class DataRepos {
         self.constants = constants
     }
     
-    func processRequest(request: Request, completion: (Common.Response?) -> Void) {
+    func processRequest(request: Request, completion: (Response?) -> Void) {
         Timber.d("Request \(request.debugDescription)")
         request.responseData { response in
             if response.result.isSuccess {
                 do {
-                    let resp = try Common.Response.parseFromData(response.data!)
+                    let resp = try Response.parseFromData(response.data!)
                     completion(resp)
                 } catch {
                     completion(nil)
@@ -36,7 +36,7 @@ class DataRepos {
         }
     }
     
-    func getUniversities(universities: (Array<Common.University>?) -> Void) {
+    func getUniversities(universities: (Array<University>?) -> Void) {
         let url = constants.UNIVERSITIES
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -45,7 +45,7 @@ class DataRepos {
         })
     }
     
-    func getUniversity(universityTopic: String, _ university: (Common.University?) -> Void) {
+    func getUniversity(universityTopic: String, _ university: (University?) -> Void) {
         let url = "\(constants.UNIVERSITY)\(universityTopic)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -55,7 +55,7 @@ class DataRepos {
     }
     
     func getSubjects(universityTopic: String, _ season: String, _ year: String,
-                     _ subjects: (Array<Common.Subject>?) -> Void) {
+                     _ subjects: (Array<Subject>?) -> Void) {
         let url = "\(constants.SUBJECTS)\(universityTopic)/\(season)/\(year)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -64,7 +64,7 @@ class DataRepos {
         })
     }
     
-    func getSubject(subjectTopic: String, _ subject: (Common.Subject?) -> Void) {
+    func getSubject(subjectTopic: String, _ subject: (Subject?) -> Void) {
         let url = "\(constants.SUBJECT)\(subjectTopic)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -73,7 +73,7 @@ class DataRepos {
         })
     }
     
-    func getCourses(subjectTopic: String, _ courses: (Array<Common.Course>?) -> Void) {
+    func getCourses(subjectTopic: String, _ courses: (Array<Course>?) -> Void) {
         let url = "\(constants.COURSES)\(subjectTopic)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -82,7 +82,7 @@ class DataRepos {
         })
     }
     
-    func getCourse(courseTopic: String, _ course: (Common.Course?) -> Void) {
+    func getCourse(courseTopic: String, _ course: (Course?) -> Void) {
         let url = "\(constants.COURSE)\(courseTopic)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {
@@ -91,7 +91,7 @@ class DataRepos {
         })
     }
     
-    func getSection(sectionTopic: String, _ section: (Common.Section?) -> Void) {
+    func getSection(sectionTopic: String, _ section: (Section?) -> Void) {
         let url = "\(constants.SECTION)\(sectionTopic)"
         let request = Alamofire.request(.GET, url)
         processRequest(request, completion: {

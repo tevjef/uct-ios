@@ -51,7 +51,7 @@ class SectionViewCell: UITableViewCell {
         }
     }
     
-    func setSection(section: Common.Section) {
+    func setSection(section: Section) {
         sectionNumber.text = section.number
         if section.status == "Open" {
             circleViewContainer.backgroundColor = AppConstants.Colors.openSection
@@ -59,7 +59,7 @@ class SectionViewCell: UITableViewCell {
             circleViewContainer.backgroundColor = AppConstants.Colors.closedSection
         }
         
-        instructorLabel.text = Common.getReadableInstructor(section.instructors)
+        instructorLabel.text = Utils.getReadableInstructor(section.instructors)
         
         var height: CGFloat = 0
         resetAllMeetingViews()
