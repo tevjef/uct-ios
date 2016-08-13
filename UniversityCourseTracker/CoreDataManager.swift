@@ -8,26 +8,31 @@
 
 import Foundation
 import CoreData
+import FirebaseMessaging
 
 // The holiest of god objects
 class CoreDataManager: NSObject {
   
     let appDelegate: AppDelegate
+    let firebaseManager: FirebaseManager
     
     let moc: NSManagedObjectContext
     
-    init(appDelegate: AppDelegate)  {
+    init(appDelegate: AppDelegate, firebaseManager: FirebaseManager)  {
         self.appDelegate = appDelegate
-        moc = appDelegate.managedObjectContext
+        self.firebaseManager = firebaseManager
+        moc = appDelegate.managedObjectContext.self
     }
     
     func addSubscription(subscription: Subscription) {
-        Timber.d("Adding subscription=\(subscription.description)")
+        Timber.d("Adding subscription=\(subscription.sectionTopicName)")
+        FIRMessaging.messaging().subscribeToTopic("/topics/\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
     }
     
     func removeSubscription(topicName: String) -> Int {
         Timber.d("Removing subscription=\(topicName)")
+        FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
         return CoreSubscription.removeSubscription(moc, topicName: topicName)
     }
     
@@ -48,8 +53,8 @@ class CoreDataManager: NSObject {
         return subscriptions
     }
     
-    var cachedUniverisity: University?
-    var cachedSemester: Semester?
+    private var cachedUniverisity: University?
+    private var cachedSemester: Semester?
     
     var university: University? {
         get {

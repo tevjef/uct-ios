@@ -1,7 +1,21 @@
 PODS:
   - Alamofire (3.4.1)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
+  - CocoaLumberjack/Swift (2.3.0):
+    - CocoaLumberjack/Extensions
+  - Firebase (3.3.0):
+    - Firebase/Core (= 3.3.0)
   - Firebase/Analytics (3.3.0):
     - FirebaseAnalytics (= 3.2.1)
+  - Firebase/Core (3.3.0):
+    - Firebase/Analytics (= 3.3.0)
+  - Firebase/Messaging (3.3.0):
+    - Firebase/Analytics (= 3.3.0)
+    - FirebaseMessaging (= 1.1.0)
   - Firebase/RemoteConfig (3.3.0):
     - Firebase/Analytics (= 3.3.0)
     - FirebaseRemoteConfig (= 1.1.1)
@@ -11,6 +25,11 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.3)
   - FirebaseInstanceID (1.0.7)
+  - FirebaseMessaging (1.1.0):
+    - FirebaseAnalytics (~> 3.2)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleIPhoneUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
   - FirebaseRemoteConfig (1.1.1):
     - FirebaseAnalytics (~> 3.2)
     - FirebaseInstanceID (~> 1.0)
@@ -31,15 +50,20 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - CocoaLumberjack/Swift
+  - Firebase
+  - Firebase/Messaging
   - Firebase/RemoteConfig
   - ProtocolBuffers-Swift
   - PureLayout
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
   FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
   FirebaseInstanceID: a9d923f3d0b6fbf9fac89310860357aaadc34be5
+  FirebaseMessaging: 8a92e9ea70673605aa7d1803d2d5aa3eb946009c
   FirebaseRemoteConfig: 3260ced812d2adcbb9bcefe0dc78fdce7b8090e6
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
@@ -48,6 +72,6 @@ SPEC CHECKSUMS:
   ProtocolBuffers-Swift: afbdde78be3c6af8a610d2c257d6bc88e8c7c5d4
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
 
-PODFILE CHECKSUM: ed963cb21bb048907f15edac78db04b6600ba3a5
+PODFILE CHECKSUM: 6cee32eb1ba80c1256126a8bd6c07ac05374cd17
 
 COCOAPODS: 1.0.1

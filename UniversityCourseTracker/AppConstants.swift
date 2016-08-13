@@ -18,6 +18,10 @@ class AppConstants {
     var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)/"
     var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)/"
     
+    struct Notification {
+        static var genericNotificationTitle = "Course Tracker"
+    }
+    
     struct Network {
         static var apiVersion = "v2"
         static var base = "https://uct.tevindev.me"

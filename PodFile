@@ -3,8 +3,20 @@ platform :ios, '9.0'
 use_frameworks!
 
 target ‘UniversityCourseTracker’ do
+    # For network connection
     pod 'Alamofire', '~> 3.4'
-    pod 'ProtocolBuffers-Swift'
+
+    # To generate model objects from a .proto
+    pod 'ProtocolBuffers-Swift’
+
+    # For level logging done right! 
+    pod 'CocoaLumberjack/Swift'
+
+    # Because constraint syntax is still alien to me
     pod 'PureLayout'
+
+    # For messaging and configruation from backend
+    pod 'Firebase'
     pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Messaging'
 end
