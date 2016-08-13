@@ -17,12 +17,9 @@ class TrackedSectionViewController: UITableViewController {
 
     var sectionedDataSet = OrderedDictionary<String, Array<Subscription>>()
     
-    @IBAction func refresh(sender: UIRefreshControl) {
-        hideRefreshing()
-    }
-    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
+        coreData.refreshAllSubscriptions()
         setupViews()
         
         tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
@@ -36,46 +33,53 @@ class TrackedSectionViewController: UITableViewController {
     }
     
     func loadData() {
-
-        
-        dataSet = coreData.getAllSubscriptions()
-        for subs in dataSet! {
-            Timber.i("Subscription=" + subs.sectionTopicName)
-        }
-        
-        dataSet?.sortInPlace({
-            let subjectLHS = $0.getSubject()
-            let courseLHS = $0.getCourse()
-            let sectionLHS = $0.getSection()
-            
-            let subjectRHS = $1.getSubject()
-            let courseRHS = $1.getCourse()
-            let sectionRHS = $1.getSection()
-            
-            return "\(subjectLHS.name)\(courseLHS.number)\(sectionLHS.number)" <  "\(subjectRHS.name)\(courseRHS.number)\(sectionRHS.number)"
-        })
-        
-        sectionedDataSet.removeAll()
-        for data in dataSet! {
-            let courseName = data.getCourse().name
-            if sectionedDataSet[courseName] != nil {
-                sectionedDataSet[courseName]!.append(data)
-            } else {
-                sectionedDataSet[courseName] = Array<Subscription>()
-                sectionedDataSet[courseName]!.append(data)
-            }
-        }
-        
+        self.sectionedDataSet.removeAll()
         self.tableView.reloadData()
+        dispatch_async(GlobalUserInitiatedQueue, {
+            self.dataSet = self.coreData.getAllSubscriptions()
+            
+            for subs in self.dataSet! {
+                Timber.i("Subscription=" + subs.sectionTopicName)
+            }
+            
+            self.dataSet?.sortInPlace({
+                let subjectLHS = $0.getSubject()
+                let courseLHS = $0.getCourse()
+                let sectionLHS = $0.getSection()
+                
+                let subjectRHS = $1.getSubject()
+                let courseRHS = $1.getCourse()
+                let sectionRHS = $1.getSection()
+                
+                return "\(subjectLHS.name)\(courseLHS.number)\(sectionLHS.number)" <  "\(subjectRHS.name)\(courseRHS.number)\(sectionRHS.number)"
+            })
+            
+            self.sectionedDataSet.removeAll()
+            for data in self.dataSet! {
+                let courseName = data.getCourse().name
+                if self.sectionedDataSet[courseName] != nil {
+                    self.sectionedDataSet[courseName]!.append(data)
+                } else {
+                    self.sectionedDataSet[courseName] = Array<Subscription>()
+                    self.sectionedDataSet[courseName]!.append(data)
+                }
+            }
+            
+            dispatch_async(GlobalMainQueue, {
+                                if self.sectionedDataSet.count == 0 {
+                    self.emptyMessage("You don't seem be tracking any sections, try adding some!")
+                } else {
+                                    self.tableView.backgroundView = UIView()
+                    self.tableView.reloadData()
+                }
+            })
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
         // Section View Controller may reset the color
         self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
-        
-        delay(2.0, closure: {
-            self.loadData()
-        })
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,5 +145,27 @@ class TrackedSectionViewController: UITableViewController {
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
         searchFlowDelegate.searchFlow = getSubscriptionInValue(selectedIndex!).getSearchFlow()
+    }
+    
+    func onSubscriptionAdded(sender: AnyObject) {
+        if self.view.window != nil {
+            loadData()
+        }
+    }
+    
+    func onSubscriptionRemoved(sender: AnyObject) {
+        if self.view.window != nil {
+            loadData()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionAdded), name: CoreDataManager.addSubscriptionNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionRemoved), name: CoreDataManager.removeSubscriptionNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.addSubscriptionNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.removeSubscriptionNotification, object: nil)
     }
 }

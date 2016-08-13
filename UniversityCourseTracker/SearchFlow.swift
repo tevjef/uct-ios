@@ -177,5 +177,20 @@ class Subscription: NSObject {
 
         return searchFlow
     }
+    
+    func updateSection(section: Section) {
+        var tempUni = university
+        var tempSubject = tempUni!.subjects.first!
+        var tempCourse = tempSubject.courses.first!
+        do {
+            tempCourse = try Course.getBuilder().mergeFrom(tempCourse).setSections([section]).build()
+            tempSubject = try Subject.getBuilder().mergeFrom(tempSubject).setCourses([tempCourse]).build()
+            tempUni = try University.getBuilder().mergeFrom(tempUni!).setSubjects([tempSubject]).build()
+        } catch {
+            Timber.e("Error when updating section in subscription \(error)")
+        }
+        
+        university = tempUni!
+    }
 }
 

@@ -58,14 +58,13 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     }
     
     func setupViews() {
-        navigationItem.title = searchFlow?.tempSubject?.name
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        
+        navigationItem.title = "\(searchFlow!.tempSubject!.number) - \(searchFlow!.tempSubject!.name)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
         let course = loadedCourses![tableView.indexPathForSelectedRow!.row]
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: searchFlow!.tempSubject!.number, style: .Plain, target: nil, action: nil)
         searchFlow?.courseTopicName = course.topicName
         searchFlow?.tempCourse = course
         searchFlowDelegate.searchFlow = self.searchFlow

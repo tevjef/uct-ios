@@ -110,6 +110,9 @@ class Notifications {
     }
     
     class func incrementBadge() {
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+            return
+        }
         UIApplication.sharedApplication().applicationIconBadgeNumber += 1
     }
     

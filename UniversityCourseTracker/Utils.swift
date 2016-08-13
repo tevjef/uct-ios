@@ -10,6 +10,29 @@ import Foundation
 
 import UIKit
 
+
+var GlobalMainQueue: dispatch_queue_t {
+    return dispatch_get_main_queue()
+}
+
+var GlobalUserInteractiveQueue: dispatch_queue_t {
+    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)
+}
+
+var GlobalUserInitiatedQueue: dispatch_queue_t {
+    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
+}
+
+var GlobalUtilityQueue: dispatch_queue_t {
+    return dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue), 0)
+}
+
+var GlobalBackgroundQueue: dispatch_queue_t {
+    return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
+}
+
+
+
 extension UIColor {
     convenience init(hexString:String) {
         let hexString:NSString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -61,6 +84,17 @@ extension UITableViewController {
         self.refreshControl?.beginRefreshing()
     }
     
+    func emptyMessage(message:String) {
+        let messageLabel = UILabel(frame: CGRectMake(0,0,self.view.bounds.size.width * 0.5, self.view.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = AppConstants.Colors.primary
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .Center;
+        //messageLabel.sizeToFit()
+        
+        self.tableView.backgroundView = messageLabel;
+        self.tableView.separatorStyle = .None;
+    }
     
     func showRefreshing(closure: () -> Bool)  {
         delay(0.3, closure: {

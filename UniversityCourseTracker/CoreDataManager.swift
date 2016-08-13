@@ -13,6 +13,10 @@ import FirebaseMessaging
 // The holiest of god objects
 class CoreDataManager: NSObject {
   
+    static let addSubscriptionNotification = "addSubscriptionNotification"
+    static let removeSubscriptionNotification = "removeSubscriptionNotification"
+    static let updateSubscriptionsNotification = "updateSubscriptionsNotification"
+
     let appDelegate: AppDelegate
     let firebaseManager: FirebaseManager
     
@@ -26,14 +30,30 @@ class CoreDataManager: NSObject {
     
     func addSubscription(subscription: Subscription) {
         Timber.d("Adding subscription=\(subscription.sectionTopicName)")
-        FIRMessaging.messaging().subscribeToTopic("/topics/\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
+        FIRMessaging.messaging().subscribeToTopic("/topics/\(subscription.sectionTopicName)")
+        NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.addSubscriptionNotification, object: self)
     }
     
     func removeSubscription(topicName: String) -> Int {
         Timber.d("Removing subscription=\(topicName)")
         FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
-        return CoreSubscription.removeSubscription(moc, topicName: topicName)
+        let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
+        NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.removeSubscriptionNotification, object: self)
+        return numRemoved
+    }
+    
+    func refreshAllSubscriptions() {
+        Timber.d("Refreshing all sections...")
+        let subscriptions = getAllSubscriptions()
+        for sub in subscriptions {
+            appDelegate.dataRepo?.getSection(sub.sectionTopicName, {
+                if let section = $0 {
+                    sub.updateSection(section)
+                    self.updateSubscription(sub)
+                }
+            })
+        }
     }
     
     func updateSubscription(subscription: Subscription) {

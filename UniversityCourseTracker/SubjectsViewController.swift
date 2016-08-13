@@ -63,11 +63,10 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     func setupViews() {
         let semesterString = coreData.semester!.readableString
         let uni = coreData.university?.abbr ?? "Err"
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         //let titleView = self.makeTitleViewWithSubtitle(semester, subtitle: uni)
         //navigationItem.titleView = titleView
         navigationItem.title = uni +  " " + semesterString
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     }
     
     func refreshSearchFlow() {
