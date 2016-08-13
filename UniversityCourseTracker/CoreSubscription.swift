@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import FirebaseMessaging
 
 
 class CoreSubscription: NSManagedObject {
@@ -57,6 +58,7 @@ class CoreSubscription: NSManagedObject {
     }
     
     class func upsertSubscription(ctx: NSManagedObjectContext, subscription: Subscription) {
+            
         do {
             let fetchedCoreSubscriptions = try getCoreSubscriptions(ctx, topicName: subscription.sectionTopicName)
             if fetchedCoreSubscriptions.count > 1 {
