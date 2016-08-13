@@ -32,6 +32,7 @@
 		1327C1151D445D5100F5F742 /* UniversityCourseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */; };
 		1327C1261D445E2300F5F742 /* DataRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C1231D445E2300F5F742 /* DataRepos.swift */; };
 		1327C12D1D453CA400F5F742 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327C12C1D453CA400F5F742 /* OptionsViewController.swift */; };
+		13302BC91D5EC6F500922579 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13302BC81D5EC6F500922579 /* FirebaseManager.swift */; };
 		134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */; };
 		1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */; };
 		1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */; };
@@ -40,12 +41,14 @@
 		1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */; };
 		1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */; };
 		136D20951D519F1C00444319 /* SingleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D20941D519F1C00444319 /* SingleCourseViewController.swift */; };
+		137F92021D5EA7D500B352FC /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137F92011D5EA7D500B352FC /* Notifications.swift */; };
 		13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B182591D4D702D00036D9A /* DefaultsViewController.swift */; };
 		13BADA5C1D57CFEE00B666CB /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */; };
 		13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
+		13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
@@ -101,6 +104,7 @@
 		1327C1161D445D5100F5F742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1327C1231D445E2300F5F742 /* DataRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepos.swift; sourceTree = "<group>"; };
 		1327C12C1D453CA400F5F742 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		13302BC81D5EC6F500922579 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
@@ -109,12 +113,15 @@
 		1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackedSectionsViewController.swift; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
+		137F92011D5EA7D500B352FC /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
+		13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UniversityCourseTracker.entitlements; sourceTree = "<group>"; };
+		13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +163,7 @@
 				1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */,
 				1305686C1D563F91005BB80E /* CoreUserDefault.swift */,
 				1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */,
+				13302BC81D5EC6F500922579 /* FirebaseManager.swift */,
 				1327C1281D445E2F00F5F742 /* model */,
 				1327C1291D445E3800F5F742 /* repository */,
 			);
@@ -224,14 +232,17 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
 				130568751D5681E2005BB80E /* utils */,
 				1305685E1D563DBF005BB80E /* data */,
 				130568741D5681BD005BB80E /* customViews */,
 				1327C12E1D453CAD00F5F742 /* controllers */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
+				137F92011D5EA7D500B352FC /* Notifications.swift */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
+				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
 			);
 			path = UniversityCourseTracker;
@@ -378,9 +389,15 @@
 				TargetAttributes = {
 					1327C0ED1D445D5000F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 33EY486PX7;
+						DevelopmentTeam = KY3W4D44PY;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -429,6 +446,7 @@
 				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
 				13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
+				13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
 			);
@@ -515,6 +533,7 @@
 				13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */,
 				1367EBD11D58A3D500A05932 /* CourseHeaderView.swift in Sources */,
 				130AD7E51D49B4DC00CCD3E1 /* NavigationController.swift in Sources */,
+				13302BC91D5EC6F500922579 /* FirebaseManager.swift in Sources */,
 				130F19CC1D4EAD3100D414AB /* SearchFlow.swift in Sources */,
 				130568721D566971005BB80E /* Timber.swift in Sources */,
 				1367EBD61D58AECD00A05932 /* SectionHeaderView.swift in Sources */,
@@ -532,6 +551,7 @@
 				1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */,
 				13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
+				137F92021D5EA7D500B352FC /* Notifications.swift in Sources */,
 				1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,9 +697,10 @@
 			baseConfigurationReference = 87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -689,9 +710,10 @@
 			baseConfigurationReference = 03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -74,6 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
+        // Reload all data
+        coreDataManager?.refreshAllSubscriptions()
+        
         Notifications.incrementBadge()
         completionHandler(UIBackgroundFetchResult.NewData)
     }
