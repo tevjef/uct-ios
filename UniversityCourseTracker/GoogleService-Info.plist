@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>469097761050-qes89pl57cuje47spp0use25bcv2hf4t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.469097761050-qes89pl57cuje47spp0use25bcv2hf4t</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAoOpqULKJBLRzDWaZ9z-KUdrlsBvBkGqw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>469097761050</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tevinjeffrey.uctios</string>
+	<key>PROJECT_ID</key>
+	<string>universitycoursetracker</string>
+	<key>STORAGE_BUCKET</key>
+	<string>universitycoursetracker.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:469097761050:ios:ab9aaa77b31634db</string>
+	<key>DATABASE_URL</key>
+	<string>https://universitycoursetracker.firebaseio.com</string>
+</dict>
+</plist>

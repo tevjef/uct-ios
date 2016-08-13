@@ -145,7 +145,7 @@ extension UIViewController {
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+        
     func alertYouFuckedUp(onOk: ()->()) {
         let alert = UIAlertController(title: "You fucked up somewhere here", message: "Pleease refrain from future fuck ups.", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "I'll try", style: UIAlertActionStyle.Default, handler: {

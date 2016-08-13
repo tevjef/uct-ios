@@ -59,7 +59,7 @@ class SectionViewCell: UITableViewCell {
             circleViewContainer.backgroundColor = AppConstants.Colors.closedSection
         }
         
-        instructorLabel.text = Utils.getReadableInstructor(section.instructors)
+        instructorLabel.text = section.instructors.listString
         
         var height: CGFloat = 0
         resetAllMeetingViews()
