@@ -23,6 +23,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         if coreData.university != nil {
             skipToTrackedSections()
         } else {
+            reporting.logShowScreen(self)
             setupViews()
             loadData()
         }
@@ -33,6 +34,8 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let university = universities![selectedIndex!]
         coreData.university = university
         coreData.semester = university.resolvedSemesters.current
+        
+        reporting.logDefaultUniversity(university.topicId)
     }
     
     override func didReceiveMemoryWarning() {

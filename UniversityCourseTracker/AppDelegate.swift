@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseMessaging
+import CocoaLumberjack
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appconstants = AppConstants()
     var coreDataManager: CoreDataManager?
     var firebaseManager: FirebaseManager?
-    
+    var reporting: Reporting?
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        DDTTYLogger.sharedInstance().colorsEnabled = true
+        DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
+        DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+        Timber.plant(CocoaLoggerTree())
+        Timber.plant(FirebaseTree())
+        Timber.plant(CrashlyicsTree())
+
+        Fabric.with([Crashlytics.self, Answers.self])
+        
+        reporting = Reporting()
         dataRepo = DataRepos(constants: appconstants)
-        Timber.plant(DebugTree())
         firebaseManager = FirebaseManager(appDelegate: self)
         coreDataManager = CoreDataManager(appDelegate: self, firebaseManager: firebaseManager!)
     
@@ -92,8 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if notification.category == Notifications.Id.sectionNotificationCategoryId {
             switch identifier! {
             case Notifications.Id.registerActionId:
-                AppDelegate.openUrl(subscription!.getUniversity().registrationPage)
-                
+                openUrl(subscription!.getUniversity().registrationPage)
+
             case Notifications.Id.unsubscribeActionId:
                 Notifications.decrementBadge()
                 coreDataManager?.removeSubscription(topicName)
@@ -108,8 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    class func openUrl(url: String) {
+    func openUrl(url: String) {
         UIApplication.sharedApplication().openURL(NSURL(string:url)!)
+        reporting?.logRegister(url)
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {

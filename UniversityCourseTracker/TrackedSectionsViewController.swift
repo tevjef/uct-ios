@@ -18,6 +18,8 @@ class TrackedSectionViewController: UITableViewController {
     var sectionedDataSet = OrderedDictionary<String, Array<Subscription>>()
     
     override func viewDidLoad() {
+        reporting.logShowScreen(self)
+
         self.navigationItem.hidesBackButton = true
         coreData.refreshAllSubscriptions()
         setupViews()
@@ -107,7 +109,10 @@ class TrackedSectionViewController: UITableViewController {
     }
 
     func getKeyAtIndex(index: Int) -> String {
-            return sectionedDataSet.orderedKeys[index]
+        if sectionedDataSet.orderedKeys.count < index {
+            return ""
+        }
+        return sectionedDataSet.orderedKeys[index]
     }
     
     func getValueAtIndex(section: Int) -> Array<Subscription> {

@@ -26,6 +26,8 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
     
     override func viewDidLoad() {
+        reporting.logShowScreen(self)
+
         setupViews()
         loadData(true)
     }

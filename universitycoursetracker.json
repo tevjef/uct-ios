@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "universitycoursetracker",
+  "private_key_id": "42e6a1e1166550eb93c3ed1c2a1eb8c64d8e6d3c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDjcoGxRip0I+JC\ndSSytffrv5/obetkb26mkuuBBKWmlqeYT3S4oZhHmQFzaFiw/xmOZnujVc7nGBrW\nFLQ/cgWYUsXV+zMNW3SJChWMMm2nEtKrzSsMxPKO162W9WAL34H1SWABjXFnc4du\nwcNickPee86VuYxpU5pFDoqN2C7xrfb1DJgDnCwzDgxPT1kCoIv4V5lgaWtfUcJk\nVW12EPtvVx/rwgmUyj1kynv7Kq5KtfVIN4Qzzctd72w0nKgGfHYRPKOI97k6suYG\nJ0K50ywcsu55Fm3h0L7c/z+iRGZC/2+/N22fX0ZFGYUdJhq4/7CD7kyFqHGWCh2b\niF0fxHLZAgMBAAECggEBAIMz8aZ+cEzwyjtF8fZ5S9udfbQJfGlCcpT6WYniUWBI\ntcMByrYa2YortA+L2OW5MlfXvGibPjBG0mw+I0AaGSomTWNDdc61vAK1Y3qtOF3R\nWN+sCbJjBfzqY4OaZl5S/1esjQo4OnvPxAdbFMd8XLRBvQjXsSytAmflnH14gJP+\njPJH4YO637XzBYdT8NRunGU8pefC1sOnBewTRhr0wSe1KNFfndf3syii5CNlR6hk\n0mGRoGUPnI+/hY4qaI2fIGv/X/E6U7nh9/4tUnkahzhBnIDkV86YDBr+qTdQXEqa\nYxXqcmKHWkDuamtI3eFCZ21u6pVZqo/FwB8SXjcL+NECgYEA9SdT66q74lTw/Ir6\nj/Fv8C0518zTRnfS2CC2PQxFRqC6lQ8pUfWG4WrLRe+MtubdhrJyHDZUYVKrbiD7\nCE39e5X5NnXiOvmbo4W5uZ8a0sS9oGbirplIfp1MMu48XkDHKWBl4c58LJ2eCVmw\nDEki+/bC2tPOsxQ8HlaNOTrJhVUCgYEA7YKh42HtV1gjsA/IqqWJ9fw69Ey69S56\nHe5DvNBaOG4dO6Mi/CPQNtvzdsQshz93F4UiHcaOfys/TDdYT07Oo58X3yGSxlKo\njwNM3yzY/9oI7IQinD9fCoXSITplagjTBXnmu4BtyKu8tjmFnBBeAsxcH/5hoxX9\n98LOskHwd3UCgYAmI9w2ifV5HOXxJF4fDtzvbNnW7RLhn7q5zT0M+l+8wTzF+/nd\numkloMvHMaGewwQr9I80PG+cRJRPKepkPF33YDnJc0WjDzpbkm52pn4x1FH8JoWV\nzFsu96HnOpFByKozkb/IBavj9RGlOsLc5nP+50EhclpyGe/QeH64LKE1kQKBgAvX\n68Ku62rjlkP9RYBc6Ng/T6FHAjufqa88ZlxP92/A7ew/Yks4bfWOWkGd3qqP25xs\noxrg/9IPkgR27gxmXZ+DG2mg/vSswoL/IyIt1lRLxw4kOKWZ819O9P97LftvnTY0\nsfC/ornS9oIPtD3oAwgYsK9Xu/6p5hQovq3c4+TRAoGAKF3jhF5AUAkCbwT++1y8\ncUzyR+Odex3JIkzfJXqlivhWsVCLdUXCa+zqMgP1A/C6tFqyAtbSrzrtQ1L/4MDf\nlTQ6uaPeoPTa4c8hOUFwoWt+YwVoJQgUt2rzL3pxAuteiru84hH5IpGr9asO020R\nVQHsGaiG3ntH+DiDrKIGxeE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "symbol-upload-service-account@universitycoursetracker.iam.gserviceaccount.com",
+  "client_id": "106707863940908143269",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/symbol-upload-service-account%40universitycoursetracker.iam.gserviceaccount.com"
+}
