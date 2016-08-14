@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PureLayout
 
 class TrackedSectionViewController: UITableViewController {
 
@@ -65,12 +66,26 @@ class TrackedSectionViewController: UITableViewController {
         }
 
         if self.sectionedDataSet.count == 0 {
-            self.emptyMessage("You don't seem be tracking any sections, try adding some!")
+            showEmptyScreen()
         } else {
             self.tableView.backgroundView = UIView()
-            self.tableView.reloadData()
         }
 
+        self.tableView.reloadData()
+    }
+    
+    func showEmptyScreen() {
+        let bgView = UIView(frame: CGRectMake(0, 0, view.bounds.size.width , view.bounds.size.width))
+        let emptyImage = UIImage(named: "track_changes")!
+        let containerImageView = UIImageView(image: emptyImage)
+        //containerImageView.bounds = bgView.frame
+        bgView.addSubview(containerImageView)
+        bgView.sizeToFit()
+        containerImageView.center = view.center
+        containerImageView.sizeToFit()
+        
+        tableView.backgroundView = bgView;
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,6 +100,7 @@ class TrackedSectionViewController: UITableViewController {
     
     func setupViews() {
         navigationItem.title = "Tracked Sections"
+
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
     }
     

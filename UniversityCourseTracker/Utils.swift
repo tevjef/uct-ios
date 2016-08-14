@@ -85,10 +85,10 @@ extension UITableViewController {
     }
     
     func emptyMessage(message:String) {
-        let messageLabel = UILabel(frame: CGRectMake(0,0,self.view.bounds.size.width * 0.5, self.view.bounds.size.height))
+        let messageLabel = UILabel(frame: CGRectMake(0,0,90, self.view.bounds.size.height))
         messageLabel.text = message
         messageLabel.textColor = AppConstants.Colors.primary
-        messageLabel.numberOfLines = 0;
+        messageLabel.numberOfLines = 2;
         messageLabel.textAlignment = .Center;
         //messageLabel.sizeToFit()
         

@@ -46,7 +46,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let trackedSectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.trackedSections)
         navigationController?.pushViewController(trackedSectionVC!, animated: false)
     }
-    
+
     func loadData() {
         self.startIndicator(indicator)
 

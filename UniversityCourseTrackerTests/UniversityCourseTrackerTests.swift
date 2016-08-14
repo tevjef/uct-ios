@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import UniversityCourseTracker
 
 class UniversityCourseTrackerTests: XCTestCase {
     
