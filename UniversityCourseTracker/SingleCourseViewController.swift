@@ -31,73 +31,15 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         }
     }
     
-    func eagerSetupWith(course: Course) {
-        let sections = course.sections.filter({
-            section in
-            return section.status == "Open"
-        })
-        
-        do {
-            let newCourse = try Course.Builder().mergeFrom(course).setSections(sections).build()
-            filteredCourse = newCourse
-        } catch {
-            Timber.e("Error while filtering sections from course \(error)")
-        }
-        
-        // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
-        if course.sections.count > 10 && filteredCourse?.sections.count != 0 {
-            sectionDataSource = filteredCourse
-            courseHeader?.segmentedControl.selectedSegmentIndex = 0
-        } else {
-            sectionDataSource = course
-            courseHeader?.segmentedControl.selectedSegmentIndex = 1
-        }
-        
-        metadataDataSource = course
-    }
-    
     // Datasource for the sections
     var sectionDataSource: Course?
     
     // Datasource for metadata
     var metadataDataSource: Course?
 
-    // Loaded data from the network silently
-    func loadData() {
-        eagerSetupWith(searchFlow!.tempCourse!)
-        datarepo.getCourse(searchFlow!.courseTopicName!, {
-            if let course = $0 {
-                self.loadedCourse = course
-            }
-        })
-    }
-    
-    // Tableview header gets fucked up in landscape, this should set it right.
-    override func viewDidLayoutSubviews() {
-        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
-        header?.frame.origin.x = 0
-    }
-    
-    // Keep the header at the top of the view
-    override func scrollViewDidScroll(scrollView: UIScrollView) {      
-        let offsety = scrollView.contentOffset.y
-        header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
-    }
-    
-    // Listens to the changes in the segmented control
-    func segmentedControlAction(sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            sectionDataSource = filteredCourse
-        } else if sender.selectedSegmentIndex == 1 {
-            sectionDataSource = loadedCourse
-        }
-        
-        tableView.beginUpdates()
-        tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
-        tableView.endUpdates()
-    }
-    
     override func viewDidLoad() {
+        reporting.logShowScreen(self)
+
         setupViews()
         loadData()
     }
@@ -128,6 +70,71 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
 
     }
+    
+    
+    // Loaded data from the network silently
+    func loadData() {
+        eagerSetupWith(searchFlow!.tempCourse!)
+        datarepo.getCourse(searchFlow!.courseTopicName!, {
+            if let course = $0 {
+                self.loadedCourse = course
+            }
+        })
+    }
+    
+    func eagerSetupWith(course: Course) {
+        let sections = course.sections.filter({
+            section in
+            return section.status == "Open"
+        })
+        
+        do {
+            let newCourse = try Course.Builder().mergeFrom(course).setSections(sections).build()
+            filteredCourse = newCourse
+        } catch {
+            Timber.e("Error while filtering sections from course \(error)")
+        }
+        
+        // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
+        if course.sections.count > 10 && filteredCourse?.sections.count != 0 {
+            sectionDataSource = filteredCourse
+            courseHeader?.segmentedControl.selectedSegmentIndex = 0
+        } else {
+            sectionDataSource = course
+            courseHeader?.segmentedControl.selectedSegmentIndex = 1
+        }
+        
+        metadataDataSource = course
+    }
+
+    
+    // Tableview header gets fucked up in landscape, this should set it right.
+    override func viewDidLayoutSubviews() {
+        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
+        header?.frame.origin.x = 0
+    }
+    
+    // Keep the header at the top of the view
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offsety = scrollView.contentOffset.y
+        header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
+    }
+    
+    // Listens to the changes in the segmented control
+    func segmentedControlAction(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            sectionDataSource = filteredCourse
+            reporting.logFilterOpenSections(sectionDataSource!.topicId, count: sectionDataSource!.sections.count)
+        } else if sender.selectedSegmentIndex == 1 {
+            sectionDataSource = loadedCourse
+            reporting.logFilterAllSections(sectionDataSource!.topicId, count: sectionDataSource!.sections.count)
+        }
+        
+        tableView.beginUpdates()
+        tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableView.endUpdates()
+    }
+    
     
     // MARK: - UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

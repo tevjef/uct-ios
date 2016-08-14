@@ -72,6 +72,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     override func viewDidLoad() {
+        reporting.logShowScreen(self)
+
         setupViews()
         loadData()
     }

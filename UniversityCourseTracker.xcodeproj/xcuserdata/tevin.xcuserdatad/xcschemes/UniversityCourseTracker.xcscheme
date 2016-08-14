@@ -81,6 +81,19 @@
             ReferencedContainer = "container:UniversityCourseTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsDebugEnabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "XcodeColors"
+            value = "true"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

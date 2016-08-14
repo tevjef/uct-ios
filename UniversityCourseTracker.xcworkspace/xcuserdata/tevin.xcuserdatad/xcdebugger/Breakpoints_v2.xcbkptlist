@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UniversityCourseTracker/TrackedSectionsViewController.swift"
-            timestampString = "492808762.267701"
+            timestampString = "492821940.298861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "onSubscriptionRemoved(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UniversityCourseTracker/TrackedSectionsViewController.swift"
-            timestampString = "492808763.611811"
+            timestampString = "492821940.298861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "onSubscriptionAdded(_:)"
             landmarkType = "5">
          </BreakpointContent>

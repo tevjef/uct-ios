@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class SectionViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
@@ -29,8 +30,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     var subscription: Subscription?
     
     override func viewDidLoad() {
+        reporting.logShowScreen(self)
+
         setupViews()
-        
         subscription = searchFlow?.buildSubscription()
     }
     
@@ -52,7 +54,6 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offsety = scrollView.contentOffset.y
-        print(offsety)
         header?.transform = CGAffineTransformMakeTranslation(0, offsety)
     }
     
@@ -211,7 +212,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         if sender.on == lastPosition {
             return
         }
-        
+                
         lastPosition = !lastPosition
         
         if sender.on {

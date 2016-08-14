@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import CocoaLumberjack
+import Firebase
+import Crashlytics
 
 class Timber: NSObject {
 
@@ -102,5 +105,60 @@ class DebugTree: NSObject, Tree {
     }
     func e(message: String) {
         NSLog(message)
+    }
+}
+
+class CocoaLoggerTree: NSObject, Tree {
+    func v(message: String) {
+        DDLogVerbose(message)
+    }
+    func d(message: String) {
+        DDLogDebug(message)
+    }
+    func i(message: String) {
+        DDLogInfo(message)
+    }
+    func w(message: String) {
+        DDLogWarn(message)
+    }
+    func e(message: String) {
+        DDLogError(message)
+    }
+}
+
+class FirebaseTree: NSObject, Tree {
+    func v(message: String) {
+        //FIRCrashLogv(message, "")
+    }
+    func d(message: String) {
+        FIRCrashLogv("%@", getVaList([message]))
+    }
+    func i(message: String) {
+        FIRCrashLogv("%@", getVaList([message]))
+    }
+    func w(message: String) {
+        FIRCrashLogv("%@", getVaList([message]))
+    }
+    func e(message: String) {
+        FIRCrashLogv("%@", getVaList([message]))
+    }
+}
+
+class CrashlyicsTree: NSObject, Tree {
+    func v(message: String) {
+        //FIRCrashLogv(message, "")
+    }
+    func d(message: String) {
+        CLSLogv("%@", getVaList([message]))
+    }
+    func i(message: String) {
+        CLSLogv("%@", getVaList([message]))
+    }
+    func w(message: String) {
+        CLSLogv("%@", getVaList([message]))
+    }
+    func e(message: String) {
+        CLSLogv("%@", getVaList([message]))
+        Crashlytics.sharedInstance().recordError(NSError(domain: message, code: -1, userInfo: [:]))
     }
 }

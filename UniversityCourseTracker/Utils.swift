@@ -134,6 +134,10 @@ extension UIViewController {
     var datarepo:DataRepos {
         return appDelegate.dataRepo!
     }
+    
+    var reporting:Reporting {
+        return appDelegate.reporting!
+    }
 
     func popToRoot(button: UIBarButtonItem) {
         for vc in navigationController!.viewControllers {
@@ -141,6 +145,7 @@ extension UIViewController {
                 navigationController?.popToViewController(vc, animated: true)
             }
         }
+        reporting.logPopHome(self)
     }
 
     func delay(delay: Double, closure: ()->()) {

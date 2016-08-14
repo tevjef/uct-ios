@@ -25,6 +25,12 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     
     var searchFlow: SearchFlow?
 
+    override func viewDidLoad() {
+        searchFlow = SearchFlow()
+        refreshSearchFlow()
+        reporting.logShowScreen(self)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         searchFlow = SearchFlow()
         refreshSearchFlow()
