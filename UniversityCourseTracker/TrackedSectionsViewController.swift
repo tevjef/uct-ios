@@ -35,53 +35,47 @@ class TrackedSectionViewController: UITableViewController {
     }
     
     func loadData() {
-        self.sectionedDataSet.removeAll()
-        self.tableView.reloadData()
-        dispatch_async(GlobalUserInitiatedQueue, {
-            self.dataSet = self.coreData.getAllSubscriptions()
+        self.dataSet = self.coreData.getAllSubscriptions()
+        
+        for subs in self.dataSet! {
+            Timber.i("Subscription=" + subs.sectionTopicName)
+        }
+        
+        self.dataSet?.sortInPlace({
+            let subjectLHS = $0.getSubject()
+            let courseLHS = $0.getCourse()
+            let sectionLHS = $0.getSection()
             
-            for subs in self.dataSet! {
-                Timber.i("Subscription=" + subs.sectionTopicName)
-            }
+            let subjectRHS = $1.getSubject()
+            let courseRHS = $1.getCourse()
+            let sectionRHS = $1.getSection()
             
-            self.dataSet?.sortInPlace({
-                let subjectLHS = $0.getSubject()
-                let courseLHS = $0.getCourse()
-                let sectionLHS = $0.getSection()
-                
-                let subjectRHS = $1.getSubject()
-                let courseRHS = $1.getCourse()
-                let sectionRHS = $1.getSection()
-                
-                return "\(subjectLHS.name)\(courseLHS.number)\(sectionLHS.number)" <  "\(subjectRHS.name)\(courseRHS.number)\(sectionRHS.number)"
-            })
-            
-            self.sectionedDataSet.removeAll()
-            for data in self.dataSet! {
-                let courseName = data.getCourse().name
-                if self.sectionedDataSet[courseName] != nil {
-                    self.sectionedDataSet[courseName]!.append(data)
-                } else {
-                    self.sectionedDataSet[courseName] = Array<Subscription>()
-                    self.sectionedDataSet[courseName]!.append(data)
-                }
-            }
-            
-            dispatch_async(GlobalMainQueue, {
-                                if self.sectionedDataSet.count == 0 {
-                    self.emptyMessage("You don't seem be tracking any sections, try adding some!")
-                } else {
-                                    self.tableView.backgroundView = UIView()
-                    self.tableView.reloadData()
-                }
-            })
+            return "\(subjectLHS.name)\(courseLHS.number)\(sectionLHS.number)" <  "\(subjectRHS.name)\(courseRHS.number)\(sectionRHS.number)"
         })
+        
+        self.sectionedDataSet.removeAll()
+        for data in self.dataSet! {
+            let courseName = data.getCourse().name
+            if self.sectionedDataSet[courseName] != nil {
+                self.sectionedDataSet[courseName]!.append(data)
+            } else {
+                self.sectionedDataSet[courseName] = Array<Subscription>()
+                self.sectionedDataSet[courseName]!.append(data)
+            }
+        }
+
+        if self.sectionedDataSet.count == 0 {
+            self.emptyMessage("You don't seem be tracking any sections, try adding some!")
+        } else {
+            self.tableView.backgroundView = UIView()
+            self.tableView.reloadData()
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
         // Section View Controller may reset the color
         self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
-        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,7 +85,6 @@ class TrackedSectionViewController: UITableViewController {
     
     func setupViews() {
         navigationItem.title = "Tracked Sections"
-
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
     }
     
@@ -153,15 +146,11 @@ class TrackedSectionViewController: UITableViewController {
     }
     
     func onSubscriptionAdded(sender: AnyObject) {
-        if self.view.window != nil {
-            loadData()
-        }
+        loadData()
     }
     
     func onSubscriptionRemoved(sender: AnyObject) {
-        if self.view.window != nil {
-            loadData()
-        }
+        loadData()
     }
     
     override func viewDidAppear(animated: Bool) {
