@@ -17,6 +17,9 @@ target ‘UniversityCourseTracker’ do
 
     # For messaging and configruation from backend
     pod 'Firebase'
+    pod 'Firebase/Crash'
     pod 'Firebase/RemoteConfig'
     pod 'Firebase/Messaging'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end

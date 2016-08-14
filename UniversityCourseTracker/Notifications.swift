@@ -54,6 +54,8 @@ class Notifications {
     }
     
     func scheduleNotification() {
+        appDelegate.reporting?.logReceiveNotification(section.topicName)
+
         let application: UIApplication = UIApplication.sharedApplication()
         let title: String = "A section has opened!"
         let body: String = "Section \(section.number) of \(course.name) has opened! GO! GO! GO!"
@@ -102,7 +104,7 @@ class Notifications {
     }
     
     func register(url: String) {
-        AppDelegate.openUrl(url)
+        appDelegate.openUrl(url)
     }
     
     func unsubscribe(topicName: String) {

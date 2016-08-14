@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseMessaging
+import Crashlytics
 
 class FirebaseManager: NSObject {
     
@@ -24,6 +25,10 @@ class FirebaseManager: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.sendDataMessageSuccess), name:FIRMessagingSendSuccessNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.didDeleteMessagesOnServer), name:FIRMessagingMessagesDeletedNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.tokenRefreshNotification), name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+        
+        #if DEBUG
+            //FIRAnalyticsConfiguration.sharedInstance().setIsEnabled(false)
+        #endif
         
         let token = FIRInstanceID.instanceID().token()
         Timber.d("Token on startup= \(token ?? "")")
@@ -72,6 +77,7 @@ class FirebaseManager: NSObject {
     func tokenRefreshNotification(notification: NSNotification) {
         let refreshedToken = FIRInstanceID.instanceID().token()
         if refreshedToken != nil {
+            Crashlytics.sharedInstance().setUserIdentifier(refreshedToken)
             Timber.d("tokenRefreshNotification InstanceID token: \(refreshedToken)")
         } else{
             Timber.e("tokenRefreshNotification InstanceID token: empty")

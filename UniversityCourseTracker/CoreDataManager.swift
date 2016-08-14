@@ -31,15 +31,21 @@ class CoreDataManager: NSObject {
     func addSubscription(subscription: Subscription) {
         Timber.d("Adding subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
-        FIRMessaging.messaging().subscribeToTopic("/topics/\(subscription.sectionTopicName)")
+        firebaseManager.subscribeToTopic("/topics/\(subscription.sectionTopicName)")
         NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.addSubscriptionNotification, object: self)
+        
+        appDelegate.reporting?.logSubscription(subscription.getSection().topicId)
     }
     
     func removeSubscription(topicName: String) -> Int {
         Timber.d("Removing subscription=\(topicName)")
-        FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
+        let subscription = getSubscription(topicName)
+
+        firebaseManager.unsubscribeFromTopic("/topics/\(topicName)")
         let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
         NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.removeSubscriptionNotification, object: self)
+        
+        appDelegate.reporting?.logUnsubscription(subscription?.getSection().topicId ?? "")
         return numRemoved
     }
     
@@ -63,7 +69,7 @@ class CoreDataManager: NSObject {
     
     func getSubscription(topicName: String) -> Subscription? {
         let subscription = CoreSubscription.getSubscription(moc, topicName: topicName)
-        Timber.d("Getting subscription=\(topicName) returning=\(subscription.debugDescription)")
+        Timber.d("Getting subscription=\(topicName) returning=\(subscription?.sectionTopicName ?? "")")
         return subscription
     }
     
@@ -126,6 +132,7 @@ class CoreDataManager: NSObject {
         // Invalidate cache
         cachedUniverisity = nil
         CoreUserDefault.saveUniversity(moc, data: university)
+        appDelegate.reporting?.logChangeUniversity(university.topicId)
     }
     
     private func updateSemester(semester: Semester)  {
@@ -134,5 +141,6 @@ class CoreDataManager: NSObject {
         // Invalidate cache
         cachedSemester = nil
         CoreUserDefault.saveSemester(moc, data: semester)
+        appDelegate.reporting?.logChangeSemester(semester.readableString)
     }
 }
