@@ -142,6 +142,7 @@ extension Section {
         let now = json["now"] as? Int,
         let number = json["number"] as? String,
         let callNumber = json["call_number"] as? String,
+        let status = json["status"] as? String,
         let credits = json["credits"] as? String,
         let topicId = json["topic_id"] as? String,
         let topicName = json["topic_name"] as? String else {
@@ -154,6 +155,7 @@ extension Section {
         .setMax(Int64(max))
         .setNow(Int64(now))
         .setCredits(credits)
+        .setStatus(status)
         .setTopicId(topicId)
         .setTopicName(topicName)
 

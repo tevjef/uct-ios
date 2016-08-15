@@ -100,7 +100,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
         }
         
         cell.textLabel?.text = "\(course!.number): \(course!.name)"
-        cell.detailTextLabel?.text = "\(course!.openSections)) open sections of \(course!.sections.count)"
+        cell.detailTextLabel?.text = "\(course!.openSections) open sections of \(course!.sections.count)"
         return cell
     }
 

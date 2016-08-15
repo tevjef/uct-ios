@@ -55,13 +55,21 @@ class Notifications {
     
     func scheduleNotification() {
         appDelegate.reporting?.logReceiveNotification(section.topicName)
-
         let application: UIApplication = UIApplication.sharedApplication()
-        let title: String = "A section has opened!"
-        let body: String = "Section \(section.number) of \(course.name) has opened! GO! GO! GO!"
         
         let notification = UILocalNotification()
         notification.category = Id.sectionNotificationCategoryId
+        
+        var title: String = "A section has opened!"
+        var body: String = "Section \(section.number) of \(course.name) has opened! GO! GO! GO!"
+        
+        let closed = section.status == "Closed"
+        if closed {
+            title = "A section has closed"
+            body = "Section \(section.number) of \(course.name) has closed!"
+            notification.category = nil
+        }
+
         notification.alertBody = body
         notification.alertAction = "Open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
         notification.fireDate = NSDate(timeIntervalSinceNow: AppDelegate.isUserPaid() ? 0 : 900)// todo item due date (when notification will be fired)
@@ -81,9 +89,14 @@ class Notifications {
             
         } else if application.applicationState == UIApplicationState.Active {
             let sectionAlert: UIAlertController = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.Alert)
-            sectionAlert.addAction(UIAlertAction(title: "Register", style: .Default, handler: { action in self.register(self.university.registrationPage) }))
-            sectionAlert.addAction(UIAlertAction(title: "Unsubscribe", style: .Destructive, handler: { action in self.unsubscribe(self.section.topicName) }))
-            sectionAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            if closed {
+                sectionAlert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            } else {
+                sectionAlert.addAction(UIAlertAction(title: "Register", style: .Default, handler: { action in self.register(self.university.registrationPage) }))
+                sectionAlert.addAction(UIAlertAction(title: "Unsubscribe", style: .Destructive, handler: { action in self.unsubscribe(self.section.topicName) }))
+                sectionAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            }
+
             
             self.appDelegate.window?.rootViewController?.presentViewController(sectionAlert, animated: true, completion: nil)
         }
