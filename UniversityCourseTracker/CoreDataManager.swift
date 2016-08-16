@@ -49,21 +49,33 @@ class CoreDataManager: NSObject {
         return numRemoved
     }
     
-    func refreshAllSubscriptions() {
+    func refreshAllSubscriptions(completion: (() -> Void)? = nil) {
+        let group: dispatch_group_t = dispatch_group_create();
+        
         Timber.d("Refreshing all sections...")
         let subscriptions = getAllSubscriptions()
         for sub in subscriptions {
+            dispatch_group_enter(group);
             appDelegate.dataRepo?.getSection(sub.sectionTopicName, {
                 if let section = $0 {
                     sub.updateSection(section)
                     self.updateSubscription(sub)
                 }
+                
+                dispatch_group_leave(group);
             })
         }
+        
+        dispatch_group_notify(group, GlobalMainQueue, {
+            if completion != nil {
+                completion!()
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.updateSubscriptionsNotification, object: self)
+        })
     }
     
     func updateSubscription(subscription: Subscription) {
-        Timber.d("Updating subscription=\(subscription.description)")
+        Timber.d("Updating subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
     }
     

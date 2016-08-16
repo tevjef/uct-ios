@@ -60,7 +60,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     }
     
     func setupViews() {
-        navigationItem.title = "\(searchFlow!.tempSubject!.number) - \(searchFlow!.tempSubject!.name)"
+        navigationItem.title = "\(searchFlow!.tempSubject!.number): \(searchFlow!.tempSubject!.name)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
     }
     

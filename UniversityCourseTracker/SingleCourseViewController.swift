@@ -46,7 +46,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     func setupViews() {
         // Set navbar title e.g English Composition - 101
-        title = "\(searchFlow!.tempCourse!.name) - \(searchFlow!.tempCourse!.number)"
+        title = "\(searchFlow!.tempCourse!.number): \(searchFlow!.tempCourse!.name)"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45

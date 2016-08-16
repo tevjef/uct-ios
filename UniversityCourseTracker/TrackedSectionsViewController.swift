@@ -22,7 +22,6 @@ class TrackedSectionViewController: UITableViewController {
         reporting.logShowScreen(self)
 
         self.navigationItem.hidesBackButton = true
-        coreData.refreshAllSubscriptions()
         setupViews()
         
         tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
@@ -31,11 +30,14 @@ class TrackedSectionViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
         
+        coreData.refreshAllSubscriptions()
         loadData()
-        
     }
     
+    
     func loadData() {
+        Timber.i("loadData()")
+
         self.dataSet = self.coreData.getAllSubscriptions()
         
         for subs in self.dataSet! {
@@ -73,7 +75,7 @@ class TrackedSectionViewController: UITableViewController {
 
         self.tableView.reloadData()
     }
-    
+
     func showEmptyScreen() {
         let bgView = UIView(frame: CGRectMake(0, 0, view.bounds.size.width , view.bounds.size.width))
         let emptyImage = UIImage(named: "track_changes")!
@@ -169,13 +171,19 @@ class TrackedSectionViewController: UITableViewController {
         loadData()
     }
     
+    func onSubscriptionsUpdated(sender: AnyObject) {
+        loadData()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionAdded), name: CoreDataManager.addSubscriptionNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionRemoved), name: CoreDataManager.removeSubscriptionNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionsUpdated), name: CoreDataManager.updateSubscriptionsNotification, object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.addSubscriptionNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.removeSubscriptionNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.updateSubscriptionsNotification, object: nil)
     }
 }

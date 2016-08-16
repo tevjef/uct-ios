@@ -87,11 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        // Reload all data
-        coreDataManager?.refreshAllSubscriptions()
-        
         Notifications.incrementBadge()
-        completionHandler(UIBackgroundFetchResult.NewData)
+
+        // Reload all data
+        coreDataManager?.refreshAllSubscriptions({
+            completionHandler(UIBackgroundFetchResult.NewData)
+        })
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {

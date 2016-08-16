@@ -31,6 +31,10 @@ var GlobalBackgroundQueue: dispatch_queue_t {
     return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
 }
 
+var GlobalHighPriorityQueue: dispatch_queue_t {
+    return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+}
+
 
 
 extension UIColor {

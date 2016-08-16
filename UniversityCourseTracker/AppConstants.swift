@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class AppConstants {
-    var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)/"
-    var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)/"
-    var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)/"
-    var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)/"
-    var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)/"
-    var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)/"
-    var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)/"
+    var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)"
+    var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)"
+    var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)"
+    var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)"
+    var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)"
+    var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)"
+    var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)"
     
     struct Notification {
         static var genericNotificationTitle = "Course Tracker"
