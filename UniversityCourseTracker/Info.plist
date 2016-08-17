@@ -40,6 +40,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>
 	<string>3064865d-e728-48d7-b2a3-c9c6a4f8eecd</string>
 	<key>LSRequiresIPhoneOS</key>
