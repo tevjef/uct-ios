@@ -35,12 +35,12 @@ class FirebaseManager: NSObject {
     }
     
     func subscribeToTopic(topicName: String) {
-        FIRMessaging.messaging().subscribeToTopic(topicName)
+        FIRMessaging.messaging().subscribeToTopic("/topics/\(topicName)")
         Timber.d("Subscribing to \(topicName)")
     }
     
     func unsubscribeFromTopic(topicName: String) {
-        FIRMessaging.messaging().unsubscribeFromTopic(topicName)
+        FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
         Timber.d("Unsubscribe from  \(topicName)")
     }
     

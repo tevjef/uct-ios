@@ -31,7 +31,7 @@ class CoreDataManager: NSObject {
     func addSubscription(subscription: Subscription) {
         Timber.d("Adding subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
-        firebaseManager.subscribeToTopic("/topics/\(subscription.sectionTopicName)")
+        firebaseManager.subscribeToTopic(subscription.sectionTopicName)
         NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.addSubscriptionNotification, object: self)
         
         appDelegate.reporting?.logSubscription(subscription.getSection().topicId)
@@ -41,7 +41,7 @@ class CoreDataManager: NSObject {
         Timber.d("Removing subscription=\(topicName)")
         let subscription = getSubscription(topicName)
 
-        firebaseManager.unsubscribeFromTopic("/topics/\(topicName)")
+        firebaseManager.unsubscribeFromTopic(topicName)
         let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
         NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.removeSubscriptionNotification, object: self)
         
@@ -58,7 +58,11 @@ class CoreDataManager: NSObject {
             dispatch_group_enter(group);
             appDelegate.dataRepo?.getSection(sub.sectionTopicName, {
                 if let section = $0 {
+                    // Resubscribe just in case the topic name had changed :(
+                    self.firebaseManager.subscribeToTopic(section.topicName)
                     sub.updateSection(section)
+                    sub.sectionTopicName = section.topicName
+                    
                     self.updateSubscription(sub)
                 }
                 
