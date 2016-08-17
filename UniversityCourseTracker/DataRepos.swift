@@ -23,7 +23,12 @@ class DataRepos {
             if response.result.isSuccess {
                 do {
                     let resp = try Response.parseFromData(response.data!)
-                    completion(resp)
+                    // Usually a 404
+                    if resp.hasData {
+                        completion(resp)
+                    } else {
+                        completion(nil)
+                    }
                 } catch {
                     completion(nil)
                     Timber.e("Error while parsing response \(request.debugDescription) error=\(error)")
