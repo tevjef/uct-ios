@@ -102,6 +102,15 @@ class Notifications {
         }
     }
     
+    class func requestNotificationPermission() {
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: Notifications.makeCategories())
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+       // var settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+
+    }
+    
     class func makeGenericAlert(title: String?, message: String) -> UIAlertController {
         var messageTitle: String
         if title != nil {

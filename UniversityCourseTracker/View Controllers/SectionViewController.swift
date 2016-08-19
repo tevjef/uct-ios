@@ -213,7 +213,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         if sender.on == lastPosition {
             return
         }
-                
+        
+        Notifications.requestNotificationPermission()
+        
         lastPosition = !lastPosition
         
         if sender.on {

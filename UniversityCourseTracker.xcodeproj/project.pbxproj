@@ -115,7 +115,7 @@
 		1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackedSectionsViewController.swift; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
-		137F92011D5EA7D500B352FC /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		137F92011D5EA7D500B352FC /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = ../Notifications.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 				1327C1281D445E2F00F5F742 /* Model */,
 				1327C1291D445E3800F5F742 /* Repository */,
 				13CCDB721D5FD20A0086C984 /* Reporting.swift */,
+				137F92011D5EA7D500B352FC /* Notifications.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -234,7 +235,6 @@
 				1327C1001D445D5100F5F742 /* Info.plist */,
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
-				137F92011D5EA7D500B352FC /* Notifications.swift */,
 				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
 			);
 			path = UniversityCourseTracker;
