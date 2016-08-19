@@ -188,20 +188,23 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(universityReuseCell, forIndexPath: indexPath) as UITableViewCell
+            AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+
             cell.textLabel?.text = currentUniversity?.name
             return cell
         }
         
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(termReuseCell, forIndexPath: indexPath) as UITableViewCell
+            AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+            cell.textLabel?.text = terms[indexPath.row].readableString
+            
             if indexPath.row == selectedTermIndex {
                 checkedIndex = indexPath
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             } else {
                 cell.accessoryType = UITableViewCellAccessoryType.None
             }
-            
-            cell.textLabel?.text = terms[indexPath.row].readableString
             
             return cell
         }

@@ -99,6 +99,9 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
             return cell
         }
         
+        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+        AppConstants.Colors.configureLabel(cell.detailTextLabel!, style: AppConstants.FontStyle.Body)
+
         cell.textLabel?.text = "\(course!.number): \(course!.name)"
         cell.detailTextLabel?.text = "\(course!.openSections) open sections of \(course!.sections.count)"
         return cell

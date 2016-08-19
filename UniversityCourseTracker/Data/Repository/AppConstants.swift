@@ -56,12 +56,66 @@ class AppConstants {
             static var options = "gotoOptions"
         }
     }
-
-    struct Colors {
-        static var primary: UIColor = UIColor(hexString: "607D8B")
+    
+    struct Size {
+        static func getFontSize(style: FontStyle) -> CGFloat {
+            switch style {
+            case .Headline:
+                return 13
+            case .Body:
+                return 12
+            case .Caption:
+                return 11
+            }
+            
+        }
+    }
+    
+    struct UCTColors {
+        static var primary = "607D8B"
+        static var primaryDark = "455A64"
+        static var primaryLight = "CFD8DC"
         
-        static var closedSection: UIColor = UIColor(hexString: "F44336")
-        static var openSection: UIColor = UIColor(hexString: "4CAF50")
+        static var darkText = "455A64"
+        static var lightText = "ECEFF1"
+        
+        static var closedSection = "F44336"
+        static var openSection = "4CAF50"
+    }
+    
+    struct Colors {
+        static var primary: UIColor = UIColor(hexString: UCTColors.primary)
+        static var primaryDark: UIColor = UIColor(hexString: UCTColors.primaryDark)
+        static var primaryLight: UIColor = UIColor(hexString: UCTColors.primaryLight)
+        
+        static var primaryDarkText: UIColor = UIColor(hexString: UCTColors.primary, alpha: 1)
+        static var secondaryDarkText: UIColor = UIColor(hexString: UCTColors.primaryDark, alpha: 1)
+        static var disabledDarkText: UIColor = UIColor(hexString: UCTColors.darkText, alpha: 0.38)
+
+        static var primaryLightText: UIColor = UIColor(hexString: UCTColors.lightText, alpha: 0.87)
+        static var secondaryLightText: UIColor = UIColor(hexString: UCTColors.lightText, alpha: 0.54)
+        static var disabledLightText: UIColor = UIColor(hexString: UCTColors.lightText, alpha: 0.38)
+        
+        
+        static var closedSection: UIColor = UIColor(hexString: UCTColors.closedSection)
+        static var openSection: UIColor = UIColor(hexString: UCTColors.openSection)
+        
+        static func configureLabel(label: UILabel, style: FontStyle) {
+            switch style {
+            case .Headline:
+                label.textColor = primaryDarkText
+            case .Body:
+                label.textColor = secondaryDarkText
+            case .Caption:
+                label.textColor = secondaryDarkText
+            }
+        }
+    }
+    
+    enum FontStyle {
+        case Headline
+        case Body
+        case Caption
     }
     
     struct PropertyKey {

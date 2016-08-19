@@ -24,6 +24,10 @@ class MeetingView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        AppConstants.Colors.configureLabel(dayView, style: AppConstants.FontStyle.Caption)
+        AppConstants.Colors.configureLabel(timeView, style: AppConstants.FontStyle.Caption)
+        AppConstants.Colors.configureLabel(locationView, style: AppConstants.FontStyle.Caption)
+
         resetViews()
     }
     

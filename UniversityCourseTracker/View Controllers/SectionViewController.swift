@@ -176,6 +176,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
              if let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(subscribeCellIdentifier) {
+                AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
                 cell.accessoryView = switchView
                 return cell
             }

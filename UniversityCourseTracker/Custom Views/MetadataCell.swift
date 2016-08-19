@@ -15,7 +15,8 @@ class MetadataCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        AppConstants.Colors.configureLabel(title, style: AppConstants.FontStyle.Headline)
+        AppConstants.Colors.configureLabel(content, style: AppConstants.FontStyle.Body)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

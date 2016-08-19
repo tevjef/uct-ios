@@ -15,6 +15,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="383" height="118"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="t8s-dv-dIN">
+                        <rect key="frame" x="16" y="65" width="351" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="JLZ-pI-DF4"/>
+                        </constraints>
+                    </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oym-Yw-9NY">
                         <rect key="frame" x="16" y="8" width="359" height="16"/>
                         <attributedString key="attributedText">
@@ -28,12 +34,6 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="t8s-dv-dIN">
-                        <rect key="frame" x="16" y="65" width="351" height="45"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="45" id="JLZ-pI-DF4"/>
-                        </constraints>
-                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="t8s-dv-dIN" secondAttribute="trailing" constant="8" id="8K6-GD-e2y"/>
@@ -48,6 +48,7 @@
             <connections>
                 <outlet property="stackView" destination="t8s-dv-dIN" id="Uwi-yH-XyV"/>
                 <outlet property="stackViewHeight" destination="JLZ-pI-DF4" id="Y1N-jG-OAL"/>
+                <outlet property="title" destination="Oym-Yw-9NY" id="7bD-RA-3G9"/>
             </connections>
             <point key="canvasLocation" x="350.5" y="334.5"/>
         </tableViewCell>

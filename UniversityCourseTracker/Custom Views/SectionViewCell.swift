@@ -26,6 +26,8 @@ class SectionViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        AppConstants.Colors.configureLabel(instructorLabel, style: AppConstants.FontStyle.Caption)
+        
         for view in meetingViews {
             stackView.addArrangedSubview(view)
             view.autoPinEdgeToSuperviewEdge(.Trailing)

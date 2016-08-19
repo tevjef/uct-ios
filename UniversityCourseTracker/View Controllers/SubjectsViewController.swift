@@ -111,8 +111,9 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell", forIndexPath: indexPath) as UITableViewCell
+        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+
         let subject = loadedSubjects?[indexPath.row]
-        
         cell.textLabel?.text = "\(subject?.number ?? ""): \(subject?.name ?? "")"
         return cell
     }

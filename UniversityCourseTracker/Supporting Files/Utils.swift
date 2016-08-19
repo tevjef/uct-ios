@@ -39,6 +39,10 @@ var GlobalHighPriorityQueue: dispatch_queue_t {
 
 extension UIColor {
     convenience init(hexString:String) {
+        self.init(hexString:hexString, alpha:1)
+    }
+    
+    convenience init(hexString:String, alpha: CGFloat) {
         let hexString:NSString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let scanner = NSScanner(string: hexString as String)
         
@@ -58,7 +62,7 @@ extension UIColor {
         let green = CGFloat(g) / 255.0
         let blue  = CGFloat(b) / 255.0
         
-        self.init(red:red, green:green, blue:blue, alpha:1)
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
     
     func toHexString() -> String {

@@ -223,8 +223,8 @@
 			children = (
 				130568741D5681BD005BB80E /* Custom Views */,
 				1305685E1D563DBF005BB80E /* Data */,
-				130568751D5681E2005BB80E /* Supporting Files */,
 				1327C12E1D453CAD00F5F742 /* View Controllers */,
+				130568751D5681E2005BB80E /* Supporting Files */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,

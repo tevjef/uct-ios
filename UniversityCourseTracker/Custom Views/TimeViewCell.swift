@@ -11,6 +11,7 @@ import UIKit
 class TimeViewCell: UITableViewCell {
 
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var title: UILabel!
     
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     var meetingViews: [MeetingView] = []
@@ -18,6 +19,8 @@ class TimeViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        AppConstants.Colors.configureLabel(title, style: AppConstants.FontStyle.Headline)
+        
         for view in meetingViews {
             stackView.addArrangedSubview(view)
             view.autoPinEdgeToSuperviewEdge(.Trailing)
