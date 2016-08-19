@@ -9,7 +9,7 @@
         <!--Deafults-->
         <scene sceneID="TEc-12-DRQ">
             <objects>
-                <viewController title="Deafults" id="nOq-P5-rFx" customClass="DefaultsViewController" customModule="UniversityCourseTracker" sceneMemberID="viewController">
+                <viewController title="Deafults" wantsFullScreenLayout="YES" id="nOq-P5-rFx" customClass="DefaultsViewController" customModule="UniversityCourseTracker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EVC-tF-Znf"/>
                         <viewControllerLayoutGuide type="bottom" id="pOu-m6-UmG"/>
@@ -18,37 +18,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJC-fE-tyf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classroom" translatesAutoresizingMaskIntoConstraints="NO" id="SAB-yX-cLw">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="W1J-gI-s0T"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="W1J-gI-s0T"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select your university" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-xK-PY6">
+                                <rect key="frame" x="16" y="215" width="288" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="yDv-DJ-RCA"/>
+                                </constraints>
+                                <color key="textColor" red="0.27058823529999998" green="0.35294117650000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJC-fE-tyf">
                                 <rect key="frame" x="0.0" y="420" width="320" height="60"/>
                                 <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ohV-h2-rUU"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Let's Go!"/>
+                                <state key="normal" title="Let's Go!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="didSelectUniversity:" destination="nOq-P5-rFx" eventType="touchUpInside" id="KRs-KQ-tp8"/>
                                     <segue destination="FYo-7n-VbP" kind="show" identifier="gotoTrackedSections" id="e0N-Ae-hK0"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select your university" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-xK-PY6">
-                                <rect key="frame" x="16" y="215" width="288" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="yDv-DJ-RCA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pOu-m6-UmG" firstAttribute="top" secondItem="pJC-fE-tyf" secondAttribute="bottom" id="0FV-ap-eiA"/>
+                            <constraint firstItem="SAB-yX-cLw" firstAttribute="leading" secondItem="ZrV-hb-OgG" secondAttribute="leading" id="1N2-Cc-J6k"/>
+                            <constraint firstItem="pJC-fE-tyf" firstAttribute="top" secondItem="SAB-yX-cLw" secondAttribute="bottom" id="FiL-5l-ZJT"/>
+                            <constraint firstItem="SAB-yX-cLw" firstAttribute="top" secondItem="EVC-tF-Znf" secondAttribute="bottom" id="XV9-Rx-KnQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Aup-xK-PY6" secondAttribute="trailing" id="cZ2-ZT-FGI"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Aup-xK-PY6" secondAttribute="leading" id="cew-86-n9k"/>
+                            <constraint firstAttribute="trailing" secondItem="SAB-yX-cLw" secondAttribute="trailing" id="cm6-Dx-83c"/>
+                            <constraint firstItem="Aup-xK-PY6" firstAttribute="centerX" secondItem="SAB-yX-cLw" secondAttribute="centerX" id="fBl-BK-vQ3"/>
                             <constraint firstAttribute="trailing" secondItem="pJC-fE-tyf" secondAttribute="trailing" id="fTC-P4-qQT"/>
                             <constraint firstItem="pJC-fE-tyf" firstAttribute="leading" secondItem="ZrV-hb-OgG" secondAttribute="leading" id="iNo-BI-rrh"/>
                             <constraint firstItem="Aup-xK-PY6" firstAttribute="centerY" secondItem="ZrV-hb-OgG" secondAttribute="centerY" id="llZ-jt-2KO"/>
+                            <constraint firstItem="pOu-m6-UmG" firstAttribute="top" secondItem="SAB-yX-cLw" secondAttribute="bottom" id="wie-pE-V2R"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FiL-5l-ZJT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="UnA-Lj-oUg" userLabel="Tile"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -409,5 +434,8 @@
             <point key="canvasLocation" x="521" y="305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="classroom" width="1014" height="719"/>
+    </resources>
     <color key="tintColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
 </document>

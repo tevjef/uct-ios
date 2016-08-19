@@ -156,69 +156,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1305685E1D563DBF005BB80E /* data */ = {
+		1305685E1D563DBF005BB80E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
+				13D8D5651D66D776003C5540 /* Core */,
+				1327C1281D445E2F00F5F742 /* Model */,
+				1327C1291D445E3800F5F742 /* Repository */,
 				13CCDB721D5FD20A0086C984 /* Reporting.swift */,
-				130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */,
-				1305686A1D563F91005BB80E /* CoreSubscription.swift */,
-				1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */,
-				1305686C1D563F91005BB80E /* CoreUserDefault.swift */,
-				1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */,
-				13302BC81D5EC6F500922579 /* FirebaseManager.swift */,
-				1327C1281D445E2F00F5F742 /* model */,
-				1327C1291D445E3800F5F742 /* repository */,
 			);
-			name = data;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		130568741D5681BD005BB80E /* customViews */ = {
+		130568741D5681BD005BB80E /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */,
-				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
-				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
-				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
-				13FA20781D52B00800887546 /* SectionViewCell.xib */,
-				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
-				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
-				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
-				1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */,
 				1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */,
-				1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */,
+				1367EBD01D58A3D500A05932 /* CourseHeaderView.xib */,
+				13130EDC1D5406CC004BBF0C /* MeetingView.swift */,
+				13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */,
+				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
+				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
 				1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */,
+				1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */,
+				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
+				13FA20781D52B00800887546 /* SectionViewCell.xib */,
+				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
+				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
 			);
-			name = customViews;
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
-		130568751D5681E2005BB80E /* utils */ = {
+		130568751D5681E2005BB80E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				130568711D566971005BB80E /* Timber.swift */,
-				130AD7E11D49B3EB00CCD3E1 /* extensions */,
 				1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */,
-			);
-			name = utils;
-			sourceTree = "<group>";
-		};
-		130AD7E11D49B3EB00CCD3E1 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
+				130568711D566971005BB80E /* Timber.swift */,
 				130AD7E21D49B3FB00CCD3E1 /* Utils.swift */,
 			);
-			name = extensions;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		1327C0E51D445D5000F5F742 = {
 			isa = PBXGroup;
 			children = (
+				15F466176E339473D4DEA842 /* Frameworks */,
+				3F8C94C29AFD5345ED58ABF1 /* Pods */,
+				1327C0EF1D445D5000F5F742 /* Products */,
 				1327C0F01D445D5100F5F742 /* UniversityCourseTracker */,
 				1327C1081D445D5100F5F742 /* UniversityCourseTrackerTests */,
 				1327C1131D445D5100F5F742 /* UniversityCourseTrackerUITests */,
-				1327C0EF1D445D5000F5F742 /* Products */,
-				3F8C94C29AFD5345ED58ABF1 /* Pods */,
-				15F466176E339473D4DEA842 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,18 +221,18 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
-				130568751D5681E2005BB80E /* utils */,
-				1305685E1D563DBF005BB80E /* data */,
-				130568741D5681BD005BB80E /* customViews */,
-				1327C12E1D453CAD00F5F742 /* controllers */,
+				130568741D5681BD005BB80E /* Custom Views */,
+				1305685E1D563DBF005BB80E /* Data */,
+				130568751D5681E2005BB80E /* Supporting Files */,
+				1327C12E1D453CAD00F5F742 /* View Controllers */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
-				137F92011D5EA7D500B352FC /* Notifications.swift */,
-				1327C0F51D445D5100F5F742 /* Main.storyboard */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
-				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
+				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
+				1327C0F51D445D5100F5F742 /* Main.storyboard */,
+				137F92011D5EA7D500B352FC /* Notifications.swift */,
+				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -254,8 +240,8 @@
 		1327C1081D445D5100F5F742 /* UniversityCourseTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				1327C1091D445D5100F5F742 /* UniversityCourseTrackerTests.swift */,
 				1327C10B1D445D5100F5F742 /* Info.plist */,
+				1327C1091D445D5100F5F742 /* UniversityCourseTrackerTests.swift */,
 			);
 			path = UniversityCourseTrackerTests;
 			sourceTree = "<group>";
@@ -263,45 +249,59 @@
 		1327C1131D445D5100F5F742 /* UniversityCourseTrackerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */,
 				1327C1161D445D5100F5F742 /* Info.plist */,
+				1327C1141D445D5100F5F742 /* UniversityCourseTrackerUITests.swift */,
 			);
 			path = UniversityCourseTrackerUITests;
 			sourceTree = "<group>";
 		};
-		1327C1281D445E2F00F5F742 /* model */ = {
+		1327C1281D445E2F00F5F742 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */,
 				13D374B51D457FC0001940FD /* ModelExtensions.swift */,
 			);
-			name = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		1327C1291D445E3800F5F742 /* repository */ = {
+		1327C1291D445E3800F5F742 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				1327C1231D445E2300F5F742 /* DataRepos.swift */,
 				131FF1451D4DAC8800F202C4 /* AppConstants.swift */,
-				130F19CB1D4EAD3100D414AB /* SearchFlow.swift */,
 				130F19CD1D4ECC8B00D414AB /* CoreDataManager.swift */,
+				1327C1231D445E2300F5F742 /* DataRepos.swift */,
+				13302BC81D5EC6F500922579 /* FirebaseManager.swift */,
+				130F19CB1D4EAD3100D414AB /* SearchFlow.swift */,
 			);
-			name = repository;
+			path = Repository;
 			sourceTree = "<group>";
 		};
-		1327C12E1D453CAD00F5F742 /* controllers */ = {
+		1327C12E1D453CAD00F5F742 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
-				13B182591D4D702D00036D9A /* DefaultsViewController.swift */,
-				1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */,
-				1327C12C1D453CA400F5F742 /* OptionsViewController.swift */,
-				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
-				136D20941D519F1C00444319 /* SingleCourseViewController.swift */,
+				13B182591D4D702D00036D9A /* DefaultsViewController.swift */,
+				130AD7E41D49B4DC00CCD3E1 /* NavigationController.swift */,
+				1327C12C1D453CA400F5F742 /* OptionsViewController.swift */,
 				134CBCA11D56B00C001C4DD5 /* SectionViewController.swift */,
+				136D20941D519F1C00444319 /* SingleCourseViewController.swift */,
+				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
+				1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */,
 			);
-			name = controllers;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		13D8D5651D66D776003C5540 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */,
+				130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */,
+				1305686A1D563F91005BB80E /* CoreSubscription.swift */,
+				1305686B1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift */,
+				1305686C1D563F91005BB80E /* CoreUserDefault.swift */,
+				1327C0F81D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		15F466176E339473D4DEA842 /* Frameworks */ = {
@@ -627,6 +627,7 @@
 				1327C0F61D445D5100F5F742 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */ = {
@@ -635,6 +636,7 @@
 				1327C0FE1D445D5100F5F742 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

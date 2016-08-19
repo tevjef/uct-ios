@@ -21,6 +21,7 @@ class TrackedSectionViewController: UITableViewController {
     override func viewDidLoad() {
         reporting.logShowScreen(self)
 
+        navigationController?.navigationBar.hidden = false
         self.navigationItem.hidesBackButton = true
         setupViews()
         
@@ -33,7 +34,6 @@ class TrackedSectionViewController: UITableViewController {
         coreData.refreshAllSubscriptions()
         loadData()
     }
-    
     
     func loadData() {
         Timber.i("loadData()")
@@ -83,11 +83,18 @@ class TrackedSectionViewController: UITableViewController {
         //containerImageView.bounds = bgView.frame
         bgView.addSubview(containerImageView)
         bgView.sizeToFit()
+        
         containerImageView.center = view.center
         containerImageView.sizeToFit()
         
         tableView.backgroundView = bgView;
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let bgView = tableView.backgroundView
+        if bgView != nil && bgView?.subviews.count > 0 {
+            bgView?.subviews[0].center = self.view.center
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

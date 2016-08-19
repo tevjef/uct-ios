@@ -20,6 +20,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func viewDidLoad() {
         // Skip vc if user has selected a default university
+        navigationController?.navigationBar.hidden = true
         if coreData.university != nil {
             skipToTrackedSections()
         } else {
@@ -27,7 +28,6 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             setupViews()
             loadData()
         }
-        
     }
     
     @IBAction func didSelectUniversity(sender: AnyObject) {

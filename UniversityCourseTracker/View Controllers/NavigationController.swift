@@ -23,4 +23,14 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
         self.navigationBar.barStyle = UIBarStyle.Black
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
+
+
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        if self.visibleViewController is DefaultsViewController {
+            return UIStatusBarStyle.Default
+        } else {
+            return UIStatusBarStyle.LightContent
+        }
+    }
 }
