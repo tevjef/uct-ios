@@ -13,6 +13,8 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet weak var letsGoButton: UIButton!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var contentView: UIView!
+
     var indicator = UIActivityIndicatorView()
     var pickerView: UIPickerView?
     var universities: Array<University>?
@@ -20,22 +22,15 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func viewDidLoad() {
         // Skip vc if user has selected a default university
+        self.letsGoButton.alpha = 0
         navigationController?.navigationBar.hidden = true
-        if coreData.university != nil {
+        if coreData.university != nil && false {
             skipToTrackedSections()
         } else {
             reporting.logShowScreen(self)
             setupViews()
             loadData()
         }
-    }
-    
-    @IBAction func didSelectUniversity(sender: AnyObject) {
-        let university = universities![selectedIndex!]
-        coreData.university = university
-        coreData.semester = university.resolvedSemesters.current
-        
-        reporting.logDefaultUniversity(university.topicId)
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,10 +68,17 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func setupViews() {
+        contentView.backgroundColor = AppConstants.Colors.primaryLight
+        letsGoButton.backgroundColor = AppConstants.Colors.primary
+        textField.layer.borderColor = AppConstants.Colors.primary.CGColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 5
+        
         // Hide textField while data loads
         textField.alpha = 0
+        textField.textColor = AppConstants.Colors.primaryDarkText
         // Setup university PickerUiew
-        pickerView = UIPickerView(frame: CGRectMake(0, 200, view.frame.width, 250))
+        pickerView = UIPickerView(frame: CGRectMake(0, 200, view.frame.width, 200))
         pickerView!.backgroundColor = .whiteColor()
         pickerView!.showsSelectionIndicator = true
         pickerView!.dataSource = self
@@ -101,6 +103,15 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         letsGoButton.enabled = false
     }
     
+    
+    @IBAction func didSelectUniversity(sender: AnyObject) {
+        let university = universities![selectedIndex!]
+        coreData.university = university
+        coreData.semester = university.resolvedSemesters.current
+        
+        reporting.logDefaultUniversity(university.topicId)
+    }
+    
     func donePicker(sender: UIBarButtonItem) {
         textField.resignFirstResponder()
         selectedIndex = pickerView?.selectedRowInComponent(0)
@@ -108,18 +119,29 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             letsGoButton.enabled = true
             setSelectUniversityText(universities![selectedIndex!].name)
         }
+        
+        UIView.animateWithDuration(1, animations: {
+            self.letsGoButton.alpha = 1
+        })
     }
     
     func cancelPicker(sender: UIBarButtonItem) {
         textField.resignFirstResponder()
     }
     
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return CGFloat(40)
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        AppConstants.Colors.configureLabel(pickerLabel, style: .Headline)
+        pickerLabel.text = universities?[row].name
+        pickerLabel.font = UIFont.systemFontOfSize(20)
+        pickerLabel.adjustsFontSizeToFitWidth = true
+        pickerLabel.textAlignment = .Center
+        
+        return pickerLabel
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return universities?[row].name
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return CGFloat(40)
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

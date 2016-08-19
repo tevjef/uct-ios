@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coreDataManager = CoreDataManager(appDelegate: self, firebaseManager: firebaseManager!)
     
         window?.backgroundColor = UIColor.whiteColor()
-
+        window?.tintColor = AppConstants.Colors.primary
+        
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: Notifications.makeCategories())
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()

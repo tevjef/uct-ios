@@ -74,9 +74,9 @@ class AppConstants {
     struct UCTColors {
         static var primary = "607D8B"
         static var primaryDark = "455A64"
-        static var primaryLight = "CFD8DC"
+        static var primaryLight = "ECEFF1"
         
-        static var darkText = "455A64"
+        static var darkText = "000000"
         static var lightText = "ECEFF1"
         
         static var closedSection = "F44336"
@@ -88,8 +88,8 @@ class AppConstants {
         static var primaryDark: UIColor = UIColor(hexString: UCTColors.primaryDark)
         static var primaryLight: UIColor = UIColor(hexString: UCTColors.primaryLight)
         
-        static var primaryDarkText: UIColor = UIColor(hexString: UCTColors.primary, alpha: 1)
-        static var secondaryDarkText: UIColor = UIColor(hexString: UCTColors.primaryDark, alpha: 1)
+        static var primaryDarkText: UIColor = UIColor(hexString: UCTColors.darkText, alpha: 0.77)
+        static var secondaryDarkText: UIColor = UIColor(hexString: UCTColors.darkText, alpha: 0.67)
         static var disabledDarkText: UIColor = UIColor(hexString: UCTColors.darkText, alpha: 0.38)
 
         static var primaryLightText: UIColor = UIColor(hexString: UCTColors.lightText, alpha: 0.87)

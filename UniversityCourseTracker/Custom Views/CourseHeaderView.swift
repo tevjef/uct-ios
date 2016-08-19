@@ -18,6 +18,7 @@ class CourseHeaderView: UIView {
     }
     
     override func awakeFromNib() {
+        self.backgroundColor = AppConstants.Colors.primary
         super.awakeFromNib()
     }
     

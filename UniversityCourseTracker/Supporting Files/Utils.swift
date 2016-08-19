@@ -77,11 +77,42 @@ extension UIColor {
         
         return NSString(format:"#%06x", rgb) as String
     }
+    
+    func viewFromColor() -> UIView {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = self
+        return bgColorView
+    }
 }
 
 extension UITableView {
     func scrollToTop(animated: Bool) {
         setContentOffset(CGPointZero, animated: animated)
+    }
+}
+
+extension UIImage {
+    func filledImage(fillColor: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.mainScreen().scale)
+        
+        let context = UIGraphicsGetCurrentContext()
+        fillColor.setFill()
+        
+        CGContextTranslateCTM(context, 0, self.size.height)
+        CGContextScaleCTM(context, 1.0, -1.0)
+        
+        CGContextSetBlendMode(context, CGBlendMode.ColorBurn)
+        let rect = CGRectMake(0, 0, self.size.width, self.size.height)
+        CGContextDrawImage(context, rect, self.CGImage)
+        
+        CGContextSetBlendMode(context, CGBlendMode.SourceIn)
+        CGContextAddRect(context, rect)
+        CGContextDrawPath(context,CGPathDrawingMode.Fill)
+        
+        let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return coloredImg
     }
 }
 
@@ -177,7 +208,7 @@ extension UIViewController {
     
     func startIndicator(indicator: UIActivityIndicatorView?) {
         indicator?.startAnimating()
-        indicator?.backgroundColor = UIColor.whiteColor()
+        indicator?.backgroundColor = UIColor.clearColor()
     }
     
     func stopIndicator(indicator: UIActivityIndicatorView?) {

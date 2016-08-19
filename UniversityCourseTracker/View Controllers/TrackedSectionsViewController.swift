@@ -21,16 +21,9 @@ class TrackedSectionViewController: UITableViewController {
     override func viewDidLoad() {
         reporting.logShowScreen(self)
 
-        navigationController?.navigationBar.hidden = false
-        self.navigationItem.hidesBackButton = true
+      
         setupViews()
-        
-        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
-        tableView.sectionHeaderHeight = 0.0;
-        tableView.sectionFooterHeight = 0.0;
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 45
-        
+
         coreData.refreshAllSubscriptions()
         loadData()
     }
@@ -78,7 +71,9 @@ class TrackedSectionViewController: UITableViewController {
 
     func showEmptyScreen() {
         let bgView = UIView(frame: CGRectMake(0, 0, view.bounds.size.width , view.bounds.size.width))
-        let emptyImage = UIImage(named: "track_changes")!
+        var emptyImage = UIImage(named: "track_changes")!
+        emptyImage = emptyImage.filledImage(AppConstants.Colors.primary)
+        
         let containerImageView = UIImageView(image: emptyImage)
         //containerImageView.bounds = bgView.frame
         bgView.addSubview(containerImageView)
@@ -109,8 +104,16 @@ class TrackedSectionViewController: UITableViewController {
     
     func setupViews() {
         navigationItem.title = "Tracked Sections"
-
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
+        navigationController?.navigationBar.hidden = false
+        self.navigationItem.hidesBackButton = true
+        
+        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
+        //tableView.sectionHeaderHeight = 0.0;
+        tableView.sectionFooterHeight = 0.0;
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 45
+
     }
     
     // MARK: - UITableViewDelegate Methods
@@ -120,6 +123,29 @@ class TrackedSectionViewController: UITableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionedDataSet.orderedKeys.count
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let pickerLabel = PaddedLabel()
+        pickerLabel.text = getKeyAtIndex(section).uppercaseString
+        pickerLabel.font = UIFont.boldSystemFontOfSize(12)
+        pickerLabel.textColor = AppConstants.Colors.primaryDarkText
+        pickerLabel.numberOfLines = 0
+        pickerLabel.lineBreakMode = .ByWordWrapping
+        pickerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        pickerLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        pickerLabel.sizeToFit()
+        //pickerLabel.adjustsFontSizeToFitWidth = true
+        
+        return pickerLabel
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 38
+        }
+        
+        return UITableViewAutomaticDimension;
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

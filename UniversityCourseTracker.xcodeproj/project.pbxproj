@@ -47,6 +47,7 @@
 		13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */; };
 		13CCDB731D5FD20A0086C984 /* Reporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCDB721D5FD20A0086C984 /* Reporting.swift */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
+		13D8D5671D6798EC003C5540 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8D5661D6798EC003C5540 /* PaddedLabel.swift */; };
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
 		13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */; };
@@ -120,6 +121,7 @@
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
 		13CCDB721D5FD20A0086C984 /* Reporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporting.swift; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
+		13D8D5661D6798EC003C5540 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
 		13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UniversityCourseTracker.entitlements; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */,
 				130568711D566971005BB80E /* Timber.swift */,
 				130AD7E21D49B3FB00CCD3E1 /* Utils.swift */,
+				13D8D5661D6798EC003C5540 /* PaddedLabel.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */,
 				1361A0B51D590FE500E98FB5 /* OrderedDictionary.swift in Sources */,
 				13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */,
+				13D8D5671D6798EC003C5540 /* PaddedLabel.swift in Sources */,
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
 				137F92021D5EA7D500B352FC /* Notifications.swift in Sources */,
 				1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */,

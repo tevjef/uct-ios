@@ -12,6 +12,7 @@ import UIKit
 class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
     
+    var activityIdicator: UIActivityIndicatorView?
     var universityPickerView: UIPickerView?
     var termReuseCell: String = "termCell"
     var universityReuseCell: String = "chooseUniversityCell"
@@ -29,9 +30,10 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     
             currentUniversity = universities[index]
 
+            universityTextField?.userInteractionEnabled = true
             universityPickerView?.selectRow(index, inComponent: 0, animated: true)
             universityPickerView?.reloadAllComponents()
-            
+            stopIndicator(activityIdicator)
         }
     }
     
@@ -89,6 +91,9 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     
     func setupViews() {
         navigationItem.title = "Search Options"
+        activityIdicator = makeActivityIndicator(self.view)
+        startIndicator(activityIdicator)
+        
         setupUniversityPickerView()
     }
     
@@ -118,6 +123,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         view.addSubview(universityTextField!)
         universityTextField!.inputView = universityPickerView
         universityTextField!.inputAccessoryView = toolBar
+        universityTextField!.userInteractionEnabled = false
+
     }
 
     func doneUniversityPicker(sender: UIBarButtonItem) {
@@ -141,11 +148,16 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         return CGFloat(30)
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == universityPickerView {
-            return universities[row].name
-        }
-        return "Error"
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        AppConstants.Colors.configureLabel(pickerLabel, style: .Headline)
+        pickerLabel.text = universities[row].name
+        pickerLabel.font = UIFont.systemFontOfSize(20)
+        pickerLabel.adjustsFontSizeToFitWidth = true
+        pickerLabel.textAlignment = .Center
+        
+        return pickerLabel
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -160,6 +172,37 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     // MARK: - UITableViewDelegate Methods
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var title: String = ""
+        if section == 0 {
+            title = "University"
+        } else if section == 1 {
+            title = "Term"
+        }
+
+        let pickerLabel = PaddedLabel()
+        
+        pickerLabel.text = title.uppercaseString
+        pickerLabel.font = UIFont.boldSystemFontOfSize(12)
+        pickerLabel.textColor = AppConstants.Colors.primaryDarkText
+        pickerLabel.numberOfLines = 0
+        pickerLabel.lineBreakMode = .ByWordWrapping
+        pickerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        pickerLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        pickerLabel.sizeToFit()
+        //pickerLabel.adjustsFontSizeToFitWidth = true
+        
+        return pickerLabel
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 38
+        }
+        
+        return UITableViewAutomaticDimension;
+    }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
@@ -188,15 +231,23 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(universityReuseCell, forIndexPath: indexPath) as UITableViewCell
+            cell.selectedBackgroundView = AppConstants.Colors.primaryLight.viewFromColor()
             AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
 
-            cell.textLabel?.text = currentUniversity?.name
+            let title = currentUniversity?.name
+            if title != nil {
+                cell.userInteractionEnabled = true
+                cell.textLabel?.text = currentUniversity?.name
+            }
             return cell
         }
         
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(termReuseCell, forIndexPath: indexPath) as UITableViewCell
+            cell.selectedBackgroundView = AppConstants.Colors.primaryLight.viewFromColor()
             AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+            cell.tintColor = AppConstants.Colors.primary
+            
             cell.textLabel?.text = terms[indexPath.row].readableString
             
             if indexPath.row == selectedTermIndex {

@@ -29,7 +29,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select your university" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-xK-PY6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select your university" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-xK-PY6">
                                 <rect key="frame" x="16" y="215" width="288" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yDv-DJ-RCA"/>
@@ -44,6 +44,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ohV-h2-rUU"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Let's Go!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,6 +79,7 @@
                     <navigationItem key="navigationItem" id="UnA-Lj-oUg" userLabel="Tile"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="contentView" destination="ZrV-hb-OgG" id="xnz-kF-dkf"/>
                         <outlet property="letsGoButton" destination="pJC-fE-tyf" id="0fg-43-EZ2"/>
                         <outlet property="textField" destination="Aup-xK-PY6" id="nzb-cE-bdN"/>
                     </connections>
@@ -89,14 +91,14 @@
         <!--Tracked Sections-->
         <scene sceneID="8X6-Hh-PkT">
             <objects>
-                <tableViewController storyboardIdentifier="trackedSectionsVC" title="Tracked Sections" id="FYo-7n-VbP" customClass="TrackedSectionViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="trackedSectionsVC" title="Tracked Sections" automaticallyAdjustsScrollViewInsets="NO" id="FYo-7n-VbP" customClass="TrackedSectionViewController" customModule="UniversityCourseTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="6" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="uZp-GA-QKc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kEk-vs-6s0">
-                                <rect key="frame" x="0.0" y="114" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kEk-vs-6s0" id="8ps-oc-EiP">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -182,7 +184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDP-Ti-bil" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1767" y="305"/>
+            <point key="canvasLocation" x="1764" y="305"/>
         </scene>
         <!--Options View Controller-->
         <scene sceneID="6IQ-Gj-fKB">
@@ -194,7 +196,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="chooseUniversityCell" textLabel="iSh-ts-Nkr" style="IBUITableViewCellStyleDefault" id="7U1-Rd-ezJ">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="chooseUniversityCell" textLabel="iSh-ts-Nkr" style="IBUITableViewCellStyleDefault" id="7U1-Rd-ezJ">
                                 <rect key="frame" x="0.0" y="114" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7U1-Rd-ezJ" id="nV7-rx-U6c">

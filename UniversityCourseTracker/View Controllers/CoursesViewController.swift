@@ -92,6 +92,9 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as UITableViewCell
+        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+        AppConstants.Colors.configureLabel(cell.detailTextLabel!, style: AppConstants.FontStyle.Body)
+        cell.selectedBackgroundView = AppConstants.Colors.primaryLight.viewFromColor()
 
         let course = loadedCourses?[indexPath.row]
         
@@ -99,9 +102,6 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
             return cell
         }
         
-        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
-        AppConstants.Colors.configureLabel(cell.detailTextLabel!, style: AppConstants.FontStyle.Body)
-
         cell.textLabel?.text = "\(course!.number): \(course!.name)"
         cell.detailTextLabel?.text = "\(course!.openSections) open sections of \(course!.sections.count)"
         return cell
