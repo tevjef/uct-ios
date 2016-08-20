@@ -117,7 +117,7 @@
 		1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackedSectionsViewController.swift; sourceTree = "<group>"; };
 		136D20941D519F1C00444319 /* SingleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseViewController.swift; sourceTree = "<group>"; };
-		137F92011D5EA7D500B352FC /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = ../Notifications.swift; sourceTree = "<group>"; };
+		137F92011D5EA7D500B352FC /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		13B182591D4D702D00036D9A /* DefaultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsViewController.swift; sourceTree = "<group>"; };
 		13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
 		13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeViewCell.xib; sourceTree = "<group>"; };
@@ -168,8 +168,8 @@
 				13D8D5651D66D776003C5540 /* Core */,
 				1327C1281D445E2F00F5F742 /* Model */,
 				1327C1291D445E3800F5F742 /* Repository */,
-				13CCDB721D5FD20A0086C984 /* Reporting.swift */,
 				137F92011D5EA7D500B352FC /* Notifications.swift */,
+				13CCDB721D5FD20A0086C984 /* Reporting.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -183,14 +183,14 @@
 				13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */,
 				13130ED61D530E1A004BBF0C /* MetadataCell.swift */,
 				13130ED71D530E1A004BBF0C /* MetadataCell.xib */,
+				13D8D56A1D67D5A2003C5540 /* NoSections.swift */,
+				13D8D5681D67D2DF003C5540 /* NoSections.xib */,
 				1367EBD51D58AECD00A05932 /* SectionHeaderView.swift */,
 				1367EBD31D58AEBB00A05932 /* SectionHeaderView.xib */,
 				13FA207A1D52BED600887546 /* SectionViewCell.swift */,
 				13FA20781D52B00800887546 /* SectionViewCell.xib */,
 				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
 				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
-				13D8D56A1D67D5A2003C5540 /* NoSections.swift */,
-				13D8D5681D67D2DF003C5540 /* NoSections.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -199,9 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */,
+				13D8D5661D6798EC003C5540 /* PaddedLabel.swift */,
 				130568711D566971005BB80E /* Timber.swift */,
 				130AD7E21D49B3FB00CCD3E1 /* Utils.swift */,
-				13D8D5661D6798EC003C5540 /* PaddedLabel.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -233,8 +233,8 @@
 			children = (
 				130568741D5681BD005BB80E /* Custom Views */,
 				1305685E1D563DBF005BB80E /* Data */,
-				1327C12E1D453CAD00F5F742 /* View Controllers */,
 				130568751D5681E2005BB80E /* Supporting Files */,
+				1327C12E1D453CAD00F5F742 /* View Controllers */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,
