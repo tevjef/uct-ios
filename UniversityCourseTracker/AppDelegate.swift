@@ -26,10 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var reporting: Reporting?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-        DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
         DDLog.addLogger(FirebaseLogger()) // Log to Firebase for crash reports
         DDLog.addLogger(CrashlyicsLogger()) // Log to crashlytics for crash reports
+        DDLog.addLogger(NSLogger()) // Log to xcode console 
         
         Fabric.with([Crashlytics.self, Answers.self])
         
