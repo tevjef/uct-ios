@@ -24,7 +24,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Skip vc if user has selected a default university
         self.letsGoButton.alpha = 0
         navigationController?.navigationBar.hidden = true
-        if coreData.university != nil && false {
+        if coreData.university != nil {
             skipToTrackedSections()
         } else {
             reporting.logShowScreen(self)
