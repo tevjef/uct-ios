@@ -38,7 +38,7 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     
     func loadData(showLoading: Bool) {
         if showLoading {
-            showRefreshing({self.loadedCourses?.count == 0})
+            showRefreshing{ self.loadedCourses == nil || self.loadedCourses?.count == 0 }
         }
         
         datarepo.getCourses(searchFlow?.subjectTopicName ?? "", { [weak self]
@@ -62,6 +62,8 @@ class CoursesViewController: UITableViewController, SearchFlowDelegate {
     func setupViews() {
         navigationItem.title = "\(searchFlow!.tempSubject!.number): \(searchFlow!.tempSubject!.name)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
+        
+        self.refreshControl?.tintColor = AppConstants.Colors.primary
     }
     
     func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {

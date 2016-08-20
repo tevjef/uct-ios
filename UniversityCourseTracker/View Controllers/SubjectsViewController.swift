@@ -44,7 +44,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     
     func loadData(showLoading: Bool) {
         if showLoading {
-            showRefreshing({self.loadedSubjects?.count == 0})
+            showRefreshing{self.loadedSubjects == nil || self.loadedSubjects?.count == 0}
         }
         refreshSearchFlow()
         
@@ -69,6 +69,9 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     func setupViews() {
         let semesterString = coreData.semester!.readableString
         let uni = coreData.university?.abbr ?? "Err"
+        
+        self.refreshControl?.tintColor = AppConstants.Colors.primary
+
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         //let titleView = self.makeTitleViewWithSubtitle(semester, subtitle: uni)
         //navigationItem.titleView = titleView

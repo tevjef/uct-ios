@@ -120,7 +120,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             setSelectUniversityText(universities![selectedIndex!].name)
         }
         
-        UIView.animateWithDuration(1, animations: {
+        UIView.animateWithDuration(0.5, animations: {
             self.letsGoButton.alpha = 1
         })
     }

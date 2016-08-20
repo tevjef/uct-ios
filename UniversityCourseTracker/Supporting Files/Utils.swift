@@ -120,6 +120,7 @@ extension UIImage {
 extension UITableViewController {
     
     func showRefreshing()  {
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
     }
     
@@ -136,7 +137,7 @@ extension UITableViewController {
     }
     
     func showRefreshing(closure: () -> Bool)  {
-        delay(0.3, closure: {
+        delay(1.5, closure: {
             if closure() {
                 self.showRefreshing()
             } else {
