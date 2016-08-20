@@ -72,8 +72,6 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         contentView.backgroundColor = AppConstants.Colors.primaryLight
         letsGoButton.backgroundColor = AppConstants.Colors.primary
-        textField.layer.borderColor = AppConstants.Colors.primary.CGColor
-        textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 5
         textField.tintColor = UIColor.clearColor()
         
