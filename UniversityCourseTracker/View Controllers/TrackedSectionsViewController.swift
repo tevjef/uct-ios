@@ -70,7 +70,7 @@ class TrackedSectionViewController: UITableViewController {
     }
 
     func showEmptyScreen() {
-        let bgView = UIView(frame: CGRectMake(0, 0, view.bounds.size.width , view.bounds.size.width))
+        /*let bgView = UIView(frame: CGRectMake(0, 0, view.bounds.size.width , view.bounds.size.width))
         var emptyImage = UIImage(named: "track_changes")!
         emptyImage = emptyImage.filledImage(AppConstants.Colors.primary)
         
@@ -82,14 +82,12 @@ class TrackedSectionViewController: UITableViewController {
         containerImageView.center = view.center
         containerImageView.sizeToFit()
         
-        tableView.backgroundView = bgView;
-    }
-    
-    override func viewDidLayoutSubviews() {
-        let bgView = tableView.backgroundView
-        if bgView != nil && bgView?.subviews.count > 0 {
-            bgView?.subviews[0].center = self.view.center
-        }
+        tableView.backgroundView = bgView; */
+        
+        let noSectionView = NoSections.createView()
+        //noSectionView.center = view.center
+        tableView.backgroundView = noSectionView
+        //noSectionView.autoPinEdgesToSuperviewEdges()
     }
     
     override func viewWillAppear(animated: Bool) {

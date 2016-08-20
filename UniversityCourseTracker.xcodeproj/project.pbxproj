@@ -48,6 +48,8 @@
 		13CCDB731D5FD20A0086C984 /* Reporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCDB721D5FD20A0086C984 /* Reporting.swift */; };
 		13D374B61D457FC0001940FD /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D374B51D457FC0001940FD /* ModelExtensions.swift */; };
 		13D8D5671D6798EC003C5540 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8D5661D6798EC003C5540 /* PaddedLabel.swift */; };
+		13D8D5691D67D2DF003C5540 /* NoSections.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D8D5681D67D2DF003C5540 /* NoSections.xib */; };
+		13D8D56B1D67D5A2003C5540 /* NoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8D56A1D67D5A2003C5540 /* NoSections.swift */; };
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
 		13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */; };
@@ -122,6 +124,8 @@
 		13CCDB721D5FD20A0086C984 /* Reporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporting.swift; sourceTree = "<group>"; };
 		13D374B51D457FC0001940FD /* ModelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		13D8D5661D6798EC003C5540 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		13D8D5681D67D2DF003C5540 /* NoSections.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoSections.xib; sourceTree = "<group>"; };
+		13D8D56A1D67D5A2003C5540 /* NoSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoSections.swift; sourceTree = "<group>"; };
 		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
 		13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UniversityCourseTracker.entitlements; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				13FA20781D52B00800887546 /* SectionViewCell.xib */,
 				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
 				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
+				13D8D56A1D67D5A2003C5540 /* NoSections.swift */,
+				13D8D5681D67D2DF003C5540 /* NoSections.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */,
 				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
 				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
+				13D8D5691D67D2DF003C5540 /* NoSections.xib in Resources */,
 				13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
 				13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */,
@@ -581,6 +588,7 @@
 				13B1825A1D4D702D00036D9A /* DefaultsViewController.swift in Sources */,
 				1305686F1D563F91005BB80E /* CoreUserDefault+CoreDataProperties.swift in Sources */,
 				1327C0F21D445D5100F5F742 /* AppDelegate.swift in Sources */,
+				13D8D56B1D67D5A2003C5540 /* NoSections.swift in Sources */,
 				1305686E1D563F91005BB80E /* CoreSubscription.swift in Sources */,
 				1327C0FA1D445D5100F5F742 /* UniversityCourseTracker.xcdatamodeld in Sources */,
 				134CBCA21D56B00C001C4DD5 /* SectionViewController.swift in Sources */,

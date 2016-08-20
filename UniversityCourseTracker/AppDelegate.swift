@@ -26,13 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var reporting: Reporting?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        DDTTYLogger.sharedInstance().colorsEnabled = true
-        DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-        DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
-        Timber.plant(CocoaLoggerTree())
-        Timber.plant(FirebaseTree())
-        Timber.plant(CrashlyicsTree())
-
+        //DDTTYLogger.sharedInstance().colorsEnabled = true
+        //DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
+        //DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+        //Timber.plant(CocoaLoggerTree())
+        //Timber.plant(FirebaseTree())
+        //Timber.plant(CrashlyicsTree())
+        Timber.plant(DebugTree())
+        
         Fabric.with([Crashlytics.self, Answers.self])
         
         reporting = Reporting()
