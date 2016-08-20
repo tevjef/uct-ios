@@ -23,7 +23,7 @@ class AppConstants {
     }
     
     struct Network {
-        static var apiVersion = "v2"
+        static var apiVersion = "v4"
         static var base = "https://uct.tevindev.me/api"
         static var universities = "universities"
         static var university = "university"

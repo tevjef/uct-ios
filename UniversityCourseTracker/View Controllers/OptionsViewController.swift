@@ -195,11 +195,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 38
-        }
-        
-        return UITableViewAutomaticDimension;
+        return 38
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
