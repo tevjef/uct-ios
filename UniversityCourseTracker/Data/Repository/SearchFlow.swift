@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CocoaLumberjack
 
 protocol SearchFlowDelegate: class {
     var searchFlow: SearchFlow? { get set }
@@ -113,7 +114,7 @@ class SearchFlow: NSObject, NSCoding {
             
             subscription.university = university
         } catch {
-            Timber.e("Failed to build subscriptions \(error)")
+            DDLogError("Failed to build subscriptions \(error)")
         }
         
         return subscription
@@ -187,7 +188,7 @@ class Subscription: NSObject {
             tempSubject = try Subject.getBuilder().mergeFrom(tempSubject).setCourses([tempCourse]).build()
             tempUni = try University.getBuilder().mergeFrom(tempUni!).setSubjects([tempSubject]).build()
         } catch {
-            Timber.e("Error when updating section in subscription \(error)")
+            DDLogError("Error when updating section in subscription \(error)")
         }
         
         university = tempUni!

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 class TimeViewCell: UITableViewCell {
 
@@ -41,7 +42,7 @@ class TimeViewCell: UITableViewCell {
         var height: CGFloat = 0
         for index in 0..<section.meetings.count {
             if index > TimeViewCell.maxMeetingViews {
-                Timber.e("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
+                DDLogError("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
                 return
             }
             

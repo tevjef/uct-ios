@@ -26,13 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var reporting: Reporting?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //DDTTYLogger.sharedInstance().colorsEnabled = true
-        //DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-        //DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
-        //Timber.plant(CocoaLoggerTree())
-        //Timber.plant(FirebaseTree())
-        //Timber.plant(CrashlyicsTree())
-        Timber.plant(DebugTree())
+        DDLog.addLogger(DDTTYLogger.sharedInstance()) // TTY = Xcode console
+        DDLog.addLogger(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+        DDLog.addLogger(FirebaseLogger()) // Log to Firebase for crash reports
+        DDLog.addLogger(CrashlyicsLogger()) // Log to crashlytics for crash reports
         
         Fabric.with([Crashlytics.self, Answers.self])
         
@@ -61,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let message = userInfo["message"] as? String {
             do {
-                Timber.i(message)
+                DDLogInfo(message)
                 let jsonData = message.dataUsingEncoding(NSUTF8StringEncoding)!
                 json = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions()) as? [String: AnyObject]
                 university = University.parseFromJson(json["university"] as! [String: AnyObject])
@@ -95,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        Timber.d("handleActionWithIdentifier \(identifier)")
+        DDLogDebug("handleActionWithIdentifier \(identifier)")
         let topicName = notification.userInfo!["topicName"] as! String
         let subscription = coreDataManager?.getSubscription(topicName)
         if subscription == nil {
@@ -127,36 +124,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        Timber.i("didRegisterUserNotificationSettings")
+        DDLogInfo("didRegisterUserNotificationSettings")
 
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        Timber.i("didFailToRegisterForRemoteNotificationsWithError \(error))")
+        DDLogInfo("didFailToRegisterForRemoteNotificationsWithError \(error))")
     }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        Timber.i("applicationWillResignActive()")
+        DDLogInfo("applicationWillResignActive()")
 
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        Timber.i("applicationDidEnterBackground()")
+        DDLogInfo("applicationDidEnterBackground()")
         FirebaseManager.disconnectFromFcm()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        Timber.i("applicationWillEnterForeground()")
+        DDLogInfo("applicationWillEnterForeground()")
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        Timber.i("applicationDidBecomeActive()")
+        DDLogInfo("applicationDidBecomeActive()")
 
         FirebaseManager.connectToFcm()
         Notifications.resetBadge()
@@ -165,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        Timber.i("applicationWillTerminate()")
+        DDLogInfo("applicationWillTerminate()")
 
         self.saveContext()
     }
@@ -202,7 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            Timber.e("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            DDLogError("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
         
@@ -227,7 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
-                Timber.e("Unresolved error \(nserror), \(nserror.userInfo)")
+                DDLogError("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
         }

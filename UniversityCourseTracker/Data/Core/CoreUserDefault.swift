@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CocoaLumberjack
 
 
 class CoreUserDefault: NSManagedObject {
@@ -75,7 +76,7 @@ class CoreUserDefault: NSManagedObject {
                 return uni
             }
         } catch {
-            Timber.e("Failed to parse university \(error)")
+            DDLogError("Failed to parse university \(error)")
         }
         return nil
     }
@@ -87,7 +88,7 @@ class CoreUserDefault: NSManagedObject {
                 return sem
             }
         } catch {
-            Timber.e("Failed to parse semester \(error)")
+            DDLogError("Failed to parse semester \(error)")
         }
         
         return nil
@@ -98,9 +99,9 @@ class CoreUserDefault: NSManagedObject {
         self.university = data
         do {
             try managedObjectContext?.save()
-            Timber.d("Insert successful university=\(university.topicName)")
+            DDLogDebug("Insert successful university=\(university.topicName)")
         } catch {
-            Timber.e("Failed to insert university \(error)")
+            DDLogError("Failed to insert university \(error)")
         }
     }
     
@@ -109,9 +110,9 @@ class CoreUserDefault: NSManagedObject {
         self.university = data
         do {
             try managedObjectContext?.save()
-            Timber.d("Update successful university=\(university.topicName)")
+            DDLogDebug("Update successful university=\(university.topicName)")
         } catch {
-            Timber.e("Failed to update university \(error)")
+            DDLogError("Failed to update university \(error)")
         }
     }
     
@@ -120,9 +121,9 @@ class CoreUserDefault: NSManagedObject {
         self.semester = data
         do {
             try managedObjectContext?.save()
-            Timber.d("Insert successful semester=\(semester.description)")
+            DDLogDebug("Insert successful semester=\(semester.description)")
         } catch {
-            Timber.e("Failed to insert semester \(error)")
+            DDLogError("Failed to insert semester \(error)")
         }
     }
     
@@ -131,9 +132,9 @@ class CoreUserDefault: NSManagedObject {
         self.semester = data
         do {
             try managedObjectContext?.save()
-            Timber.d("Update successful semester=\(semester.description)")
+            DDLogDebug("Update successful semester=\(semester.description)")
         } catch {
-            Timber.e("Failed to update semester \(error)")
+            DDLogError("Failed to update semester \(error)")
         }
     }
     
@@ -144,15 +145,15 @@ class CoreUserDefault: NSManagedObject {
             let fetchedCoreUserDefaults = try ctx.executeFetchRequest(fetchRequest) as! [CoreUserDefault]
             
             if fetchedCoreUserDefaults.count == 0 {
-                Timber.d("No university found")
+                DDLogDebug("No university found")
                 return nil
             } else if fetchedCoreUserDefaults.count > 1 {
-                Timber.e("Multiple user universities!")
+                DDLogError("Multiple user universities!")
             } else {
                 return fetchedCoreUserDefaults.first
             }
         } catch {
-            Timber.e("Failed to fetch user univerisity: \(error)")
+            DDLogError("Failed to fetch user univerisity: \(error)")
         }
         
         return nil

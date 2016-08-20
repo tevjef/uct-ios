@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 import FirebaseMessaging
-
+import CocoaLumberjack
 
 class CoreSubscription: NSManagedObject {
     
@@ -25,7 +25,7 @@ class CoreSubscription: NSManagedObject {
             
             return subscriptions
         } catch {
-            Timber.e("Failed getting all subscriptions \(error)")
+            DDLogError("Failed getting all subscriptions \(error)")
             fatalError()
         }
     }
@@ -41,18 +41,18 @@ class CoreSubscription: NSManagedObject {
             }
             
             if subscriptions.count == 0 {
-                Timber.d("No subscription found for \(topicName)")
+                DDLogDebug("No subscription found for \(topicName)")
                 return nil
             }
             
             if subscriptions.count > 1 {
-                Timber.e("Multiple universities found while getting \(topicName)")
+                DDLogError("Multiple universities found while getting \(topicName)")
                 fatalError()
             }
             
             return subscriptions.first
         } catch {
-            Timber.e("Failed getting subscription \(error)")
+            DDLogError("Failed getting subscription \(error)")
             fatalError()
         }
     }
@@ -73,10 +73,10 @@ class CoreSubscription: NSManagedObject {
                 let subscriptionToUpdate = fetchedCoreSubscriptions.first
                 subscriptionToUpdate!.update(subscription)
             } else {
-                Timber.e("Logic error while upserting subscription")
+                DDLogError("Logic error while upserting subscription")
             }
         } catch {
-            Timber.e("Failed to remove subscription \(error)")
+            DDLogError("Failed to remove subscription \(error)")
         }
     }
     
@@ -86,9 +86,9 @@ class CoreSubscription: NSManagedObject {
         do {
             let fetchedCoreSubscriptions = try getCoreSubscriptions(ctx, topicName: topicName)
             if fetchedCoreSubscriptions.count == 0 {
-                Timber.e("Attempted to remove subscription that did not exist")
+                DDLogError("Attempted to remove subscription that did not exist")
             } else if fetchedCoreSubscriptions.count > 1 {
-                Timber.e("Multiple topics with same name found: \(topicName)")
+                DDLogError("Multiple topics with same name found: \(topicName)")
             }
             
             for obj in fetchedCoreSubscriptions {
@@ -99,7 +99,7 @@ class CoreSubscription: NSManagedObject {
             try ctx.save()
             
         } catch {
-            Timber.e("Failed to remove subscription \(error)")
+            DDLogError("Failed to remove subscription \(error)")
         }
         
         return count
@@ -133,7 +133,7 @@ class CoreSubscription: NSManagedObject {
                 return Subscription(topicName: coreSubscription.topicName!, university: uni)
             }
         } catch {
-            Timber.e("Failed parsing university \(error)")
+            DDLogError("Failed parsing university \(error)")
         }
         
         return nil
@@ -148,7 +148,7 @@ class CoreSubscription: NSManagedObject {
         do {
             try managedObjectContext?.save()
         } catch {
-            Timber.e("Failed to insert subscription \(error)")
+            DDLogError("Failed to insert subscription \(error)")
         }
     }
     
@@ -161,7 +161,7 @@ class CoreSubscription: NSManagedObject {
         do {
             try managedObjectContext?.save()
         } catch {
-            Timber.e("Failed to insert subscription \(error)")
+            DDLogError("Failed to insert subscription \(error)")
         }
     }
     

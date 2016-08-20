@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import FirebaseMessaging
+import CocoaLumberjack
 
 // The holiest of god objects
 class CoreDataManager: NSObject {
@@ -29,7 +30,7 @@ class CoreDataManager: NSObject {
     }
     
     func addSubscription(subscription: Subscription) {
-        Timber.d("Adding subscription=\(subscription.sectionTopicName)")
+        DDLogDebug("Adding subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
         firebaseManager.subscribeToTopic(subscription.sectionTopicName)
         NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.addSubscriptionNotification, object: self)
@@ -38,7 +39,7 @@ class CoreDataManager: NSObject {
     }
     
     func removeSubscription(topicName: String) -> Int {
-        Timber.d("Removing subscription=\(topicName)")
+        DDLogDebug("Removing subscription=\(topicName)")
         let subscription = getSubscription(topicName)
 
         firebaseManager.unsubscribeFromTopic(topicName)
@@ -52,7 +53,7 @@ class CoreDataManager: NSObject {
     func refreshAllSubscriptions(completion: (() -> Void)? = nil) {
         let group: dispatch_group_t = dispatch_group_create();
         
-        Timber.d("Refreshing all sections...")
+        DDLogDebug("Refreshing all sections...")
         let subscriptions = getAllSubscriptions()
         for sub in subscriptions {
             dispatch_group_enter(group);
@@ -79,19 +80,19 @@ class CoreDataManager: NSObject {
     }
     
     func updateSubscription(subscription: Subscription) {
-        Timber.d("Updating subscription=\(subscription.sectionTopicName)")
+        DDLogDebug("Updating subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
     }
     
     func getSubscription(topicName: String) -> Subscription? {
         let subscription = CoreSubscription.getSubscription(moc, topicName: topicName)
-        Timber.d("Getting subscription=\(topicName) returning=\(subscription?.sectionTopicName ?? "")")
+        DDLogDebug("Getting subscription=\(topicName) returning=\(subscription?.sectionTopicName ?? "")")
         return subscription
     }
     
     func getAllSubscriptions() -> [Subscription] {
         let subscriptions = CoreSubscription.getAllSubscription(moc)
-        Timber.d("Getting all subscriptions returning=\(subscriptions.count)")
+        DDLogDebug("Getting all subscriptions returning=\(subscriptions.count)")
         return subscriptions
     }
     
@@ -125,7 +126,7 @@ class CoreDataManager: NSObject {
             university = CoreUserDefault.getUniversity(moc)
         }
         
-        Timber.d("Getting university returning=\(university?.topicName ?? "nil")")
+        DDLogDebug("Getting university returning=\(university?.topicName ?? "nil")")
         return university
     }
     
@@ -138,12 +139,12 @@ class CoreDataManager: NSObject {
             semester = CoreUserDefault.getSemester(moc)
         }
         
-        Timber.d("Getting semester returning=\(semester?.description ?? "nil")")
+        DDLogDebug("Getting semester returning=\(semester?.description ?? "nil")")
         return semester
     }
     
     private func updateUniversity(university: University) {
-        Timber.d("Updating university=\(university.topicName)")
+        DDLogDebug("Updating university=\(university.topicName)")
         
         // Invalidate cache
         cachedUniverisity = nil
@@ -152,7 +153,7 @@ class CoreDataManager: NSObject {
     }
     
     private func updateSemester(semester: Semester)  {
-        Timber.d("Updating semester=\(semester.description)")
+        DDLogDebug("Updating semester=\(semester.description)")
         
         // Invalidate cache
         cachedSemester = nil

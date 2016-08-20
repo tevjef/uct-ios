@@ -108,57 +108,55 @@ class DebugTree: NSObject, Tree {
     }
 }
 
-class CocoaLoggerTree: NSObject, Tree {
-    func v(message: String) {
-        DDLogVerbose(message)
+class FirebaseLogger: NSObject, DDLogger {
+    func logMessage(logMessage: DDLogMessage!) {
+        let message = logFormatter.formatLogMessage(logMessage)
+
+        FIRCrashLogv("%@", getVaList([message]))
     }
-    func d(message: String) {
-        DDLogDebug(message)
-    }
-    func i(message: String) {
-        DDLogInfo(message)
-    }
-    func w(message: String) {
-        DDLogWarn(message)
-    }
-    func e(message: String) {
-        DDLogError(message)
-    }
+    
+    var logFormatter: DDLogFormatter! = TimberFormatter.sharedInstance
 }
 
-class FirebaseTree: NSObject, Tree {
-    func v(message: String) {
-        //FIRCrashLogv(message, "")
+class CrashlyicsLogger: NSObject, DDLogger {
+    func logMessage(logMessage: DDLogMessage!) {
+        let message = logFormatter.formatLogMessage(logMessage)
+        
+        if logMessage.level == .Error {
+            Crashlytics.sharedInstance().recordError(NSError(domain: message, code: -1, userInfo: [:]))
+            return
+        }
+        CLSLogv("%@", getVaList([message]))
     }
-    func d(message: String) {
-        FIRCrashLogv("%@", getVaList([message]))
-    }
-    func i(message: String) {
-        FIRCrashLogv("%@", getVaList([message]))
-    }
-    func w(message: String) {
-        FIRCrashLogv("%@", getVaList([message]))
-    }
-    func e(message: String) {
-        FIRCrashLogv("%@", getVaList([message]))
-    }
+    
+    var logFormatter: DDLogFormatter! = TimberFormatter.sharedInstance
 }
 
-class CrashlyicsTree: NSObject, Tree {
-    func v(message: String) {
-        //FIRCrashLogv(message, "")
-    }
-    func d(message: String) {
-        CLSLogv("%@", getVaList([message]))
-    }
-    func i(message: String) {
-        CLSLogv("%@", getVaList([message]))
-    }
-    func w(message: String) {
-        CLSLogv("%@", getVaList([message]))
-    }
-    func e(message: String) {
-        CLSLogv("%@", getVaList([message]))
-        Crashlytics.sharedInstance().recordError(NSError(domain: message, code: -1, userInfo: [:]))
+class TimberFormatter: NSObject, DDLogFormatter {
+    
+    static let sharedInstance = TimberFormatter()
+    
+    private override init() {}
+    
+    @objc func formatLogMessage(logMessage: DDLogMessage!) -> String! {
+        let tag = logMessage.fileName.componentsSeparatedByString(".swift").first!
+        print(tag)
+        var prefix: String = ""
+        switch logMessage.level {
+        case .Debug:
+            prefix = "D/"
+        case .Verbose:
+            prefix = "V/"
+        case .Info:
+            prefix = "I/"
+        case .Error:
+            prefix = "E/"
+        case .Warning:
+            prefix = "W/"
+        default:
+            prefix = "WTF/"
+        }
+        
+        return "\(prefix)\(tag): \(logMessage.message)"
     }
 }

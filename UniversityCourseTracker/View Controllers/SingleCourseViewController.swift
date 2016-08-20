@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     var searchFlow: SearchFlow?
@@ -92,7 +93,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
             let newCourse = try Course.Builder().mergeFrom(course).setSections(sections).build()
             filteredCourse = newCourse
         } catch {
-            Timber.e("Error while filtering sections from course \(error)")
+            DDLogError("Error while filtering sections from course \(error)")
         }
         
         sectionDataSource = course

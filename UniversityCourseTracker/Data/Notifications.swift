@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CocoaLumberjack
 
 class Notifications {
     
@@ -80,11 +81,11 @@ class Notifications {
         notification.applicationIconBadgeNumber = 1
         
         if application.applicationState == UIApplicationState.Inactive {
-            Timber.d("Incoming notification while inactive")
+            DDLogDebug("Incoming notification while inactive")
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             
         } else if application.applicationState == UIApplicationState.Background {
-            Timber.d("Incoming notification while in background");
+            DDLogDebug("Incoming notification while in background");
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             
         } else if application.applicationState == UIApplicationState.Active {

@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FirebaseMessaging
 import Crashlytics
+import CocoaLumberjack
 
 class FirebaseManager: NSObject {
     
@@ -18,7 +19,7 @@ class FirebaseManager: NSObject {
     init(appDelegate: AppDelegate) {
         self.appDelegate = appDelegate
         super.init()
-        Timber.d("Configuring Firebase...")
+        DDLogDebug("Configuring Firebase...")
         FIRApp.configure()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.sendDataMessageFailure), name:FIRMessagingSendErrorNotification, object: nil)
@@ -31,17 +32,17 @@ class FirebaseManager: NSObject {
         #endif
         
         let token = FIRInstanceID.instanceID().token()
-        Timber.d("Token on startup= \(token ?? "")")
+        DDLogDebug("Token on startup= \(token ?? "")")
     }
     
     func subscribeToTopic(topicName: String) {
         FIRMessaging.messaging().subscribeToTopic("/topics/\(topicName)")
-        Timber.d("Subscribing to \(topicName)")
+        DDLogDebug("Subscribing to \(topicName)")
     }
     
     func unsubscribeFromTopic(topicName: String) {
         FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
-        Timber.d("Unsubscribe from  \(topicName)")
+        DDLogDebug("Unsubscribe from  \(topicName)")
     }
     
     class func setAPNSToken(deviceToken: NSData) {
@@ -53,24 +54,24 @@ class FirebaseManager: NSObject {
         }
         
         //Tricky line
-        Timber.d("Manually setting device token...")
+        DDLogDebug("Manually setting device token...")
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
-        Timber.d("APNS Device Token: \(tokenString)")
+        DDLogDebug("APNS Device Token: \(tokenString)")
     }
     
     class func connectToFcm() {
-        Timber.d("Connecting to FCM...")
+        DDLogDebug("Connecting to FCM...")
         FIRMessaging.messaging().connectWithCompletion { (error) in
             if (error != nil) {
-                Timber.w("Unable to connect with FCM. \(error)")
+                DDLogWarn("Unable to connect with FCM. \(error)")
             } else {
-                Timber.d("Connected to FCM.")
+                DDLogDebug("Connected to FCM.")
             }
         }
     }
     
     class func disconnectFromFcm() {
-        Timber.d("Disconnecting to FCM...")
+        DDLogDebug("Disconnecting to FCM...")
         FIRMessaging.messaging().disconnect()
     }
     
@@ -78,9 +79,9 @@ class FirebaseManager: NSObject {
         let refreshedToken = FIRInstanceID.instanceID().token()
         if refreshedToken != nil {
             Crashlytics.sharedInstance().setUserIdentifier(refreshedToken)
-            Timber.d("tokenRefreshNotification InstanceID token: \(refreshedToken)")
+            DDLogDebug("tokenRefreshNotification InstanceID token: \(refreshedToken)")
         } else{
-            Timber.e("tokenRefreshNotification InstanceID token: empty")
+            DDLogError("tokenRefreshNotification InstanceID token: empty")
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
@@ -88,14 +89,14 @@ class FirebaseManager: NSObject {
     }
     
     func sendDataMessageFailure(notification: NSNotification) {
-        Timber.d("sendDataMessageFailure= \(notification.description)")
+        DDLogDebug("sendDataMessageFailure= \(notification.description)")
     }
     
     func sendDataMessageSuccess(notification: NSNotification) {
-        Timber.d("sendDataMessageSuccess= \(notification.description)")
+        DDLogDebug("sendDataMessageSuccess= \(notification.description)")
     }
     
     func didDeleteMessagesOnServer(notification: NSNotification) {
-        Timber.d("didDeleteMessagesOnServer= \(notification.description)")
+        DDLogDebug("didDeleteMessagesOnServer= \(notification.description)")
     }
 }

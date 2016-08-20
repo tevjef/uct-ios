@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CocoaLumberjack
 
 class Common {}
 typealias Payload = [String: AnyObject]
@@ -46,7 +47,7 @@ extension University {
         do {
             return try university.build()
         } catch {
-            Timber.e("Error creating university \(error)")
+            DDLogError("Error creating university \(error)")
         }
         
         return nil
@@ -88,7 +89,7 @@ extension Subject {
         do {
             return try subject.build()
         } catch {
-            Timber.e("Error creating subject \(error)")
+            DDLogError("Error creating subject \(error)")
         }
         
         return nil
@@ -126,7 +127,7 @@ extension Course {
         do {
             return try course.build()
         } catch {
-            Timber.e("Error creating course \(error)")
+            DDLogError("Error creating course \(error)")
         }
         return nil
     }
@@ -162,7 +163,7 @@ extension Section {
         do {
             return try section.build()
         } catch {
-            Timber.e("Error creating section \(error)")
+            DDLogError("Error creating section \(error)")
         }
         
         return nil
@@ -210,7 +211,7 @@ class Utils {
             let semester = try Semester.Builder().setSeason(season).setYear(year!).build()
             return semester
         } catch {
-            Timber.e("Failed to parse semester")
+            DDLogError("Failed to parse semester")
         }
         return nil
     }

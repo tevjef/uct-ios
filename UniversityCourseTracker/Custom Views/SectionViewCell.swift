@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import CocoaLumberjack
 
 class SectionViewCell: UITableViewCell {
 
@@ -68,7 +69,7 @@ class SectionViewCell: UITableViewCell {
         resetAllMeetingViews()
         for index in 0..<section.meetings.count {
             if index > SectionViewCell.maxMeetingViews {
-                Timber.e("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
+                DDLogError("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
                 return
             }
             

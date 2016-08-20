@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import CocoaLumberjack
 
 class TrackedSectionViewController: UITableViewController {
 
@@ -29,12 +30,12 @@ class TrackedSectionViewController: UITableViewController {
     }
     
     func loadData() {
-        Timber.i("loadData()")
+        DDLogInfo("loadData()")
 
         self.dataSet = self.coreData.getAllSubscriptions()
         
         for subs in self.dataSet! {
-            Timber.i("Subscription=" + subs.sectionTopicName)
+            DDLogInfo("Subscription=" + subs.sectionTopicName)
         }
         
         self.dataSet?.sortInPlace({

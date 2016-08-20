@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import Crashlytics
+import CocoaLumberjack
 
 class Reporting: NSObject {
 
@@ -34,14 +35,14 @@ class Reporting: NSObject {
         FIRAnalytics.logEventWithName(Event.screen_view, parameters: params)
         Answers.logCustomEventWithName(Event.screen_view, customAttributes: params)
         Crashlytics.sharedInstance().setObjectValue(Event.screen_view, forKey: params.description)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
     }
     
     func logPopHome(from: UIViewController) {
         let params = [Params.screen_name: from.nameOfClass]
         FIRAnalytics.logEventWithName(Event.popHome, parameters: params)
         Answers.logCustomEventWithName(Event.popHome, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -49,7 +50,7 @@ class Reporting: NSObject {
         let params = [Params.semester: semester]
         FIRAnalytics.logEventWithName(Event.changeSemester, parameters: params)
         Answers.logCustomEventWithName(Event.changeSemester, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -58,11 +59,11 @@ class Reporting: NSObject {
         let params = [Params.topicId: topicId]
         FIRAnalytics.logEventWithName(Event.changeUniversity, parameters: params)
         Answers.logCustomEventWithName(Event.changeUniversity, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
     }
     
     func logDefaultUniversity(topicId: String) {
-        Timber.i("\(#function) \(topicId)")
+        DDLogInfo("\(#function) \(topicId)")
         FIRAnalytics.setUserPropertyString(topicId, forName: Event.defaultUni)
     }
     
@@ -70,7 +71,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: sectionTopicId]
         FIRAnalytics.logEventWithName(Event.subscribe, parameters: params)
         Answers.logCustomEventWithName(Event.subscribe, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -78,7 +79,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: sectionTopicId]
         FIRAnalytics.logEventWithName(Event.unsubscribe, parameters: params)
         Answers.logCustomEventWithName(Event.unsubscribe, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -86,7 +87,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: sectionTopicId]
         FIRAnalytics.logEventWithName(Event.receiveNotification, parameters: params)
         Answers.logCustomEventWithName(Event.receiveNotification, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -94,7 +95,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: sectionTopicId]
         FIRAnalytics.logEventWithName(Event.register, parameters: params)
         Answers.logCustomEventWithName(Event.register, customAttributes: params)
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -102,7 +103,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: topicId, Params.count: count]
         FIRAnalytics.logEventWithName(Event.filterAllSections, parameters: (params as! [String : NSObject]))
         Answers.logCustomEventWithName(Event.filterAllSections, customAttributes: (params as! [String : AnyObject]))
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     
@@ -110,7 +111,7 @@ class Reporting: NSObject {
         let params = [Params.topicId: topicId, Params.count: count]
         FIRAnalytics.logEventWithName(Event.filterOpenSections, parameters: (params as! [String : NSObject]))
         Answers.logCustomEventWithName(Event.filterOpenSections, customAttributes: (params as! [String : AnyObject]))
-        Timber.i("\(#function) \(params.description)")
+        DDLogInfo("\(#function) \(params.description)")
 
     }
     

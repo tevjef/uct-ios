@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CocoaLumberjack
 
 class DataRepos {
     
@@ -18,7 +19,7 @@ class DataRepos {
     }
     
     func processRequest(request: Request, completion: (Response?) -> Void) {
-        Timber.d("Request \(request.debugDescription)")
+        DDLogDebug("Request \(request.debugDescription)")
         request.responseData { response in
             if response.result.isSuccess {
                 do {
@@ -31,12 +32,12 @@ class DataRepos {
                     }
                 } catch {
                     completion(nil)
-                    Timber.e("Error while parsing response \(request.debugDescription) error=\(error)")
+                    DDLogError("Error while parsing response \(request.debugDescription) error=\(error)")
 
                 }
             } else {
                 completion(nil)
-                Timber.e("Error while trying to complete request \(request.debugDescription) result=\(response.result.error)")
+                DDLogError("Error while trying to complete request \(request.debugDescription) result=\(response.result.error)")
             }
         }
     }
