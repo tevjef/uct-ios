@@ -202,14 +202,18 @@ extension UIViewController {
     func makeActivityIndicator(view: UIView) -> UIActivityIndicatorView {
         let indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        indicator.color = UIColor.whiteColor()
         indicator.center = view.center
+        indicator.backgroundColor = AppConstants.Colors.primaryDark.colorWithAlphaComponent(0.7)
+        indicator.layer.cornerRadius = 5
+        indicator.opaque = false
+        
         view.addSubview(indicator)
         return indicator
     }
     
     func startIndicator(indicator: UIActivityIndicatorView?) {
         indicator?.startAnimating()
-        indicator?.backgroundColor = UIColor.clearColor()
     }
     
     func stopIndicator(indicator: UIActivityIndicatorView?) {

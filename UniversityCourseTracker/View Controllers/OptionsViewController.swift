@@ -61,11 +61,9 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
                 terms.append(semester)
             }
             
-            //tableView.reloadData()
-            tableView.beginUpdates()
-            tableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-            tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
-            tableView.endUpdates()
+            UIView.transitionWithView(tableView, duration: 0.35, options: .TransitionCrossDissolve, animations: {
+                self.tableView.reloadData()
+                }, completion: nil)
         }
     }
 
@@ -204,17 +202,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         return UITableViewAutomaticDimension;
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "University"
-        } else if section == 1 {
-            return "Term"
-        }
-        
-        return ""
-    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0 && currentUniversity != nil {
             return 1
         } else if section == 1 {
             return terms.count
@@ -223,7 +212,11 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if currentUniversity != nil {
+            return 2
+        }
+        
+        return 0
     }
     
     var checkedIndex: NSIndexPath?

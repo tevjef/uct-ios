@@ -15,7 +15,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var contentView: UIView!
 
-    var indicator = UIActivityIndicatorView()
+    var indicator: UIActivityIndicatorView?
     var pickerView: UIPickerView?
     var universities: Array<University>?
     var selectedIndex: Int?
@@ -24,7 +24,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Skip vc if user has selected a default university
         self.letsGoButton.alpha = 0
         navigationController?.navigationBar.hidden = true
-        if coreData.university != nil && false {
+        if coreData.university != nil {
             skipToTrackedSections()
         } else {
             reporting.logShowScreen(self)
@@ -46,7 +46,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.startIndicator(indicator)
 
         datarepo.getUniversities({[weak self] universities in
-            self?.stopIndicator((self?.indicator)!)
+            self?.stopIndicator(self?.indicator)
 
             if let universities = universities  {
                 self?.universities = universities
@@ -68,6 +68,8 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func setupViews() {
+        indicator = makeActivityIndicator(self.view)
+        
         contentView.backgroundColor = AppConstants.Colors.primaryLight
         letsGoButton.backgroundColor = AppConstants.Colors.primary
         textField.layer.borderColor = AppConstants.Colors.primary.CGColor
