@@ -79,6 +79,8 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     func loadData() {
+        startIndicator(activityIdicator, {self.universities.count == 0})
+
         appDelegate.dataRepo?.getUniversities({
             [weak self] universities in
             if let universities = universities {
@@ -90,8 +92,6 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
     func setupViews() {
         navigationItem.title = "Search Options"
         activityIdicator = makeActivityIndicator(self.view)
-        startIndicator(activityIdicator)
-        
         setupUniversityPickerView()
     }
     

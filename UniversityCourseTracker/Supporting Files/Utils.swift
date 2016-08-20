@@ -212,8 +212,12 @@ extension UIViewController {
         return indicator
     }
     
-    func startIndicator(indicator: UIActivityIndicatorView?) {
-        indicator?.startAnimating()
+    func startIndicator(indicator: UIActivityIndicatorView?, _ condition: (() -> Bool)? = nil) {
+        delay(1, closure: {
+            if condition != nil && condition!() {
+                indicator?.startAnimating()
+            }
+        })
     }
     
     func stopIndicator(indicator: UIActivityIndicatorView?) {
