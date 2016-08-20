@@ -95,14 +95,8 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
             Timber.e("Error while filtering sections from course \(error)")
         }
         
-        // Set default control postition. If there's lots of sections show a filtered list and at least 1 open section
-        if course.sections.count > 10 && filteredCourse?.sections.count != 0 {
-            sectionDataSource = filteredCourse
-            courseHeader?.segmentedControl.selectedSegmentIndex = 0
-        } else {
-            sectionDataSource = course
-            courseHeader?.segmentedControl.selectedSegmentIndex = 1
-        }
+        sectionDataSource = course
+        courseHeader?.segmentedControl.selectedSegmentIndex = 1
         
         metadataDataSource = course
     }
@@ -117,7 +111,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     // Keep the header at the top of the view
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offsety = scrollView.contentOffset.y
-        header?.transform = CGAffineTransformMakeTranslation(0, min(offsety, 0))
+        header?.transform = CGAffineTransformMakeTranslation(0, offsety)
     }
     
     // Listens to the changes in the segmented control
