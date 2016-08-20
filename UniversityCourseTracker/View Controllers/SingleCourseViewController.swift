@@ -56,7 +56,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
         
         // Headerview setup
-        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 45))
+        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, CourseHeaderView.headerViewHeight))
         header = UIView.init(frame: headerContainer!.bounds)
         header?.backgroundColor = AppConstants.Colors.primary
         headerContainer?.addSubview(header!)
@@ -67,7 +67,8 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         courseHeader!.autoPinEdgesToSuperviewEdges()
         courseHeader!.sizeToFit()
         tableView.tableHeaderView = headerContainer
-        
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: CourseHeaderView.headerViewHeight,left: 0,bottom: 0,right: 0)
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
 
     }

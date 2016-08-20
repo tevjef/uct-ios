@@ -10,6 +10,8 @@ import UIKit
 
 class CourseHeaderView: UIView {
 
+    static let headerViewHeight: CGFloat = 50.0
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     static let viewNib: UINib = UINib(nibName: "CourseHeaderView", bundle: NSBundle.mainBundle())
     

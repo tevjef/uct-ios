@@ -44,12 +44,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     override func viewDidLayoutSubviews() {
         // Tableview header gets fucked up in landscpare, this should set it right.
         header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
-        header?.frame.origin.x = 0
-        
-        //print("Header bounds=\(header!.bounds) frame=\(header!.frame)")
-        //print("Container bounds=\(headerContainer!.bounds) frame=\(headerContainer!.frame)")
-        //print("View bounds=\(view!.bounds) frame=\(view!.frame)")
-        
+        header?.frame.origin.x = 0        
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -83,13 +78,16 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         // setup TableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
-        
+        tableView.cellLayoutMarginsFollowReadableWidth = false
         tableView.registerNib(UINib(nibName: "TimeViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: timeCellIdentifier)
         tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
 
         // Headerview setup
         headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 110))
         header = UIView.init(frame: headerContainer!.bounds)
+        let insets = tableView.separatorInset
+        header?.layoutMargins = UIEdgeInsets(top: 0, left: insets.left ,bottom: 0,right: insets.left)
+
         headerContainer?.addSubview(header!)
 
         let sectionHeader = SectionHeaderView.createView()
@@ -215,7 +213,6 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         }
         
         Notifications.requestNotificationPermission()
-        
         lastPosition = !lastPosition
         
         if sender.on {

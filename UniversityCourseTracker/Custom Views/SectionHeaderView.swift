@@ -15,7 +15,7 @@ class SectionHeaderView: UIView {
     @IBOutlet weak var creditsNumber: UILabel!
     @IBOutlet weak var instructorText: UILabel!
     @IBOutlet weak var semesterText: UILabel!
-    
+
     static let viewNib: UINib = UINib(nibName: "SectionHeaderView", bundle: NSBundle.mainBundle())
     
     required init?(coder aDecoder: NSCoder) {

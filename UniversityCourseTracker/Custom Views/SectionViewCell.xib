@@ -8,15 +8,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="213" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionCell" rowHeight="213" id="MO0-H6-gt6" customClass="SectionViewCell" customModule="UniversityCourseTracker" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="392" height="213"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MO0-H6-gt6" id="1YS-6f-k3f">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="MO0-H6-gt6" id="1YS-6f-k3f">
                 <rect key="frame" x="0.0" y="0.0" width="392" height="212"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Tj8-h0-j9F">
-                        <rect key="frame" x="68" y="99" width="316" height="90"/>
+                        <rect key="frame" x="68" y="98" width="309" height="90"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="90" identifier="$stackHeight$" id="LUV-TN-ojv"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSD-cf-nMf">
-                        <rect key="frame" x="343" y="189" width="41" height="14"/>
+                        <rect key="frame" x="336" y="188" width="41" height="14"/>
                         <attributedString key="attributedText">
                             <fragment content="Randall">
                                 <attributes>
@@ -57,21 +57,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Tj8-h0-j9F" secondAttribute="trailing" constant="8" id="382-CY-8rG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Tj8-h0-j9F" secondAttribute="trailing" id="382-CY-8rG"/>
                     <constraint firstItem="DRy-fw-62L" firstAttribute="top" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" id="3g1-8d-deF"/>
                     <constraint firstItem="Tj8-h0-j9F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1YS-6f-k3f" secondAttribute="top" constant="10" identifier="$stackViewTopInEq$" id="BCn-SX-8gR"/>
                     <constraint firstItem="Tj8-h0-j9F" firstAttribute="leading" secondItem="DRy-fw-62L" secondAttribute="trailing" constant="8" id="Npp-nN-zdE"/>
-                    <constraint firstItem="DRy-fw-62L" firstAttribute="leading" secondItem="1YS-6f-k3f" secondAttribute="leading" constant="15" id="Q3z-4S-hPv"/>
+                    <constraint firstItem="DRy-fw-62L" firstAttribute="leading" secondItem="1YS-6f-k3f" secondAttribute="leadingMargin" id="Q3z-4S-hPv"/>
                     <constraint firstItem="dSD-cf-nMf" firstAttribute="top" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="X42-fD-mPo"/>
-                    <constraint firstItem="dSD-cf-nMf" firstAttribute="bottom" secondItem="Tj8-h0-j9F" secondAttribute="bottom" id="ofP-Eu-67J"/>
                     <constraint firstAttribute="trailingMargin" secondItem="dSD-cf-nMf" secondAttribute="trailing" id="pq5-pP-Voo"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Tj8-h0-j9F" secondAttribute="bottom" constant="15" id="yAY-qd-qoe"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="ofP-Eu-67J"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="circleViewContainer" destination="DRy-fw-62L" id="akc-uJ-qF1"/>

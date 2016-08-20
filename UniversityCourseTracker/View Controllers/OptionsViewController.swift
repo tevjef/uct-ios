@@ -179,19 +179,19 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
             title = "Term"
         }
 
-        let pickerLabel = PaddedLabel()
-        
-        pickerLabel.text = title.uppercaseString
-        pickerLabel.font = UIFont.boldSystemFontOfSize(12)
-        pickerLabel.textColor = AppConstants.Colors.primaryDarkText
-        pickerLabel.numberOfLines = 0
-        pickerLabel.lineBreakMode = .ByWordWrapping
-        pickerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
-        pickerLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
-        pickerLabel.sizeToFit()
+        let headerLabel = PaddedLabel()
+        headerLabel.padding = UIEdgeInsets(top: 5, left: tableView.separatorInset.left,bottom: -5 ,right: tableView.separatorInset.left)
+        headerLabel.text = title.uppercaseString
+        headerLabel.font = UIFont.boldSystemFontOfSize(12)
+        headerLabel.textColor = AppConstants.Colors.primaryDarkText
+        headerLabel.numberOfLines = 0
+        headerLabel.lineBreakMode = .ByWordWrapping
+        headerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        headerLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        headerLabel.sizeToFit()
         //pickerLabel.adjustsFontSizeToFitWidth = true
         
-        return pickerLabel
+        return headerLabel
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
