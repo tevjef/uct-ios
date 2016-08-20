@@ -75,6 +75,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         textField.layer.borderColor = AppConstants.Colors.primary.CGColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 5
+        textField.tintColor = UIColor.clearColor()
         
         // Hide textField while data loads
         textField.alpha = 0
