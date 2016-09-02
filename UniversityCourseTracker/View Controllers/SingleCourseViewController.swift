@@ -179,7 +179,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     func gotoSection() {
         let sectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.section) as! SectionViewController
         // Set back button for next controller
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(loadedCourse!.number)", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(searchFlow!.tempCourse!.number)", style: .Plain, target: nil, action: nil)
         prepareSearchFlow(sectionVC)
         self.navigationController?.showViewController(sectionVC, sender: self)
     }
