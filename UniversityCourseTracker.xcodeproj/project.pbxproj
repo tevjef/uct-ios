@@ -174,7 +174,7 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		130568741D5681BD005BB80E /* Custom Views */ = {
+		130568741D5681BD005BB80E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				1367EBCF1D58A3D500A05932 /* CourseHeaderView.swift */,
@@ -193,17 +193,17 @@
 				13BADA5A1D57CFEE00B666CB /* TimeViewCell.swift */,
 				13BADA5B1D57CFEE00B666CB /* TimeViewCell.xib */,
 			);
-			path = "Custom Views";
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		130568751D5681E2005BB80E /* Supporting Files */ = {
+		130568751D5681E2005BB80E /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				1361A0B41D590FE500E98FB5 /* OrderedDictionary.swift */,
 				130568711D566971005BB80E /* Timber.swift */,
 				130AD7E21D49B3FB00CCD3E1 /* Utils.swift */,
 			);
-			path = "Supporting Files";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		1327C0E51D445D5000F5F742 = {
@@ -231,10 +231,10 @@
 		1327C0F01D445D5100F5F742 /* UniversityCourseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				130568741D5681BD005BB80E /* Custom Views */,
+				130568741D5681BD005BB80E /* CustomViews */,
 				1305685E1D563DBF005BB80E /* Data */,
-				130568751D5681E2005BB80E /* Supporting Files */,
-				1327C12E1D453CAD00F5F742 /* View Controllers */,
+				130568751D5681E2005BB80E /* SupportingFiles */,
+				1327C12E1D453CAD00F5F742 /* ViewControllers */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
 				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,
@@ -285,7 +285,7 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		1327C12E1D453CAD00F5F742 /* View Controllers */ = {
+		1327C12E1D453CAD00F5F742 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				1308CC0B1D45C6F100E7A243 /* CoursesViewController.swift */,
@@ -297,7 +297,7 @@
 				1308CC091D4598BF00E7A243 /* SubjectsViewController.swift */,
 				1367EBD71D58CDAE00A05932 /* TrackedSectionsViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		13D8D5651D66D776003C5540 /* Core */ = {
