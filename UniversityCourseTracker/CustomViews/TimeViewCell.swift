@@ -16,7 +16,7 @@ class TimeViewCell: UITableViewCell {
     
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     var meetingViews: [MeetingView] = []
-    static var maxMeetingViews = 7
+    static var maxMeetingViews = 20
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +41,7 @@ class TimeViewCell: UITableViewCell {
     func setMeetings(section: Section) {
         var height: CGFloat = 0
         for index in 0..<section.meetings.count {
-            if index > TimeViewCell.maxMeetingViews {
+            if index+1 > TimeViewCell.maxMeetingViews {
                 DDLogError("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
                 return
             }

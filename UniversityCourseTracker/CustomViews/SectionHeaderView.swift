@@ -33,7 +33,13 @@ class SectionHeaderView: UIView {
     func setSection(section: Section, semester: Semester) {
         sectionNumber.text = section.number
         callNumber.text = section.callNumber
-        creditsNumber.text = section.credits
+        
+        if section.credits == "-1" {
+            creditsNumber.text = "N/A"
+        } else {
+            creditsNumber.text = section.credits
+        }
+        
         instructorText.text = section.instructors.listString
         semesterText.text = semester.readableString
     }

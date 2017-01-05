@@ -13,9 +13,21 @@ import CocoaLumberjack
 class DataRepos {
     
     var constants: AppConstants
+    var session: Manager
     
     init(constants: AppConstants) {
         self.constants = constants
+        let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let displayName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
+
+        var defaultHeaders = Alamofire.Manager.defaultHTTPHeaders
+        
+        // Add version number to User-Agent
+        defaultHeaders["User-Agent"] = "\(defaultHeaders["User-Agent"]!) \(displayName)/\(appVersionString)"
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = defaultHeaders
+        session = Alamofire.Manager(configuration: configuration)
+        
     }
     
     let headers = [
@@ -48,7 +60,7 @@ class DataRepos {
     
     func getUniversities(universities: (Array<University>?) -> Void) {
         let url = constants.UNIVERSITIES
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             universities(response?.data.universities)
@@ -57,7 +69,7 @@ class DataRepos {
     
     func getUniversity(universityTopic: String, _ university: (University?) -> Void) {
         let url = "\(constants.UNIVERSITY)/\(universityTopic)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             university(response?.data.university)
@@ -67,7 +79,7 @@ class DataRepos {
     func getSubjects(universityTopic: String, _ season: String, _ year: String,
                      _ subjects: (Array<Subject>?) -> Void) {
         let url = "\(constants.SUBJECTS)/\(universityTopic)/\(season)/\(year)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             subjects(response?.data.subjects)
@@ -76,7 +88,7 @@ class DataRepos {
     
     func getSubject(subjectTopic: String, _ subject: (Subject?) -> Void) {
         let url = "\(constants.SUBJECT)/\(subjectTopic)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             subject(response?.data.subject)
@@ -85,7 +97,7 @@ class DataRepos {
     
     func getCourses(subjectTopic: String, _ courses: (Array<Course>?) -> Void) {
         let url = "\(constants.COURSES)/\(subjectTopic)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             courses(response?.data.courses)
@@ -94,7 +106,7 @@ class DataRepos {
     
     func getCourse(courseTopic: String, _ course: (Course?) -> Void) {
         let url = "\(constants.COURSE)/\(courseTopic)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             course(response?.data.course)
@@ -103,7 +115,7 @@ class DataRepos {
     
     func getSection(sectionTopic: String, _ section: (Section?) -> Void) {
         let url = "\(constants.SECTION)/\(sectionTopic)"
-        let request = Alamofire.request(.GET, url, headers: headers)
+        let request = session.request(.GET, url, headers: headers)
         processRequest(request, completion: {
             response in
             section(response?.data.section)
