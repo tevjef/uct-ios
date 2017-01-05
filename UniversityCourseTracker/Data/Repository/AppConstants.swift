@@ -10,13 +10,27 @@ import Foundation
 import UIKit
 
 class AppConstants {
-    var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)"
-    var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)"
-    var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)"
-    var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)"
-    var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)"
-    var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)"
-    var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)"
+
+    init() {
+        // Set defaults
+
+        let betaUniversities = NSUserDefaults.standardUserDefaults().boolForKey("beta_universities")
+        
+        // Enable beta endpoint
+        if betaUniversities {
+            Network.base = "https://api.staging.coursetrakr.io"
+        } else {
+            Network.base = "https://api.coursetrakr.io"
+        }
+    }
+    
+    lazy var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)"
+    lazy var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)"
+    lazy var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)"
+    lazy var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)"
+    lazy var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)"
+    lazy var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)"
+    lazy var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)"
     
     struct Notification {
         static var genericNotificationTitle = "Course Tracker"

@@ -53,6 +53,7 @@
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
 		13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */; };
+		13F9F2791E1EBE9600E84DBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13F9F2781E1EBE9600E84DBB /* Settings.bundle */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
@@ -130,6 +131,7 @@
 		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
 		13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UniversityCourseTracker.entitlements; sourceTree = "<group>"; };
 		13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13F9F2781E1EBE9600E84DBB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
 				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
+				13F9F2781E1EBE9600E84DBB /* Settings.bundle */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				1327C0FC1D445D5100F5F742 /* Assets.xcassets in Resources */,
 				1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */,
 				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
+				13F9F2791E1EBE9600E84DBB /* Settings.bundle in Resources */,
 				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
 				13D8D5691D67D2DF003C5540 /* NoSections.xib in Resources */,
 				13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */,
