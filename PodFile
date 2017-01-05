@@ -4,7 +4,7 @@ use_frameworks!
 
 target ‘UniversityCourseTracker’ do
     # For network connection
-    pod 'Alamofire', '~> 3.4'
+    pod 'Alamofire', '~> 4.2'
 
     # To generate model objects from a .proto
     pod 'ProtocolBuffers-Swift’
