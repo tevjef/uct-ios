@@ -68,7 +68,7 @@ class SectionViewCell: UITableViewCell {
         var height: CGFloat = 0
         resetAllMeetingViews()
         for index in 0..<section.meetings.count {
-            if index+1 > SectionViewCell.maxMeetingViews {
+            if index > SectionViewCell.maxMeetingViews - 1 {
                 DDLogError("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
                 return
             }

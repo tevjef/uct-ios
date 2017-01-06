@@ -41,7 +41,7 @@ class TimeViewCell: UITableViewCell {
     func setMeetings(section: Section) {
         var height: CGFloat = 0
         for index in 0..<section.meetings.count {
-            if index+1 > TimeViewCell.maxMeetingViews {
+            if index > TimeViewCell.maxMeetingViews - 1 {
                 DDLogError("More than \(SectionViewCell.maxMeetingViews) meetings found for \(section.topicName)")
                 return
             }
