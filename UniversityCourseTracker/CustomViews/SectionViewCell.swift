@@ -28,11 +28,11 @@ class SectionViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectedBackgroundView = AppConstants.Colors.primaryLight.viewFromColor()
-        AppConstants.Colors.configureLabel(instructorLabel, style: AppConstants.FontStyle.Caption)
+        AppConstants.Colors.configureLabel(instructorLabel, style: AppConstants.FontStyle.caption)
         
         for view in meetingViews {
             stackView.addArrangedSubview(view)
-            view.autoPinEdgeToSuperviewEdge(.Trailing)
+            view.autoPinEdge(toSuperviewEdge: .trailing)
         }
         circleViewContainer.layer.cornerRadius = circleViewContainer.frame.height / 2
     }
@@ -55,7 +55,7 @@ class SectionViewCell: UITableViewCell {
         }
     }
     
-    func setSection(section: Section) {
+    func setSection(_ section: Section) {
         sectionNumber.text = section.number
         if section.status == "Open" {
             circleViewContainer.backgroundColor = AppConstants.Colors.openSection
@@ -78,8 +78,8 @@ class SectionViewCell: UITableViewCell {
             let meetingView = meetingViews[index]
 
             if meeting.day != "" {
-                let abbrIndex = meeting.day.startIndex.advancedBy(3)
-                meetingView.dayView.text = meeting.day.substringToIndex(abbrIndex)
+                let abbrIndex = meeting.day.characters.index(meeting.day.startIndex, offsetBy: 3)
+                meetingView.dayView.text = meeting.day.substring(to: abbrIndex)
 
             } else {
                 meetingView.dayView.text = meeting.classType
@@ -96,7 +96,7 @@ class SectionViewCell: UITableViewCell {
     }
 
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         let color = circleViewContainer.backgroundColor
         super.setSelected(selected, animated: animated)
         
@@ -105,7 +105,7 @@ class SectionViewCell: UITableViewCell {
         }
     }
     
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         let color = circleViewContainer.backgroundColor
         super.setHighlighted(highlighted, animated: animated)
         

@@ -15,7 +15,7 @@ class TrackedSectionViewController: UITableViewController {
     let sectionCellIdentifier = "sectionCell"
 
     var dataSet: Array<Subscription>?
-    var selectedIndex: NSIndexPath?
+    var selectedIndex: IndexPath?
 
     var sectionedDataSet = OrderedDictionary<String, Array<Subscription>>()
     
@@ -38,7 +38,7 @@ class TrackedSectionViewController: UITableViewController {
             DDLogInfo("Subscription=" + subs.sectionTopicName)
         }
         
-        self.dataSet?.sortInPlace({
+        self.dataSet?.sort(by: {
             let subjectLHS = $0.getSubject()
             let courseLHS = $0.getCourse()
             let sectionLHS = $0.getSection()
@@ -53,11 +53,11 @@ class TrackedSectionViewController: UITableViewController {
         self.sectionedDataSet.removeAll()
         for data in self.dataSet! {
             let courseName = data.getCourse().name
-            if self.sectionedDataSet[courseName] != nil {
-                self.sectionedDataSet[courseName]!.append(data)
+            if self.sectionedDataSet[courseName!] != nil {
+                self.sectionedDataSet[courseName!]!.append(data)
             } else {
-                self.sectionedDataSet[courseName] = Array<Subscription>()
-                self.sectionedDataSet[courseName]!.append(data)
+                self.sectionedDataSet[courseName!] = Array<Subscription>()
+                self.sectionedDataSet[courseName!]!.append(data)
             }
         }
 
@@ -75,7 +75,7 @@ class TrackedSectionViewController: UITableViewController {
         tableView.backgroundView = noSectionView
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         // Section View Controller may reset the color
         self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.primary
     }
@@ -87,11 +87,11 @@ class TrackedSectionViewController: UITableViewController {
     
     func setupViews() {
         navigationItem.title = "Tracked Sections"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: self, action: nil)
-        navigationController?.navigationBar.hidden = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
         
-        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
+        tableView.register(UINib(nibName: "SectionViewCell", bundle: Bundle.main), forCellReuseIdentifier: sectionCellIdentifier)
         //tableView.sectionHeaderHeight = 0.0;
         tableView.sectionFooterHeight = 0.0;
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -100,24 +100,24 @@ class TrackedSectionViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate Methods
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getValueAtIndex(section).count
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionedDataSet.orderedKeys.count
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerLabel = PaddedLabel()
         headerLabel.padding = UIEdgeInsets(top: 5, left: tableView.separatorInset.left, bottom: -5, right: tableView.separatorInset.right)
-        headerLabel.text = getKeyAtIndex(section).uppercaseString
-        headerLabel.font = UIFont.boldSystemFontOfSize(12)
+        headerLabel.text = getKeyAtIndex(section).uppercased()
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 12)
         headerLabel.textColor = AppConstants.Colors.primaryDarkText
         headerLabel.numberOfLines = 0
-        headerLabel.lineBreakMode = .ByWordWrapping
-        headerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
-        headerLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        headerLabel.lineBreakMode = .byWordWrapping
+        headerLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
+        headerLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
         headerLabel.sizeToFit()
         headerLabel.preservesSuperviewLayoutMargins = true
         //pickerLabel.adjustsFontSizeToFitWidth = true
@@ -126,7 +126,7 @@ class TrackedSectionViewController: UITableViewController {
         return headerLabel
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 38
         }
@@ -134,27 +134,27 @@ class TrackedSectionViewController: UITableViewController {
         return UITableViewAutomaticDimension;
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return getKeyAtIndex(section)
     }
 
-    func getKeyAtIndex(index: Int) -> String {
+    func getKeyAtIndex(_ index: Int) -> String {
         if sectionedDataSet.orderedKeys.count < index {
             return ""
         }
         return sectionedDataSet.orderedKeys[index]
     }
     
-    func getValueAtIndex(section: Int) -> Array<Subscription> {
+    func getValueAtIndex(_ section: Int) -> Array<Subscription> {
         return sectionedDataSet[getKeyAtIndex(section)]!
     }
     
-    func getSubscriptionInValue(indexPath: NSIndexPath) -> Subscription {
-        return getValueAtIndex(indexPath.section)[indexPath.row]
+    func getSubscriptionInValue(_ indexPath: IndexPath) -> Subscription {
+        return getValueAtIndex((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            if let cell: SectionViewCell = tableView.dequeueReusableCell(withIdentifier: sectionCellIdentifier) as? SectionViewCell {
                 let modelItem = getSubscriptionInValue(indexPath).getSection()
                 cell.setSection(modelItem)
                 return cell
@@ -162,47 +162,47 @@ class TrackedSectionViewController: UITableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = indexPath
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         gotoSection()
     }
     
     func gotoSection() {
-        let sectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.section) as! SectionViewController
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        let sectionVC = self.storyboard?.instantiateViewController(withIdentifier: AppConstants.Id.Controllers.section) as! SectionViewController
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         sectionVC.pusher = AppConstants.Id.Controllers.trackedSections
         prepareSearchFlow(sectionVC)
-        self.navigationController?.showViewController(sectionVC, sender: self)
+        self.navigationController?.show(sectionVC, sender: self)
         
     }
     
-    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
+    func prepareSearchFlow(_ searchFlowDelegate: SearchFlowDelegate) {
         searchFlowDelegate.searchFlow = getSubscriptionInValue(selectedIndex!).getSearchFlow()
     }
     
-    func onSubscriptionAdded(sender: AnyObject) {
+    func onSubscriptionAdded(_ sender: AnyObject) {
         loadData()
     }
     
-    func onSubscriptionRemoved(sender: AnyObject) {
+    func onSubscriptionRemoved(_ sender: AnyObject) {
         loadData()
     }
     
-    func onSubscriptionsUpdated(sender: AnyObject) {
+    func onSubscriptionsUpdated(_ sender: AnyObject) {
         loadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionAdded), name: CoreDataManager.addSubscriptionNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionRemoved), name: CoreDataManager.removeSubscriptionNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onSubscriptionsUpdated), name: CoreDataManager.updateSubscriptionsNotification, object: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(onSubscriptionAdded), name: NSNotification.Name(rawValue: CoreDataManager.addSubscriptionNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSubscriptionRemoved), name: NSNotification.Name(rawValue: CoreDataManager.removeSubscriptionNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onSubscriptionsUpdated), name: NSNotification.Name(rawValue: CoreDataManager.updateSubscriptionsNotification), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.addSubscriptionNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.removeSubscriptionNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: CoreDataManager.updateSubscriptionsNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: CoreDataManager.addSubscriptionNotification), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: CoreDataManager.removeSubscriptionNotification), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: CoreDataManager.updateSubscriptionsNotification), object: nil)
     }
 }

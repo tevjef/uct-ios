@@ -16,7 +16,7 @@ class SectionHeaderView: UIView {
     @IBOutlet weak var instructorText: UILabel!
     @IBOutlet weak var semesterText: UILabel!
 
-    static let viewNib: UINib = UINib(nibName: "SectionHeaderView", bundle: NSBundle.mainBundle())
+    static let viewNib: UINib = UINib(nibName: "SectionHeaderView", bundle: Bundle.main)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,10 +27,10 @@ class SectionHeaderView: UIView {
     }
 
     class func createView() -> SectionHeaderView {
-        return SectionHeaderView.viewNib.instantiateWithOwner(self, options: nil).first as! SectionHeaderView
+        return SectionHeaderView.viewNib.instantiate(withOwner: self, options: nil).first as! SectionHeaderView
     }
     
-    func setSection(section: Section, semester: Semester) {
+    func setSection(_ section: Section, semester: Semester) {
         sectionNumber.text = section.number
         callNumber.text = section.callNumber
         

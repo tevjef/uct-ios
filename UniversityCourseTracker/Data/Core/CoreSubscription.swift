@@ -13,7 +13,7 @@ import CocoaLumberjack
 
 class CoreSubscription: NSManagedObject {
     
-    class func getAllSubscription(ctx: NSManagedObjectContext) -> [Subscription] {
+    class func getAllSubscription(_ ctx: NSManagedObjectContext) -> [Subscription] {
         do {
             var subscriptions = [Subscription]()
             for coreSubscription in try getAllCoreSubscriptions(ctx) {
@@ -30,7 +30,7 @@ class CoreSubscription: NSManagedObject {
         }
     }
     
-    class func getSubscription(ctx: NSManagedObjectContext, topicName: String) -> Subscription? {
+    class func getSubscription(_ ctx: NSManagedObjectContext, topicName: String) -> Subscription? {
         do {
             var subscriptions = [Subscription]()
             for coreSubscription in try getCoreSubscriptions(ctx, topicName: topicName) {
@@ -57,17 +57,17 @@ class CoreSubscription: NSManagedObject {
         }
     }
     
-    class func upsertSubscription(ctx: NSManagedObjectContext, subscription: Subscription) {
+    class func upsertSubscription(_ ctx: NSManagedObjectContext, subscription: Subscription) {
             
         do {
             let fetchedCoreSubscriptions = try getCoreSubscriptions(ctx, topicName: subscription.sectionTopicName)
             if fetchedCoreSubscriptions.count > 1 {
                 // TODO code smell, deletes potential duplicated subscriptions
                 for index in 1..<fetchedCoreSubscriptions.count {
-                    ctx.deleteObject(fetchedCoreSubscriptions[index])
+                    ctx.delete(fetchedCoreSubscriptions[index])
                 }
             } else if fetchedCoreSubscriptions.count == 0 {
-                let coreSubscription = CoreSubscription(context: ctx)
+                let coreSubscription = CoreSubscription(context: ctx, dummy: "")
                 coreSubscription.insert(subscription)
             } else if fetchedCoreSubscriptions.count == 1 {
                 let subscriptionToUpdate = fetchedCoreSubscriptions.first
@@ -80,7 +80,7 @@ class CoreSubscription: NSManagedObject {
         }
     }
     
-    class func removeSubscription(ctx: NSManagedObjectContext, topicName: String) -> Int {
+    class func removeSubscription(_ ctx: NSManagedObjectContext, topicName: String) -> Int {
         var count = 0
 
         do {
@@ -93,7 +93,7 @@ class CoreSubscription: NSManagedObject {
             
             for obj in fetchedCoreSubscriptions {
                 count += 1
-                ctx.deleteObject(obj)
+                ctx.delete(obj)
             }
             
             try ctx.save()
@@ -109,27 +109,25 @@ class CoreSubscription: NSManagedObject {
         return AppConstants.CoreData.subscriptions
     }
     
-    private class func requestAllSubscriptions() -> NSFetchRequest {
-        let fetchRequest = NSFetchRequest(entityName: CoreSubscription.entityName())
-        
-        return fetchRequest
+    fileprivate class func requestAllSubscriptions() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest(entityName: CoreSubscription.entityName())
     }
     
-    private class func resquestSubscriptionByTopicName(topicName: String) -> NSFetchRequest {
-        let fetchRequest = NSFetchRequest(entityName: CoreSubscription.entityName())
+    fileprivate class func resquestSubscriptionByTopicName(_ topicName: String) -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoreSubscription.entityName())
         fetchRequest.predicate = getFilterPredicate(topicName)
         
         return fetchRequest
     }
     
-    private class func getFilterPredicate(topicName: String) -> NSPredicate {
+    fileprivate class func getFilterPredicate(_ topicName: String) -> NSPredicate {
         return NSPredicate(format: "topicName = %@", topicName)
     }
     
-    private class func subscriptionFromCore(coreSubscription: CoreSubscription) -> Subscription? {
+    fileprivate class func subscriptionFromCore(_ coreSubscription: CoreSubscription) -> Subscription? {
         do {
             if coreSubscription.university != nil {
-                let uni = try University.parseFromData(coreSubscription.university!)
+                let uni = try University.parseFrom(data: coreSubscription.university as! Data)
                 return Subscription(topicName: coreSubscription.topicName!, university: uni)
             }
         } catch {
@@ -139,10 +137,10 @@ class CoreSubscription: NSManagedObject {
         return nil
     }
     
-    private func insert(subscription: Subscription) {
+    fileprivate func insert(_ subscription: Subscription) {
         let data = subscription.university!.data()
         
-        university = data
+        university = data as NSData?
         topicName = subscription.sectionTopicName
         
         do {
@@ -152,10 +150,10 @@ class CoreSubscription: NSManagedObject {
         }
     }
     
-    private func update(subscription: Subscription) {
+    fileprivate func update(_ subscription: Subscription) {
         let data = subscription.university!.data()
         
-        university = data
+        university = data as NSData?
         topicName = subscription.sectionTopicName
         
         do {
@@ -165,16 +163,16 @@ class CoreSubscription: NSManagedObject {
         }
     }
     
-    private class func getCoreSubscriptions(ctx: NSManagedObjectContext, topicName: String) throws -> [CoreSubscription] {
+    fileprivate class func getCoreSubscriptions(_ ctx: NSManagedObjectContext, topicName: String) throws -> [CoreSubscription] {
         let requestByTopicName = CoreSubscription.resquestSubscriptionByTopicName(topicName)
-        let fetchedCoreSubscriptions = try ctx.executeFetchRequest(requestByTopicName) as! [CoreSubscription]
+        let fetchedCoreSubscriptions = try ctx.fetch(requestByTopicName) as! [CoreSubscription]
         
         return fetchedCoreSubscriptions
     }
     
-    private class func getAllCoreSubscriptions(ctx: NSManagedObjectContext) throws -> [CoreSubscription] {
+    fileprivate class func getAllCoreSubscriptions(_ ctx: NSManagedObjectContext) throws -> [CoreSubscription] {
         let requestAll = CoreSubscription.requestAllSubscriptions()
-        let fetchedCoreSubscriptions = try ctx.executeFetchRequest(requestAll) as! [CoreSubscription]
+        let fetchedCoreSubscriptions = try ctx.fetch(requestAll) as! [CoreSubscription]
         
         return fetchedCoreSubscriptions
     }

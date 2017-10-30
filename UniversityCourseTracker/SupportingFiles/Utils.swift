@@ -11,28 +11,28 @@ import Foundation
 import UIKit
 
 
-var GlobalMainQueue: dispatch_queue_t {
-    return dispatch_get_main_queue()
+var GlobalMainQueue: DispatchQueue {
+    return DispatchQueue.main
 }
 
-var GlobalUserInteractiveQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)
+var GlobalUserInteractiveQueue: DispatchQueue {
+    return DispatchQueue(label: "io.coursetrakr", qos: DispatchQoS.userInteractive)
 }
 
-var GlobalUserInitiatedQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
+var GlobalUserInitiatedQueue: DispatchQueue {
+    return DispatchQueue(label: "io.coursetrakr", qos: DispatchQoS.userInitiated)
 }
 
-var GlobalUtilityQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue), 0)
+var GlobalUtilityQueue: DispatchQueue {
+    return DispatchQueue(label: "io.coursetrakr", qos: DispatchQoS.utility)
 }
 
-var GlobalBackgroundQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
+var GlobalBackgroundQueue: DispatchQueue {
+    return DispatchQueue(label: "io.coursetrakr", qos: DispatchQoS.background)
 }
 
-var GlobalHighPriorityQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+var GlobalHighPriorityQueue: DispatchQueue {
+    return DispatchQueue(label: "io.coursetrakr", qos: DispatchQoS.default)
 }
 
 
@@ -43,15 +43,15 @@ extension UIColor {
     }
     
     convenience init(hexString:String, alpha: CGFloat) {
-        let hexString:NSString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let scanner = NSScanner(string: hexString as String)
+        let hexString:NSString = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) as NSString
+        let scanner = Scanner(string: hexString as String)
         
         if (hexString.hasPrefix("#")) {
             scanner.scanLocation = 1
         }
         
         var color:UInt32 = 0
-        scanner.scanHexInt(&color)
+        scanner.scanHexInt32(&color)
         
         let mask = 0x000000FF
         let r = Int(color >> 16) & mask
@@ -86,30 +86,30 @@ extension UIColor {
 }
 
 extension UITableView {
-    func scrollToTop(animated: Bool) {
-        setContentOffset(CGPointZero, animated: animated)
+    func scrollToTop(_ animated: Bool) {
+        setContentOffset(CGPoint.zero, animated: animated)
     }
 }
 
 extension UIImage {
-    func filledImage(fillColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.mainScreen().scale)
+    func filledImage(_ fillColor: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
         
         let context = UIGraphicsGetCurrentContext()
         fillColor.setFill()
         
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
+        context?.translateBy(x: 0, y: self.size.height)
+        context?.scaleBy(x: 1.0, y: -1.0)
         
-        CGContextSetBlendMode(context, CGBlendMode.ColorBurn)
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height)
-        CGContextDrawImage(context, rect, self.CGImage)
+        context?.setBlendMode(CGBlendMode.colorBurn)
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        context?.draw(self.cgImage!, in: rect)
         
-        CGContextSetBlendMode(context, CGBlendMode.SourceIn)
-        CGContextAddRect(context, rect)
-        CGContextDrawPath(context,CGPathDrawingMode.Fill)
+        context?.setBlendMode(CGBlendMode.sourceIn)
+        context?.addRect(rect)
+        context?.drawPath(using: CGPathDrawingMode.fill)
         
-        let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return coloredImg
@@ -120,23 +120,23 @@ extension UIImage {
 extension UITableViewController {
     
     func showRefreshing()  {
-        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
+        self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
     }
     
-    func emptyMessage(message:String) {
-        let messageLabel = UILabel(frame: CGRectMake(0,0,90, self.view.bounds.size.height))
+    func emptyMessage(_ message:String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0,y: 0,width: 90, height: self.view.bounds.size.height))
         messageLabel.text = message
         messageLabel.textColor = AppConstants.Colors.primary
         messageLabel.numberOfLines = 2;
-        messageLabel.textAlignment = .Center;
+        messageLabel.textAlignment = .center;
         //messageLabel.sizeToFit()
         
         self.tableView.backgroundView = messageLabel;
-        self.tableView.separatorStyle = .None;
+        self.tableView.separatorStyle = .none;
     }
     
-    func showRefreshing(closure: () -> Bool)  {
+    func showRefreshing(_ closure: @escaping () -> Bool)  {
         delay(1.5, closure: {
             if closure() {
                 self.showRefreshing()
@@ -151,20 +151,16 @@ extension UITableViewController {
     }
 }
 
-func delay(delay: Double, closure: ()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(delay * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(),
-        closure
+func delay(_ delay: Double, closure: @escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+        execute: closure
     )
 }
 
 extension UIViewController {
     var appDelegate:AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
     
     var coreData:CoreDataManager {
@@ -179,7 +175,7 @@ extension UIViewController {
         return appDelegate.reporting!
     }
 
-    func popToRoot(button: UIBarButtonItem) {
+    func popToRoot(_ button: UIBarButtonItem) {
         for vc in navigationController!.viewControllers {
             if vc is TrackedSectionViewController {
                 navigationController?.popToViewController(vc, animated: true)
@@ -188,31 +184,27 @@ extension UIViewController {
         reporting.logPopHome(self)
     }
 
-    func delay(delay: Double, closure: ()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            closure
+    func delay(_ delay: Double, closure: @escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+            execute: closure
         )
     }
     
-    func makeActivityIndicator(view: UIView) -> UIActivityIndicatorView {
-        let indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        indicator.color = UIColor.whiteColor()
+    func makeActivityIndicator(_ view: UIView) -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.color = UIColor.white
         indicator.center = view.center
-        indicator.backgroundColor = AppConstants.Colors.primaryDark.colorWithAlphaComponent(0.7)
+        indicator.backgroundColor = AppConstants.Colors.primaryDark.withAlphaComponent(0.7)
         indicator.layer.cornerRadius = 5
-        indicator.opaque = false
+        indicator.isOpaque = false
         
         view.addSubview(indicator)
         return indicator
     }
     
-    func startIndicator(indicator: UIActivityIndicatorView?, _ condition: (() -> Bool)? = nil) {
+    func startIndicator(_ indicator: UIActivityIndicatorView?, _ condition: (() -> Bool)? = nil) {
         delay(1, closure: {
             if condition != nil && condition!() {
                 indicator?.startAnimating()
@@ -220,44 +212,44 @@ extension UIViewController {
         })
     }
     
-    func stopIndicator(indicator: UIActivityIndicatorView?) {
+    func stopIndicator(_ indicator: UIActivityIndicatorView?) {
         indicator?.stopAnimating()
         indicator?.hidesWhenStopped = true
     }
 
-    func alertNoInternet(onOk: ()->()) {
-        let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+    func alertNoInternet(_ onOk: @escaping ()->()) {
+        let alert = UIAlertController(title: "No internet connection", message: "Please make sure you are connected to the internet", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {
             uiAction in onOk()
         }))
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
         
-    func alertYouFuckedUp(onOk: ()->()) {
-        let alert = UIAlertController(title: "You fucked up somewhere here", message: "Pleease refrain from future fuck ups.", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "I'll try", style: UIAlertActionStyle.Default, handler: {
+    func alertYouFuckedUp(_ onOk: @escaping ()->()) {
+        let alert = UIAlertController(title: "You fucked up somewhere here", message: "Pleease refrain from future fuck ups.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "I'll try", style: UIAlertActionStyle.default, handler: {
             uiAction in onOk()
         }))
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func makeTitleViewWithSubtitle(title:String, subtitle:String) -> UIView {
-        let titleLabel = UILabel(frame: CGRectMake(0, -5, 0, 0))
+    func makeTitleViewWithSubtitle(_ title:String, subtitle:String) -> UIView {
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: -5, width: 0, height: 0))
         
-        titleLabel.backgroundColor = UIColor.clearColor()
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = UIFont.boldSystemFontOfSize(17)
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.text = title
         titleLabel.sizeToFit()
         
-        let subtitleLabel = UILabel(frame: CGRectMake(0, 18, 0, 0))
-        subtitleLabel.backgroundColor = UIColor.clearColor()
-        subtitleLabel.textColor = UIColor.whiteColor()
-        subtitleLabel.font = UIFont.systemFontOfSize(12)
+        let subtitleLabel = UILabel(frame: CGRect(x: 0, y: 18, width: 0, height: 0))
+        subtitleLabel.backgroundColor = UIColor.clear
+        subtitleLabel.textColor = UIColor.white
+        subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.text = subtitle
         subtitleLabel.sizeToFit()
         
-        let titleView = UIView(frame: CGRectMake(0, 0, max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), 30))
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height: 30))
         titleView.addSubview(titleLabel)
         titleView.addSubview(subtitleLabel)
         
@@ -266,11 +258,11 @@ extension UIViewController {
         if widthDiff > 0 {
             var frame = titleLabel.frame
             frame.origin.x = widthDiff / 2
-            titleLabel.frame = CGRectIntegral(frame)
+            titleLabel.frame = frame.integral
         } else {
             var frame = subtitleLabel.frame
             frame.origin.x = abs(widthDiff) / 2
-            subtitleLabel.frame = CGRectIntegral(frame)
+            subtitleLabel.frame = frame.integral
         }
         
         titleView.sizeToFit()
@@ -281,10 +273,10 @@ extension UIViewController {
 
 public extension NSObject{
     public class var nameOfClass: String{
-        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+        return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
     public var nameOfClass: String{
-        return NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!
+        return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
 }

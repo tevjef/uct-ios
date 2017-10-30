@@ -13,7 +13,7 @@ class CourseHeaderView: UIView {
     static let headerViewHeight: CGFloat = 50.0
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    static let viewNib: UINib = UINib(nibName: "CourseHeaderView", bundle: NSBundle.mainBundle())
+    static let viewNib: UINib = UINib(nibName: "CourseHeaderView", bundle: Bundle.main)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,6 +25,6 @@ class CourseHeaderView: UIView {
     }
     
     class func createView() -> CourseHeaderView {
-        return CourseHeaderView.viewNib.instantiateWithOwner(self, options: nil).first as! CourseHeaderView
+        return CourseHeaderView.viewNib.instantiate(withOwner: self, options: nil).first as! CourseHeaderView
     }
 }

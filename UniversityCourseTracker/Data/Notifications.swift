@@ -30,25 +30,25 @@ class Notifications {
         let registerAction = UIMutableUserNotificationAction()
         registerAction.identifier = "REGISTER_ACTION"
         registerAction.title = "Register"
-        registerAction.activationMode = UIUserNotificationActivationMode.Foreground
-        registerAction.authenticationRequired = false
-        registerAction.destructive = false
+        registerAction.activationMode = UIUserNotificationActivationMode.foreground
+        registerAction.isAuthenticationRequired = false
+        registerAction.isDestructive = false
         
         let unsubAction = UIMutableUserNotificationAction()
         unsubAction.identifier = "UNSUBSCRIBE_ACTION"
         unsubAction.title = "Unsubscribe"
-        unsubAction.activationMode = UIUserNotificationActivationMode.Background
-        unsubAction.authenticationRequired = false
-        unsubAction.destructive = true
+        unsubAction.activationMode = UIUserNotificationActivationMode.background
+        unsubAction.isAuthenticationRequired = false
+        unsubAction.isDestructive = true
         
         let sectionNotificationCategory = UIMutableUserNotificationCategory()
         sectionNotificationCategory.identifier = "SECTION_NOTIFICATION_CATEGORY"
         
         sectionNotificationCategory.setActions([registerAction, unsubAction],
-                                               forContext: UIUserNotificationActionContext.Default)
+                                               for: UIUserNotificationActionContext.default)
         
         sectionNotificationCategory.setActions([registerAction, unsubAction],
-                                               forContext: UIUserNotificationActionContext.Minimal)
+                                               for: UIUserNotificationActionContext.minimal)
         var set = Set<UIUserNotificationCategory>()
         set.insert(sectionNotificationCategory)
         return set
@@ -56,7 +56,7 @@ class Notifications {
     
     func scheduleNotification() {
         appDelegate.reporting?.logReceiveNotification(section.topicName)
-        let application: UIApplication = UIApplication.sharedApplication()
+        let application: UIApplication = UIApplication.shared
         
         let notification = UILocalNotification()
         notification.category = Id.sectionNotificationCategoryId
@@ -73,46 +73,46 @@ class Notifications {
 
         notification.alertBody = body
         notification.alertAction = "Open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.fireDate = NSDate(timeIntervalSinceNow: AppDelegate.isUserPaid() ? 0 : 900)// todo item due date (when notification will be fired)
+        notification.fireDate = Date(timeIntervalSinceNow: AppDelegate.isUserPaid() ? 0 : 900)// todo item due date (when notification will be fired)
         notification.soundName = UILocalNotificationDefaultSoundName // play default sound
         notification.userInfo = ["registrationPage": university.registrationPage,
                                  "topicName": section.topicName,
                                  "status": section.status]
         notification.applicationIconBadgeNumber = 1
         
-        if application.applicationState == UIApplicationState.Inactive {
+        if application.applicationState == UIApplicationState.inactive {
             DDLogDebug("Incoming notification while inactive")
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            UIApplication.shared.scheduleLocalNotification(notification)
             
-        } else if application.applicationState == UIApplicationState.Background {
+        } else if application.applicationState == UIApplicationState.background {
             DDLogDebug("Incoming notification while in background");
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            UIApplication.shared.scheduleLocalNotification(notification)
             
-        } else if application.applicationState == UIApplicationState.Active {
-            let sectionAlert: UIAlertController = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.Alert)
+        } else if application.applicationState == UIApplicationState.active {
+            let sectionAlert: UIAlertController = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
             if closed {
-                sectionAlert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                sectionAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
             } else {
-                sectionAlert.addAction(UIAlertAction(title: "Register", style: .Default, handler: { action in self.register(self.university.registrationPage) }))
-                sectionAlert.addAction(UIAlertAction(title: "Unsubscribe", style: .Destructive, handler: { action in self.unsubscribe(self.section.topicName) }))
-                sectionAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                sectionAlert.addAction(UIAlertAction(title: "Register", style: .default, handler: { action in self.register(self.university.registrationPage) }))
+                sectionAlert.addAction(UIAlertAction(title: "Unsubscribe", style: .destructive, handler: { action in self.unsubscribe(self.section.topicName) }))
+                sectionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             }
 
             
-            self.appDelegate.window?.rootViewController?.presentViewController(sectionAlert, animated: true, completion: nil)
+            self.appDelegate.window?.rootViewController?.present(sectionAlert, animated: true, completion: nil)
         }
     }
     
     class func requestNotificationPermission() {
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: Notifications.makeCategories())
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: Notifications.makeCategories())
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.registerForRemoteNotifications()
         
        // var settings = UIApplication.sharedApplication().currentUserNotificationSettings()
 
     }
     
-    class func makeGenericAlert(title: String?, message: String) -> UIAlertController {
+    class func makeGenericAlert(_ title: String?, message: String) -> UIAlertController {
         var messageTitle: String
         if title != nil {
             messageTitle = title!
@@ -121,35 +121,35 @@ class Notifications {
         }
         
         let sectionAlert: UIAlertController = UIAlertController(title: messageTitle, message: message,
-                                                                preferredStyle: UIAlertControllerStyle.Alert)
-        sectionAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                                                                preferredStyle: UIAlertControllerStyle.alert)
+        sectionAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         return sectionAlert
     }
     
-    func register(url: String) {
+    func register(_ url: String) {
         appDelegate.openUrl(url)
     }
     
-    func unsubscribe(topicName: String) {
+    func unsubscribe(_ topicName: String) {
         appDelegate.coreDataManager?.removeSubscription(topicName)
     }
     
     class func incrementBadge() {
-        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+        if UIApplication.shared.applicationState == UIApplicationState.active {
             return
         }
-        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+        UIApplication.shared.applicationIconBadgeNumber += 1
     }
     
     class func decrementBadge() {
-        let number = UIApplication.sharedApplication().applicationIconBadgeNumber
+        let number = UIApplication.shared.applicationIconBadgeNumber
         if number > 0 {
-            UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
+            UIApplication.shared.applicationIconBadgeNumber -= 1
         }
     }
     
     class func resetBadge() {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     struct Id {

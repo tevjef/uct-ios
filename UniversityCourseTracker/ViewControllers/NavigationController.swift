@@ -14,23 +14,23 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.translucent = false
+        self.navigationBar.isTranslucent = false
         self.navigationBar.shadowImage = UIImage()
-        self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationBar.barTintColor = AppConstants.Colors.primary
 
         // Status bar white font
-        self.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.barStyle = UIBarStyle.black
+        self.navigationBar.tintColor = UIColor.white
     }
 
 
     //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         if self.visibleViewController is DefaultsViewController {
-            return UIStatusBarStyle.Default
+            return UIStatusBarStyle.default
         } else {
-            return UIStatusBarStyle.LightContent
+            return UIStatusBarStyle.lightContent
         }
     }
 }

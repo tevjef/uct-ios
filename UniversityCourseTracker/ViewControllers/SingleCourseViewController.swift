@@ -52,24 +52,24 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
         
-        tableView.registerNib(UINib(nibName: "SectionViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: sectionCellIdentifier)
-        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
+        tableView.register(UINib(nibName: "SectionViewCell", bundle: Bundle.main), forCellReuseIdentifier: sectionCellIdentifier)
+        tableView.register(UINib(nibName: "MetadataCell", bundle: Bundle.main), forCellReuseIdentifier: metadataCellIdentifier)
         
         // Headerview setup
-        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, CourseHeaderView.headerViewHeight))
+        headerContainer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: CourseHeaderView.headerViewHeight))
         header = UIView.init(frame: headerContainer!.bounds)
         header?.backgroundColor = AppConstants.Colors.primary
         headerContainer?.addSubview(header!)
         
         courseHeader = CourseHeaderView.createView()
-        courseHeader!.segmentedControl.addTarget(self, action: #selector(segmentedControlAction), forControlEvents: .ValueChanged)
+        courseHeader!.segmentedControl.addTarget(self, action: #selector(segmentedControlAction), for: .valueChanged)
         header?.addSubview(courseHeader!)
         courseHeader!.autoPinEdgesToSuperviewEdges()
         courseHeader!.sizeToFit()
         tableView.tableHeaderView = headerContainer
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: CourseHeaderView.headerViewHeight,left: 0,bottom: 0,right: 0)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .plain, target: self, action: #selector(popToRoot))
 
     }
     
@@ -84,14 +84,14 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         })
     }
     
-    func eagerSetupWith(course: Course) {
+    func eagerSetupWith(_ course: Course) {
         let sections = course.sections.filter({
             section in
             return section.status == "Open"
         })
         
         do {
-            let newCourse = try Course.Builder().mergeFrom(course).setSections(sections).build()
+            let newCourse = try Course.Builder().mergeFrom(other: course).setSections(sections).build()
             filteredCourse = newCourse
         } catch {
             DDLogError("Error while filtering sections from course \(error)")
@@ -106,18 +106,18 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     // Tableview header gets fucked up in landscape, this should set it right.
     override func viewDidLayoutSubviews() {
-        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
+        header?.bounds = CGRect(x: 0,y: 0, width: (headerContainer?.bounds.size.width)!, height: (headerContainer?.bounds.size.height)!)
         header?.frame.origin.x = 0
     }
     
     // Keep the header at the top of the view
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsety = scrollView.contentOffset.y
-        header?.transform = CGAffineTransformMakeTranslation(0, offsety)
+        header?.transform = CGAffineTransform(translationX: 0, y: offsety)
     }
     
     // Listens to the changes in the segmented control
-    func segmentedControlAction(sender: UISegmentedControl) {
+    func segmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             sectionDataSource = filteredCourse
             reporting.logFilterOpenSections(sectionDataSource!.topicId, count: sectionDataSource!.sections.count)
@@ -127,13 +127,13 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         }
         
         tableView.beginUpdates()
-        tableView.reloadSections(NSIndexSet.init(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableView.reloadSections(IndexSet.init(integer: 1), with: UITableViewRowAnimation.automatic)
         tableView.endUpdates()
     }
     
     
     // MARK: - UITableViewDelegate Methods
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return metadataDataSource?.metadata.count ?? 0
 
@@ -142,26 +142,26 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
-                cell.userInteractionEnabled = false
-                let modelItem = metadataDataSource?.metadata[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath as NSIndexPath).section == 0 {
+            if let cell: MetadataCell = tableView.dequeueReusableCell(withIdentifier: metadataCellIdentifier) as? MetadataCell {
+                cell.isUserInteractionEnabled = false
+                let modelItem = metadataDataSource?.metadata[(indexPath as NSIndexPath).row]
                 cell.title.text = modelItem?.title
                 
                 var contentString = modelItem?.content
-                contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                contentString = contentString!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                 cell.content.text = contentString
                 
                 return cell
             }
-        } else if indexPath.section == 1 {
-            if let cell: SectionViewCell = tableView.dequeueReusableCellWithIdentifier(sectionCellIdentifier) as? SectionViewCell {
-                let modelItem = sectionDataSource!.sections[indexPath.row]
+        } else if (indexPath as NSIndexPath).section == 1 {
+            if let cell: SectionViewCell = tableView.dequeueReusableCell(withIdentifier: sectionCellIdentifier) as? SectionViewCell {
+                let modelItem = sectionDataSource!.sections[(indexPath as NSIndexPath).row]
                 cell.setSection(modelItem)
                 return cell
             }
@@ -170,21 +170,21 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedIndex = indexPath.row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedIndex = (indexPath as NSIndexPath).row
         gotoSection()
     }
 
     func gotoSection() {
-        let sectionVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.section) as! SectionViewController
+        let sectionVC = self.storyboard?.instantiateViewController(withIdentifier: AppConstants.Id.Controllers.section) as! SectionViewController
         // Set back button for next controller
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(searchFlow!.tempCourse!.number)", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(searchFlow!.tempCourse!.number)", style: .plain, target: nil, action: nil)
         prepareSearchFlow(sectionVC)
-        self.navigationController?.showViewController(sectionVC, sender: self)
+        self.navigationController?.show(sectionVC, sender: self)
     }
     
-    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
+    func prepareSearchFlow(_ searchFlowDelegate: SearchFlowDelegate) {
         let section = sectionDataSource!.sections[selectedIndex]
         searchFlow?.sectionTopicName = section.topicName
         searchFlow?.tempSection = section

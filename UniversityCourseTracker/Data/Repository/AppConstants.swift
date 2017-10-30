@@ -14,7 +14,7 @@ class AppConstants {
     init() {
         // Set defaults
 
-        let betaUniversities = NSUserDefaults.standardUserDefaults().boolForKey("beta_universities")
+        let betaUniversities = UserDefaults.standard.bool(forKey: "beta_universities")
         
         // Enable beta endpoint
         if betaUniversities {
@@ -24,13 +24,13 @@ class AppConstants {
         }
     }
     
-    lazy var UNIVERSITIES = "\(Network.base)/\(Network.apiVersion)/\(Network.universities)"
-    lazy var UNIVERSITY = "\(Network.base)/\(Network.apiVersion)/\(Network.university)"
-    lazy var SUBJECTS = "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)"
-    lazy var SUBJECT = "\(Network.base)/\(Network.apiVersion)/\(Network.subject)"
-    lazy var COURSES = "\(Network.base)/\(Network.apiVersion)/\(Network.courses)"
-    lazy var COURSE = "\(Network.base)/\(Network.apiVersion)/\(Network.course)"
-    lazy var SECTION = "\(Network.base)/\(Network.apiVersion)/\(Network.section)"
+    lazy var UNIVERSITIES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.universities)")
+    lazy var UNIVERSITY = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.university)")
+    lazy var SUBJECTS = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)")
+    lazy var SUBJECT = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subject)")
+    lazy var COURSES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.courses)")
+    lazy var COURSE = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.course)")
+    lazy var SECTION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.section)")
     
     struct Notification {
         static var genericNotificationTitle = "Course Tracker"
@@ -72,13 +72,13 @@ class AppConstants {
     }
     
     struct Size {
-        static func getFontSize(style: FontStyle) -> CGFloat {
+        static func getFontSize(_ style: FontStyle) -> CGFloat {
             switch style {
-            case .Headline:
+            case .headline:
                 return 13
-            case .Body:
+            case .body:
                 return 12
-            case .Caption:
+            case .caption:
                 return 11
             }
             
@@ -114,22 +114,22 @@ class AppConstants {
         static var closedSection: UIColor = UIColor(hexString: UCTColors.closedSection)
         static var openSection: UIColor = UIColor(hexString: UCTColors.openSection)
         
-        static func configureLabel(label: UILabel, style: FontStyle) {
+        static func configureLabel(_ label: UILabel, style: FontStyle) {
             switch style {
-            case .Headline:
+            case .headline:
                 label.textColor = primaryDarkText
-            case .Body:
+            case .body:
                 label.textColor = secondaryDarkText
-            case .Caption:
+            case .caption:
                 label.textColor = secondaryDarkText
             }
         }
     }
     
     enum FontStyle {
-        case Headline
-        case Body
-        case Caption
+        case headline
+        case body
+        case caption
     }
     
     struct PropertyKey {

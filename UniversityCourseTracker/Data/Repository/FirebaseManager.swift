@@ -20,48 +20,49 @@ class FirebaseManager: NSObject {
         self.appDelegate = appDelegate
         super.init()
         DDLogDebug("Configuring Firebase...")
-        FIRApp.configure()
+        FirebaseApp.configure()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.sendDataMessageFailure), name:FIRMessagingSendErrorNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.sendDataMessageSuccess), name:FIRMessagingSendSuccessNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.didDeleteMessagesOnServer), name:FIRMessagingMessagesDeletedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FirebaseManager.tokenRefreshNotification), name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageFailure), name:NSNotification.Name.MessagingSendError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageSuccess), name:NSNotification.Name.MessagingSendSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.didDeleteMessagesOnServer), name:NSNotification.Name.MessagingMessagesDeleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.tokenRefreshNotification), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
         #if DEBUG
             //FIRAnalyticsConfiguration.sharedInstance().setIsEnabled(false)
         #endif
         
-        let token = FIRInstanceID.instanceID().token()
+        let token = InstanceID.instanceID().token()
         DDLogDebug("Token on startup= \(token ?? "")")
     }
     
-    func subscribeToTopic(topicName: String) {
-        FIRMessaging.messaging().subscribeToTopic("/topics/\(topicName)")
+    func subscribeToTopic(_ topicName: String) {
+        Messaging.messaging().subscribe(toTopic: "/topics/\(topicName)")
         DDLogDebug("Subscribing to \(topicName)")
     }
     
-    func unsubscribeFromTopic(topicName: String) {
-        FIRMessaging.messaging().unsubscribeFromTopic("/topics/\(topicName)")
+    func unsubscribeFromTopic(_ topicName: String) {
+        Messaging.messaging().unsubscribe(fromTopic: "/topics/\(topicName)")
         DDLogDebug("Unsubscribe from  \(topicName)")
     }
     
-    class func setAPNSToken(deviceToken: NSData) {
-        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+    class func setAPNSToken(_ deviceToken: Foundation.Data) {
+        let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
         var tokenString = ""
         
-        for i in 0..<deviceToken.length {
+        for i in 0..<deviceToken.count {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
         
         //Tricky line
         DDLogDebug("Manually setting device token...")
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
+        Messaging.messaging().setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
+        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.unknown)
         DDLogDebug("APNS Device Token: \(tokenString)")
     }
     
     class func connectToFcm() {
         DDLogDebug("Connecting to FCM...")
-        FIRMessaging.messaging().connectWithCompletion { (error) in
+        Messaging.messaging().connect { (error) in
             if (error != nil) {
                 DDLogWarn("Unable to connect with FCM. \(error)")
             } else {
@@ -72,11 +73,11 @@ class FirebaseManager: NSObject {
     
     class func disconnectFromFcm() {
         DDLogDebug("Disconnecting to FCM...")
-        FIRMessaging.messaging().disconnect()
+        Messaging.messaging().disconnect()
     }
     
-    func tokenRefreshNotification(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()
+    func tokenRefreshNotification(_ notification: Notification) {
+        let refreshedToken = InstanceID.instanceID().token()
         if refreshedToken != nil {
             Crashlytics.sharedInstance().setUserIdentifier(refreshedToken)
             DDLogDebug("tokenRefreshNotification InstanceID token: \(refreshedToken)")
@@ -88,15 +89,15 @@ class FirebaseManager: NSObject {
         FirebaseManager.connectToFcm()
     }
     
-    func sendDataMessageFailure(notification: NSNotification) {
+    func sendDataMessageFailure(_ notification: Notification) {
         DDLogDebug("sendDataMessageFailure= \(notification.description)")
     }
     
-    func sendDataMessageSuccess(notification: NSNotification) {
+    func sendDataMessageSuccess(_ notification: Notification) {
         DDLogDebug("sendDataMessageSuccess= \(notification.description)")
     }
     
-    func didDeleteMessagesOnServer(notification: NSNotification) {
+    func didDeleteMessagesOnServer(_ notification: Notification) {
         DDLogDebug("didDeleteMessagesOnServer= \(notification.description)")
     }
 }

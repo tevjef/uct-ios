@@ -16,7 +16,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
                 return
             }
             
-            UIView.transitionWithView(tableView, duration: 0.35, options: .TransitionCrossDissolve, animations: {
+            UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: {
                 () -> Void in
                     self.tableView.reloadData()
             }, completion: nil);
@@ -31,18 +31,18 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
         reporting.logShowScreen(self)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         searchFlow = SearchFlow()
         refreshSearchFlow()
         setupViews()
         loadData(true)
     }
     
-    @IBAction func refresh(sender: UIRefreshControl) {
+    @IBAction func refresh(_ sender: UIRefreshControl) {
         loadData(false)
     }
     
-    func loadData(showLoading: Bool) {
+    func loadData(_ showLoading: Bool) {
         if showLoading {
             showRefreshing{self.loadedSubjects == nil || self.loadedSubjects?.count == 0}
         }
@@ -72,7 +72,7 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
         
         self.refreshControl?.tintColor = AppConstants.Colors.primary
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         //let titleView = self.makeTitleViewWithSubtitle(semester, subtitle: uni)
         //navigationItem.titleView = titleView
         navigationItem.title = uni +  " " + semesterString
@@ -87,15 +87,15 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     }
 
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == AppConstants.Id.Segue.courses {
-            let nextViewController = segue.destinationViewController as! CoursesViewController
+            let nextViewController = segue.destination as! CoursesViewController
             prepareSearchFlow(nextViewController)
         }
     }
     
-    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
-        let selectedRow = tableView.indexPathForSelectedRow?.row
+    func prepareSearchFlow(_ searchFlowDelegate: SearchFlowDelegate) {
+        let selectedRow = (tableView.indexPathForSelectedRow as NSIndexPath?)?.row
         let subject = loadedSubjects?[selectedRow!]
         searchFlow?.tempSubject = subject
         searchFlow?.subjectTopicName = subject?.topicName
@@ -104,26 +104,26 @@ class SubjectsViewController: UITableViewController, SearchFlowDelegate {
     
     // MARK: - UITableViewDelegate Methods
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loadedSubjects?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell", forIndexPath: indexPath) as UITableViewCell
-        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "subjectCell", for: indexPath) as UITableViewCell
+        AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.body)
         cell.selectedBackgroundView = AppConstants.Colors.primaryLight.viewFromColor()
         
-        let subject = loadedSubjects?[indexPath.row]
+        let subject = loadedSubjects?[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = "\(subject?.number ?? ""): \(subject?.name ?? "")"
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

@@ -13,104 +13,104 @@ import CocoaLumberjack
 
 class Reporting: NSObject {
 
-    func logShowScreen(view: UIViewController) {
+    func logShowScreen(_ view: UIViewController) {
         var params: [String: NSObject] = [:]
         
         if view is CoursesViewController {
             let vc = view as! CoursesViewController
-            params = [Params.topicId: vc.searchFlow!.tempSubject!.topicId]
+            params = [Params.topicId: vc.searchFlow!.tempSubject!.topicId as NSObject]
         } else if view is SingleCourseViewController {
             let vc = view as! SingleCourseViewController
-            params = [Params.topicId: vc.searchFlow!.tempCourse!.topicId]
+            params = [Params.topicId: vc.searchFlow!.tempCourse!.topicId as NSObject]
         } else if view is SubjectsViewController {
             let vc = view as! SubjectsViewController
-            params = [Params.semester: vc.searchFlow!.tempSemester!.readableString, Params.topicId: vc.searchFlow!.tempUniversity!.topicId]
+            params = [Params.semester: vc.searchFlow!.tempSemester!.readableString as NSObject, Params.topicId: vc.searchFlow!.tempUniversity!.topicId as NSObject]
         } else if view is SectionViewController {
             let vc = view as! SectionViewController
-            params = [Params.semester: vc.searchFlow!.tempSemester!.readableString, Params.topicId: vc.searchFlow!.tempSection!.topicId]
+            params = [Params.semester: vc.searchFlow!.tempSemester!.readableString as NSObject, Params.topicId: vc.searchFlow!.tempSection!.topicId as NSObject]
         }
         
-        params[Params.screen_name] = view.nameOfClass
+        params[Params.screen_name] = view.nameOfClass as NSObject?
 
-        FIRAnalytics.logEventWithName(Event.screen_view, parameters: params)
-        Answers.logCustomEventWithName(Event.screen_view, customAttributes: params)
+        Analytics.logEvent(Event.screen_view, parameters: params)
+        Answers.logCustomEvent(withName: Event.screen_view, customAttributes: params)
         Crashlytics.sharedInstance().setObjectValue(Event.screen_view, forKey: params.description)
         DDLogInfo("\(#function) \(params.description)")
     }
     
-    func logPopHome(from: UIViewController) {
+    func logPopHome(_ from: UIViewController) {
         let params = [Params.screen_name: from.nameOfClass]
-        FIRAnalytics.logEventWithName(Event.popHome, parameters: params)
-        Answers.logCustomEventWithName(Event.popHome, customAttributes: params)
+        Analytics.logEvent(Event.popHome, parameters: params)
+        Answers.logCustomEvent(withName: Event.popHome, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logChangeSemester(semester: String) {
+    func logChangeSemester(_ semester: String) {
         let params = [Params.semester: semester]
-        FIRAnalytics.logEventWithName(Event.changeSemester, parameters: params)
-        Answers.logCustomEventWithName(Event.changeSemester, customAttributes: params)
+        Analytics.logEvent(Event.changeSemester, parameters: params)
+        Answers.logCustomEvent(withName: Event.changeSemester, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
     
-    func logChangeUniversity(topicId: String) {
+    func logChangeUniversity(_ topicId: String) {
         let params = [Params.topicId: topicId]
-        FIRAnalytics.logEventWithName(Event.changeUniversity, parameters: params)
-        Answers.logCustomEventWithName(Event.changeUniversity, customAttributes: params)
+        Analytics.logEvent(Event.changeUniversity, parameters: params)
+        Answers.logCustomEvent(withName: Event.changeUniversity, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
     }
     
-    func logDefaultUniversity(topicId: String) {
+    func logDefaultUniversity(_ topicId: String) {
         DDLogInfo("\(#function) \(topicId)")
-        FIRAnalytics.setUserPropertyString(topicId, forName: Event.defaultUni)
+        Analytics.setUserProperty(topicId, forName: Event.defaultUni)
     }
     
-    func logSubscription(sectionTopicId: String) {
+    func logSubscription(_ sectionTopicId: String) {
         let params = [Params.topicId: sectionTopicId]
-        FIRAnalytics.logEventWithName(Event.subscribe, parameters: params)
-        Answers.logCustomEventWithName(Event.subscribe, customAttributes: params)
+        Analytics.logEvent(Event.subscribe, parameters: params)
+        Answers.logCustomEvent(withName: Event.subscribe, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logUnsubscription(sectionTopicId: String) {
+    func logUnsubscription(_ sectionTopicId: String) {
         let params = [Params.topicId: sectionTopicId]
-        FIRAnalytics.logEventWithName(Event.unsubscribe, parameters: params)
-        Answers.logCustomEventWithName(Event.unsubscribe, customAttributes: params)
+        Analytics.logEvent(Event.unsubscribe, parameters: params)
+        Answers.logCustomEvent(withName: Event.unsubscribe, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logReceiveNotification(sectionTopicId: String) {
+    func logReceiveNotification(_ sectionTopicId: String) {
         let params = [Params.topicId: sectionTopicId]
-        FIRAnalytics.logEventWithName(Event.receiveNotification, parameters: params)
-        Answers.logCustomEventWithName(Event.receiveNotification, customAttributes: params)
+        Analytics.logEvent(Event.receiveNotification, parameters: params)
+        Answers.logCustomEvent(withName: Event.receiveNotification, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logRegister(sectionTopicId: String) {
+    func logRegister(_ sectionTopicId: String) {
         let params = [Params.topicId: sectionTopicId]
-        FIRAnalytics.logEventWithName(Event.register, parameters: params)
-        Answers.logCustomEventWithName(Event.register, customAttributes: params)
+        Analytics.logEvent(Event.register, parameters: params)
+        Answers.logCustomEvent(withName: Event.register, customAttributes: params)
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logFilterAllSections(topicId: String, count: Int) {
-        let params = [Params.topicId: topicId, Params.count: count]
-        FIRAnalytics.logEventWithName(Event.filterAllSections, parameters: (params as! [String : NSObject]))
-        Answers.logCustomEventWithName(Event.filterAllSections, customAttributes: (params as! [String : AnyObject]))
+    func logFilterAllSections(_ topicId: String, count: Int) {
+        let params = [Params.topicId: topicId, Params.count: count] as [String : Any]
+        Analytics.logEvent(Event.filterAllSections, parameters: (params as! [String : NSObject]))
+        Answers.logCustomEvent(withName: Event.filterAllSections, customAttributes: (params as! [String : AnyObject]))
         DDLogInfo("\(#function) \(params.description)")
 
     }
     
-    func logFilterOpenSections(topicId: String, count: Int) {
-        let params = [Params.topicId: topicId, Params.count: count]
-        FIRAnalytics.logEventWithName(Event.filterOpenSections, parameters: (params as! [String : NSObject]))
-        Answers.logCustomEventWithName(Event.filterOpenSections, customAttributes: (params as! [String : AnyObject]))
+    func logFilterOpenSections(_ topicId: String, count: Int) {
+        let params = [Params.topicId: topicId, Params.count: count] as [String : Any]
+        Analytics.logEvent(Event.filterOpenSections, parameters: (params as! [String : NSObject]))
+        Answers.logCustomEvent(withName: Event.filterOpenSections, customAttributes: (params as! [String : AnyObject]))
         DDLogInfo("\(#function) \(params.description)")
 
     }

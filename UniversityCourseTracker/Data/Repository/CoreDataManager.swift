@@ -29,34 +29,34 @@ class CoreDataManager: NSObject {
         moc = appDelegate.managedObjectContext.self
     }
     
-    func addSubscription(subscription: Subscription) {
+    func addSubscription(_ subscription: Subscription) {
         DDLogDebug("Adding subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
         firebaseManager.subscribeToTopic(subscription.sectionTopicName)
-        NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.addSubscriptionNotification, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.addSubscriptionNotification), object: self)
         
         appDelegate.reporting?.logSubscription(subscription.getSection().topicId)
     }
     
-    func removeSubscription(topicName: String) -> Int {
+    func removeSubscription(_ topicName: String) -> Int {
         DDLogDebug("Removing subscription=\(topicName)")
         let subscription = getSubscription(topicName)
 
         firebaseManager.unsubscribeFromTopic(topicName)
         let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
-        NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.removeSubscriptionNotification, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.removeSubscriptionNotification), object: self)
         
         appDelegate.reporting?.logUnsubscription(subscription?.getSection().topicId ?? "")
         return numRemoved
     }
     
-    func refreshAllSubscriptions(completion: (() -> Void)? = nil) {
-        let group: dispatch_group_t = dispatch_group_create();
+    func refreshAllSubscriptions(_ completion: (() -> Void)? = nil) {
+        let group: DispatchGroup = DispatchGroup();
         
         DDLogDebug("Refreshing all sections...")
         let subscriptions = getAllSubscriptions()
         for sub in subscriptions {
-            dispatch_group_enter(group);
+            group.enter();
             appDelegate.dataRepo?.getSection(sub.sectionTopicName, {
                 if let section = $0 {
                     // Resubscribe just in case the topic name had changed :(
@@ -67,24 +67,24 @@ class CoreDataManager: NSObject {
                     self.updateSubscription(sub)
                 }
                 
-                dispatch_group_leave(group);
+                group.leave();
             })
         }
         
-        dispatch_group_notify(group, GlobalMainQueue, {
+        group.notify(queue: GlobalMainQueue, execute: {
             if completion != nil {
                 completion!()
             }
-            NSNotificationCenter.defaultCenter().postNotificationName(CoreDataManager.updateSubscriptionsNotification, object: self)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.updateSubscriptionsNotification), object: self)
         })
     }
     
-    func updateSubscription(subscription: Subscription) {
+    func updateSubscription(_ subscription: Subscription) {
         DDLogDebug("Updating subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
     }
     
-    func getSubscription(topicName: String) -> Subscription? {
+    func getSubscription(_ topicName: String) -> Subscription? {
         let subscription = CoreSubscription.getSubscription(moc, topicName: topicName)
         DDLogDebug("Getting subscription=\(topicName) returning=\(subscription?.sectionTopicName ?? "")")
         return subscription
@@ -96,8 +96,8 @@ class CoreDataManager: NSObject {
         return subscriptions
     }
     
-    private var cachedUniverisity: University?
-    private var cachedSemester: Semester?
+    fileprivate var cachedUniverisity: University?
+    fileprivate var cachedSemester: Semester?
     
     var university: University? {
         get {
@@ -117,7 +117,7 @@ class CoreDataManager: NSObject {
         }
     }
     
-    private func getUniversity() -> University? {
+    fileprivate func getUniversity() -> University? {
         let university: University?
 
         if cachedUniverisity != nil {
@@ -130,7 +130,7 @@ class CoreDataManager: NSObject {
         return university
     }
     
-    private func getSemester() -> Semester? {
+    fileprivate func getSemester() -> Semester? {
         let semester: Semester?
         
         if cachedSemester != nil {
@@ -143,7 +143,7 @@ class CoreDataManager: NSObject {
         return semester
     }
     
-    private func updateUniversity(university: University) {
+    fileprivate func updateUniversity(_ university: University) {
         DDLogDebug("Updating university=\(university.topicName)")
         
         // Invalidate cache
@@ -152,7 +152,7 @@ class CoreDataManager: NSObject {
         appDelegate.reporting?.logChangeUniversity(university.topicId)
     }
     
-    private func updateSemester(semester: Semester)  {
+    fileprivate func updateSemester(_ semester: Semester)  {
         DDLogDebug("Updating semester=\(semester.description)")
         
         // Invalidate cache

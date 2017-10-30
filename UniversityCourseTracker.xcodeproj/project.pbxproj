@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0940757E1FA69C1000FEFCEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0940757D1FA69C1000FEFCEF /* GoogleService-Info.plist */; };
 		130568601D563DFD005BB80E /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */; };
 		1305686D1D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */; };
 		1305686E1D563F91005BB80E /* CoreSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1305686A1D563F91005BB80E /* CoreSubscription.swift */; };
@@ -52,7 +53,6 @@
 		13D8D56B1D67D5A2003C5540 /* NoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8D56A1D67D5A2003C5540 /* NoSections.swift */; };
 		13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */; };
 		13DD66AD1D5BF7B600F53A4A /* Model.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */; };
-		13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */; };
 		13F9F2791E1EBE9600E84DBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13F9F2781E1EBE9600E84DBB /* Settings.bundle */; };
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
@@ -78,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig"; sourceTree = "<group>"; };
+		0940757D1FA69C1000FEFCEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreSubscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1305686A1D563F91005BB80E /* CoreSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreSubscription.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		13DD66AA1D5AFE9600F53A4A /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
 		13DD66AC1D5BF7B600F53A4A /* Model.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.proto.swift; sourceTree = "<group>"; };
 		13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UniversityCourseTracker.entitlements; sourceTree = "<group>"; };
-		13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F9F2781E1EBE9600E84DBB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
@@ -239,10 +239,10 @@
 				1327C12E1D453CAD00F5F742 /* ViewControllers */,
 				1327C0F11D445D5100F5F742 /* AppDelegate.swift */,
 				1327C0FB1D445D5100F5F742 /* Assets.xcassets */,
-				13F2A8FD1D5D5983006EA852 /* GoogleService-Info.plist */,
 				1327C1001D445D5100F5F742 /* Info.plist */,
 				1327C0FD1D445D5100F5F742 /* LaunchScreen.storyboard */,
 				1327C0F51D445D5100F5F742 /* Main.storyboard */,
+				0940757D1FA69C1000FEFCEF /* GoogleService-Info.plist */,
 				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
 				13F9F2781E1EBE9600E84DBB /* Settings.bundle */,
 			);
@@ -401,12 +401,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Tevin Jeffrey";
 				TargetAttributes = {
 					1327C0ED1D445D5000F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KY3W4D44PY;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -422,11 +423,13 @@
 					1327C1041D445D5100F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 33EY486PX7;
+						LastSwiftMigration = 0800;
 						TestTargetID = 1327C0ED1D445D5000F5F742;
 					};
 					1327C10F1D445D5100F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 33EY486PX7;
+						LastSwiftMigration = 0800;
 						TestTargetID = 1327C0ED1D445D5000F5F742;
 					};
 				};
@@ -461,11 +464,11 @@
 				1367EBD21D58A3D500A05932 /* CourseHeaderView.xib in Resources */,
 				13BADA5D1D57CFEE00B666CB /* TimeViewCell.xib in Resources */,
 				13F9F2791E1EBE9600E84DBB /* Settings.bundle in Resources */,
+				0940757E1FA69C1000FEFCEF /* GoogleService-Info.plist in Resources */,
 				1367EBD41D58AEBB00A05932 /* SectionHeaderView.xib in Resources */,
 				13D8D5691D67D2DF003C5540 /* NoSections.xib in Resources */,
 				13DD66AB1D5AFE9600F53A4A /* MeetingView.xib in Resources */,
 				13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */,
-				13F2A8FE1D5D5983006EA852 /* GoogleService-Info.plist in Resources */,
 				1327C0F71D445D5100F5F742 /* Main.storyboard in Resources */,
 				13130ED91D530E1A004BBF0C /* MetadataCell.xib in Resources */,
 			);
@@ -499,7 +502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=/Users/tevin/Desktop/Development/UniversityCourseTracker/universitycoursetracker.json\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:469097761050:ios:ab9aaa77b31634db\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
+			shellScript = "# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:469097761050:ios:ab9aaa77b31634db\n\n# Replace this path with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"/Users/tevjef/Desktop/Development/uct-ios/universitycoursetracker.json\"";
 		};
 		139289EF1D5FF02900B307B3 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -536,13 +539,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UniversityCourseTracker-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F85C184359900AFAE798ADB5 /* [CP] Embed Pods Frameworks */ = {
@@ -551,9 +557,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ProtocolBuffers-Swift/ProtocolBuffers.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtocolBuffers.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -672,8 +693,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -718,8 +741,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -738,6 +763,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -748,12 +774,15 @@
 			baseConfigurationReference = 87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UniversityCourseTracker/UniversityCourseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -762,12 +791,15 @@
 			baseConfigurationReference = 03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UniversityCourseTracker/UniversityCourseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -779,6 +811,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniversityCourseTracker.app/UniversityCourseTracker";
 			};
 			name = Debug;
@@ -791,6 +824,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniversityCourseTracker.app/UniversityCourseTracker";
 			};
 			name = Release;
@@ -802,6 +836,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UniversityCourseTracker;
 			};
 			name = Debug;
@@ -813,6 +848,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UniversityCourseTracker;
 			};
 			name = Release;

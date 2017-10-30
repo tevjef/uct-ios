@@ -43,22 +43,22 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
 
     override func viewDidLayoutSubviews() {
         // Tableview header gets fucked up in landscpare, this should set it right.
-        header?.bounds = CGRectMake(0,0, (headerContainer?.bounds.size.width)!, (headerContainer?.bounds.size.height)!)
+        header?.bounds = CGRect(x: 0,y: 0, width: (headerContainer?.bounds.size.width)!, height: (headerContainer?.bounds.size.height)!)
         header?.frame.origin.x = 0        
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsety = scrollView.contentOffset.y
-        header?.transform = CGAffineTransformMakeTranslation(0, offsety)
+        header?.transform = CGAffineTransform(translationX: 0, y: offsety)
     }
     
-    func gotoCourse(Sender: UIBarButtonItem) {
-        let singleCourseVC = self.storyboard?.instantiateViewControllerWithIdentifier(AppConstants.Id.Controllers.singleCourse) as! SingleCourseViewController
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    func gotoCourse(_ Sender: UIBarButtonItem) {
+        let singleCourseVC = self.storyboard?.instantiateViewController(withIdentifier: AppConstants.Id.Controllers.singleCourse) as! SingleCourseViewController
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         singleCourseVC.searchFlow = searchFlow
         singleCourseVC.loadedCourse = searchFlow?.tempCourse
-        self.navigationController?.showViewController(singleCourseVC, sender: self)
+        self.navigationController?.show(singleCourseVC, sender: self)
 
     }
     
@@ -66,9 +66,9 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         navigationItem.title = searchFlow!.tempCourse!.name
 
         if pusher == AppConstants.Id.Controllers.trackedSections {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Course", style: .Plain, target: self, action: #selector(SectionViewController.gotoCourse))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Course", style: .plain, target: self, action: #selector(SectionViewController.gotoCourse))
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .Plain, target: self, action: #selector(popToRoot))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_bell_white"), style: .plain, target: self, action: #selector(popToRoot))
         }
         
         // Setup navigation bar colors depending on section status
@@ -79,11 +79,11 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
         tableView.cellLayoutMarginsFollowReadableWidth = false
-        tableView.registerNib(UINib(nibName: "TimeViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: timeCellIdentifier)
-        tableView.registerNib(UINib(nibName: "MetadataCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: metadataCellIdentifier)
+        tableView.register(UINib(nibName: "TimeViewCell", bundle: Bundle.main), forCellReuseIdentifier: timeCellIdentifier)
+        tableView.register(UINib(nibName: "MetadataCell", bundle: Bundle.main), forCellReuseIdentifier: metadataCellIdentifier)
 
         // Headerview setup
-        headerContainer = UIView(frame: CGRectMake(0, 0, view.frame.size.width, 110))
+        headerContainer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 110))
         header = UIView.init(frame: headerContainer!.bounds)
         let insets = tableView.separatorInset
         header?.layoutMargins = UIEdgeInsets(top: 0, left: insets.left ,bottom: 0,right: insets.left)
@@ -102,49 +102,49 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         setHeaderColors(true)
         
         // Setup Switch View with data from database
-        switchView = UISwitch(frame:CGRectMake(150, 300, 0, 0));
+        switchView = UISwitch(frame:CGRect(x: 150, y: 300, width: 0, height: 0));
         switchView!.onTintColor = AppConstants.Colors.primary
-        switchView!.addTarget(self, action: #selector(switchValueDidChange), forControlEvents: .ValueChanged);
+        switchView!.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged);
         if coreData.getSubscription(searchFlow!.tempSection!.topicName) == nil {
             lastPosition = false
-            switchView?.on = false
+            switchView?.isOn = false
         } else {
             lastPosition = true
-            switchView?.on = true
+            switchView?.isOn = true
         }
     }
 
     
-    func setHeaderColors(animate: Bool) {
+    func setHeaderColors(_ animate: Bool) {
         let duration = animate ? 0.2 : 0.0
         if searchFlow?.tempSection?.status == "Open" {
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
             })
         } else {
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
             })
         }
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             self.header?.backgroundColor = self.navigationController?.navigationBar.barTintColor
         })
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if appeared {
             setHeaderColors(true)
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.navigationController?.navigationBar.barTintColor = self.previousColor
         })
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.header?.backgroundColor = self.previousColor
         })
 
@@ -152,11 +152,11 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     
     // MARK: - Navigation
     
-    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate) {
+    func prepareSearchFlow(_ searchFlowDelegate: SearchFlowDelegate) {
     }
     
     // MARK: - UITableViewDelegate Methods
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else if section == 1 {
@@ -167,34 +167,34 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         return 0
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-             if let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(subscribeCellIdentifier) {
-                AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.Body)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath as NSIndexPath).section == 0 {
+             if let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: subscribeCellIdentifier) {
+                AppConstants.Colors.configureLabel(cell.textLabel!, style: AppConstants.FontStyle.body)
                 cell.accessoryView = switchView
                 return cell
             }
         }
-        else if indexPath.section == 1 {
-            if let cell: MetadataCell = tableView.dequeueReusableCellWithIdentifier(metadataCellIdentifier) as? MetadataCell {
-                cell.userInteractionEnabled = false
-                let modelItem = searchFlow?.tempSection?.metadata[indexPath.row]
+        else if (indexPath as NSIndexPath).section == 1 {
+            if let cell: MetadataCell = tableView.dequeueReusableCell(withIdentifier: metadataCellIdentifier) as? MetadataCell {
+                cell.isUserInteractionEnabled = false
+                let modelItem = searchFlow?.tempSection?.metadata[(indexPath as NSIndexPath).row]
                 cell.title.text = modelItem?.title
                 
                 var contentString = modelItem?.content
-                contentString = contentString!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                contentString = contentString!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                 cell.content.text = contentString
                 
                 return cell
             }
-        } else if indexPath.section == 2 {
-            if let cell: TimeViewCell = tableView.dequeueReusableCellWithIdentifier(timeCellIdentifier) as? TimeViewCell {
+        } else if (indexPath as NSIndexPath).section == 2 {
+            if let cell: TimeViewCell = tableView.dequeueReusableCell(withIdentifier: timeCellIdentifier) as? TimeViewCell {
                 let modelItem = searchFlow?.tempSection!
-                cell.userInteractionEnabled = false
+                cell.isUserInteractionEnabled = false
                 cell.setMeetings(modelItem!)
                 return cell
             }
@@ -202,20 +202,20 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         //selectedIndex = indexPath.row
     }
     
-    func switchValueDidChange(sender:UISwitch!) {
-        if sender.on == lastPosition {
+    func switchValueDidChange(_ sender:UISwitch!) {
+        if sender.isOn == lastPosition {
             return
         }
         
         Notifications.requestNotificationPermission()
         lastPosition = !lastPosition
         
-        if sender.on {
+        if sender.isOn {
             coreData.addSubscription(subscription!)
         } else {
             coreData.removeSubscription(subscription!.sectionTopicName)

@@ -16,7 +16,7 @@ class MeetingView: UIView {
     @IBOutlet weak var locationView: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     
-    static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: NSBundle.mainBundle())
+    static let meetingNib: UINib = UINib(nibName: "MeetingView", bundle: Bundle.main)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,15 +24,15 @@ class MeetingView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        AppConstants.Colors.configureLabel(dayView, style: AppConstants.FontStyle.Caption)
-        AppConstants.Colors.configureLabel(timeView, style: AppConstants.FontStyle.Caption)
-        AppConstants.Colors.configureLabel(locationView, style: AppConstants.FontStyle.Caption)
+        AppConstants.Colors.configureLabel(dayView, style: AppConstants.FontStyle.caption)
+        AppConstants.Colors.configureLabel(timeView, style: AppConstants.FontStyle.caption)
+        AppConstants.Colors.configureLabel(locationView, style: AppConstants.FontStyle.caption)
 
         resetViews()
     }
     
     class func createMeetingView() -> MeetingView {
-        return MeetingView.meetingNib.instantiateWithOwner(self, options: nil).first as! MeetingView
+        return MeetingView.meetingNib.instantiate(withOwner: self, options: nil).first as! MeetingView
     }
     
     func resetViews() {

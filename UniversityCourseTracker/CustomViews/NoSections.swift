@@ -12,7 +12,7 @@ class NoSections: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
-    static let viewNib: UINib = UINib(nibName: "NoSections", bundle: NSBundle.mainBundle())
+    static let viewNib: UINib = UINib(nibName: "NoSections", bundle: Bundle.main)
 
 
     required init?(coder aDecoder: NSCoder) {
@@ -21,10 +21,10 @@ class NoSections: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        AppConstants.Colors.configureLabel(textLabel, style: .Headline)
+        AppConstants.Colors.configureLabel(textLabel, style: .headline)
     }
     
     class func createView() -> NoSections {
-        return NoSections.viewNib.instantiateWithOwner(self, options: nil).first as! NoSections
+        return NoSections.viewNib.instantiate(withOwner: self, options: nil).first as! NoSections
     }
 }

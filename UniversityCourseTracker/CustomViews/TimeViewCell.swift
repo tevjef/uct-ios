@@ -20,11 +20,11 @@ class TimeViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        AppConstants.Colors.configureLabel(title, style: AppConstants.FontStyle.Headline)
+        AppConstants.Colors.configureLabel(title, style: AppConstants.FontStyle.headline)
         
         for view in meetingViews {
             stackView.addArrangedSubview(view)
-            view.autoPinEdgeToSuperviewEdge(.Trailing)
+            view.autoPinEdge(toSuperviewEdge: .trailing)
         }
     }
     
@@ -38,7 +38,7 @@ class TimeViewCell: UITableViewCell {
     }
     
     
-    func setMeetings(section: Section) {
+    func setMeetings(_ section: Section) {
         var height: CGFloat = 0
         for index in 0..<section.meetings.count {
             if index > TimeViewCell.maxMeetingViews - 1 {
@@ -67,7 +67,7 @@ class TimeViewCell: UITableViewCell {
     }
 
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

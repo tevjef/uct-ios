@@ -13,7 +13,7 @@ import CocoaLumberjack
 
 class CoreUserDefault: NSManagedObject {
 
-    class func getUniversity(ctx: NSManagedObjectContext) -> University? {
+    class func getUniversity(_ ctx: NSManagedObjectContext) -> University? {
         let data = getPeristedUniversity(ctx)
         
         if data == nil {
@@ -22,7 +22,7 @@ class CoreUserDefault: NSManagedObject {
         return data!.getUniversity()
     }
     
-    class func getSemester(ctx: NSManagedObjectContext) -> Semester? {
+    class func getSemester(_ ctx: NSManagedObjectContext) -> Semester? {
         let data = getPeristedUniversity(ctx)
         if data == nil {
             return nil
@@ -30,7 +30,7 @@ class CoreUserDefault: NSManagedObject {
         return data!.getSemester()
     }
     
-    class func saveUniversity(ctx: NSManagedObjectContext, data: University) {
+    class func saveUniversity(_ ctx: NSManagedObjectContext, data: University) {
         // Find exisiting CoreUserDefault
         let persistedUniversity = getPeristedUniversity(ctx)
         
@@ -39,13 +39,13 @@ class CoreUserDefault: NSManagedObject {
             persistedUniversity!.update(data)
             // Or Insert
         } else {
-            let blob = CoreUserDefault(context: ctx)
+            let blob = CoreUserDefault(context: ctx, dummy: "")
             blob.insert(data)
         }
     }
     
     // Could possibly be batched with university
-    class func saveSemester(ctx: NSManagedObjectContext, data: Semester) {
+    class func saveSemester(_ ctx: NSManagedObjectContext, data: Semester) {
         // Find exisiting CoreUserDefault
         let persistedSemester = getPeristedUniversity(ctx)
         
@@ -54,7 +54,7 @@ class CoreUserDefault: NSManagedObject {
             persistedSemester!.update(data)
         } else {
             // Insert
-            let blob = CoreUserDefault(context: ctx)
+            let blob = CoreUserDefault(context: ctx, dummy: "")
             blob.insert(data)
         }
         
@@ -64,15 +64,14 @@ class CoreUserDefault: NSManagedObject {
         return AppConstants.CoreData.userDefaults
     }
     
-    private class func requestUserDefault() -> NSFetchRequest {
-        let fetchRequest = NSFetchRequest(entityName: CoreUserDefault.entityName())
-        return fetchRequest
+    fileprivate class func requestUserDefault() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest(entityName: CoreUserDefault.entityName())
     }
     
-    private func getUniversity() -> University? {
+    fileprivate func getUniversity() -> University? {
         do {
-            if university != nil {
-                let uni = try University.parseFromData(university!)
+            if self.university != nil {
+                let uni = try University.parseFrom(data: self.university as! Data)
                 return uni
             }
         } catch {
@@ -81,10 +80,10 @@ class CoreUserDefault: NSManagedObject {
         return nil
     }
     
-    private func getSemester() -> Semester? {
+    fileprivate func getSemester() -> Semester? {
         do {
             if semester != nil {
-                let sem = try Semester.parseFromData(semester!)
+                let sem = try Semester.parseFrom(data: self.semester as! Data)
                 return sem
             }
         } catch {
@@ -94,9 +93,9 @@ class CoreUserDefault: NSManagedObject {
         return nil
     }
     
-    private func insert(university: University) {
+    func insert(_ university: University) {
         let data = university.data()
-        self.university = data
+        self.university = data as NSData
         do {
             try managedObjectContext?.save()
             DDLogDebug("Insert successful university=\(university.topicName)")
@@ -105,9 +104,9 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func update(university: University) {
+    fileprivate func update(_ university: University) {
         let data = university.data()
-        self.university = data
+        self.university = data as NSData
         do {
             try managedObjectContext?.save()
             DDLogDebug("Update successful university=\(university.topicName)")
@@ -116,9 +115,9 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func insert(semester: Semester) {
+    fileprivate func insert(_ semester: Semester) {
         let data = semester.data()
-        self.semester = data
+        self.semester = data as NSData
         do {
             try managedObjectContext?.save()
             DDLogDebug("Insert successful semester=\(semester.description)")
@@ -127,9 +126,9 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private func update(semester: Semester) {
+    fileprivate func update(_ semester: Semester) {
         let data = semester.data()
-        self.semester = data
+        self.semester = data as NSData
         do {
             try managedObjectContext?.save()
             DDLogDebug("Update successful semester=\(semester.description)")
@@ -138,11 +137,11 @@ class CoreUserDefault: NSManagedObject {
         }
     }
     
-    private class func getPeristedUniversity(ctx: NSManagedObjectContext) -> CoreUserDefault? {
+    fileprivate class func getPeristedUniversity(_ ctx: NSManagedObjectContext) -> CoreUserDefault? {
         
         do {
             let fetchRequest = CoreUserDefault.requestUserDefault()
-            let fetchedCoreUserDefaults = try ctx.executeFetchRequest(fetchRequest) as! [CoreUserDefault]
+            let fetchedCoreUserDefaults = try ctx.fetch(fetchRequest) as! [CoreUserDefault]
             
             if fetchedCoreUserDefaults.count == 0 {
                 DDLogDebug("No university found")

@@ -13,7 +13,7 @@ class Common {}
 typealias Payload = [String: AnyObject]
 
 extension University {
-    class func parseFromJson(json: [String: AnyObject]) -> University? {
+    class func parseFromJson(_ json: [String: AnyObject]) -> University? {
         let university = University.Builder()
 
         guard
@@ -55,7 +55,7 @@ extension University {
 }
 
 extension Subject {
-    class func parseFromJson(json: [String: AnyObject]) -> Subject? {
+    class func parseFromJson(_ json: [String: AnyObject]) -> Subject? {
         let subject = Subject.Builder()
 
         guard
@@ -97,7 +97,7 @@ extension Subject {
 }
 
 extension Course {
-    class func parseFromJson(json: [String: AnyObject]) -> Course? {
+    class func parseFromJson(_ json: [String: AnyObject]) -> Course? {
         let course = Course.Builder()
 
         guard
@@ -135,7 +135,7 @@ extension Course {
 }
 
 extension Section {
-    class func parseFromJson(json: [String: AnyObject]) -> Section? {
+    class func parseFromJson(_ json: [String: AnyObject]) -> Section? {
         let section = Section.Builder()
 
         guard
@@ -172,7 +172,7 @@ extension Section {
 }
 
 extension Semester {
-    var readableString: String { return self.season.capitalizedString + " " + String(self.year) }
+    var readableString: String { return self.season.capitalized + " " + String(self.year) }
 }
 
 extension Course {
@@ -187,13 +187,13 @@ extension Course {
     }
 }
 
-extension CollectionType where Generator.Element == Instructor {
+extension Collection where Iterator.Element == Instructor {
     var listString: String {
         var str: String = ""
         
         for instructor in self {
             str += instructor.name
-            if instructor != self.reverse().first {
+            if instructor != self.reversed().first {
                 str += " | "
             }
         }
@@ -202,8 +202,8 @@ extension CollectionType where Generator.Element == Instructor {
 }
 
 class Utils {
-    static func semesterFromString(str: String) -> Semester? {
-        let components = str.componentsSeparatedByString(" ")
+    static func semesterFromString(_ str: String) -> Semester? {
+        let components = str.components(separatedBy: " ")
         let season = components.first!
         let year = Int32(components.last!)
         

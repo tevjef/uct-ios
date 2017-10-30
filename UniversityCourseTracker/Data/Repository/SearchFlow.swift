@@ -11,7 +11,7 @@ import CocoaLumberjack
 
 protocol SearchFlowDelegate: class {
     var searchFlow: SearchFlow? { get set }
-    func prepareSearchFlow(searchFlowDelegate: SearchFlowDelegate)
+    func prepareSearchFlow(_ searchFlowDelegate: SearchFlowDelegate)
 }
 
 class SearchFlow: NSObject, NSCoding {
@@ -31,8 +31,8 @@ class SearchFlow: NSObject, NSCoding {
     var tempSection: Section?
     
     // MARK: Archiving Paths
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("SearchFlow")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("SearchFlow")
     
     // MARK: Types
     struct PropertyKey {
@@ -59,54 +59,54 @@ class SearchFlow: NSObject, NSCoding {
     }
     
     // MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(universityTopicName, forKey: PropertyKey.universityTopicNameKey)
-        aCoder.encodeObject(year, forKey: PropertyKey.yearKey)
-        aCoder.encodeObject(season, forKey: PropertyKey.seasonKey)
-        aCoder.encodeObject(subjectTopicName, forKey: PropertyKey.subjectTopicNameKey)
-        aCoder.encodeObject(courseTopicName, forKey: PropertyKey.courseTopicNameKey)
-        aCoder.encodeObject(sectionTopicName, forKey: PropertyKey.sectionTopicNameKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(universityTopicName, forKey: PropertyKey.universityTopicNameKey)
+        aCoder.encode(year, forKey: PropertyKey.yearKey)
+        aCoder.encode(season, forKey: PropertyKey.seasonKey)
+        aCoder.encode(subjectTopicName, forKey: PropertyKey.subjectTopicNameKey)
+        aCoder.encode(courseTopicName, forKey: PropertyKey.courseTopicNameKey)
+        aCoder.encode(sectionTopicName, forKey: PropertyKey.sectionTopicNameKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        let universityTopicName = aDecoder.decodeObjectForKey(PropertyKey.universityTopicNameKey) as! String
-        let year = aDecoder.decodeObjectForKey(PropertyKey.yearKey) as! String
-        let season = aDecoder.decodeObjectForKey(PropertyKey.seasonKey) as! String
-        let subjectTopicName = aDecoder.decodeObjectForKey(PropertyKey.subjectTopicNameKey) as! String
-        let courseTopicName = aDecoder.decodeObjectForKey(PropertyKey.courseTopicNameKey) as! String
-        let sectionTopicName = aDecoder.decodeObjectForKey(PropertyKey.sectionTopicNameKey) as! String
+        let universityTopicName = aDecoder.decodeObject(forKey: PropertyKey.universityTopicNameKey) as! String
+        let year = aDecoder.decodeObject(forKey: PropertyKey.yearKey) as! String
+        let season = aDecoder.decodeObject(forKey: PropertyKey.seasonKey) as! String
+        let subjectTopicName = aDecoder.decodeObject(forKey: PropertyKey.subjectTopicNameKey) as! String
+        let courseTopicName = aDecoder.decodeObject(forKey: PropertyKey.courseTopicNameKey) as! String
+        let sectionTopicName = aDecoder.decodeObject(forKey: PropertyKey.sectionTopicNameKey) as! String
         self.init(universityTopicName: universityTopicName, year: year, season: season, subjectTopicName: subjectTopicName,
                   courseTopicName: courseTopicName, sectionTopicName: sectionTopicName)
     }
     
-    static func saveSearchFlows(flows: [SearchFlow]) {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(flows, toFile: SearchFlow.ArchiveURL.path!)
+    static func saveSearchFlows(_ flows: [SearchFlow]) {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(flows, toFile: SearchFlow.ArchiveURL.path)
         if !isSuccessfulSave {
             print("Failed to save flows...")
         }
     }
     
     func loadSearchFlows() -> [SearchFlow]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(SearchFlow.ArchiveURL.path!) as? [SearchFlow]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: SearchFlow.ArchiveURL.path) as? [SearchFlow]
     }
     
     func buildSubscription() -> Subscription {
         let subscription = Subscription(topicName: sectionTopicName!)
         do {
             // Set section in course
-            let courseBuilder = try Course.Builder().mergeFrom(tempCourse!)
+            let courseBuilder = try Course.Builder().mergeFrom(other: tempCourse!)
             let sections = [tempSection!]
             courseBuilder.setSections(sections)
             let course = try courseBuilder.build()
             
             // Set course in subject
-            let subjectBuilder = try Subject.Builder().mergeFrom(tempSubject!)
+            let subjectBuilder = try Subject.Builder().mergeFrom(other: tempSubject!)
             let courses = [course]
             subjectBuilder.setCourses(courses)
             let subject = try subjectBuilder.build()
             
             // Set subject in university 
-            let universityBuilder = try University.Builder().mergeFrom(tempUniversity!)
+            let universityBuilder = try University.Builder().mergeFrom(other: tempUniversity!)
             let subjects = [subject]
             universityBuilder.setSubjects(subjects)
             universityBuilder.setAvailableSemesters([self.tempSemester!])
@@ -179,14 +179,14 @@ class Subscription: NSObject {
         return searchFlow
     }
     
-    func updateSection(section: Section) {
+    func updateSection(_ section: Section) {
         var tempUni = university
         var tempSubject = tempUni!.subjects.first!
         var tempCourse = tempSubject.courses.first!
         do {
-            tempCourse = try Course.getBuilder().mergeFrom(tempCourse).setSections([section]).build()
-            tempSubject = try Subject.getBuilder().mergeFrom(tempSubject).setCourses([tempCourse]).build()
-            tempUni = try University.getBuilder().mergeFrom(tempUni!).setSubjects([tempSubject]).build()
+            tempCourse = try Course.getBuilder().mergeFrom(other: tempCourse).setSections([section]).build()
+            tempSubject = try Subject.getBuilder().mergeFrom(other: tempSubject).setCourses([tempCourse]).build()
+            tempUni = try University.getBuilder().mergeFrom(other: tempUni!).setSubjects([tempSubject]).build()
         } catch {
             DDLogError("Error when updating section in subscription \(error)")
         }

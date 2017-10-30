@@ -13,20 +13,20 @@ import CocoaLumberjack
 class DataRepos {
     
     var constants: AppConstants
-    var session: Manager
+    var session: SessionManager
     
     init(constants: AppConstants) {
         self.constants = constants
-        let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let displayName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
+        let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let displayName: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
 
-        var defaultHeaders = Alamofire.Manager.defaultHTTPHeaders
+        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
         
         // Add version number to User-Agent
         defaultHeaders["User-Agent"] = "\(defaultHeaders["User-Agent"]!) \(displayName)/\(appVersionString)"
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = defaultHeaders
-        session = Alamofire.Manager(configuration: configuration)
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = defaultHeaders
+        session = Alamofire.SessionManager(configuration: configuration)
         
     }
     
@@ -34,12 +34,12 @@ class DataRepos {
         "Accept": "application/x-protobuf",
     ]
     
-    func processRequest(request: Request, completion: (Response?) -> Void) {
+    func processRequest(_ request: DataRequest, completion: @escaping (Response?) -> Void) {
         DDLogDebug("Request \(request.debugDescription)")
         request.responseData { response in
             if response.result.isSuccess {
                 do {
-                    let resp = try Response.parseFromData(response.data!)
+                    let resp = try Response.parseFrom(data: response.data!)
                     // Usually a 404
                     if resp.hasData {
                         completion(resp)
@@ -58,64 +58,64 @@ class DataRepos {
         }
     }
     
-    func getUniversities(universities: (Array<University>?) -> Void) {
+    func getUniversities(_ universities: @escaping (Array<University>?) -> Void) {
         let url = constants.UNIVERSITIES
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url!, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             universities(response?.data.universities)
         })
     }
     
-    func getUniversity(universityTopic: String, _ university: (University?) -> Void) {
+    func getUniversity(_ universityTopic: String, _ university: @escaping (University?) -> Void) {
         let url = "\(constants.UNIVERSITY)/\(universityTopic)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             university(response?.data.university)
         })
     }
     
-    func getSubjects(universityTopic: String, _ season: String, _ year: String,
-                     _ subjects: (Array<Subject>?) -> Void) {
+    func getSubjects(_ universityTopic: String, _ season: String, _ year: String,
+                     _ subjects: @escaping (Array<Subject>?) -> Void) {
         let url = "\(constants.SUBJECTS)/\(universityTopic)/\(season)/\(year)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             subjects(response?.data.subjects)
         })
     }
     
-    func getSubject(subjectTopic: String, _ subject: (Subject?) -> Void) {
+    func getSubject(_ subjectTopic: String, _ subject: @escaping (Subject?) -> Void) {
         let url = "\(constants.SUBJECT)/\(subjectTopic)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             subject(response?.data.subject)
         })
     }
     
-    func getCourses(subjectTopic: String, _ courses: (Array<Course>?) -> Void) {
+    func getCourses(_ subjectTopic: String, _ courses: @escaping (Array<Course>?) -> Void) {
         let url = "\(constants.COURSES)/\(subjectTopic)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             courses(response?.data.courses)
         })
     }
     
-    func getCourse(courseTopic: String, _ course: (Course?) -> Void) {
+    func getCourse(_ courseTopic: String, _ course: @escaping (Course?) -> Void) {
         let url = "\(constants.COURSE)/\(courseTopic)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             course(response?.data.course)
         })
     }
     
-    func getSection(sectionTopic: String, _ section: (Section?) -> Void) {
+    func getSection(_ sectionTopic: String, _ section: @escaping (Section?) -> Void) {
         let url = "\(constants.SECTION)/\(sectionTopic)"
-        let request = session.request(.GET, url, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             section(response?.data.section)

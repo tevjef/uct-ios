@@ -12,53 +12,53 @@ import Firebase
 import Crashlytics
 
 class NSLogger: NSObject, DDLogger {
-    func logMessage(logMessage: DDLogMessage!) {
-        let message = logFormatter.formatLogMessage(logMessage)
-        NSLog(message)
+    func log(message logMessage: DDLogMessage) {
+        let message = logFormatter.format(message: logMessage)
+        NSLog(message!)
     }
     
-    var logFormatter: DDLogFormatter! = TimberFormatter()
+    var logFormatter: DDLogFormatter = TimberFormatter()
 }
 
 class FirebaseLogger: NSObject, DDLogger {
-    func logMessage(logMessage: DDLogMessage!) {
-        let message = logFormatter.formatLogMessage(logMessage)
+    func log(message logMessage: DDLogMessage) {
+        let message = logFormatter.format(message: logMessage)
 
-        FIRCrashLogv("%@", getVaList([message]))
+        FirebaseCrashMessage(message!)
     }
     
-    var logFormatter: DDLogFormatter! = TimberFormatter()
+    var logFormatter: DDLogFormatter = TimberFormatter()
 }
 
 class CrashlyicsLogger: NSObject, DDLogger {
-    func logMessage(logMessage: DDLogMessage!) {
-        let message = logFormatter.formatLogMessage(logMessage)
+    func log(message logMessage: DDLogMessage) {
+        let message = logFormatter.format(message: logMessage)
         
-        if logMessage.level == .Error {
-            Crashlytics.sharedInstance().recordError(NSError(domain: message, code: -1, userInfo: [:]))
+        if logMessage.level == .error {
+            Crashlytics.sharedInstance().recordError(NSError(domain: message!, code: -1, userInfo: [:]))
             return
         }
-        CLSLogv("%@", getVaList([message]))
+        CLSLogv("%@", getVaList([message!]))
     }
     
-    var logFormatter: DDLogFormatter! = TimberFormatter()
+    var logFormatter: DDLogFormatter = TimberFormatter()
 }
 
 class TimberFormatter: NSObject, DDLogFormatter {
     
-    @objc func formatLogMessage(logMessage: DDLogMessage!) -> String! {
-        let tag = logMessage.fileName.componentsSeparatedByString(".swift").first!
+    @objc func format(message logMessage: DDLogMessage) -> String? {
+        let tag = logMessage.fileName.components(separatedBy: ".swift").first!
         var prefix: String = ""
         switch logMessage.level {
-        case .Debug:
+        case .debug:
             prefix = "D/"
-        case .Verbose:
+        case .verbose:
             prefix = "V/"
-        case .Info:
+        case .info:
             prefix = "I/"
-        case .Error:
+        case .error:
             prefix = "E/"
-        case .Warning:
+        case .warning:
             prefix = "W/"
         default:
             prefix = "WTF/"

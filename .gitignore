@@ -17,6 +17,10 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 GoogleService-Info.plist
+.idea
+*.iml
+*.json
+
 
 ## Other
 *.moved-aside
@@ -65,3 +69,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 aps.cer
+
+
+*.iml
