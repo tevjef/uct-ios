@@ -9,46 +9,76 @@
 import Foundation
 import UIKit
 import CocoaLumberjack
+import UserNotifications
 
 class Notifications {
     
-    let university: University
-    let subject: Subject
-    let course: Course
-    let section: Section
     let appDelegate: AppDelegate
     
-    init(appDelegate: AppDelegate, university: University) {
+    var university: University = University.Builder().buildPartial()
+    var subject: Subject = Subject.Builder().buildPartial()
+    var course: Course = Course.Builder().buildPartial()
+    var section: Section = Section.Builder().buildPartial()
+    
+    static var shared: Notifications?
+    
+    init(appDelegate: AppDelegate) {
+        self.appDelegate = appDelegate
+        Notifications.shared = self
+    }
+
+    func setNotificationData(_ university: University) {
         self.university = university
         self.subject = university.subjects.first!
         self.course = subject.courses.first!
         self.section = course.sections.first!
-        self.appDelegate = appDelegate
     }
+    
+    class func setCategories()  {
+        let registerAction = UNNotificationAction(
+            identifier: Id.registerActionId,
+            title: "Register",
+            options: [.foreground]
+        )
+        let unsubAction = UNNotificationAction(
+            identifier: Id.unsubscribeActionId,
+            title: "Unsubscribe",
+            options: [.foreground, .destructive]
+        )
+
+        let sectionNotificationCategory = UNNotificationCategory(
+            identifier: Id.sectionNotificationCategoryId,
+            actions: [registerAction, unsubAction],
+            intentIdentifiers: [],
+            options: []
+        )
+        UNUserNotificationCenter.current().setNotificationCategories([sectionNotificationCategory])
+    }
+    
     
     class func makeCategories() -> Set<UIUserNotificationCategory> {
         let registerAction = UIMutableUserNotificationAction()
-        registerAction.identifier = "REGISTER_ACTION"
+        registerAction.identifier = Id.registerActionId
         registerAction.title = "Register"
         registerAction.activationMode = UIUserNotificationActivationMode.foreground
         registerAction.isAuthenticationRequired = false
         registerAction.isDestructive = false
-        
+    
         let unsubAction = UIMutableUserNotificationAction()
-        unsubAction.identifier = "UNSUBSCRIBE_ACTION"
+        unsubAction.identifier = Id.unsubscribeActionId
         unsubAction.title = "Unsubscribe"
         unsubAction.activationMode = UIUserNotificationActivationMode.background
         unsubAction.isAuthenticationRequired = false
         unsubAction.isDestructive = true
-        
+    
         let sectionNotificationCategory = UIMutableUserNotificationCategory()
-        sectionNotificationCategory.identifier = "SECTION_NOTIFICATION_CATEGORY"
-        
+        sectionNotificationCategory.identifier = Id.sectionNotificationCategoryId
+    
         sectionNotificationCategory.setActions([registerAction, unsubAction],
-                                               for: UIUserNotificationActionContext.default)
-        
+                                           for: UIUserNotificationActionContext.default)
+    
         sectionNotificationCategory.setActions([registerAction, unsubAction],
-                                               for: UIUserNotificationActionContext.minimal)
+                                           for: UIUserNotificationActionContext.minimal)
         var set = Set<UIUserNotificationCategory>()
         set.insert(sectionNotificationCategory)
         return set
@@ -57,38 +87,41 @@ class Notifications {
     func scheduleNotification() {
         appDelegate.reporting?.logReceiveNotification(section.topicName)
         let application: UIApplication = UIApplication.shared
-        
-        let notification = UILocalNotification()
-        notification.category = Id.sectionNotificationCategoryId
+        let center = UNUserNotificationCenter.current()
         
         var title: String = "A section has opened!"
         var body: String = "Section \(section.number) of \(course.name) has opened! GO! GO! GO!"
         
+        let content = UNMutableNotificationContent()
+
         let closed = section.status == "Closed"
         if closed {
             title = "A section has closed"
             body = "Section \(section.number) of \(course.name) has closed!"
-            notification.category = nil
+            content.categoryIdentifier = "nil"
+        } else {
+            content.categoryIdentifier = Id.sectionNotificationCategoryId
         }
 
-        notification.alertBody = body
-        notification.alertAction = "Open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.fireDate = Date(timeIntervalSinceNow: AppDelegate.isUserPaid() ? 0 : 900)// todo item due date (when notification will be fired)
-        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        notification.userInfo = ["registrationPage": university.registrationPage,
-                                 "topicName": section.topicName,
-                                 "status": section.status]
-        notification.applicationIconBadgeNumber = 1
+        content.title = title
+        content.body = body
+        content.sound = UNNotificationSound.default()
+        content.badge = 1
+        content.categoryIdentifier = Id.sectionNotificationCategoryId
+        content.userInfo = ["registrationPage": university.registrationPage,
+                           "topicName": section.topicName,
+                           "status": section.status]
         
-        if application.applicationState == UIApplicationState.inactive {
-            DDLogDebug("Incoming notification while inactive")
-            UIApplication.shared.scheduleLocalNotification(notification)
-            
-        } else if application.applicationState == UIApplicationState.background {
-            DDLogDebug("Incoming notification while in background");
-            UIApplication.shared.scheduleLocalNotification(notification)
-            
-        } else if application.applicationState == UIApplicationState.active {
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let identifier = section.topicName + section.status
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                DDLogError("Error when creating notification" + error.localizedDescription)
+            }
+        })
+        
+        if application.applicationState == UIApplicationState.active {
             let sectionAlert: UIAlertController = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
             if closed {
                 sectionAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -97,20 +130,35 @@ class Notifications {
                 sectionAlert.addAction(UIAlertAction(title: "Unsubscribe", style: .destructive, handler: { action in self.unsubscribe(self.section.topicName) }))
                 sectionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             }
-
-            
             self.appDelegate.window?.rootViewController?.present(sectionAlert, animated: true, completion: nil)
         }
     }
     
-    class func requestNotificationPermission() {
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: Notifications.makeCategories())
-        UIApplication.shared.registerUserNotificationSettings(settings)
-        UIApplication.shared.registerForRemoteNotifications()
+    func requestNotificationPermission() {
+        //let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: Notifications.makeCategories())
+        //UIApplication.shared.registerUserNotificationSettings(settings)
+        //UIApplication.shared.registerForRemoteNotifications()
         
-       // var settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-
+        // iOS 10 support
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){[weak self](granted, error) in
+                guard error == nil else {
+                    return
+                }
+                
+                if granted {
+                    UNUserNotificationCenter.current().delegate = self?.appDelegate
+                    Notifications.setCategories()
+                }
+            }
+             UIApplication.shared.registerForRemoteNotifications()
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: Notifications.makeCategories())
+            UIApplication.shared.registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
+
     
     class func makeGenericAlert(_ title: String?, message: String) -> UIAlertController {
         var messageTitle: String
@@ -131,7 +179,7 @@ class Notifications {
     }
     
     func unsubscribe(_ topicName: String) {
-        appDelegate.coreDataManager?.removeSubscription(topicName)
+        _ = appDelegate.coreDataManager?.removeSubscription(topicName)
     }
     
     class func incrementBadge() {

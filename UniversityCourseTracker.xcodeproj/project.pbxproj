@@ -79,6 +79,7 @@
 /* Begin PBXFileReference section */
 		03004C40BA27EF03462451B7 /* Pods-UniversityCourseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		0940757D1FA69C1000FEFCEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09B984A61FD3A67B001D37DA /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		1305685F1D563DFD005BB80E /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		130568691D563F91005BB80E /* CoreSubscription+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreSubscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1305686A1D563F91005BB80E /* CoreSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreSubscription.swift; sourceTree = "<group>"; };
@@ -319,6 +320,7 @@
 		15F466176E339473D4DEA842 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09B984A61FD3A67B001D37DA /* UserNotifications.framework */,
 				DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */,
 			);
 			name = Frameworks;
@@ -778,7 +780,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -795,7 +797,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

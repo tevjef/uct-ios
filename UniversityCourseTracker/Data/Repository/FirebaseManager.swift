@@ -64,7 +64,7 @@ class FirebaseManager: NSObject {
         DDLogDebug("Connecting to FCM...")
         Messaging.messaging().connect { (error) in
             if (error != nil) {
-                DDLogWarn("Unable to connect with FCM. \(error)")
+                DDLogWarn("Unable to connect with FCM. \(String(describing: error))")
             } else {
                 DDLogDebug("Connected to FCM.")
             }

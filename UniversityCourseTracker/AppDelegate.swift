@@ -13,9 +13,10 @@ import FirebaseMessaging
 import CocoaLumberjack
 import Fabric
 import Crashlytics
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coreDataManager: CoreDataManager?
     var firebaseManager: FirebaseManager?
     var reporting: Reporting?
+    var notification: Notifications?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DDLog.add(FirebaseLogger()) // Log to Firebase for crash reports
@@ -36,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataRepo = DataRepos(constants: appconstants)
         firebaseManager = FirebaseManager(appDelegate: self)
         coreDataManager = CoreDataManager(appDelegate: self, firebaseManager: firebaseManager!)
-    
+        notification = Notifications(appDelegate: self)
+
+
         window?.backgroundColor = UIColor.white
         window?.tintColor = AppConstants.Colors.primary
         
@@ -60,11 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DDLogInfo(message)
                 let jsonData = message.data(using: String.Encoding.utf8)!
                 json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
-                university = University.parseFromJson(json["university"] as! [String: AnyObject])
-                let notification = Notifications(appDelegate: self, university: university)
                 
-                // Schedule notification
-                notification.scheduleNotification()
+                if let university = University.parseFromJson(json["university"] as! [String: AnyObject]) {
+                    notification?.setNotificationData(university)
+                    notification?.scheduleNotification()
+                }
+                
             } catch {
                 completionHandler(UIBackgroundFetchResult.failed)
                 print(error)
@@ -90,8 +95,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
-    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-        DDLogDebug("handleActionWithIdentifier \(identifier)")
+    func application(
+        _ application: UIApplication,
+        handleActionWithIdentifier identifier: String?,
+        for notification: UILocalNotification,
+        completionHandler: @escaping () -> Void) {
+        
+        DDLogDebug("handleActionWithIdentifier \(identifier ?? "")")
         let topicName = notification.userInfo!["topicName"] as! String
         let subscription = coreDataManager?.getSubscription(topicName)
         if subscription == nil {
@@ -105,12 +115,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             case Notifications.Id.unsubscribeActionId:
                 Notifications.decrementBadge()
-                coreDataManager?.removeSubscription(topicName)
+                _ = coreDataManager?.removeSubscription(topicName)
             default:
                 break
             }
         }
         // TODO log handling notification action
+    }
+    
+    /// MARK: UNUserNotificationCenterDelegate
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Play sound and show alert to the user
+        completionHandler([.alert,.sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let topicName = response.notification.request.content.userInfo["topicName"] as! String
+        let subscription = coreDataManager?.getSubscription(topicName)
+        if subscription == nil {
+            completionHandler()
+        }
+        
+        // Determine the user action
+        switch response.actionIdentifier {
+        case UNNotificationDismissActionIdentifier:
+            DDLogInfo("Notification dismissed")
+        case UNNotificationDefaultActionIdentifier:
+            DDLogInfo("Default notifcation action")
+        case Notifications.Id.unsubscribeActionId:
+            _ = coreDataManager?.removeSubscription(topicName)
+        case Notifications.Id.registerActionId:
+            openUrl(subscription!.getUniversity().registrationPage)
+        default:
+            completionHandler()
+        }
+        Notifications.decrementBadge()
+        completionHandler()
     }
 
     class func isUserPaid() -> Bool {
@@ -118,7 +164,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func openUrl(_ url: String) {
-        UIApplication.shared.openURL(URL(string:url)!)
+        if let url = URL(string:url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            DDLogInfo("Open \(url): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+               DDLogInfo("Open \(url): \(success)")
+            }
+        }
+        
         reporting?.logRegister(url)
     }
     

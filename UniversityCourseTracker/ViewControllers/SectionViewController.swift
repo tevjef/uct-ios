@@ -212,13 +212,13 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
             return
         }
         
-        Notifications.requestNotificationPermission()
+        Notifications.shared?.requestNotificationPermission()
         lastPosition = !lastPosition
         
         if sender.isOn {
             coreData.addSubscription(subscription!)
         } else {
-            coreData.removeSubscription(subscription!.sectionTopicName)
+            _ = coreData.removeSubscription(subscription!.sectionTopicName)
         }
     }
 }
