@@ -57,6 +57,7 @@
 		13FA20791D52B00800887546 /* SectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FA20781D52B00800887546 /* SectionViewCell.xib */; };
 		13FA207B1D52BED600887546 /* SectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA207A1D52BED600887546 /* SectionViewCell.swift */; };
 		5F950D8FC3FE34833A4EB7D7 /* Pods_UniversityCourseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */; };
+		CBB8A3A72256DE53A5D42746 /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB8AEFD1D16CEC8849E8933 /* AppDelegate+UNUserNotificationCenterDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		13FA20781D52B00800887546 /* SectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionViewCell.xib; sourceTree = "<group>"; };
 		13FA207A1D52BED600887546 /* SectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewCell.swift; sourceTree = "<group>"; };
 		87BC2D251BD3C4413C189788 /* Pods-UniversityCourseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversityCourseTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversityCourseTracker/Pods-UniversityCourseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		CBB8AEFD1D16CEC8849E8933 /* AppDelegate+UNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
 		DA169E6AF73E153CB08D713E /* Pods_UniversityCourseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniversityCourseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -246,6 +248,7 @@
 				0940757D1FA69C1000FEFCEF /* GoogleService-Info.plist */,
 				13F2A8FA1D5C0786006EA852 /* UniversityCourseTracker.entitlements */,
 				13F9F2781E1EBE9600E84DBB /* Settings.bundle */,
+				CBB8AEFD1D16CEC8849E8933 /* AppDelegate+UNUserNotificationCenterDelegate.swift */,
 			);
 			path = UniversityCourseTracker;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				130AD7E31D49B3FB00CCD3E1 /* Utils.swift in Sources */,
 				137F92021D5EA7D500B352FC /* Notifications.swift in Sources */,
 				1367EBD81D58CDAE00A05932 /* TrackedSectionsViewController.swift in Sources */,
+				CBB8A3A72256DE53A5D42746 /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

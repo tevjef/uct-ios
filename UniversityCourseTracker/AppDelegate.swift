@@ -16,7 +16,7 @@ import Crashlytics
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -121,42 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         // TODO log handling notification action
-    }
-    
-    /// MARK: UNUserNotificationCenterDelegate
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Play sound and show alert to the user
-        completionHandler([.alert,.sound])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        let topicName = response.notification.request.content.userInfo["topicName"] as! String
-        let subscription = coreDataManager?.getSubscription(topicName)
-        if subscription == nil {
-            completionHandler()
-        }
-        
-        // Determine the user action
-        switch response.actionIdentifier {
-        case UNNotificationDismissActionIdentifier:
-            DDLogInfo("Notification dismissed")
-        case UNNotificationDefaultActionIdentifier:
-            DDLogInfo("Default notifcation action")
-        case Notifications.Id.unsubscribeActionId:
-            _ = coreDataManager?.removeSubscription(topicName)
-        case Notifications.Id.registerActionId:
-            openUrl(subscription!.getUniversity().registrationPage)
-        default:
-            completionHandler()
-        }
-        Notifications.decrementBadge()
-        completionHandler()
     }
 
     class func isUserPaid() -> Bool {

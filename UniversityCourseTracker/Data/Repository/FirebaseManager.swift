@@ -21,15 +21,12 @@ class FirebaseManager: NSObject {
         super.init()
         DDLogDebug("Configuring Firebase...")
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
 
         NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageFailure), name:NSNotification.Name.MessagingSendError, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageSuccess), name:NSNotification.Name.MessagingSendSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.didDeleteMessagesOnServer), name:NSNotification.Name.MessagingMessagesDeleted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.tokenRefreshNotification), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
-        
-        #if DEBUG
-            //FIRAnalyticsConfiguration.sharedInstance().setIsEnabled(false)
-        #endif
         
         let token = InstanceID.instanceID().token()
         DDLogDebug("Token on startup= \(token ?? "")")
@@ -52,7 +49,8 @@ class FirebaseManager: NSObject {
         for i in 0..<deviceToken.count {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
-        
+
+        Messaging.messaging().fcmToken
         //Tricky line
         DDLogDebug("Manually setting device token...")
         Messaging.messaging().setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
@@ -99,5 +97,21 @@ class FirebaseManager: NSObject {
     
     func didDeleteMessagesOnServer(_ notification: Notification) {
         DDLogDebug("didDeleteMessagesOnServer= \(notification.description)")
+    }
+}
+
+extension FirebaseManager : MessagingDelegate {
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+    // [END refresh_token]
+    // [START ios_10_data_message]
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
     }
 }
