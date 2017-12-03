@@ -24,13 +24,13 @@ class AppConstants {
         }
     }
     
-    lazy var UNIVERSITIES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.universities)")
-    lazy var UNIVERSITY = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.university)")
-    lazy var SUBJECTS = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)")
-    lazy var SUBJECT = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subject)")
-    lazy var COURSES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.courses)")
-    lazy var COURSE = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.course)")
-    lazy var SECTION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.section)")
+    lazy var UNIVERSITIES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.universities)")!
+    lazy var UNIVERSITY = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.university)")!
+    lazy var SUBJECTS = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subjects)")!
+    lazy var SUBJECT = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subject)")!
+    lazy var COURSES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.courses)")!
+    lazy var COURSE = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.course)")!
+    lazy var SECTION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.section)")!
     
     struct Notification {
         static var genericNotificationTitle = "Course Tracker"

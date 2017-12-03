@@ -101,6 +101,7 @@ class OptionsViewController: UITableViewController, UIPickerViewDataSource, UIPi
         universityPickerView!.showsSelectionIndicator = true
         universityPickerView!.dataSource = self
         universityPickerView!.delegate = self
+        universityPickerView!.translatesAutoresizingMaskIntoConstraints = false
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default

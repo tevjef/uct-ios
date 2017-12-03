@@ -84,6 +84,7 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         pickerView!.showsSelectionIndicator = true
         pickerView!.dataSource = self
         pickerView!.delegate = self
+        pickerView!.translatesAutoresizingMaskIntoConstraints = false
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default

@@ -47,7 +47,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     
     func setupViews() {
         // Set navbar title e.g English Composition - 101
-        title = "\(searchFlow!.tempCourse!.number): \(searchFlow!.tempCourse!.name)"
+        title = "\(searchFlow!.tempCourse!.number!): \(searchFlow!.tempCourse!.name!)"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 45
@@ -179,7 +179,7 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     func gotoSection() {
         let sectionVC = self.storyboard?.instantiateViewController(withIdentifier: AppConstants.Id.Controllers.section) as! SectionViewController
         // Set back button for next controller
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(searchFlow!.tempCourse!.number)", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "\(searchFlow!.tempCourse!.number!)", style: .plain, target: nil, action: nil)
         prepareSearchFlow(sectionVC)
         self.navigationController?.show(sectionVC, sender: self)
     }

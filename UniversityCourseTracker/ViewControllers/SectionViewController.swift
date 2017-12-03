@@ -63,7 +63,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     }
     
     func setupViews() {
-        navigationItem.title = searchFlow!.tempCourse!.name
+        navigationItem.title = searchFlow!.tempCourse!.name!
 
         if pusher == AppConstants.Id.Controllers.trackedSections {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Course", style: .plain, target: self, action: #selector(SectionViewController.gotoCourse))
@@ -99,7 +99,7 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
         
         tableView.tableHeaderView = headerContainer
         
-        setHeaderColors(true)
+        setHeaderColors(false)
         
         // Setup Switch View with data from database
         switchView = UISwitch(frame:CGRect(x: 150, y: 300, width: 0, height: 0));
@@ -118,36 +118,20 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
     func setHeaderColors(_ animate: Bool) {
         let duration = animate ? 0.2 : 0.0
         if searchFlow?.tempSection?.status == "Open" {
-            UIView.animate(withDuration: duration, animations: {
-                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
-            })
+            self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
         } else {
-            UIView.animate(withDuration: duration, animations: {
-                self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
-            })
+            self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.closedSection
         }
-        UIView.animate(withDuration: duration, animations: {
-            self.header?.backgroundColor = self.navigationController?.navigationBar.barTintColor
-        })
+        self.header?.backgroundColor = self.navigationController?.navigationBar.barTintColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if appeared {
-            setHeaderColors(true)
-        }
+        setHeaderColors(false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.navigationController?.navigationBar.barTintColor = self.previousColor
-        })
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.header?.backgroundColor = self.previousColor
-        })
-
+        self.navigationController?.navigationBar.barTintColor = self.previousColor
     }
     
     // MARK: - Navigation

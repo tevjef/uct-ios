@@ -53,14 +53,14 @@ class DataRepos {
                 }
             } else {
                 completion(nil)
-                DDLogError("Error while trying to complete request \(request.debugDescription) result=\(response.result.error)")
+                DDLogError("Error while trying to complete request \(request.debugDescription) result=\(response.result.error?.localizedDescription)")
             }
         }
     }
     
     func getUniversities(_ universities: @escaping (Array<University>?) -> Void) {
         let url = constants.UNIVERSITIES
-        let request = session.request(url!, method: .get, headers: headers)
+        let request = session.request(url, method: .get, headers: headers)
         processRequest(request, completion: {
             response in
             universities(response?.data.universities)
