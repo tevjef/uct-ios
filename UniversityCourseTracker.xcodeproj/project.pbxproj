@@ -413,6 +413,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KY3W4D44PY;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -433,7 +434,7 @@
 					};
 					1327C10F1D445D5100F5F742 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 33EY486PX7;
+						DevelopmentTeam = KY3W4D44PY;
 						LastSwiftMigration = 0800;
 						TestTargetID = 1327C0ED1D445D5000F5F742;
 					};
@@ -782,12 +783,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniversityCourseTracker/UniversityCourseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -799,12 +804,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniversityCourseTracker/UniversityCourseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.uctios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -838,6 +846,7 @@
 		1327C1201D445D5100F5F742 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTrackerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerUITests;
@@ -850,6 +859,7 @@
 		1327C1211D445D5100F5F742 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KY3W4D44PY;
 				INFOPLIST_FILE = UniversityCourseTrackerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tevinjeffrey.UniversityCourseTrackerUITests;
