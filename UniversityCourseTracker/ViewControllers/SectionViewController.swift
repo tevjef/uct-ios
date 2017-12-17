@@ -116,7 +116,6 @@ class SectionViewController: UITableViewController, SearchFlowDelegate {
 
     
     func setHeaderColors(_ animate: Bool) {
-        let duration = animate ? 0.2 : 0.0
         if searchFlow?.tempSection?.status == "Open" {
             self.navigationController?.navigationBar.barTintColor = AppConstants.Colors.openSection
         } else {

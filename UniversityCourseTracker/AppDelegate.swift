@@ -57,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
         let json: [String: AnyObject]!
-        let university: University!
 
         if let message = userInfo["message"] as? String {
             do {

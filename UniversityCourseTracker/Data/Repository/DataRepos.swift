@@ -53,7 +53,7 @@ class DataRepos {
                 }
             } else {
                 completion(nil)
-                DDLogError("Error while trying to complete request \(request.debugDescription) result=\(response.result.error?.localizedDescription)")
+                DDLogError("Error while trying to complete request \(request.debugDescription) result=\(String(describing: response.result.error?.localizedDescription))")
             }
         }
     }

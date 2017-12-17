@@ -78,7 +78,7 @@ class SectionViewCell: UITableViewCell {
             let meetingView = meetingViews[index]
 
             if meeting.day != "" {
-                let abbrIndex = meeting.day.characters.index(meeting.day.startIndex, offsetBy: 3)
+                let abbrIndex = meeting.day.index(meeting.day.startIndex, offsetBy: 3)
                 meetingView.dayView.text = meeting.day.substring(to: abbrIndex)
 
             } else {

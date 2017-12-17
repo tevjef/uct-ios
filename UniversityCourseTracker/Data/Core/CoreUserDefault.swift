@@ -71,7 +71,7 @@ class CoreUserDefault: NSManagedObject {
     fileprivate func getUniversity() -> University? {
         do {
             if self.university != nil {
-                let uni = try University.parseFrom(data: self.university as! Data)
+                let uni = try University.parseFrom(data: self.university! as Data)
                 return uni
             }
         } catch {
@@ -83,7 +83,7 @@ class CoreUserDefault: NSManagedObject {
     fileprivate func getSemester() -> Semester? {
         do {
             if semester != nil {
-                let sem = try Semester.parseFrom(data: self.semester as! Data)
+                let sem = try Semester.parseFrom(data: self.semester! as Data)
                 return sem
             }
         } catch {

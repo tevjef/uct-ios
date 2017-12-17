@@ -102,7 +102,7 @@ class Reporting: NSObject {
     func logFilterAllSections(_ topicId: String, count: Int) {
         let params = [Params.topicId: topicId, Params.count: count] as [String : Any]
         Analytics.logEvent(Event.filterAllSections, parameters: (params as! [String : NSObject]))
-        Answers.logCustomEvent(withName: Event.filterAllSections, customAttributes: (params as! [String : AnyObject]))
+        Answers.logCustomEvent(withName: Event.filterAllSections, customAttributes: (params as [String : AnyObject]))
         DDLogInfo("\(#function) \(params.description)")
 
     }
@@ -110,7 +110,7 @@ class Reporting: NSObject {
     func logFilterOpenSections(_ topicId: String, count: Int) {
         let params = [Params.topicId: topicId, Params.count: count] as [String : Any]
         Analytics.logEvent(Event.filterOpenSections, parameters: (params as! [String : NSObject]))
-        Answers.logCustomEvent(withName: Event.filterOpenSections, customAttributes: (params as! [String : AnyObject]))
+        Answers.logCustomEvent(withName: Event.filterOpenSections, customAttributes: (params as [String : AnyObject]))
         DDLogInfo("\(#function) \(params.description)")
 
     }

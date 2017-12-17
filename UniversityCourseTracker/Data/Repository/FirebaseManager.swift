@@ -50,35 +50,26 @@ class FirebaseManager: NSObject {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
 
-        Messaging.messaging().fcmToken
-        //Tricky line
         DDLogDebug("Manually setting device token...")
         Messaging.messaging().setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
-        InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.unknown)
         DDLogDebug("APNS Device Token: \(tokenString)")
     }
     
     class func connectToFcm() {
-        DDLogDebug("Connecting to FCM...")
-        Messaging.messaging().connect { (error) in
-            if (error != nil) {
-                DDLogWarn("Unable to connect with FCM. \(String(describing: error))")
-            } else {
-                DDLogDebug("Connected to FCM.")
-            }
-        }
+        // DDLogDebug("Connecting to FCM...")
+        // Messaging.messaging().shouldEstablishDirectChannel = true
     }
     
     class func disconnectFromFcm() {
         DDLogDebug("Disconnecting to FCM...")
-        Messaging.messaging().disconnect()
+        // Messaging.messaging().shouldEstablishDirectChannel = false
     }
     
     func tokenRefreshNotification(_ notification: Notification) {
         let refreshedToken = InstanceID.instanceID().token()
         if refreshedToken != nil {
             Crashlytics.sharedInstance().setUserIdentifier(refreshedToken)
-            DDLogDebug("tokenRefreshNotification InstanceID token: \(refreshedToken)")
+            DDLogDebug("tokenRefreshNotification InstanceID token: \(String(describing: refreshedToken))")
         } else{
             DDLogError("tokenRefreshNotification InstanceID token: empty")
         }

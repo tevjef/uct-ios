@@ -121,7 +121,7 @@ class SearchFlow: NSObject, NSCoding {
     }
     
     override var description : String {
-        return "UniversityTopicName=\(universityTopicName)\n Season=\(season) \n Year=\(year) \n SubjectTopicName=\(subjectTopicName) \n CourseTopicName=\(courseTopicName) \n SectionTopicName=\(sectionTopicName)"
+        return "UniversityTopicName=\(String(describing: universityTopicName))\n Season=\(String(describing: season)) \n Year=\(String(describing: year)) \n SubjectTopicName=\(String(describing: subjectTopicName)) \n CourseTopicName=\(String(describing: courseTopicName)) \n SectionTopicName=\(String(describing: sectionTopicName))"
     }
 }
 
