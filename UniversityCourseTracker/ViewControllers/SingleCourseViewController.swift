@@ -120,10 +120,8 @@ class SingleCourseViewController: UITableViewController, SearchFlowDelegate {
     func segmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             sectionDataSource = filteredCourse
-            reporting.logFilterOpenSections(sectionDataSource!.topicId, count: sectionDataSource!.sections.count)
         } else if sender.selectedSegmentIndex == 1 {
             sectionDataSource = loadedCourse
-            reporting.logFilterAllSections(sectionDataSource!.topicId, count: sectionDataSource!.sections.count)
         }
         
         tableView.beginUpdates()

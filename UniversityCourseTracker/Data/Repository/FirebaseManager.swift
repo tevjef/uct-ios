@@ -23,10 +23,26 @@ class FirebaseManager: NSObject {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageFailure), name:NSNotification.Name.MessagingSendError, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.sendDataMessageSuccess), name:NSNotification.Name.MessagingSendSuccess, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.didDeleteMessagesOnServer), name:NSNotification.Name.MessagingMessagesDeleted, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FirebaseManager.tokenRefreshNotification), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(FirebaseManager.sendDataMessageFailure),
+                name:NSNotification.Name.MessagingSendError,
+                object: nil)
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(FirebaseManager.sendDataMessageSuccess),
+                name:NSNotification.Name.MessagingSendSuccess,
+                object: nil)
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(FirebaseManager.didDeleteMessagesOnServer),
+                name:NSNotification.Name.MessagingMessagesDeleted,
+                object: nil)
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(FirebaseManager.tokenRefreshNotification),
+                name: NSNotification.Name.InstanceIDTokenRefresh,
+                object: nil)
         
         let token = InstanceID.instanceID().token()
         DDLogDebug("Token on startup= \(token ?? "")")

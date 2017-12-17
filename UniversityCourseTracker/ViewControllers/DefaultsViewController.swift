@@ -110,8 +110,6 @@ class DefaultsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let university = universities![selectedIndex!]
         coreData.university = university
         coreData.semester = university.resolvedSemesters.current
-        
-        reporting.logDefaultUniversity(university.topicId)
     }
     
     func donePicker(_ sender: UIBarButtonItem) {

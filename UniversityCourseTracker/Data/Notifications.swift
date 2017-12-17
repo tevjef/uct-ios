@@ -14,7 +14,9 @@ import UserNotifications
 class Notifications {
     
     let appDelegate: AppDelegate
-    
+    let reporting: Reporting
+
+    var uctNotification: Uctnotification = Uctnotification.Builder().buildPartial()
     var university: University = University.Builder().buildPartial()
     var subject: Subject = Subject.Builder().buildPartial()
     var course: Course = Course.Builder().buildPartial()
@@ -22,13 +24,15 @@ class Notifications {
     
     static var shared: Notifications?
     
-    init(appDelegate: AppDelegate) {
+    init(_ appDelegate: AppDelegate, _ reporting: Reporting) {
         self.appDelegate = appDelegate
+        self.reporting = reporting
         Notifications.shared = self
     }
 
-    func setNotificationData(_ university: University) {
-        self.university = university
+    func setNotificationData(_ uctNotification: Uctnotification) {
+        self.uctNotification = uctNotification
+        self.university = uctNotification.university
         self.subject = university.subjects.first!
         self.course = subject.courses.first!
         self.section = course.sections.first!
@@ -85,7 +89,7 @@ class Notifications {
     }
     
     func scheduleNotification() {
-        appDelegate.reporting?.logReceiveNotification(section.topicName)
+        reporting.logReceiveNotification(section.topicId, section.topicName, uctNotification.notificationId.description)
         let application: UIApplication = UIApplication.shared
         let center = UNUserNotificationCenter.current()
         

@@ -12,30 +12,55 @@ import FirebaseMessaging
 import CocoaLumberjack
 
 // The holiest of god objects
-class CoreDataManager: NSObject {
+class CoreDataManager {
   
     static let addSubscriptionNotification = "addSubscriptionNotification"
     static let removeSubscriptionNotification = "removeSubscriptionNotification"
     static let updateSubscriptionsNotification = "updateSubscriptionsNotification"
 
+    fileprivate var cachedUniverisity: University?
+    fileprivate var cachedSemester: Semester?
+
+    var university: University? {
+        get {
+            return getUniversity()
+        }
+        set(university) {
+            updateUniversity(university!)
+        }
+    }
+
+    var semester: Semester? {
+        get {
+            return getSemester()
+        }
+        set(semester) {
+            updateSemester(semester!)
+        }
+    }
+
     let appDelegate: AppDelegate
     let firebaseManager: FirebaseManager
-    
+    let reporting: Reporting
+    let dataRepo: DataRepos
     let moc: NSManagedObjectContext
     
-    init(appDelegate: AppDelegate, firebaseManager: FirebaseManager)  {
+    init(_ appDelegate: AppDelegate, _ firebaseManager: FirebaseManager, _ dataRepo: DataRepos, _ reporting: Reporting)  {
         self.appDelegate = appDelegate
         self.firebaseManager = firebaseManager
+        self.reporting = reporting
+        self.dataRepo = dataRepo
         moc = appDelegate.managedObjectContext.self
     }
-    
+
     func addSubscription(_ subscription: Subscription) {
         DDLogDebug("Adding subscription=\(subscription.sectionTopicName)")
         CoreSubscription.upsertSubscription(moc, subscription: subscription)
         firebaseManager.subscribeToTopic(subscription.sectionTopicName)
         NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.addSubscriptionNotification), object: self)
-        
-        appDelegate.reporting?.logSubscription(subscription.getSection().topicId)
+
+        let section = subscription.getSection()
+        reporting.logSubscription(section.topicId, section.topicName)
     }
     
     func removeSubscription(_ topicName: String) -> Int {
@@ -45,8 +70,11 @@ class CoreDataManager: NSObject {
         firebaseManager.unsubscribeFromTopic(topicName)
         let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
         NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.removeSubscriptionNotification), object: self)
+
+        if let section = subscription?.getSection() {
+            reporting.logUnsubscription(section.topicId, section.topicName)
+        }
         
-        appDelegate.reporting?.logUnsubscription(subscription?.getSection().topicId ?? "")
         return numRemoved
     }
     
@@ -96,27 +124,6 @@ class CoreDataManager: NSObject {
         return subscriptions
     }
     
-    fileprivate var cachedUniverisity: University?
-    fileprivate var cachedSemester: Semester?
-    
-    var university: University? {
-        get {
-            return getUniversity()
-        }
-        set(university) {
-            updateUniversity(university!)
-        }
-    }
-    
-    var semester: Semester? {
-        get {
-            return getSemester()
-        }
-        set(semester) {
-            updateSemester(semester!)
-        }
-    }
-    
     fileprivate func getUniversity() -> University? {
         let university: University?
 
@@ -149,7 +156,7 @@ class CoreDataManager: NSObject {
         // Invalidate cache
         cachedUniverisity = nil
         CoreUserDefault.saveUniversity(moc, data: university)
-        appDelegate.reporting?.logChangeUniversity(university.topicId)
+        reporting.logDefaultUniversity(university.topicName)
     }
     
     fileprivate func updateSemester(_ semester: Semester)  {
@@ -158,6 +165,6 @@ class CoreDataManager: NSObject {
         // Invalidate cache
         cachedSemester = nil
         CoreUserDefault.saveSemester(moc, data: semester)
-        appDelegate.reporting?.logChangeSemester(semester.readableString)
+        reporting.logDefaultSemester(semester)
     }
 }
