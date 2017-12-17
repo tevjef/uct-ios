@@ -139,7 +139,7 @@ class CoreDataManager: NSObject {
             semester = CoreUserDefault.getSemester(moc)
         }
         
-        DDLogDebug("Getting semester returning=\(semester?.description ?? "nil")")
+        DDLogDebug("Getting semester returning=\(String(describing: semester?.debugDescription))")
         return semester
     }
     

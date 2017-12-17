@@ -32,7 +32,7 @@ class Reporting: NSObject {
         
         params[Params.screen_name] = view.nameOfClass as NSObject?
 
-        Analytics.logEvent(Event.screen_view, parameters: params)
+        Analytics.setScreenName(view.nameOfClass, screenClass: view.nameOfClass)
         Answers.logCustomEvent(withName: Event.screen_view, customAttributes: params)
         Crashlytics.sharedInstance().setObjectValue(Event.screen_view, forKey: params.description)
         DDLogInfo("\(#function) \(params.description)")
