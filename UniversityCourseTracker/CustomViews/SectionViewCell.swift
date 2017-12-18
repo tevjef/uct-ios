@@ -77,7 +77,7 @@ class SectionViewCell: UITableViewCell {
             let meeting = section.meetings[index]
             let meetingView = meetingViews[index]
 
-            if meeting.day != "" {
+            if meeting.hasDay && meeting.day != "" {
                 let abbrIndex = meeting.day.index(meeting.day.startIndex, offsetBy: 3)
                 meetingView.dayView.text = meeting.day.substring(to: abbrIndex)
 
@@ -85,7 +85,7 @@ class SectionViewCell: UITableViewCell {
                 meetingView.dayView.text = meeting.classType
             }
             
-            if meeting.startTime != "" {
+            if meeting.hasStartTime && meeting.hasEndTime {
                 meetingView.timeView.text = meeting.startTime + " - " + meeting.endTime
             }
             

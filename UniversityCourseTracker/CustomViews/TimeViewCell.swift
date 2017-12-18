@@ -50,13 +50,13 @@ class TimeViewCell: UITableViewCell {
             let meeting = section.meetings[index]
             let meetingView = meetingViews[index]
             
-            if meeting.day != "" {
+            if meeting.hasDay && meeting.day != "" {
                 meetingView.dayView.text = meeting.day
             } else {
                 meetingView.dayView.text = meeting.classType
             }
             
-            if meeting.startTime != "" {
+            if meeting.hasStartTime && meeting.hasEndTime {
                 meetingView.timeView.text = meeting.startTime + " - " + meeting.endTime
             }
             

@@ -146,7 +146,7 @@ class CoreDataManager {
             semester = CoreUserDefault.getSemester(moc)
         }
         
-        DDLogDebug("Getting semester returning=\(String(describing: semester?.debugDescription))")
+        DDLogDebug("Getting semester returning=\(semester?.readableString ?? "nil"))")
         return semester
     }
     
