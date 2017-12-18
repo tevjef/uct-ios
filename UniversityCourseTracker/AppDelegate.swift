@@ -36,10 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         reporting = Reporting()
         dataRepo = DataRepos(constants: appconstants)
-        firebaseManager = FirebaseManager(appDelegate: self)
+        firebaseManager = FirebaseManager(appDelegate: self, dataRepo!)
         coreDataManager = CoreDataManager(self, firebaseManager!, dataRepo!, reporting!)
-        notification = Notifications(self, reporting!)
-
+        notification = Notifications(self, firebaseManager!, reporting!)
 
         window?.backgroundColor = UIColor.white
         window?.tintColor = AppConstants.Colors.primary

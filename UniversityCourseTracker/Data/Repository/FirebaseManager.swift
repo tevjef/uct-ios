@@ -15,9 +15,11 @@ import CocoaLumberjack
 class FirebaseManager: NSObject {
     
     let appDelegate: AppDelegate
-    
-    init(appDelegate: AppDelegate) {
+    let dataRepo: DataRepos
+
+    init(appDelegate: AppDelegate,  _ dataRepo: DataRepos) {
         self.appDelegate = appDelegate
+        self.dataRepo = dataRepo
         super.init()
         DDLogDebug("Configuring Firebase...")
         FirebaseApp.configure()
@@ -47,7 +49,15 @@ class FirebaseManager: NSObject {
         let token = InstanceID.instanceID().token()
         DDLogDebug("Token on startup= \(token ?? "")")
     }
-    
+
+    func fcmToken() -> String {
+        return Messaging.messaging().fcmToken ?? ""
+    }
+
+    func acknowledgeNotification(_ notificationId: String, _ topicName: String) {
+        dataRepo.postAcknowledgeNotification(notificationId, fcmToken(), topicName, Date().iso8601)
+    }
+
     func subscribeToTopic(_ topicName: String) {
         Messaging.messaging().subscribe(toTopic: "/topics/\(topicName)")
         DDLogDebug("Subscribing to \(topicName)")

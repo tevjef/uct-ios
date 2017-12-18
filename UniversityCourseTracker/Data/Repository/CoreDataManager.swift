@@ -60,6 +60,7 @@ class CoreDataManager {
         NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.addSubscriptionNotification), object: self)
 
         let section = subscription.getSection()
+        dataRepo.postSubscription(true, firebaseManager.fcmToken(), subscription.sectionTopicName)
         reporting.logSubscription(section.topicId, section.topicName)
     }
     
@@ -70,6 +71,8 @@ class CoreDataManager {
         firebaseManager.unsubscribeFromTopic(topicName)
         let numRemoved = CoreSubscription.removeSubscription(moc, topicName: topicName)
         NotificationCenter.default.post(name: Notification.Name(rawValue: CoreDataManager.removeSubscriptionNotification), object: self)
+
+        dataRepo.postSubscription(false, firebaseManager.fcmToken(), topicName)
 
         if let section = subscription?.getSection() {
             reporting.logUnsubscription(section.topicId, section.topicName)

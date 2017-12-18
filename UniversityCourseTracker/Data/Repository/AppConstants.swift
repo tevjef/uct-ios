@@ -17,7 +17,7 @@ class AppConstants {
         let betaUniversities = UserDefaults.standard.bool(forKey: "beta_universities")
         
         // Enable beta endpoint
-        if betaUniversities {
+        if betaUniversities || true {
             Network.base = "https://api.staging.coursetrakr.io"
         } else {
             Network.base = "https://api.coursetrakr.io"
@@ -31,7 +31,9 @@ class AppConstants {
     lazy var COURSES = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.courses)")!
     lazy var COURSE = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.course)")!
     lazy var SECTION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.section)")!
-    
+    lazy var NOTIFICATION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.notification)")!
+    lazy var SUBSCRIPTION = URL(string: "\(Network.base)/\(Network.apiVersion)/\(Network.subscription)")!
+
     struct Notification {
         static var genericNotificationTitle = "Course Tracker"
     }
@@ -46,6 +48,8 @@ class AppConstants {
         static var courses = "courses"
         static var course = "course"
         static var section = "section"
+        static var notification = "notification"
+        static var subscription = "subscription"
     }
     
     struct CoreData {

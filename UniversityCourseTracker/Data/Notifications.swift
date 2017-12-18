@@ -14,6 +14,7 @@ import UserNotifications
 class Notifications {
     
     let appDelegate: AppDelegate
+    let firebaseManager: FirebaseManager
     let reporting: Reporting
 
     var uctNotification: Uctnotification = Uctnotification.Builder().buildPartial()
@@ -24,9 +25,10 @@ class Notifications {
     
     static var shared: Notifications?
     
-    init(_ appDelegate: AppDelegate, _ reporting: Reporting) {
+    init(_ appDelegate: AppDelegate, _ firebaseManager: FirebaseManager,  _ reporting: Reporting) {
         self.appDelegate = appDelegate
         self.reporting = reporting
+        self.firebaseManager = firebaseManager
         Notifications.shared = self
     }
 
@@ -136,6 +138,8 @@ class Notifications {
             }
             self.appDelegate.window?.rootViewController?.present(sectionAlert, animated: true, completion: nil)
         }
+
+        firebaseManager.acknowledgeNotification(uctNotification.notificationId.description, section.topicName)
     }
     
     func requestNotificationPermission() {
