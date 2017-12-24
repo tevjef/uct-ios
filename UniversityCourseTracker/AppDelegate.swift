@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coreDataManager = CoreDataManager(self, firebaseManager!, dataRepo!, reporting!)
         notification = Notifications(self, firebaseManager!, reporting!)
 
+
         window?.backgroundColor = UIColor.white
         window?.tintColor = AppConstants.Colors.primary
 
@@ -47,26 +48,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        var readableToken: String = ""
+        for i in 0..<deviceToken.count {
+            readableToken += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
+        }
+        print("Received an APNs device token: \(readableToken)")
         FirebaseManager.setAPNSToken(deviceToken)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        let json: [String: AnyObject]!
-
-        if let message = userInfo["message"] as? String {
+        if let message = userInfo["message"] {
             do {
-                DDLogInfo(message)
-                let jsonData = message.data(using: String.Encoding.utf8)!
-                json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
+                let jsonData = try JSONSerialization.data(withJSONObject: message, options: .prettyPrinted)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                if let dictFromJSON = decoded as? [String: String] {
+                    let notificationId = dictFromJSON["notificationId"] ?? ""
+                    let title = dictFromJSON["title"] ?? ""
+                    let body = dictFromJSON["body"] ?? ""
+                    let topicName = dictFromJSON["topicName"] ?? ""
+                    let topicId = dictFromJSON["topicId"] ?? ""
+                    let status = dictFromJSON["status"] ?? ""
+                    let registrationUrl = dictFromJSON["registrationUrl"] ?? ""
 
-                let uctNotification = try Uctnotification.decode(jsonMap: json)
-                notification?.setNotificationData(uctNotification)
-                notification?.scheduleNotification()
-
+                    notification?.scheduleNotification(
+                            title,
+                            body,
+                            status,
+                            notificationId,
+                            topicName,
+                            registrationUrl,
+                            topicId)
+                }
             } catch {
                 completionHandler(UIBackgroundFetchResult.failed)
                 print(error)

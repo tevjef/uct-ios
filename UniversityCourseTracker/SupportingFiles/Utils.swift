@@ -174,6 +174,14 @@ extension UIViewController {
     var reporting:Reporting {
         return appDelegate.reporting!
     }
+    
+    var firebaseManager:FirebaseManager {
+        return appDelegate.firebaseManager!
+    }
+
+    var notification:Notifications {
+        return appDelegate.notification!
+    }
 
     func popToRoot(_ button: UIBarButtonItem) {
         for vc in navigationController!.viewControllers {
@@ -300,5 +308,18 @@ extension Date {
 extension String {
     var dateFromISO8601: Date? {
         return Formatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
+    }
+}
+
+extension String {
+    func toBool() -> Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
     }
 }
