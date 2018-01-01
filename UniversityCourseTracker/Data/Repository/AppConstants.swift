@@ -17,7 +17,7 @@ class AppConstants {
         let betaUniversities = UserDefaults.standard.bool(forKey: "beta_universities")
         
         // Enable beta endpoint
-        if betaUniversities || true {
+        if betaUniversities {
             Network.base = "https://api.staging.coursetrakr.io"
         } else {
             Network.base = "https://api.coursetrakr.io"
