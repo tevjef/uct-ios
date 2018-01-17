@@ -129,6 +129,12 @@
                             <outlet property="rightBarButtonItem" destination="cb6-0e-qxS" id="pGd-S4-tSA"/>
                         </connections>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="DrH-4I-ohf">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="onRefresh:" destination="FYo-7n-VbP" eventType="valueChanged" id="T5N-hj-eKQ"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7x-Ts-78u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

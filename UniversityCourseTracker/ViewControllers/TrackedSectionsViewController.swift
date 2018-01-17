@@ -22,7 +22,6 @@ class TrackedSectionViewController: UITableViewController {
     override func viewDidLoad() {
         reporting.logShowScreen(self)
 
-
         setupViews()
 
         coreData.refreshAllSubscriptions()
@@ -70,6 +69,11 @@ class TrackedSectionViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
+    @IBAction func onRefresh(_ sender: UIRefreshControl) {
+        coreData.refreshAllSubscriptions()
+        loadData()
+    }
+    
     func showEmptyScreen() {
         let noSectionView = NoSections.createView()
         tableView.backgroundView = noSectionView
@@ -192,6 +196,7 @@ class TrackedSectionViewController: UITableViewController {
 
     func onSubscriptionsUpdated(_ sender: AnyObject) {
         loadData()
+        self.hideRefreshing()
     }
 
     override func viewDidAppear(_ animated: Bool) {
